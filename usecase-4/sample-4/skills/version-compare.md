@@ -4,7 +4,7 @@ title: Version compare
 intent: Classify every clause of a reissued document against its earlier revision, and say what changed and why it matters.
 shape: CLAUSE_DIFF
 grain: one clause
-scale: ADDED, REMOVED, CHANGED, UNCHANGED
+scale: ADDED · REMOVED · CHANGED · UNCHANGED; material yes/no
 recommend-when: ADDED, REMOVED, CHANGED with material=yes
 absence-policy: Not applicable — every clause of the source has a classification, since the source is compared against the supporting document, not asked a question it may leave unaddressed.
 reading-needs: tables
