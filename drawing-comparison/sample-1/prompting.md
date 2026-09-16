@@ -1,4 +1,4 @@
-## 2026-09-15 · project bootstrapped as "lumina", branch usecase-5-drawing-comparison
+## 2026-09-15 · project bootstrapped as "lumina", branch drawing-comparison
 Project created from a new use case, Drawing Comparison, requested by the user and modelled on `usecase-4`'s version-compare packs (same repository, `main` branch). Two drawings supplied by Assent Steel: `AD-3010-C-330030-SHT-004-REV3.pdf` and `AD-3010-C-330030-SHT-004-REV4.pdf`, from `/home/kowsalya.nachimuthu@zucisystems.com/Downloads/Assent/Intics 03.09.26/Drawings comparison/Shop drawing comparison/`. Skill set to a new `drawing-comparison` skill, adapted from `version-compare`. Source document declared as the later, Rev 4 issue; supporting document declared as the earlier, Rev 3 issue (same source/supporting convention as `version-compare`).
 
 ## 2026-09-15 · supplied PDFs found to be corrupted, repaired
