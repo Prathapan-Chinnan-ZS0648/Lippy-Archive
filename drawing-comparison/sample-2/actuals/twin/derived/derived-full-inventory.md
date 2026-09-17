@@ -1,0 +1,228 @@
+## Units — AD-3010-C-330030-SHT-004 Rev 4 (generated from word-coordinate extraction; fragments joined with ·)
+
+### Connections (member line, bay)
+
+- x | 1 | PL.111.500 col-1 above-A | SW
+- x | 1 | PL.111.500 mid above-A | SW
+- x | 1 | PL.111.500 col-1/2 edge | SW-
+- x | 1 | PL.111.500 col-1/2 edge | SW-
+- x | 1 | PL.112.800 band above-A | SW
+- x | 1 | PL.112.800 band A-B | SW
+- x | 1 | PL.111.500 mid A-B | SW
+- x | 1 | PL.112.800 band A-B | SW
+- x | 1 | PL.111.500 col-2 A-B | SW(30N 10V)
+- x | 1 | PL.111.500 mid A-B | SW(30N 10V)
+- x | 1 | PL.111.500 col-1 A-B | SW(50N 10V)
+- x | 1 | PL.111.500 col-2 A-B | SW(50N 10V)
+- x | 1 | PL.112.800 band A-B | SW
+- x | 1 | PL.111.500 col-2 A-B | SW
+- x | 1 | PL.112.800 band A-B | SW
+- x | 1 | PL.112.800 band A-B | SW
+- x | 1 | PL.111.500 mid A-B | SW(30N 10V)
+- x | 1 | PL.111.500 mid B-C | SW(30N 10V)
+- x | 1 | PL.111.500 col-2 B-C | SW
+- x | 1 | PL.111.500 col-1 B-C | SW(50N 10V)
+- x | 1 | PL.111.500 mid B-C | SW(30N 10V)
+- x | 1 | PL.111.500 col-2 B-C | SW(50N 10V)
+- x | 1 | PL.111.500 col-2 B-C | SW
+- x | 1 | PL.111.500 mid B-C | SW(30N 10V)
+- x | 1 | PL.111.500 mid C-D | SW(30N 10V)
+- x | 1 | PL.111.500 col-2 C-D | SW
+- x | 1 | PL.111.500 col-1 C-D | SW(58N 2Vy)
+- x | 1 | PL.111.500 col-2 C-D | SW(63N 3Vy)
+- x | 1 | PL.111.500 mid C-D | SW(30N 10V)
+- x | 1 | PL.111.500 mid D-E | SW(30N 10V)
+- x | 1 | PL.111.500 col-2 D-E | SW
+- x | 1 | PL.111.500 col-1 D-E | SW(50N 10V)
+- x | 1 | PL.111.500 mid D-E | SW(30N 10V)
+- x | 1 | PL.111.500 col-2 D-E | SW(50N 10V)
+- x | 1 | PL.111.500 col-2 D-E | SW
+- x | 1 | PL.111.500 mid D-E | SW(30N 10V)
+- x | 1 | PL.112.800 band E-F | SW
+- x | 1 | PL.112.800 band E-F | SW
+- x | 1 | PL.111.500 mid E-F | SW(30N 10V)
+- x | 1 | PL.111.500 col-2 E-F | SW
+- x | 1 | PL.112.800 band E-F | SW
+- x | 1 | PL.111.500 col-1 E-F | SW(50N 10V)
+- x | 1 | PL.111.500 mid E-F | SW(30N 10V)
+- x | 1 | PL.111.500 col-2 E-F | SW(50N 10V)
+- x | 1 | PL.111.500 col-2 E-F | SW(30N 10V)
+- x | 1 | PL.112.800 band E-F | SW
+- x | 1 | PL.112.800 band E-F | SW
+- x | 1 | PL.112.800 band E-F | SW
+- x | 1 | PL.111.500 mid E-F | SW
+- x | 1 | PL.111.500 col-1/2 edge | -SW
+- x | 1 | PL.111.500 col-1/2 edge | -SW
+- x | 1 | PL.111.500 mid below-F | SW
+- x | 1 | PL.111.500 mid below-F | SW
+### Member size labels
+
+- x | 1 | PL.111.500 above-A  | T165x152x20 (-120)
+- x | 1 | PL.111.500 above-A  | T165x152x20 (-120)
+- x | 1 | PL.111.500 above-A  | UC203x203x46 (-120)
+- x | 1 | PL.111.500 above-A  | UB305x165x46
+- x | 1 | PL.112.800 above-A  | UB356x171x51
+- x | 1 | PL.111.500 above-A  | UB305x165x46
+- x | 1 | PL.111.500 above-A  | UB305x165x46
+- x | 1 | PL.112.800 above-A  | UC152x152x30
+- x | 1 | PL.111.500 above-A  | UB914x305x289
+- x | 1 | PL.112.800 A-B  | UC152x152x30
+- x | 1 | PL.111.500 A-B  | UC203x203x46
+- x | 1 | PL.112.800 A-B  | UC152x152x30
+- x | 1 | PL.111.500 A-B  | UB305x165x46
+- x | 1 | PL.111.500 A-B  | T171x178x26
+- x | 1 | PL.111.500 A-B  | UB356x171x45
+- x | 1 | PL.111.500 A-B  | UB356x171x45
+- x | 1 | PL.111.500 A-B  | UC203x203x46
+- x | 1 | PL.112.800 A-B  | UC152x152x30
+- x | 1 | PL.111.500 A-B  | UB305x165x46
+- x | 1 | PL.112.800 A-B  | UB356x171x51
+- x | 1 | PL.112.800 A-B  | UB356x171x51
+- x | 1 | PL.111.500 A-B  | UC203x203x46
+- x | 1 | PL.111.500 A-B  | UB914x305x289
+- x | 1 | PL.112.800 B-C  | UB356x171x51
+- x | 1 | PL.111.500 B-C  | UC203x203x46
+- x | 1 | PL.111.500 B-C  | UB305x165x46
+- x | 1 | PL.111.500 B-C  | UB356x171x45
+- x | 1 | PL.111.500 B-C  | UB356x171x45
+- x | 1 | PL.111.500 B-C  | UC203x203x46
+- x | 1 | PL.111.500 B-C  | UB305x165x46
+- x | 1 | PL.111.500 B-C  | UC203x203x46
+- x | 1 | PL.111.500 B-C  | UB914x305x289
+- x | 1 | PL.111.500 C-D  | UC203x203x46
+- x | 1 | PL.111.500 C-D  | UB305x165x46
+- x | 1 | PL.111.500 C-D  | UB457x191x74
+- x | 1 | PL.111.500 C-D  | UB457x191x74
+- x | 1 | PL.111.500 C-D  | UC203x203x46
+- x | 1 | PL.111.500 C-D  | UB914x305x289
+- x | 1 | PL.111.500 D-E  | UC203x203x46
+- x | 1 | PL.111.500 D-E  | UB305x165x46
+- x | 1 | PL.111.500 D-E  | UB356x171x45
+- x | 1 | PL.111.500 D-E  | UB356x171x45
+- x | 1 | PL.111.500 D-E  | UC203x203x46
+- x | 1 | PL.111.500 D-E  | UB305x165x46
+- x | 1 | PL.112.800 D-E  | UB356x171x51
+- x | 1 | PL.111.500 D-E  | UC203x203x46
+- x | 1 | PL.111.500 D-E  | UB914x305x289
+- x | 1 | PL.112.800 E-F  | UC152x152x30
+- x | 1 | PL.112.800 E-F  | UC152x152x30
+- x | 1 | PL.111.500 E-F  | UC203x203x46
+- x | 1 | PL.111.500 E-F  | UB305x165x46
+- x | 1 | PL.112.800 E-F  | UC152x152x30
+- x | 1 | PL.111.500 E-F  | UB356x171x45
+- x | 1 | PL.111.500 E-F  | UB356x171x45
+- x | 1 | PL.111.500 E-F  | UC203x203x46
+- x | 1 | PL.111.500 E-F  | UB305x165x46
+- x | 1 | PL.112.800 E-F  | UC152x152x30
+- x | 1 | PL.112.800 E-F  | UB356x171x51
+- x | 1 | PL.112.800 E-F  | UB356x171x51
+- x | 1 | PL.111.500 E-F  | UC203x203x46 (-
+- x | 1 | PL.112.800 below-F  | UB356x171x51
+- x | 1 | PL.111.500 below-F  | UB914x305x289
+- x | 1 | PL.111.500 below-F  | UB305x165x46
+- x | 1 | PL.111.500 below-F  | UB305x165x46
+- x | 1 | PL.111.500 below-F  | UB305x165x46
+- x | 1 | PL.111.500 below-F  | T165x152x20 (-120)
+- x | 1 | PL.111.500 below-F  | UC203x203x46 (-120)
+- x | 1 | PL.111.500 below-F  | T165x152x20 (-120)
+### Fragment runs (brace/rotated labels; verbatim fragments, reconstruction UNSURE)
+
+- x | 1 | PL.111.500 above-A  | Docusign·Envelope·ID:
+- x | 1 | PL.111.500 above-A  | C401E199-D49B-8D00-8015-A663C910C40C
+- x | 1 | PL.111.500 above-A  | PLANT·NORTH
+- x | 1 | PL.111.500 above-A  | 1
+- x | 1 | PL.111.500 above-A  | 2
+- x | 1 | PL.111.500 above-A  | 8000
+- x | 1 | PL.111.500 above-A  | 2500·4000
+- x | 1 | PL.111.500 above-A  | 4000·2500
+- x | 1 | PL.111.500 above-A  | NORTH·TRUE·64.·2·70.·8·º·WIND
+- x | 1 | PL.112.800 above-A  | 2
+- x | 1 | PL.111.500 above-A  | º
+- x | 1 | PL.111.500 above-A  | PREVAILING
+- x | 1 | PL.112.800 above-A  | 1200·800·3200·1200
+- x | 1 | PL.111.500 above-A  | BW
+- x | 1 | PL.111.500 above-A  | BW
+- x | 1 | PL.112.800 above-A  | MW·BW
+- x | 1 | PL.112.800 above-A  | A
+- x | 1 | PL.111.500 above-A  | 1000·1100·835·1065·(-120)·T1·6·5x1·BW·52·x·20·(-·12·0)
+- x | 1 | PL.111.500 above-A  | MW
+- x | 1 | PL.111.500 above-A  | 1500
+- x | 1 | PL.112.800 A-B  | 1500·1000·(TYP.)·L80x80x8·HANDRAIL·(TYP.)·U.N.O.·(-50)
+- x | 1 | PL.111.500 above-A  | A
+- x | 1 | PL.112.800 A-B  | 500·4·C·C·L·L·30·AT·EL.·EL.·(*)·FROM·FROM·EL.·THK·LADDER-1·LADDER-2·117.·112.830·EL.·EL.·530·112.830·GRATING·107.200·112.830·(T.O.G.)·(T.O.G.)·(T.O.G.)·(T.O.C.)·(T.O.G.)·TO·TO
+- x | 1 | PL.111.500 A-B  | 3000
+- x | 1 | PL.112.800 A-B  | 9000·1150·1150
+- x | 1 | PL.111.500 A-B  | (*)·T1·BW(76N)·6·4·5x1·T1·6·52·5x1·(-175)·x20·BW·BW·52·(-1·x·2·20·0)·(-·12·0)·(-120)
+- x | 1 | PL.112.800 A-B  | 515
+- x | 1 | PL.112.800 A-B  | 350
+- x | 1 | PL.111.500 A-B  | 9000·3000
+- x | 1 | PL.112.800 A-B  | 4200·3000
+- x | 1 | PL.111.500 A-B  | (-120)
+- x | 1 | PL.111.500 A-B  | 3000
+- x | 1 | PL.112.800 B-C  | B
+- x | 1 | PL.111.500 A-B  | T1·6·MW·5x1·52·x20·BW·(-1·2·0)
+- x | 1 | PL.112.800 B-C  | MW
+- x | 1 | PL.111.500 B-C  | B
+- x | 1 | PL.112.800 B-C  | 3000
+- x | 1 | PL.111.500 B-C  | (-120)
+- x | 1 | PL.111.500 B-C  | 3000
+- x | 1 | PL.111.500 B-C  | (-120)·T1·6·5x1·BW·52·x·20·(-·12·0·)
+- x | 1 | PL.112.800 B-C  | 9000
+- x | 1 | PL.111.500 B-C  | 9000·3000
+- x | 1 | PL.111.500 B-C  | 4
+- x | 1 | PL.111.500 B-C  | T1·6·5x1·BW·52·x·20·(-·12·0)·(-120)
+- x | 1 | PL.111.500 B-C  | 3000
+- x | 1 | PL.112.800 C-D  | C
+- x | 1 | PL.111.500 B-C  | MW
+- x | 1 | PL.111.500 C-D  | C
+- x | 1 | PL.111.500 C-D  | (-120)·T1·7·x17·BW·8·x·34·(-·12·0)
+- x | 1 | PL.111.500 C-D  | T1·6·5x1·52·7·1·x20·BW·x17·BW·8·(-1·x·2·34·0)·(-·12·0)·(-120)
+- x | 1 | PL.111.500 C-D  | 3000
+- x | 1 | PL.111.500 C-D  | 1
+- x | 1 | PL.111.500 C-D  | 4
+- x | 1 | PL.112.800 C-D  | 42000·6000
+- x | 1 | PL.111.500 C-D  | 42000·6000·3000
+- x | 1 | PL.111.500 C-D  | T1
+- x | 1 | PL.111.500 C-D  | (-120)·T1·MW·6·5x1·6·BW·52·5x1·x·20·52·(-·x20·BW·12·0)·(-1·2·0)
+- x | 1 | PL.111.500 C-D  | T1
+- x | 1 | PL.112.800 D-E  | D
+- x | 1 | PL.111.500 D-E  | D
+- x | 1 | PL.111.500 D-E  | 3000
+- x | 1 | PL.112.800 D-E  | 9000
+- x | 1 | PL.111.500 D-E  | T1·6·5x1·BW·52·x·20·(-·12·0)·(-120)
+- x | 1 | PL.111.500 D-E  | 9000·3000
+- x | 1 | PL.112.800 D-E  | 1200·3200
+- x | 1 | PL.112.800 D-E  | 3000
+- x | 1 | PL.111.500 D-E  | (-120)
+- x | 1 | PL.111.500 D-E  | T1·6·5x1·52·x20·BW·(-1·2·4·0)·(-120)
+- x | 1 | PL.112.800 D-E  | MW
+- x | 1 | PL.111.500 D-E  | 3000
+- x | 1 | PL.112.800 E-F  | E
+- x | 1 | PL.111.500 D-E  | T1·MW·6·5x1·52·x20·BW·(-1·2·0)
+- x | 1 | PL.112.800 E-F  | BW
+- x | 1 | PL.112.800 E-F  | 9000·1000·1150·1150·300·HANDRAIL·(TYP.)·U.N.O.·(-50)
+- x | 1 | PL.112.800 E-F  | 2700·(TYP.)·L80x80x8
+- x | 1 | PL.111.500 E-F  | E
+- x | 1 | PL.112.800 E-F  | 340
+- x | 1 | PL.111.500 E-F  | 3000
+- x | 1 | PL.112.800 E-F  | 500·4·C·C·L·L·(*)·30·AT·EL.·EL.·FROM·FROM·EL.·THK·LADDER-4·LADDER-3·112.830·117.530·EL.·EL.·112.830·GRATING·107.200·112.830·(T.O.G.)·(T.O.G.)·(T.O.G.)·(T.O.C.)·(T.O.G.)·TO·TO
+- x | 1 | PL.111.500 E-F  | (-120)·T1·6·5x1·BW·52·x·20·(-·12·0)·4
+- x | 1 | PL.111.500 E-F  | 9000·3000
+- x | 1 | PL.112.800 E-F  | 515
+- x | 1 | PL.111.500 E-F  | UC·2·03x·2·03x·46·BW·(-·1·20)·UC·20·BW·3x2·03·x4·6·(-·120)·(-120)·UC·2·03x·2·03x·46·BW·1·20)·2000·UC·203·BW·x·203·x46·20)
+- x | 1 | PL.112.800 E-F  | 3000
+- x | 1 | PL.111.500 E-F  | (-1
+- x | 1 | PL.111.500 E-F  | 3000
+- x | 1 | PL.112.800 below-F  | F
+- x | 1 | PL.112.800 below-F  | MW
+- x | 1 | PL.111.500 below-F  | F
+- x | 1 | PL.111.500 below-F  | 2000
+- x | 1 | PL.111.500 below-F  | MW
+- x | 1 | PL.111.500 below-F  | 1500
+- x | 1 | PL.111.500 below-F  | BW
+- x | 1 | PL.111.500 below-F  | BW
+- x | 1 | PL.112.800 below-F  | SCALE·PLAN·1:100·EL.·112.800
+- x | 1 | PL.112.800 below-F  | (T.O.S.)
+- x | 1 | PL.111.500 below-F  | ALL·THE·THE·WORK·INFORMATION/DESIGN·TO·BE·CARRIED·CONTAINED·OUT·IN·ON·THIS·ACCORDANCE·DRAWING·WITH·IS·THE·CONFIDENTIAL.·CONTRACT·IT·MUST·SPECIFICATION.·NOT·BE·COPIED,·EXPLANATIONS·GIVEN·OF·AWAY,·LENT·ABBREVIATIONS,·OR·MADE·SCALE·SYMBOLS·1:100·EL.·AVAILABLE·ETC.·TO·111.500·ARE·A·THIRD·GIVEN·IN·PARTY·ADNOC·WITHOUT·Offshore·THE·CODES·WRITTEN·OF·PRACTICE.·CONSENT·OF·ADNOC·Offshore.
+- x | 1 | PL.111.500 below-F  | PLAN
+- x | 1 | PL.111.500 below-F  | (T.O.S.)
