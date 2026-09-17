@@ -9,10 +9,10 @@ scale: ADDED, REMOVED, CHANGED, UNCHANGED
 absence: n/a                            every callout of the source is classified against the supporting drawing; see skills/drawing-comparison.md
 labels: TITLE-BLOCK, NOTES, STRUCTURAL-MEMBER
 pages: one physical sheet is one page (PDF rule, design section 6); each revision of this drawing is a single sheet, so 1 page per document
-state: verified                        checker-equivalent pass done by hand and recorded below; see pivot.md § Agreement and § Method — not the two-independent-human-reader standard of design section 8. Not signed.
+state: verified                        checker-equivalent pass done by hand and recorded below; see pivot.md § Agreement and § Method — not the two-independent-human-reader standard of design section 8. Not signed. Corrected 2026-09-17 after an independent second pack (sample-2) flagged a gap; see pivot.md § 8.
 signed-by: —
 classification: customer-confidential  supplied by Assent Steel for this project; not public-synthetic like the usecase-4 samples
-profile: superseded-document 1 (REV3 itself, kept in supporting/); revision-cloud-untagged 2 (MEMB-4, MEMB-5 — connection callouts changed with no cloud drawn); already-communicated marker 1 (the Notes-box "(*)" legend, NOTE-1, itself new in REV4); reformat control case 1 (CTRL-1, El 112.800 plan); repeated-callout ambiguity 3 (MEMB-10, MEMB-11, MEMB-12 — see pivot.md § 4, exact grid row not yet independently confirmed); near-miss 0; contradiction 0; stated-absence 0; spilled-table 0 (single sheet, no table spans a page break); figure-answer 14 of 17 findings (all MEMB-* and CTRL-* units); out-of-pack cross-reference 1 (Notes box item 1, "SEE SHEET 001", not in this pack)
+profile: superseded-document 1 (REV3 itself, kept in supporting/); revision-cloud-untagged 2 (MEMB-4, MEMB-5 — connection callouts changed with no cloud drawn); already-communicated marker 1 (the Notes-box "(*)" legend, NOTE-1, itself new in REV4); reformat control case 2 (CTRL-1, El 112.800 plan Grid A; CTRL-3, El 112.800 plan Grid E, added 2026-09-17); repeated-callout ambiguity 3 (MEMB-10, MEMB-11, MEMB-12 — see pivot.md § 4, exact grid row not yet independently confirmed); near-miss 0; contradiction 0; stated-absence 0; spilled-table 0 (single sheet, no table spans a page break); figure-answer 19 of 22 findings (all MEMB-* and CTRL-* units); out-of-pack cross-reference 1 (Notes box item 1, "SEE SHEET 001", not in this pack)
 profile-vocabulary: see skills/drawing-comparison.md § Pack profile for the canonical drawing-comparison failure-mode names this line uses
 ```
 
@@ -46,7 +46,8 @@ See `skills/drawing-comparison.md`. In short: a unit is one callout (a title-blo
 
 ### What must not happen
 
-- A callout must not be marked CHANGED because a neighbouring revision cloud was cleared and its label reflowed to a new position on the sheet with no wording change (see `CTRL-1`, the El 112.800 plan's Grid A / column-2 node, where Rev 3's "HANDRAIL (TYP.)" and "BW / L80x80x8 (-50) / (TYP.) U.N.O." labels swap vertical order once their Rev 3 clouds are cleared in Rev 4).
+- A callout must not be marked CHANGED because a neighbouring revision cloud was cleared and its label reflowed to a new position on the sheet with no wording change (see `CTRL-1`/`CTRL-3`, the El 112.800 plan's two ladder-cage nodes, where Rev 3's "HANDRAIL (TYP.)" and "BW / L80x80x8 (-50) / (TYP.) U.N.O." labels swap vertical order once their Rev 3 clouds are cleared in Rev 4).
+- Conversely, a reformat control case must not be assumed to mean *nothing else* changed at that node — `CTRL-1`'s node also carries a real, adjacent dimension change (`MEMB-13`/`MEMB-14`), missed in this pack's first pass and corrected 2026-09-17; see pivot.md § 8. Check every callout at a node independently, not just the one being reformatted.
 - A callout must not be treated as unchanged just because it carries no revision cloud — `MEMB-4` and `MEMB-5` (the two `UB457x191x74` connection weld/bolt counts at the Grid D node) both changed value in Rev 4 with no cloud drawn around either one.
 - Three callouts in this pack (`MEMB-10`, `MEMB-11`, `MEMB-12`) are confirmed CHANGED by the drawing's own text layer — a weld/bolt count `(30N 10V)` was added where Rev 3 printed no count — but this pack's single-pass read has not independently pinned each one's exact grid row among the sheet's many visually identical `UC203x203x46 (-120)` column callouts; they are recorded `confidence: UNSURE` pending a second reader, per `pivot.md` § 4, rather than guessed at.
 

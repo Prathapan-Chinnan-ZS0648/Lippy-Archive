@@ -8,7 +8,7 @@ Source = REV4, `documents/source/AD-3010-C-330030-SHT-004-REV4.pdf`; supporting 
 |---|---|---|---|---|---|
 | twin | 2 | 0 | 0 | 2 | 0 |
 | derived / section-map | 3 | 0 | 0 | 3 | 0 |
-| findings | 17 | 0 | 0 | 14 | 3 |
+| findings | 22 | 0 | 0 | 19 | 3 |
 
 No second human reader or human resolver has touched this pack. The "resolved by single-reader cross-check" column is a distinct method from the design's two-independent-reader standard (section 8) and is recorded as its own column, and the 3 `findings` rows left in "still UNSURE" are exactly `MEMB-10`, `MEMB-11`, `MEMB-12` (see § 4) — real, text-confirmed changes whose exact grid row is not yet independently pinned, not a claim of human agreement that did not happen.
 
@@ -39,3 +39,14 @@ REV4 adds two new diagonal bracing members, both `T171x178x34 (-120)`, both meet
 ## 7 · Checker-equivalent pass, 2026-09-15: what it was and what it found
 
 No `lippy check`/`lippy compare` tooling is available in this environment. Its checks were applied by hand: (1) every finding's front matter has the fields `skills/drawing-comparison.md`'s finding shape and the design's verification standard require; (2) every `for-document` digest matches `file-index.md`; (3) every finding id appears exactly once in `actuals/report/report.md`'s row table, and the report's counts-by-kind table was cross-footed against that row table. All 17 findings and both twin pages pass. `confidence` is `SURE` for 14 findings and 3 twin/derived/section-map actuals, and `UNSURE` for `MEMB-10`/`MEMB-11`/`MEMB-12` per § 4 above; `bootstrap.md` set to `state: verified`, not `signed` (no named domain reviewer from Assent Steel or the project team has reviewed this pack). — yes, 2026-09-15
+
+## 8 · Correction, 2026-09-17: `CTRL-1` missed a real change; four findings added, one added
+
+A second, independently-written pack over the same two PDFs (`drawing-comparison/sample-2`, built with a different agent/model, per the user's request to explore an alternative tool) reported that the Grid A ladder-cage node this pack calls `CTRL-1` carries an adjacent dimension change (420→500 and 545→515) that this pack's `CTRL-1` did not mention, and that the same pattern recurs at a second ladder cage (Grid E) this pack never examined at all.
+
+Before accepting that claim, it was checked directly against the original PDFs, independently of both packs' write-ups:
+- Re-ran text-layer extraction in `-layout` mode (the original pass used `-raw`, which happened to surface only one of the two occurrences): confirmed `420`, `500`, `545` and `515` each occur **twice** across the two files, not once.
+- Cropped and visually inspected both locations (Grid A and Grid E) at full resolution against both revisions: confirmed the same 420→500 / 545→515 change, clouded and marked `(*)`, at both.
+- Confirmed the grid-letter/ladder-pair mapping directly from a wider crop showing the `CL LADDER-1`/`CL LADDER-2` and `CL LADDER-3`/`CL LADDER-4` text labels alongside the grid circles: Grid A = LADDER-1/2, Grid E = LADDER-3/4.
+
+Result: the claim was correct, and this pack's original `CTRL-1` was wrong to imply nothing else changed at that node. Corrected by: (1) editing `CTRL-1` to note the correction and scope it explicitly to the two labels it actually covers; (2) adding `MEMB-13`, `MEMB-14` (Grid A dimension pair) and `MEMB-15`, `MEMB-16` (Grid E dimension pair), all `material: true`, `confidence: SURE`; (3) adding `CTRL-3` for the Grid E label reflow, mirroring `CTRL-1`. `actuals/plan.md`, `actuals/report/report.md`, `bootstrap.md`'s profile line, both twin pages' structural-member tables, and `actuals/twin/derived/AD-3010-C-330030-SHT-004-REV4.pdf.md` were all updated to match; `file-index.md` updated with the new files and bumped versions on the changed ones. Total findings: 17 → 22. — yes, corrected, 2026-09-17

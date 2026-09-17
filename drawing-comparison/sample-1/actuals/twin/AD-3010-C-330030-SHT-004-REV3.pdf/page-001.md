@@ -6,7 +6,7 @@ tier: TEXT_LAYER
 read-by: pdftotext -raw; pdftoppm -r 300 (300dpi raster, cross-checked by pixel diff against REV4)
 laid-out-as-a-table: true
 verified-by: single-reader cross-check
-verified-on: 2026-09-15
+verified-on: 2026-09-17
 verification: corrected
 confidence: SURE
 ---
@@ -52,7 +52,7 @@ A small-scale key-plan figure locating this sheet's coverage within the overall 
 
 ## Plan views
 
-Two structural steel plan views share the sheet: **Plan EL. 111.500 (T.O.S.)**, scale 1:100, and **Plan EL. 112.800 (T.O.S.)**, scale 1:100. Both cover grid line 1 to grid line 2 (8000mm, with an unlabelled column line at the 4000mm midpoint) across grid lines A to F (42000mm total: A–B 9000, B–C 9000, C–D 6000, D–E 9000, E–F 9000, each further split into 3000mm sub-panels where 9000 or 6000). A north/wind-rose symbol (true north, plant north, prevailing wind 70.8°/4.2°) appears at the top of Plan EL. 111.500. Ladder and handrail callouts (`CL LADDER-1` through `CL LADDER-4`, `HANDRAIL (TYP.)`, `30 THK GRATING AT EL. 112.830 (T.O.G.)`) appear on Plan EL. 112.800 around the ladder cage at Grid 2.
+Two structural steel plan views share the sheet: **Plan EL. 111.500 (T.O.S.)**, scale 1:100, and **Plan EL. 112.800 (T.O.S.)**, scale 1:100. Both cover grid line 1 to grid line 2 (8000mm, with an unlabelled column line at the 4000mm midpoint) across grid lines A to F (42000mm total: A–B 9000, B–C 9000, C–D 6000, D–E 9000, E–F 9000, each further split into 3000mm sub-panels where 9000 or 6000). A north/wind-rose symbol (true north, plant north, prevailing wind 70.8°/4.2°) appears at the top of Plan EL. 111.500. Ladder and handrail callouts appear on Plan EL. 112.800 at two ladder cages, column-2 side: `CL LADDER-1`/`CL LADDER-2` at Grid A and `CL LADDER-3`/`CL LADDER-4` at Grid E (each pair reading `HANDRAIL (TYP.)`, `30 THK GRATING AT EL. 112.830 (T.O.G.)`).
 
 Per `skills/drawing-comparison.md`'s `reading-needs: figures` declaration, the two plan views are read as figures: rather than one sentence per statement (design section 7's default figure rule), each is read as a structural member/connection schedule, since that is the plan's own native content shape. This pack transcribes, in full, every callout that the REV3→REV4 comparison found to differ (the "old" side of the units in `actuals/findings/`) plus two callouts kept as explicit UNCHANGED control cases; it does not re-transcribe the sheet's remaining ~100 unchanged member callouts line by line — see `actuals/plan.md` and `bootstrap.md`'s `profile:` line for that scoping decision.
 
@@ -72,7 +72,12 @@ Per `skills/drawing-comparison.md`'s `reading-needs: figures` declaration, the t
 | MEMB-10 | Plan EL. 111.500 | midpoint column, exact grid row not yet confirmed (§ pivot.md 4) | SW | UC203x203x46 (-120) | none | no weld/bolt count printed; REV4 adds (30N 10V) per text diff |
 | MEMB-11 | Plan EL. 111.500 | midpoint column, exact grid row not yet confirmed (§ pivot.md 4) | SW | UC203x203x46 (-120) | none | no weld/bolt count printed; REV4 adds (30N 10V) per text diff |
 | MEMB-12 | Plan EL. 111.500 | midpoint column, exact grid row not yet confirmed (§ pivot.md 4) | SW | UC203x203x46 (-120) | none | no weld/bolt count printed; REV4 adds (30N 10V) per text diff |
-| CTRL-1 | Plan EL. 112.800 | Grid A, column-2 node | MW / BW | UB356x171x51 / L80x80x8 (-50), "HANDRAIL (TYP.)" | Rev 3 clouds present, triangle "3" | UNCHANGED control case; clouds cleared and labels reordered in REV4, see pivot.md § 5 |
+| CTRL-1 | Plan EL. 112.800 | Grid A ladder cage, column-2 node | MW / BW | UB356x171x51 / L80x80x8 (-50), "HANDRAIL (TYP.)" | Rev 3 clouds present, triangle "3" | UNCHANGED control case; clouds cleared and labels reordered in REV4, see pivot.md § 5. This node also carries MEMB-13/MEMB-14 — a real, adjacent change missed on first pass, see pivot.md § 8 |
 | CTRL-2 | Plan EL. 111.500 | Grid A, column line 1 | SW | UC203x203x46 (-120) | none | UNCHANGED control case; byte-identical on both revisions |
+| MEMB-13 | Plan EL. 112.800 | Grid A ladder cage (LADDER-1/2), upper dimension | — | 420 | Rev 3 cloud (not this pack's subject revision) | becomes 500 in REV4; added 2026-09-17, see pivot.md § 8 |
+| MEMB-14 | Plan EL. 112.800 | Grid A ladder cage (LADDER-1/2), lower dimension | — | 545 | same cloud as MEMB-13 | becomes 515 in REV4; added 2026-09-17 |
+| MEMB-15 | Plan EL. 112.800 | Grid E ladder cage (LADDER-3/4), upper dimension | — | 420 | Rev 3 cloud | becomes 500 in REV4; second occurrence of MEMB-13's pattern, added 2026-09-17 |
+| MEMB-16 | Plan EL. 112.800 | Grid E ladder cage (LADDER-3/4), lower dimension | — | 545 | same cloud as MEMB-15 | becomes 515 in REV4; added 2026-09-17 |
+| CTRL-3 | Plan EL. 112.800 | Grid E ladder cage, column-2 node | MW / BW | UB356x171x51 / L80x80x8 (-50), "HANDRAIL (TYP.)" | Rev 3 clouds present, triangle "3" | UNCHANGED control case mirroring CTRL-1; added 2026-09-17 |
 
 > Docusign Envelope ID: A0436D27-BF4A-8678-816A-0755E71D4665
