@@ -13,14 +13,14 @@ Supporting: `documents/supporting/AD-3010-C-330030-SHT-004-REV3.pdf` (Rev 3, iss
 | kind | count |
 |---|---|
 | ADDED | 4 |
-| CHANGED | 11 |
-| UNCHANGED | 2 |
+| CHANGED | 15 |
+| UNCHANGED | 3 |
 | REMOVED | 0 |
-| material: yes | 13 |
-| material: no | 4 |
-| confidence: SURE | 14 |
+| material: yes | 17 |
+| material: no | 5 |
+| confidence: SURE | 19 |
 | confidence: UNSURE | 3 |
-| **total units** | **17** |
+| **total units** | **22** |
 
 ## Rows, in on-sheet order
 
@@ -41,11 +41,20 @@ Supporting: `documents/supporting/AD-3010-C-330030-SHT-004-REV3.pdf` (Rev 3, iss
 | MEMB-10 | Plan EL. 111.500, midpoint column (grid row unconfirmed) | CHANGED | true | UNSURE | UC203x203x46 (-120): weld/bolt count `(30N 10V)` added; grid row pending second reader. |
 | MEMB-11 | Plan EL. 111.500, midpoint column (grid row unconfirmed) | CHANGED | true | UNSURE | Same pattern as MEMB-10; grid row pending second reader. |
 | MEMB-12 | Plan EL. 111.500, midpoint column (grid row unconfirmed) | CHANGED | true | UNSURE | Same pattern as MEMB-10; grid row pending second reader. |
-| CTRL-1 | Plan EL. 112.800, Grid A, column-2 node | UNCHANGED | false | SURE | Reformat control case: Rev 3 clouds cleared, two labels swap vertical order, no wording change. |
+| CTRL-1 | Plan EL. 112.800, Grid A ladder cage, column-2 node | UNCHANGED | false | SURE | Reformat control case: Rev 3 clouds cleared, two labels swap vertical order, no wording change. See MEMB-13/MEMB-14 for the real change at this same node. |
 | CTRL-2 | Plan EL. 111.500, Grid A, column line 1 | UNCHANGED | false | SURE | Plain control case: byte-identical callout, no cloud on either revision. |
+| MEMB-13 | Plan EL. 112.800, Grid A ladder cage (LADDER-1/2) | CHANGED | true | SURE | Upper vertical dimension 420 → 500; clouded, marked `(*)`. Added 2026-09-17. |
+| MEMB-14 | Plan EL. 112.800, Grid A ladder cage (LADDER-1/2) | CHANGED | true | SURE | Lower vertical dimension 545 → 515; same cloud as MEMB-13. Added 2026-09-17. |
+| MEMB-15 | Plan EL. 112.800, Grid E ladder cage (LADDER-3/4) | CHANGED | true | SURE | Upper vertical dimension 420 → 500 — second, independent occurrence of MEMB-13's pattern. Added 2026-09-17. |
+| MEMB-16 | Plan EL. 112.800, Grid E ladder cage (LADDER-3/4) | CHANGED | true | SURE | Lower vertical dimension 545 → 515; same cloud as MEMB-15. Added 2026-09-17. |
+| CTRL-3 | Plan EL. 112.800, Grid E ladder cage, column-2 node | UNCHANGED | false | SURE | Reformat control case mirroring CTRL-1, at the drawing's other ladder cage. Added 2026-09-17. |
 
 ## Open items before this pack can be signed
 
 - `MEMB-10`, `MEMB-11`, `MEMB-12`: exact grid row not yet independently confirmed by a second reader (`pivot.md` § 4).
 - `TITLE-1`: materiality call (`true`) not yet confirmed by a second reader (`pivot.md` § 3).
 - No named domain reviewer from Assent Steel or the project team has signed this pack; `bootstrap.md` `state: verified`, not `signed`.
+
+## Correction record
+
+2026-09-17: `MEMB-13`–`MEMB-16` and `CTRL-3` (5 rows above) were added, and `CTRL-1` corrected, after an independent second pack (`drawing-comparison/sample-2`, a different agent/model over the same two PDFs) flagged that this pack's first pass had missed a real dimension change. Verified directly against the original PDFs before accepting the correction — not taken on either pack's word alone. See `pivot.md` § 8.
