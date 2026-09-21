@@ -84,9 +84,10 @@ list of paths**, within one entry:
   align, or evaluate against at all. This is not the same fact as an *unresolvable* path
   (a real supporting document expected but missing, which is a `RESOLVE` failure per
   below) — it is a declaration that the skill's own shape has no supporting-document role
-  to fill. `skill_file_path`'s own front matter must say so explicitly (e.g. a `scale: n/a
-  — single-document extraction` or equivalent declaration) before `"n/a"` is accepted;
-  `RESOLVE` blocks with `<UNRESOLVED: supporting_document_path is "n/a" but
+  to fill. `skill_file_path`'s own front matter must declare this explicitly via a
+  `document-pairing: single-document` field (see `skills/bom-extraction/skill.md` for the
+  real example this rule was written against) before `"n/a"` is accepted; `RESOLVE`
+  blocks with `<UNRESOLVED: supporting_document_path is "n/a" but
   skill_file_path does not declare a single-document shape>` otherwise, so this can never
   be used to silently skip a supporting document a skill actually expects.
 

@@ -83,8 +83,8 @@ changes, every actual/finding built from it must be regenerated and this ledger 
 | File | Role | SHA-256 | Digest recorded |
 |---|---|---|---|
 | `documents/bom-extraction/source/260374 COMBINED PID SET 6-1-26.pdf` | source | `bdb3725ac983a2e591ba908ef8f3702d8f9bfd1659a6b56b0e7844c1a721bb2e` | 2026-09-17 |
-| `skills/bom-extraction/skill.md` | skill — live copy, current version (v1) | `8a6432afcd6f719eecd921eb45e3ce2f1bc0b14649b1a8ad7360db2e9a83d086` | 2026-09-21 (migrated into this framework's Module 1-6 structure and camelCase filename; content re-expressed, no verdict-relevant rule changed from the original ad hoc skill file) |
-| `skills/bom-extraction/skill-versions/v1.md` | skill — immutable snapshot of v1 (identical to the live copy; no later version exists yet) | `8a6432afcd6f719eecd921eb45e3ce2f1bc0b14649b1a8ad7360db2e9a83d086` | 2026-09-21 |
+| `skills/bom-extraction/skill.md` | skill — live copy, current version (v1) | `d36020865cdff6f8c448ba6afaece1f85eb74b941477b680c98e1c9580e8426c` | 2026-09-21, updated 2026-09-21 (added an explicit `document-pairing: single-document` front-matter field, so `bootstrap.md` §2's `"n/a"` rule has a real field to point at; content otherwise identical to the Module 1-6 structure migrated from the original ad hoc skill file) |
+| `skills/bom-extraction/skill-versions/v1.md` | skill — immutable snapshot of v1 (identical to the live copy; no later version exists yet) | `d36020865cdff6f8c448ba6afaece1f85eb74b941477b680c98e1c9580e8426c` | 2026-09-21, updated 2026-09-21 (same field addition) |
 
 No supporting-document digest exists for this use case — `supporting_document_path: "n/a"`
 per `bootstrap.md` §2. All 13 twin pages under

@@ -8,6 +8,9 @@ intent: Read every tagged equipment, safety-relief, and control item on a P&ID (
   similar engineering drawing) and extract it as one structured Bill of Materials line,
   citing exactly where on the drawing it was read.
 shape: BOM_LINE
+document-pairing: single-document — this skill reads and processes only the source
+  document(s); it has no supporting-document role to fill, per `bootstrap.md` §2's
+  `supporting_document_path: "n/a"` allowance
 grain: one procurable/installable tagged item (equipment, a safety-relief valve, or a
   control valve) named on the drawing — see Module 3
 declines-with: not applicable — this skill has no question to decline; a tag is either
