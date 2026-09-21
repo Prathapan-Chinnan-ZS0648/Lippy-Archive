@@ -158,3 +158,108 @@ skill-change: >
   Entry 2 recorded a structurally-necessary consequence of an existing rule for clarity
   rather than adding a redundant new row.
 ```
+
+## Entry 6
+
+```yaml
+observed-in: Prepurchase Elect Dwgs_10-30-2024
+timestamp: 2026-09-21
+observation: >
+  This second bom-extraction sample is a set of electrical one-line diagrams, elevations,
+  and a physical power/grounding plan for a generator/switchgear/transformer prepurchase
+  package — not a P&ID. skills/bom-extraction/skill.md v1's Module 3 had only one
+  domain-guidance row (P&ID), with unit categories (EQUIPMENT/SAFETY-RELIEF-VALVE/
+  CONTROL-VALVE/INSTRUMENT) that do not semantically fit generators, switchgear, and
+  transformers.
+occurrence-count: 1 (a second drawing type, not a repeat of the first)
+promotion-bar-check:
+  cross-sample-confirmation: "not applicable to this row itself — this is what a second,
+    differently-shaped sample is for: extending Module 3, not confirming an existing row"
+  explicit-user-generalization: "no"
+  structural-necessity: "yes — an electrical one-line set cannot be classified under the
+    P&ID-specific category set at all; a new Module 3 row was required to produce any
+    finding for this sample"
+decision: promoted
+rationale: >
+  Structural necessity, exactly mirroring Entry 1's original justification for creating
+  this skill in the first place, one level down (a new domain-guidance row within the
+  existing skill, not a whole new skill, since Module 1's core rules — extraction, no
+  verdict scale, home-sheet rule, absence-policy — apply unchanged to this drawing type).
+skill-change: >
+  skills/bom-extraction/skill.md enhanced to v2, after snapshotting its pre-enhancement
+  v1 content to skills/bom-extraction/skill-versions/v1.md (already immutable, unchanged)
+  and archiving the v2 content at skills/bom-extraction/skill-versions/v2.md, per
+  bootstrap.md §9. Added a Module 3 row for "electrical one-line diagram set" (single
+  EQUIPMENT category, read against the drawing's own tagging table; future-vs-current
+  status as a required classification step). Generalized Module 2 stage 2 (CLASSIFY) and
+  the front matter's `grain` field to reference "the applicable category set for this
+  drawing type" instead of hardcoding the P&ID categories. Folded this entry and Entries
+  7-8 into Module 6 as two new edge-case rows (future-vs-current equipment convention;
+  contradictory rating across sheets for the same tag), and marked three existing rows
+  (legend-dependent-tag, package-sub-item, out-of-pack instrument/relay population) as
+  "confirmed across 2 samples" since this sample independently reproduced each pattern.
+```
+
+## Entry 7
+
+```yaml
+observed-in: Prepurchase Elect Dwgs_10-30-2024
+timestamp: 2026-09-21
+observation: >
+  Equipment reserved for a later project phase, not part of this pre-purchase scope, is
+  drawn with a visibly lighter line weight and/or dashed outline throughout this set —
+  sometimes with an explicit "(FUTURE)" text label (GEN-G6, confirmed on Drawing E15's
+  elevation), sometimes with no such label at all (the entire DC Battery System block,
+  dashed on Drawing E07 with no "FUTURE" text anywhere on that sheet). Relying on a
+  single sheet's line-weight alone would have been insufficient for at least one unit.
+occurrence-count: observed at 6+ distinct locations across the sample (GEN-G6/NGR-G6, the
+  DC battery system, 4 future VFDs)
+promotion-bar-check:
+  cross-sample-confirmation: "no — first electrical-drawing sample; not yet seen in a
+    second sample of this drawing type"
+  explicit-user-generalization: "no"
+  structural-necessity: "yes — this skill's absence-policy and Module 1's home-sheet rule
+    give no guidance on which of two visually-different-but-similarly-labelled versions
+    of a tag (dashed vs. solid) is the one to extract; a rule was needed"
+decision: promoted
+rationale: >
+  Structural necessity: without an explicit rule, a reader could extract a future
+  provision as if it were current scope (over-stating the BOM) or, less likely, discount
+  a real current item that happened to be drawn lightly for an unrelated reason. Requiring
+  cross-sheet confirmation before either including or excluding a unit is the safer
+  default given the observed inconsistency in labelling.
+skill-change: >
+  skills/bom-extraction/skill.md Module 6 row "future-vs-current equipment convention"
+  (v2). Module 3's new electrical-one-line-set row and Module 4's checklist also updated.
+```
+
+## Entry 8
+
+```yaml
+observed-in: Prepurchase Elect Dwgs_10-30-2024
+timestamp: 2026-09-21
+observation: >
+  Drawing E07 states MVSWGR-E and MVSWGR-F's bus as "3Ø, 4W ... TIN PLATED COPPER BUS";
+  each unit's own dedicated detail sheet (E08, E09) states "3Ø, 3W ... INSULATED COPPER
+  BUS" for the same equipment. Voltage, amperage, and SCCR agree across all three sheets;
+  wire count and bus material/plating description do not.
+occurrence-count: 2 (both MVSWGR-E and MVSWGR-F show the identical pattern)
+promotion-bar-check:
+  cross-sample-confirmation: "no — first electrical-drawing sample"
+  explicit-user-generalization: "no"
+  structural-necessity: "yes — mirrors version-compare's Module 1 'no verdict from one
+    side' principle and drawing-comparison's 'contradiction' pack-profile entry, applied
+    to a skill with no verdict scale: silently preferring one sheet's number over
+    another's, with no evidence either is more authoritative, would misstate a real
+    fabrication-relevant fact (bus wire count/material) with false confidence"
+decision: promoted
+rationale: >
+  Structural necessity via direct analogy to already-promoted rules in sibling skills.
+  Confidence: UNSURE on the specific contested field, both readings quoted, is the honest
+  middle path — matches this skill's own DR-3001 precedent (Entry 5) of recording a gap
+  rather than guessing, applied here to a genuine two-sided contradiction rather than a
+  one-sided gap.
+skill-change: >
+  skills/bom-extraction/skill.md Module 6 row "contradictory rating across sheets for the
+  same tag" (v2). Findings mvswgre.md and mvswgrf.md both carry this flag.
+```

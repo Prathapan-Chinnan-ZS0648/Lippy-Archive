@@ -11,6 +11,55 @@ this file's exact format.
 
 # Prompt log
 
+## Entry 3
+
+```yaml
+timestamp: "2026-09-21 (exact time not recorded)"
+command/prompt: "this is the new document for bom extraction usecase, /home/kowsalya.nachimuthu@zucisystems.com/Downloads/3S/Prepurchase Elect Dwgs_10-30-2024.pdf, execute this"
+generated_output: >
+  Ran the full bom-extraction pipeline (RESOLVE/NORMALIZE/JUDGE/REPORT, per
+  bootstrap.md's START composition) against a new second source document under this use
+  case: an 11-page electrical one-line/elevation/physical-plan drawing set for a
+  generator/switchgear/transformer prepurchase package (Upper Trinity Regional Water
+  District, Tom Harpool Regional WTP Phase 2 Expansion). Added the document as a second
+  entry in fileIndex.md's bom-extraction source_document_path list (supporting_document_
+  path: "n/a" continues to apply to the whole entry). Built the full twin (11 pages,
+  text layer cross-checked against 150dpi renders, several targeted full-resolution crops
+  to verify exact ratings and line-weight conventions), detection.md, plan.md,
+  sectionMap.md, graph.md, and 23 findings (3 generators, 5 neutral grounding resistors,
+  5 switchgear units, 8 transformer-related units, 4 other equipment items), plus
+  report.md and a new document section in manifest/bom-extraction/manifest.md.
+  Enhanced skills/bom-extraction/skill.md from v1 to v2 (snapshotting v1 immutably first,
+  per bootstrap.md §9): added a Module 3 domain-guidance row for electrical one-line
+  diagram sets (single EQUIPMENT category, future-vs-current status as a required
+  classification step) and two new Module 6 edge cases (future-vs-current equipment
+  convention; contradictory rating across sheets for the same tag), and marked three
+  existing rows "confirmed across 2 samples". Logged the reasoning in
+  skills/bom-extraction/patternLog.md Entries 6-8.
+reason: >
+  User supplied a new source document for the existing bom-extraction use case and asked
+  for it to be processed through the pipeline, consolidating both documents under the
+  same use case (per the earlier "single place, multiple usecases" request that brought
+  bom-extraction onto this branch in Entry 2).
+explanation: >
+  This document is genuinely a different drawing type (electrical one-lines, not a P&ID)
+  with real facts the existing skill's Module 3 had no category for — the skill gap was
+  identified and closed via a proper version bump, not by force-fitting the new tags into
+  P&ID-shaped categories. Two real findings deserve note: (1) an unresolved discrepancy
+  between Drawing E07 and each switchgear's own dedicated detail sheet (E08/E09) over
+  MVSWGR-E/F's bus wire count and material — recorded as confidence: UNSURE on that
+  specific field in both findings, not silently resolved by preferring one sheet; (2) a
+  fourth generator bay (GEN-G6) and several other items are drawn in the same style as
+  current equipment on some sheets but explicitly marked "(FUTURE)" on Drawing E15's
+  elevation — every unit's future-vs-current status was cross-checked against at least
+  one other sheet before being included or excluded, never taken from a single sheet's
+  line-weight alone. The existing 27-finding P&ID pack was confirmed unaffected by the v2
+  skill change and was not re-judged (see manifest/bom-extraction/manifest.md).
+model: Claude Sonnet 5
+skill/version_used: "skills/bom-extraction/skill.md v2 (enhanced from v1 by this entry)"
+other_metadata: "source PDF copied from /home/kowsalya.nachimuthu@zucisystems.com/Downloads/3S/Prepurchase Elect Dwgs_10-30-2024.pdf into documents/bom-extraction/source/, digest 422b2638d13fee272299e72f6fd9112852686baeea4863d3f79f9a79ad5ebb73"
+```
+
 ## Entry 2
 
 ```yaml

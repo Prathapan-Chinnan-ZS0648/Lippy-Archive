@@ -11,7 +11,9 @@ paths within an entry.
   skill_file_path: "skills/drawing-comparison/skill.md"
 
 - use_case_name: "bom-extraction"
-  source_document_path: "documents/bom-extraction/source/260374 COMBINED PID SET 6-1-26.pdf"
+  source_document_path:
+    - "documents/bom-extraction/source/260374 COMBINED PID SET 6-1-26.pdf"
+    - "documents/bom-extraction/source/Prepurchase Elect Dwgs_10-30-2024.pdf"
   supporting_document_path: "n/a"
   skill_file_path: "skills/bom-extraction/skill.md"
 ```
