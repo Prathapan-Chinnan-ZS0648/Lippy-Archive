@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Usage: SKILL CHANGE <version_number>
+# (bootstrap.md defines this as "SKILL CHANGE <version_number>" — a shell command
+# cannot contain a space in its name, so it is split into `SKILL` + subcommand here.)
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$DIR/_common.sh"
+
+if [ "${1:-}" != "CHANGE" ] || [ -z "${2:-}" ]; then
+  echo "Usage: SKILL CHANGE <version_number>" >&2
+  exit 1
+fi
+
+version_number="$2"
+run_command "SKILL CHANGE ${version_number}"

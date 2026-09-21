@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lippy Archive — Framework Documentation</title>
+<style>
+  :root{
+    --bg:#ffffff; --bg-alt:#f7f8fa; --border:#e4e7ec; --text:#1a1d24; --text-dim:#5b6270;
+    --accent:#4f46e5; --accent-bg:#eef0ff; --mono-bg:#f2f3f7; --radius:8px;
+    --code:#0f172a;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--text); background:var(--bg); font-size:15px; line-height:1.65;
+  }
+  code, pre, .mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;}
+  header{
+    position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border); padding:14px 24px; display:flex; align-items:center;
+    justify-content:space-between; gap:16px;
+  }
+  header h1{font-size:16px; margin:0; font-weight:650;}
+  header .sub{color:var(--text-dim); font-size:12.5px;}
+  .layout{display:flex; max-width:1320px; margin:0 auto;}
+  nav{
+    width:250px; flex:0 0 250px; position:sticky; top:57px; align-self:flex-start;
+    height:calc(100vh - 57px); overflow-y:auto; padding:20px 12px 60px; border-right:1px solid var(--border);
+  }
+  nav a{
+    display:block; padding:7px 12px; border-radius:6px; color:var(--text-dim); text-decoration:none;
+    font-size:13.5px; margin-bottom:1px;
+  }
+  nav a:hover{background:var(--bg-alt); color:var(--text);}
+  nav a.active{background:var(--accent-bg); color:var(--accent); font-weight:600;}
+  nav .navgroup-label{font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:#9aa1ae; padding:14px 12px 6px;}
+  main{flex:1; min-width:0; padding:36px 40px 120px;}
+  section{margin-bottom:56px; scroll-margin-top:72px;}
+  section h2{font-size:22px; margin:0 0 6px; font-weight:700;}
+  section h3{font-size:16px; margin:28px 0 10px; font-weight:650;}
+  section h4{font-size:13.5px; margin:18px 0 8px; font-weight:650; color:var(--text-dim); text-transform:uppercase; letter-spacing:.03em;}
+  section > p.lead{color:var(--text-dim); margin-top:0;}
+  p{margin:0 0 12px;}
+  a{color:var(--accent);}
+  .card{border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; background:var(--bg-alt); margin-bottom:14px;}
+  table{width:100%; border-collapse:collapse; margin:10px 0 20px; font-size:13.5px;}
+  th, td{text-align:left; padding:9px 10px; border-bottom:1px solid var(--border); vertical-align:top;}
+  th{background:var(--bg-alt); font-weight:650; font-size:12px; text-transform:uppercase; letter-spacing:.02em; color:var(--text-dim);}
+  tr:hover td{background:#fafbfc;}
+  code.pill{
+    background:var(--mono-bg); border:1px solid var(--border); border-radius:5px; padding:1px 7px;
+    font-size:12.5px; white-space:nowrap;
+  }
+  pre{
+    background:var(--code); color:#e2e8f0; padding:16px 18px; border-radius:var(--radius);
+    overflow-x:auto; font-size:12.8px; line-height:1.55; margin:12px 0 20px;
+  }
+  pre code{background:none; border:none; padding:0; color:inherit;}
+  .tree{white-space:pre; font-size:12.5px;}
+  details{border:1px solid var(--border); border-radius:var(--radius); margin-bottom:10px; background:var(--bg);}
+  details summary{
+    padding:12px 16px; cursor:pointer; font-weight:600; font-size:14px; list-style:none;
+    display:flex; align-items:center; gap:8px;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary::before{content:"▸"; color:var(--accent); transition:transform .15s; font-size:11px;}
+  details[open] summary::before{transform:rotate(90deg);}
+  details .body{padding:0 16px 16px; color:var(--text);}
+  .badge{
+    display:inline-block; font-size:11px; font-weight:650; padding:2px 8px; border-radius:20px;
+    background:var(--accent-bg); color:var(--accent); margin-left:6px; vertical-align:middle;
+  }
+  .badge.gray{background:#eef0f2; color:#5b6270;}
+  .sticky-ref{
+    position:sticky; top:57px; z-index:10; background:var(--bg); border:1px solid var(--border);
+    border-radius:var(--radius); margin-bottom:24px; box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  .sticky-ref summary{background:var(--accent-bg); border-radius:var(--radius);}
+  .flow{display:flex; flex-direction:column; gap:0; margin:16px 0;}
+  .flow .step{
+    border:1px solid var(--border); border-radius:6px; padding:9px 14px; background:var(--bg-alt);
+    font-size:13px; font-family:monospace;
+  }
+  .flow .arrow{text-align:center; color:#9aa1ae; font-size:13px; padding:2px 0;}
+  .note{border-left:3px solid var(--accent); background:var(--accent-bg); padding:10px 14px; border-radius:0 6px 6px 0; font-size:13.5px; margin:14px 0;}
+  footer{border-top:1px solid var(--border); padding:24px 40px; color:var(--text-dim); font-size:12.5px;}
+  @media (max-width:860px){
+    nav{display:none;}
+    main{padding:24px 18px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Lippy Archive</h1>
+    <div class="sub">Document-processing orchestration framework — implementation reference</div>
+  </div>
+  <div class="sub mono">Bootstrap.md v16</div>
+</header>
+
+<div class="layout">
+  <nav id="nav">
+    <div class="navgroup-label">Guide</div>
+    <a href="#overview">Overview</a>
+    <a href="#architecture">Architecture &amp; workflow</a>
+    <a href="#structure">Folder / file structure</a>
+    <div class="navgroup-label">Commands</div>
+    <a href="#commands">Command reference</a>
+    <a href="#fileindex">file-index &amp; multi-use-case</a>
+    <a href="#bootstrap-control">Bootstrap.md control</a>
+    <div class="navgroup-label">Skill lifecycle</div>
+    <a href="#skills">Skill files &amp; versioning</a>
+    <a href="#promptlog">Prompt logging</a>
+    <a href="#hitl">HITL / manual validation</a>
+    <div class="navgroup-label">Reference</div>
+    <a href="#artifacts">Generated artifacts</a>
+    <a href="#e2e">End-to-end flow</a>
+    <a href="#cheatsheet">Cheat sheet</a>
+  </nav>
+
+  <main>
+
+    <section id="overview">
+      <h2>1. Overview</h2>
+      <p class="lead">What this framework is, in short.</p>
+      <p><strong>Bootstrap.md</strong> is a shared, use-case-agnostic execution framework for processing a
+      <strong>source document</strong> against a <strong>supporting document</strong>. It never contains
+      judgment logic, sample facts, or hardcoded paths itself — every concrete detail (which documents,
+      which use case, which skill) is resolved at execution time from <code class="pill">FileIndex.md</code>,
+      and every judgment rule lives in that use case's own <code class="pill">skills/&lt;usecase&gt;/Skill.md</code>.</p>
+      <p>The same orchestrator supports any number of use cases side by side — a bid evaluation, a document
+      version comparison, or any other "read a source against a reference and produce findings" task — without
+      ever being edited for a specific one. Adding a use case means adding a <code class="pill">FileIndex.md</code>
+      entry and a skill file; it never means touching <code class="pill">Bootstrap.md</code>.</p>
+    </section>
+
+    <section id="architecture">
+      <h2>2. Architecture &amp; workflow</h2>
+      <p class="lead">Configuration → orchestration → judgment → output.</p>
+      <div class="flow">
+        <div class="step">FileIndex.md <span class="mono" style="color:#9aa1ae">(configuration: which documents, which use case, which skill)</span></div>
+        <div class="arrow">↓ resolved by</div>
+        <div class="step">Bootstrap.md <span class="mono" style="color:#9aa1ae">(orchestrator — commands, execution flow, directory rules)</span></div>
+        <div class="arrow">↓ applies</div>
+        <div class="step">skills/&lt;usecase&gt;/Skill.md <span class="mono" style="color:#9aa1ae">(judgment rules, verdict scale, absence handling)</span></div>
+        <div class="arrow">↓ produces</div>
+        <div class="step">actuals/ · findings/ · reports/ · HITL/ · manifest/ · prompt-log/</div>
+      </div>
+
+      <h3>Bootstrap.md §6 execution flow</h3>
+      <pre><code>Terminal Command
+       ↓
+Bootstrap.md
+       ↓
+Read file-index
+       ↓
+Resolve Source Documents
+       ↓
+Resolve Supporting Documents
+       ↓
+Resolve Applicable Use Case
+       ↓
+Load Corresponding skills.md
+       ↓
+Apply Skill Instructions
+       ↓
+Generate Findings
+       ↓
+Enhance Skill (ENHANCE-SKILL) — every sample, not only some
+       ↓
+Apply Command-Specific Operation
+       ↓
+Generate / Export Output
+       ↓
+Manual Validate (MANUAL VALIDATE) — every sample, not only some</code></pre>
+      <p><code class="pill">START</code> runs this to completion — <code class="pill">ENHANCE-SKILL</code> and
+      <code class="pill">MANUAL VALIDATE</code> both run on <em>every</em> sample, unconditionally, as part of
+      <code class="pill">START</code>'s own composed behavior — never as a separate automatic trigger. All
+      commands remain manual: nothing in Bootstrap.md ever fires a command on its own initiative.</p>
+    </section>
+
+    <section id="structure">
+      <h2>3. Folder / file structure</h2>
+      <p class="lead">Every generated root is isolated first by <code class="pill">&lt;usecase&gt;</code>, then by <code class="pill">&lt;source-document-name&gt;</code> where applicable.</p>
+      <div class="card tree">Lippy Archive/
+│
+├── Bootstrap.md          orchestrator — commands, roles, structure; never use-case-specific
+├── FileIndex.md          list of entries — one per use case (4 fields each)
+├── Pivot.md              cross-use-case decision log — disputes settled, citations corrected
+│
+├── documents/&lt;usecase&gt;/
+│   ├── source/            every source document added under this use case
+│   └── supporting/        every supporting document added under this use case
+│
+├── actuals/&lt;usecase&gt;/&lt;source-document-name&gt;/
+│   ├── twin/               per-unit extraction (page/sheet/slide/row/whole-record)
+│   │   ├── &lt;document&gt;/…
+│   │   ├── derived/&lt;document&gt;.md
+│   │   └── SectionMap.md
+│   ├── Detection.md
+│   ├── Plan.md
+│   └── Graph.md
+│
+├── findings/&lt;usecase&gt;/&lt;source-document-name&gt;/&lt;unit&gt;.md
+│
+├── skills/&lt;usecase&gt;/
+│   ├── Skill.md            LIVE copy — no sample facts
+│   ├── PatternLog.md      every observation from every sample, promoted or not
+│   └── skill-versions/     immutable snapshot history (v1.md, v2.md, …)
+│
+├── reports/&lt;usecase&gt;/&lt;source-document-name&gt;/Report.md
+│
+├── HITL/&lt;usecase&gt;/&lt;source-document-name&gt;/
+│   └── MANUAL_VALIDATE.md  append-only HITL sign-off record, oldest → newest
+│
+└── manifest/&lt;usecase&gt;/Manifest.md   validation gate — governance, sample context, digests</div>
+
+      <h3>Root purpose, one line each</h3>
+      <table>
+        <tr><th>Root</th><th>Purpose</th></tr>
+        <tr><td class="mono">documents/</td><td>Source/supporting document pool, one subtree per use case</td></tr>
+        <tr><td class="mono">actuals/</td><td>Extracted "twin" of each document plus detection/plan/graph working state</td></tr>
+        <tr><td class="mono">findings/</td><td>Skill-produced judgments, one file per judged unit</td></tr>
+        <tr><td class="mono">skills/</td><td>Live skill, its pattern log, and its immutable version history</td></tr>
+        <tr><td class="mono">reports/</td><td>Assembled, human-readable report per source document</td></tr>
+        <tr><td class="mono">HITL/</td><td>Human-in-the-loop manual validation records</td></tr>
+        <tr><td class="mono">manifest/</td><td>Governance/validation gate — sign-off state, digests, checklist</td></tr>
+        <tr><td class="mono">prompt-log/</td><td>Full audit trail of every file-creating/changing event</td></tr>
+      </table>
+    </section>
+
+    <section id="commands">
+      <h2>4. Command reference</h2>
+      <p class="lead">Every command is invoked manually, in CAPITAL LETTERS, and resolves against <code class="pill">FileIndex.md</code> at run time.</p>
+
+      <details open>
+        <summary>START <span class="badge">composes 7 commands</span></summary>
+        <div class="body">
+          <p><strong>Syntax:</strong> <code class="pill">START</code> or <code class="pill">START &lt;usecase&gt;</code> (name required once more than one entry exists in FileIndex.md)</p>
+          <p><strong>Input:</strong> the resolved FileIndex.md entry (source path(s), supporting path(s), skill path)</p>
+          <p><strong>Output:</strong> everything RESOLVE → NORMALIZE → JUDGE → ENHANCE-SKILL → REPORT → VALIDATE → MANUAL VALIDATE each produce, for every resolved source/supporting pair</p>
+          <p><strong>Flow:</strong> Composes, in strict order: <code class="pill">RESOLVE</code> → <code class="pill">NORMALIZE</code> → <code class="pill">JUDGE</code> → <code class="pill">ENHANCE-SKILL</code> → <code class="pill">REPORT</code> → <code class="pill">VALIDATE</code> → <code class="pill">MANUAL VALIDATE</code>. <code class="pill">ENHANCE-SKILL</code> and <code class="pill">MANUAL VALIDATE</code> run every time, for every sample — not conditionally, not only when something new is found. This is part of START's own defined behavior, not a separate trigger.</p>
+        </div>
+      </details>
+
+      <details open>
+        <summary>MANUAL VALIDATE <span class="badge">HITL sign-off</span></summary>
+        <div class="body">
+          <p><strong>Syntax:</strong> <code class="pill">MANUAL VALIDATE</code> (no argument = every use case currently configured), <code class="pill">MANUAL VALIDATE &lt;usecase&gt;</code>, or <code class="pill">MANUAL VALIDATE &lt;usecase1&gt; &lt;usecase2&gt; …</code> for specific use cases. This is the one command where a missing argument means "act on all," not the single-entry default or an <code class="pill">&lt;UNRESOLVED&gt;</code> block.</p>
+          <p><strong>Input:</strong> already-generated twin/findings/report artifacts under <code class="mono">actuals/</code>, <code class="mono">findings/</code>, <code class="mono">reports/</code> for each in-scope source document. It never generates, judges, or alters findings itself.</p>
+          <p><strong>Output:</strong> a HITL validation record appended to <code class="mono">HITL/&lt;usecase&gt;/&lt;source-document-name&gt;/MANUAL_VALIDATE.md</code>:</p>
+          <pre><code>Reviewer      : &lt;reviewer name&gt;
+Validation    : MANUAL VALIDATE
+Status        : VERIFIED
+Date          : &lt;execution-date&gt;
+Time          : &lt;execution-time&gt;
+Use Case      : &lt;use-case-name&gt;
+Document      : &lt;document-name&gt;</code></pre>
+          <p><strong>Flow:</strong> For each use case in scope, for every resolved source/supporting pair carrying generated output: (1) review the twin/findings/report artifacts, (2) mark as reviewed without editing their content, (3) <strong>append</strong> a new record to that document's <code class="mono">MANUAL_VALIDATE.md</code> — never overwrite, so it stays an auditable history oldest→newest, (4) log the invocation in that use case's own PromptLog. When composed by <code class="pill">START</code>, scope is always the single use case/sample START just processed.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>RESOLVE</summary>
+        <div class="body">
+          <p><strong>Input:</strong> FileIndex.md</p>
+          <p><strong>Output:</strong> a confirmation per resolvable source/supporting pair, or <code class="pill">&lt;UNRESOLVED: reason&gt;</code> blocking only the failing pair(s)</p>
+          <p><strong>Flow:</strong> selects the entry (implicit if exactly one; otherwise requires a use-case-name argument) → confirms all four fields are set and every path exists → confirms <code class="pill">use_case_name</code> matches the skill file's parent directory → confirms list-valued paths pair correctly per §2. First step of every run.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>NORMALIZE</summary>
+        <div class="body">
+          <p><strong>Input:</strong> resolved source + supporting documents</p>
+          <p><strong>Output:</strong> <code class="mono">actuals/&lt;usecase&gt;/&lt;source-document-name&gt;/</code> — twin extraction (per page/sheet/slide/row/record), derived read-through, section map, <code class="mono">Detection.md</code>, <code class="mono">Plan.md</code></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>PLAIN</summary>
+        <div class="body">
+          <p><strong>Input:</strong> resolved source document</p>
+          <p><strong>Output:</strong> <code class="mono">actuals/&lt;usecase&gt;/&lt;source-document-name&gt;/twin/</code> only — a raw extraction pass</p>
+          <p><strong>Flow:</strong> stops before detection, planning, or judgment. Controls <em>how much</em> of the pipeline runs, not <em>how</em> extraction is done for a given format.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>JUDGE</summary>
+        <div class="body">
+          <p><strong>Input:</strong> <code class="mono">actuals/&lt;usecase&gt;/&lt;source-document-name&gt;/Plan.md</code> + the resolved skill</p>
+          <p><strong>Output:</strong> <code class="mono">findings/&lt;usecase&gt;/&lt;source-document-name&gt;/&lt;unit&gt;.md</code> and <code class="mono">actuals/.../Graph.md</code></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>OBSERVE</summary>
+        <div class="body">
+          <p><strong>Output:</strong> an entry in <code class="mono">skills/&lt;usecase&gt;/PatternLog.md</code> — records a noticed pattern without changing the live skill.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>ENHANCE-SKILL</summary>
+        <div class="body">
+          <p><strong>Input:</strong> the current sample's findings + the live skill + PatternLog history</p>
+          <p><strong>Output:</strong> a new <code class="mono">skills/&lt;usecase&gt;/skill-versions/v&lt;N&gt;.md</code> snapshot (if promoted) + an updated live <code class="mono">Skill.md</code> with a bumped <code class="pill">version</code> field</p>
+          <p><strong>Flow:</strong> analyze sample against skill → log every observation in PatternLog.md → check each against the promotion bar (§8.2) → for promoted observations, generalize into the skill (never append raw sample context) → validate the change against all previous samples before considering it complete.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>REPORT</summary>
+        <div class="body">
+          <p><strong>Input:</strong> <code class="mono">findings/&lt;usecase&gt;/&lt;source-document-name&gt;/</code> (that document's findings only)</p>
+          <p><strong>Output:</strong> <code class="mono">reports/&lt;usecase&gt;/&lt;source-document-name&gt;/Report.md</code></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>VALIDATE</summary>
+        <div class="body">
+          <p><strong>Input:</strong> <code class="mono">manifest/&lt;usecase&gt;/Manifest.md</code>'s checklist, cross-checked against FileIndex.md and PromptLog.md</p>
+          <p><strong>Output:</strong> an updated verdict for that document in Manifest.md</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>SKILL CHANGE &lt;version_number&gt;</summary>
+        <div class="body">
+          <p><strong>Syntax:</strong> <code class="pill">SKILL CHANGE &lt;version_number&gt;</code> — the version number is always supplied, never hardcoded</p>
+          <p><strong>Output:</strong> a read-only report of that version's rules, how they differ from the version before it, and which existing findings were produced under it vs. a later version. Re-enters the pipeline partway through — it reads already-generated findings rather than regenerating them.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>EXPORT</summary>
+        <div class="body">
+          <p><strong>Input:</strong> the <code class="pill">export-directory</code> value in Bootstrap.md's own front matter</p>
+          <p><strong>Output:</strong> a full copy of that directory, structure preserved exactly, including every use case's isolated subtree</p>
+          <p><strong>Flow:</strong> bypasses document resolution entirely — operates on the configured directory as a whole, not per use case.</p>
+          <pre><code>EXPORT
+  ↓
+Read export directory from Bootstrap.md front matter
+  ↓
+Resolve configured directory
+  ↓
+Collect complete directory contents
+  ↓
+Preserve directory structure
+  ↓
+Export the full directory</code></pre>
+        </div>
+      </details>
+
+      <details>
+        <summary>LOG</summary>
+        <div class="body">
+          <p><strong>Output:</strong> a full-detail entry prepended to <code class="mono">prompt-log/&lt;usecase&gt;/PromptLog.md</code>. Invoked after every command that creates or changes a file.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="fileindex">
+      <h2>5. file-index.md &amp; multiple use cases</h2>
+      <p class="lead">One entry per use case; exactly four fields each.</p>
+      <p><code class="pill">FileIndex.md</code> is a list of entries. Each entry provides exactly
+      <code class="pill">use_case_name</code>, <code class="pill">source_document_path</code>,
+      <code class="pill">supporting_document_path</code>, and <code class="pill">skill_file_path</code> —
+      nothing else. <code class="pill">use_case_name</code> is the unique key; two entries never share one.</p>
+
+      <h3>List-valued paths and pairing rules</h3>
+      <table>
+        <tr><th>Shape</th><th>Behavior</th></tr>
+        <tr><td>Single source + single supporting</td><td>One document pair — the original shape</td></tr>
+        <tr><td>List of sources + single supporting</td><td>The one supporting document <strong>broadcasts</strong> to every source in the list</td></tr>
+        <tr><td>List of sources + list of supporting, <strong>same length</strong></td><td><strong>Positional pairing</strong> — 1st with 1st, 2nd with 2nd, and so on</td></tr>
+        <tr><td>List of sources + list of supporting, <strong>different non-1 lengths</strong></td><td>Configuration error — <code class="pill">&lt;UNRESOLVED: source/supporting path counts do not pair (N vs. M)&gt;</code> for that entry</td></tr>
+      </table>
+      <p>Every resolved pair runs the pipeline independently, into its own <code class="mono">&lt;source-document-name&gt;</code> subdirectory. A bad path blocks only its own pair — it never blocks other resolvable pairs in the same entry.</p>
+
+      <h3>Selecting an entry when several exist</h3>
+      <div class="note">
+        Exactly one entry in FileIndex.md → every command resolves against it, no argument needed.<br><br>
+        More than one entry → a command that needs one use case <strong>requires</strong> its name as an argument
+        (e.g. <code class="pill">START bid-evaluation</code>). Omitting it blocks with
+        <code class="pill">&lt;UNRESOLVED: multiple use cases configured; specify which one&gt;</code> — never a
+        silent default to "the first entry" or "the last-edited entry."<br><br>
+        Exception: <code class="pill">MANUAL VALIDATE</code> with no argument means "every configured use case,"
+        not "the lone entry" — the one command where "no argument" means "all."
+      </div>
+    </section>
+
+    <section id="bootstrap-control">
+      <h2>6. How Bootstrap.md controls the workflow</h2>
+      <p class="lead">Orchestrator only — never a holder of use-case-specific logic.</p>
+      <p>Bootstrap.md defines commands, roles, and directory structure that hold regardless of use case or
+      sample. If it ever contains judging logic, verdict definitions, or domain rules, that is treated as a
+      defect to be moved into the applicable skill.</p>
+
+      <h3>Amending Bootstrap.md (§11)</h3>
+      <p>Changes rarely, and only when justified by something true across every use case — never by one
+      sample's needs. Every amendment is recorded in the PromptLog of whichever use case's run prompted it
+      (or the most recently active use case's log, if none did), with what changed and why.</p>
+
+      <h3>Non-negotiable rules, grouped</h3>
+      <table>
+        <tr><th>Group</th><th>Rules</th></tr>
+        <tr><td>Authority &amp; scope</td><td>Bootstrap.md is root authority for orchestration but holds no use-case logic; only FileIndex.md-configured documents are ever processed; no command runs automatically — every invocation is explicit</td></tr>
+        <tr><td>Skill integrity</td><td>A skill changes only via the promotion bar + versioning procedure; historical skill-versions snapshots are immutable; Skill.md is the only live copy; every sample enhances the same skill, never a per-sample fork; every enhancement must still read true for a sample nobody has seen and remain valid for every prior sample</td></tr>
+        <tr><td>Traceability</td><td>Every generated artifact records its skill + version; every file-creating/changing event is logged as a new entry prepended to that use case's own PromptLog</td></tr>
+        <tr><td>Absence &amp; uncertainty</td><td>Absence is always the use case's defined label, never inferred or silent; when uncertain whether something is use-case-agnostic or specific, treat it as specific until the promotion bar is met</td></tr>
+        <tr><td>Isolation</td><td>Every generated root is scoped first by &lt;usecase&gt;, then by &lt;source-document-name&gt; — nothing is ever mixed, shared, or merged across use cases; every use case's directory shape is structurally identical, only content differs</td></tr>
+        <tr><td>Onboarding</td><td>A new document/use case is onboarded by adding files and pointing FileIndex.md at them — never by deleting or overwriting another's files, never pre-templated</td></tr>
+        <tr><td>Format &amp; naming</td><td>No file format is rejected or privileged; every generated .md filename follows CamelCase (except identifiers mirroring a real document's own name)</td></tr>
+        <tr><td>Export</td><td>EXPORT's scope is always the configured export-directory — never a hardcoded or assumed path</td></tr>
+      </table>
+    </section>
+
+    <section id="skills">
+      <h2>7. Skill files &amp; versioning</h2>
+      <p class="lead"><code class="pill">Skill.md</code> is the only live copy; every version is preserved forever.</p>
+      <p><code class="mono">skills/&lt;usecase&gt;/Skill.md</code> holds verdict/label scales, the grain of
+      judgment, absence handling, and required output shape — phrased to hold for any document pair in that
+      use case. It never contains a business name, document title, or example lifted from one sample as if
+      universal.</p>
+
+      <h3>The promotion bar (§8.2)</h3>
+      <p>An observation in <code class="mono">PatternLog.md</code> may be promoted into the live skill only when at least one holds:</p>
+      <table>
+        <tr><th>Condition</th><th>Meaning</th></tr>
+        <tr><td>Cross-sample confirmation</td><td>The same pattern was independently observed in 2+ samples that don't share an author, template, or origin</td></tr>
+        <tr><td>Explicit generalization by the user</td><td>The user directly states the rule should apply beyond the current sample</td></tr>
+        <tr><td>Structural necessity</td><td>The pattern follows from the use case's own definition regardless of sample count</td></tr>
+      </table>
+      <p>A single sample's structure, numbering scheme, or business terms are never, by themselves, sufficient.</p>
+
+      <h3>Version-bump procedure (§9)</h3>
+      <div class="flow">
+        <div class="step">1. Snapshot current Skill.md → skill-versions/v&lt;N&gt;.md (immutable from that moment)</div>
+        <div class="arrow">↓</div>
+        <div class="step">2. Edit live Skill.md in place, bump front-matter version to &lt;N+1&gt;</div>
+        <div class="arrow">↓</div>
+        <div class="step">3. Validate against every previous sample (§8.4), then log the change in PromptLog.md</div>
+      </div>
+      <p>Non-material edits (typos, wording clarity with no behavior change) don't require a version bump but are still logged.</p>
+
+      <h3>Example front matter</h3>
+      <pre><code>---
+skill: &lt;usecase&gt;
+version: &lt;N&gt;
+status: current — live copy; snapshot preserved at skills/&lt;usecase&gt;/skill-versions/v&lt;N&gt;.md
+supersedes: v&lt;N-1&gt;.md (see skills/&lt;usecase&gt;/skill-versions/ for immutable history)
+title: &lt;use case title&gt;
+intent: &lt;what this skill reads and judges&gt;
+shape: &lt;output shape, e.g. RANKED_COMPARISON&gt;
+grain: &lt;the unit judged, e.g. one bidder / one page pair&gt;
+absence-policy: &lt;how "not stated" is reported&gt;
+---</code></pre>
+    </section>
+
+    <section id="promptlog">
+      <h2>8. Prompt logging</h2>
+      <p class="lead">Every file-creating or file-changing event, logged in full, at the time it happens.</p>
+      <p><code class="mono">prompt-log/&lt;usecase&gt;/PromptLog.md</code> is maintained in <strong>descending
+      chronological order</strong> — newest entry always at the top, directly under the header. New entries
+      are always <strong>prepended</strong>, never appended below older ones. Each use case keeps its own
+      complete, independent history — logs are never merged across use cases.</p>
+
+      <h3>Required fields per entry</h3>
+      <table>
+        <tr><th>Field</th><th>Content</th></tr>
+        <tr><td class="mono">timestamp</td><td>Date and time the event happened</td></tr>
+        <tr><td class="mono">command/prompt</td><td>The command or prompt provided</td></tr>
+        <tr><td class="mono">generated_output</td><td>What was produced</td></tr>
+        <tr><td class="mono">reason</td><td>Why this output was generated</td></tr>
+        <tr><td class="mono">explanation</td><td>Brief account of how the output was generated</td></tr>
+        <tr><td class="mono">model</td><td>The model used</td></tr>
+        <tr><td class="mono">skill/version_used</td><td>The relevant skill and version</td></tr>
+        <tr><td class="mono">other_metadata</td><td>Any other detail needed to reproduce or understand the result</td></tr>
+      </table>
+      <p>A required item that doesn't apply is still written — as <code class="pill">"not applicable"</code> with a one-clause reason — never simply omitted.</p>
+    </section>
+
+    <section id="hitl">
+      <h2>9. HITL / manual validation workflow</h2>
+      <p class="lead">A human reviewer's sign-off, recorded without ever touching the underlying content.</p>
+      <p><code class="mono">HITL/&lt;usecase&gt;/&lt;source-document-name&gt;/</code> holds one
+      <code class="mono">MANUAL_VALIDATE.md</code> per document — an <strong>append-only</strong> record of
+      every manual validation performed for it, oldest to newest. Running <code class="pill">MANUAL VALIDATE</code>
+      again for an already-validated document adds a new record; it never overwrites the previous one.</p>
+
+      <h3>Record shape</h3>
+      <pre><code>Reviewer      : &lt;reviewer name&gt;
+Validation    : MANUAL VALIDATE
+Status        : VERIFIED
+Date          : &lt;execution-date&gt;
+Time          : &lt;execution-time&gt;
+Use Case      : &lt;use-case-name&gt;
+Document      : &lt;document-name&gt;</code></pre>
+
+      <h3>How it gates acceptance (§15)</h3>
+      <p>No artifact is an accepted deliverable until <strong>all</strong> of:</p>
+      <table>
+        <tr><td>1</td><td>Its Manifest.md checklist is fully checked for the current sample</td></tr>
+        <tr><td>2</td><td>Any skill change it depended on is versioned per §9</td></tr>
+        <tr><td>3</td><td>Its PromptLog.md entries are complete</td></tr>
+        <tr><td>4</td><td>HITL review is complete wherever required</td></tr>
+      </table>
+      <p>In <code class="mono">Manifest.md</code>, a document's Governance block records
+      <code class="pill">state</code>, <code class="pill">signed-by</code>, <code class="pill">verified-by</code>,
+      and <code class="pill">verified-on</code> — filled in once the corresponding
+      <code class="mono">MANUAL_VALIDATE.md</code> record exists, never before. A document's underlying content
+      is never edited to reflect its review status — the HITL record is the only evidence of review.</p>
+    </section>
+
+    <section id="artifacts">
+      <h2>10. Generated artifacts &amp; storage</h2>
+      <table>
+        <tr><th>Artifact</th><th>Path pattern</th><th>Produced by</th></tr>
+        <tr><td>Twin extraction</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/twin/</td><td>NORMALIZE / PLAIN</td></tr>
+        <tr><td>Derived read-through</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/twin/derived/&lt;document&gt;.md</td><td>NORMALIZE</td></tr>
+        <tr><td>Section map</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/twin/SectionMap.md</td><td>NORMALIZE</td></tr>
+        <tr><td>Detection / Plan</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/{Detection,Plan}.md</td><td>NORMALIZE</td></tr>
+        <tr><td>Findings</td><td class="mono">findings/&lt;usecase&gt;/&lt;doc&gt;/&lt;unit&gt;.md</td><td>JUDGE</td></tr>
+        <tr><td>Graph</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/Graph.md</td><td>JUDGE</td></tr>
+        <tr><td>Live skill</td><td class="mono">skills/&lt;usecase&gt;/Skill.md</td><td>ENHANCE-SKILL</td></tr>
+        <tr><td>Pattern log</td><td class="mono">skills/&lt;usecase&gt;/PatternLog.md</td><td>ENHANCE-SKILL / OBSERVE / JUDGE</td></tr>
+        <tr><td>Skill version snapshot</td><td class="mono">skills/&lt;usecase&gt;/skill-versions/v&lt;N&gt;.md</td><td>ENHANCE-SKILL</td></tr>
+        <tr><td>Report</td><td class="mono">reports/&lt;usecase&gt;/&lt;doc&gt;/Report.md</td><td>REPORT</td></tr>
+        <tr><td>Manifest checklist/verdict</td><td class="mono">manifest/&lt;usecase&gt;/Manifest.md</td><td>VALIDATE</td></tr>
+        <tr><td>HITL sign-off record</td><td class="mono">HITL/&lt;usecase&gt;/&lt;doc&gt;/MANUAL_VALIDATE.md</td><td>MANUAL VALIDATE</td></tr>
+        <tr><td>Audit trail entry</td><td class="mono">prompt-log/&lt;usecase&gt;/PromptLog.md</td><td>LOG (every command)</td></tr>
+        <tr><td>Full project export</td><td class="mono">export-directory (Bootstrap.md front matter)</td><td>EXPORT</td></tr>
+      </table>
+    </section>
+
+    <section id="e2e">
+      <h2>11. End-to-end execution flow</h2>
+      <p class="lead">One <code class="pill">START</code> run, from invocation to accepted deliverable.</p>
+      <div class="flow">
+        <div class="step">1. Invoke <code>START</code> (or <code>START &lt;usecase&gt;</code> if FileIndex.md has more than one entry)</div>
+        <div class="arrow">↓</div>
+        <div class="step">2. RESOLVE — read FileIndex.md, select the entry, confirm every path exists and use_case_name matches the skill's directory</div>
+        <div class="arrow">↓</div>
+        <div class="step">3. NORMALIZE — extract the twin, derived read-through, section map, Detection.md, Plan.md for each resolved pair</div>
+        <div class="arrow">↓</div>
+        <div class="step">4. JUDGE — apply the live skill to every planned unit, write findings + Graph.md</div>
+        <div class="arrow">↓</div>
+        <div class="step">5. ENHANCE-SKILL — compare sample against the skill, log observations, promote what clears the bar, version-bump if warranted</div>
+        <div class="arrow">↓</div>
+        <div class="step">6. REPORT — assemble Report.md from this document's findings only</div>
+        <div class="arrow">↓</div>
+        <div class="step">7. VALIDATE — run the Manifest.md checklist, record a verdict</div>
+        <div class="arrow">↓</div>
+        <div class="step">8. MANUAL VALIDATE — human reviewer signs off; appends a record to HITL/…/MANUAL_VALIDATE.md</div>
+        <div class="arrow">↓</div>
+        <div class="step">9. Manifest.md's Governance block updates (state, signed-by, verified-by/on) — document becomes an accepted deliverable once §15's four gate conditions are all met</div>
+      </div>
+      <p>Every step along the way is logged as its own prepended entry in that use case's PromptLog.md (§10).</p>
+    </section>
+
+    <section id="cheatsheet">
+      <h2>12. Compact command reference</h2>
+      <details class="sticky-ref" open>
+        <summary>Quick-lookup cheat sheet</summary>
+        <div class="body">
+          <table>
+            <tr><th>Command</th><th>Syntax</th><th>Input</th><th>Output</th></tr>
+            <tr><td class="mono">START</td><td class="mono">START [usecase]</td><td>FileIndex.md entry</td><td>Full pipeline output, every resolved pair</td></tr>
+            <tr><td class="mono">RESOLVE</td><td class="mono">RESOLVE [usecase]</td><td>FileIndex.md</td><td>Confirmation or &lt;UNRESOLVED&gt;</td></tr>
+            <tr><td class="mono">NORMALIZE</td><td class="mono">NORMALIZE</td><td>Resolved documents</td><td>actuals/ twin layer, Detection.md, Plan.md</td></tr>
+            <tr><td class="mono">PLAIN</td><td class="mono">PLAIN</td><td>Resolved source document</td><td>actuals/.../twin/ only</td></tr>
+            <tr><td class="mono">JUDGE</td><td class="mono">JUDGE</td><td>Plan.md + skill</td><td>findings/, Graph.md</td></tr>
+            <tr><td class="mono">OBSERVE</td><td class="mono">OBSERVE</td><td>Noticed pattern</td><td>PatternLog.md entry</td></tr>
+            <tr><td class="mono">ENHANCE-SKILL</td><td class="mono">ENHANCE-SKILL</td><td>Sample findings + skill</td><td>Updated Skill.md (+ version snapshot if promoted)</td></tr>
+            <tr><td class="mono">REPORT</td><td class="mono">REPORT</td><td>This document's findings</td><td>reports/.../Report.md</td></tr>
+            <tr><td class="mono">VALIDATE</td><td class="mono">VALIDATE</td><td>Manifest.md checklist</td><td>Updated verdict</td></tr>
+            <tr><td class="mono">MANUAL VALIDATE</td><td class="mono">MANUAL VALIDATE [usecase...]</td><td>Generated twin/findings/report</td><td>HITL/.../MANUAL_VALIDATE.md record</td></tr>
+            <tr><td class="mono">SKILL CHANGE</td><td class="mono">SKILL CHANGE &lt;version_number&gt;</td><td>skill-versions history</td><td>Read-only version report</td></tr>
+            <tr><td class="mono">EXPORT</td><td class="mono">EXPORT</td><td>export-directory front matter</td><td>Full directory copy</td></tr>
+            <tr><td class="mono">LOG</td><td class="mono">LOG</td><td>Prior command's result</td><td>PromptLog.md entry</td></tr>
+          </table>
+        </div>
+      </details>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Generated documentation reflecting Bootstrap.md v16 as read from disk. Describes framework mechanics only — no sample-specific content.
+</footer>
+
+<script>
+  const links = document.querySelectorAll('nav a');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+  function onScroll(){
+    let idx = 0;
+    const y = window.scrollY + 90;
+    sections.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
+    links.forEach((a, i) => a.classList.toggle('active', i === idx));
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+</script>
+
+</body>
+</html>
