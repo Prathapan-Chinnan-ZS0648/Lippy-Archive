@@ -1,0 +1,10 @@
+# Detection — RESPONSE_DOC_S3_WATER_SCANNED (bidder: Clearwater Projects Corp.)
+
+
+| Quirk | Where observed | Handling |
+|---|---|---|
+| Source and supporting documents are scanned image PDFs with no embedded text layer | `documents/source/RESPONSE_DOC_S3_WATER_SCANNED.pdf`, `documents/supporting/BASE_DOC_WATER_SCANNED.pdf` | Extracted via tesseract OCR (200 DPI rasterization), whole-document read-through. |
+| No explicit bid-opening register was supplied | Same fan-out entry as S1/S2 | Register built programmatically per skill's `UNDERSTAND` step — this document is the register row's record for Clearwater Projects Corp. |
+| This bidder is disqualified at eligibility screening on four independent grounds (turnover shortfall, no qualifying continuous O&M reference, expired ISO 45001, unrectified EMD shortfall) | Section 2 (Eligibility Compliance Statement) and Section 24/25 (clarifications) | Per skill: the overall determination — "DISQUALIFIED AT ELIGIBILITY SCREENING (Multiple Grounds)" — opens the answer, quoted; per skill's absence-policy, a disqualified bidder is not ranked. |
+| Price bid was opened per the tender's standard two-envelope process for audit-trail purposes only, and the record itself states it does not enter the Combined Cost comparison | Section 27 ("Price Bid was opened for record purposes... but is NOT considered for comparative evaluation or award...") and Section 32 (committee remarks, same statement) | Mirrors the already-covered pattern from RESPONSE_DOC_S3_ELECTRICAL (PatternLog.md Entry 3): the price is reported as the record states it (Price line), the disqualification/non-ranking is separately stated per absence-policy — no new skill gap. |
+| OCR quality for this document's priced BOQ and O&M schedule is high and internally consistent — Stage 2 Final D&B Bid Value (₹2,37,23,17,548) and Combined Evaluated Cost (₹3,15,89,80,984) are both legible and arithmetically plausible | Cross-checked against the O&M Price Schedule's Year 1-10 escalation | No legibility issue for this bidder (contrast with RESPONSE_DOC_S2_WATER_SCANNED). |

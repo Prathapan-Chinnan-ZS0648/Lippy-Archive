@@ -1,0 +1,9 @@
+# Detection — RESPONSE_DOC_S1_WATER_SCANNED (bidder: AquaBuild Infra Ltd.)
+
+
+| Quirk | Where observed | Handling |
+|---|---|---|
+| Source and supporting documents are scanned image PDFs with no embedded text layer — first time this use case has processed a scanned format (prior ELECTRICAL samples were native .docx) | `documents/source/RESPONSE_DOC_S1_WATER_SCANNED.pdf`, `documents/supporting/BASE_DOC_WATER_SCANNED.pdf` | Extracted via tesseract OCR (200 DPI page rasterization, then OCR per page), whole-document read-through, per Bootstrap.md §1's rule that format only determines *how* extraction happens, never *whether* a document can be processed. |
+| No explicit bid-opening register was supplied | `FileIndex.md`'s bid-evaluation entry lists three source paths, all named RESPONSE_DOC_*, against one shared BASE_DOC supporting path | Per skill's `UNDERSTAND` step (`from=supporting, documents=RESPONSE`), the register is built programmatically: one row per RESPONSE-named document, this document is that row's record. Same handling already confirmed correct on the ELECTRICAL samples (PatternLog.md Entry 1). |
+| No numeric technical score is recorded anywhere in this document | Checked every section, including the remarks and eligibility table | Per skill: "Where the committee awarded no numeric score, open with the committee's own overall determination, quoted." Applied. |
+| OCR quality is high and consistent for this document — all figures in the Eligibility table, BOQ totals, and O&M schedule are legible and internally consistent (Stage 1 → Stage 2 price uplift of +0.3% matches the stated "minor value engineering correction") | Cross-checked BOQ Stage 1 vs Stage 2 totals and the stated correction note | No legibility issue for this bidder's price figures (contrast with RESPONSE_DOC_S2_WATER_SCANNED, where OCR corrupted one BOQ line item and its downstream totals — see that document's own Detection.md). |
