@@ -29,7 +29,7 @@ modules:
 
 # Drawing comparison
 
-Adapted from `skills/version-compare/Skill.md` (see `context.md` §5) to a domain where the
+Adapted from `skills/version-compare/skill.md` (see `context.md` §5) to a domain where the
 "document" is a single large-format CAD sheet rather than running prose: a clause becomes
 a callout, and a section becomes a view on the sheet. It is organized as independent
 modules so a user of this skill can extend one module (e.g. domain guidance for a new
@@ -100,7 +100,7 @@ an ADDED callout can be material or not; a CHANGED callout can be material or no
 
 | # | Stage | What happens | Notes |
 |---|---|---|---|
-| 1 | UNDERSTAND | Read every callout of the source sheet by area (title block / notes / plan view) and grid position. Grain = one callout; id = area mnemonic + running number (Module 3). | Grain fixed before comparison starts, per `Bootstrap.md`'s NORMALIZE step. |
+| 1 | UNDERSTAND | Read every callout of the source sheet by area (title block / notes / plan view) and grid position. Grain = one callout; id = area mnemonic + running number (Module 3). | Grain fixed before comparison starts, per `bootstrap.md`'s NORMALIZE step. |
 | 2 | ALIGN | Match each source callout to its counterpart in the supporting sheet by grid position **and** member/field identity — never by revision-cloud presence or text alone. | An unclouded callout can still have changed silently; a clouded callout can be a pure reformat. See Module 6. |
 | 3 | CLASSIFY | Assign one of the four verdicts (Module 1) to each unit. | — |
 | 4 | JUDGE | Assign `material` (Module 1). | — |
@@ -128,14 +128,14 @@ A "page" for a drawing follows `context.md`'s PDF-page rule (one physical sheet 
 page); a multi-sheet set would carry one page per sheet, but a single-sheet drawing — the
 common case for a shop/fabrication drawing — has exactly one page per revision. A future
 sample with a different sheet type (a multi-sheet set, a P&ID, a reinforcement drawing)
-adds a row here once validated on real input, per the promotion bar (`Bootstrap.md` §8.2)
+adds a row here once validated on real input, per the promotion bar (`bootstrap.md` §8.2)
 — this table grows only through that mechanism, not by editing it freely per sample.
 
 The great majority of a plan view's member callouts are typically UNCHANGED and visually
 indistinguishable in text from one another; exhaustively classifying every one of a sheet's
 ~100+ callouts is not required — a fully-verified set of the callouts that actually differ,
 plus a small number of explicit UNCHANGED control cases, is sufficient scope for one run.
-This scoping choice is recorded per-run in that run's `Plan.md`, not fixed here.
+This scoping choice is recorded per-run in that run's `plan.md`, not fixed here.
 
 ---
 
@@ -182,9 +182,9 @@ already-communicated marker) — an explicit call-out, per Module 6.
 ## Module 6 — Edge-case handling
 
 Cases this skill has been confirmed to handle correctly (see
-`skills/drawing-comparison/PatternLog.md` for the observation history behind each row).
+`skills/drawing-comparison/patternLog.md` for the observation history behind each row).
 Only one sample has been processed under this skill so far, so none of these rows has yet
-cleared the cross-sample-confirmation leg of the promotion bar (`Bootstrap.md` §8.2) — each
+cleared the cross-sample-confirmation leg of the promotion bar (`bootstrap.md` §8.2) — each
 is recorded here because it was structurally necessary to produce this sample's findings at
 all (the promotion bar's third path), not because it has been independently reconfirmed.
 
@@ -198,4 +198,4 @@ all (the promotion bar's third path), not because it has been independently reco
 | out-of-pack cross-reference | A note that refers to another sheet not included in this pack (e.g. "FOR GENERAL NOTES... SEE SHEET 001"). Flag as out of scope, never treat as a silent omission. |
 | figure-answer | A value stated only inside the plan/elevation graphic, not in a text-extractable field. On a drawing this is the *default* case, not the exception — nearly every unit is figure-answer, unlike `version-compare`'s prose documents where it is a named exception. |
 | grid-row uncertain from text-layer diff alone | A text-layer diff can confirm a callout's value changed without pinning which grid row it sits on, when the sheet's PDF content stream does not preserve spatial position for that text run. Record `confidence: UNSURE` rather than guessing the grid row — never fabricate a position to close out a finding. Confirmed on this sample's `MEMB-10`/`MEMB-11`/`MEMB-12`. |
-| absence detected by a second, independently-run attempt at the same document pair | An earlier finding on this sample (`CTRL-1`) originally reported a node as having nothing changed at all; a second, independent attempt at the same document pair flagged that two adjacent dimension figures had in fact changed and had not been searched for at that grid position. Confirmed only after an independent text-occurrence count across both extraction passes, not accepted on the second attempt's word alone — mirrors `version-compare`'s "no verdict from one side" rule applied to the *verification* step itself, not just the original judgment. See `prompt-log/drawing-comparison/PromptLog.md`'s 2026-09-17 correction entry. |
+| absence detected by a second, independently-run attempt at the same document pair | An earlier finding on this sample (`CTRL-1`) originally reported a node as having nothing changed at all; a second, independent attempt at the same document pair flagged that two adjacent dimension figures had in fact changed and had not been searched for at that grid position. Confirmed only after an independent text-occurrence count across both extraction passes, not accepted on the second attempt's word alone — mirrors `version-compare`'s "no verdict from one side" rule applied to the *verification* step itself, not just the original judgment. See `prompt-log/drawing-comparison/promptLog.md`'s 2026-09-17 correction entry. |

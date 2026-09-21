@@ -1,6 +1,6 @@
 # File Index
 
-A list of entries — one per use case (Bootstrap.md §2). `use_case_name` is the unique
+A list of entries — one per use case (bootstrap.md §2). `use_case_name` is the unique
 key; `source_document_path`/`supporting_document_path` may be a single path or a list of
 paths within an entry.
 
@@ -20,7 +20,7 @@ paths within an entry.
     - "documents/bid-evaluation/supporting/BASE_DOC.docx"
     - "documents/bid-evaluation/supporting/BASE_DOC.docx"
     - "documents/bid-evaluation/supporting/BASE_DOC.docx"
-  skill_file_path: "skills/bid-evaluation/Skill.md"
+  skill_file_path: "skills/bid-evaluation/skill.md"
 
 - use_case_name: "version-compare"
   source_document_path:
@@ -35,10 +35,10 @@ paths within an entry.
     - "documents/version-compare/supporting/SYNTH_VERS_DOCS_S3_ORIGINAL.docx"
     - "documents/version-compare/supporting/SYNTH_VERS_DOCS_S4_ORIGINAL.xlsx"
     - "documents/version-compare/supporting/SYNTH_VERS_DOCS_S5_ORIGINAL.pptx"
-  skill_file_path: "skills/version-compare/Skill.md"
+  skill_file_path: "skills/version-compare/skill.md"
 
 - use_case_name: "drawing-comparison"
   source_document_path: "documents/drawing-comparison/source/AD-3010-C-330030-SHT-004-REV4.pdf"
   supporting_document_path: "documents/drawing-comparison/supporting/AD-3010-C-330030-SHT-004-REV3.pdf"
-  skill_file_path: "skills/drawing-comparison/Skill.md"
+  skill_file_path: "skills/drawing-comparison/skill.md"
 ```

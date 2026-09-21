@@ -33,4 +33,4 @@ Twin: `actuals/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/twin/derived/AD-
 The weld/bolt count on this column's `SW` connection tag changes from `(50N 10V)` to `(63N 3Vy)`. Member size (UB457x191x74) unchanged. **No revision cloud is drawn around this callout on REV4.**
 
 ## Why it matters
-Same pattern as `MEMB-4`, at the mirror-image column line of the same Grid D node: a connection design value changed with no revision cloud to flag it. Between them, `MEMB-4` and `MEMB-5` are this pack's clearest evidence that a drawing's own cloud markers cannot be trusted as a complete change list — see `revision-cloud-untagged` in `skills/drawing-comparison/Skill.md`.
+Same pattern as `MEMB-4`, at the mirror-image column line of the same Grid D node: a connection design value changed with no revision cloud to flag it. Between them, `MEMB-4` and `MEMB-5` are this pack's clearest evidence that a drawing's own cloud markers cannot be trusted as a complete change list — see `revision-cloud-untagged` in `skills/drawing-comparison/skill.md`.

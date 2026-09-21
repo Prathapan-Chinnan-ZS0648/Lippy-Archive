@@ -99,7 +99,7 @@
     <h1>Lippy Archive</h1>
     <div class="sub">Document-processing orchestration framework — implementation reference</div>
   </div>
-  <div class="sub mono">Bootstrap.md v16</div>
+  <div class="sub mono">bootstrap.md v16</div>
 </header>
 
 <div class="layout">
@@ -111,7 +111,7 @@
     <div class="navgroup-label">Commands</div>
     <a href="#commands">Command reference</a>
     <a href="#fileindex">file-index &amp; multi-use-case</a>
-    <a href="#bootstrap-control">Bootstrap.md control</a>
+    <a href="#bootstrap-control">bootstrap.md control</a>
     <div class="navgroup-label">Skill lifecycle</div>
     <a href="#skills">Skill files &amp; versioning</a>
     <a href="#promptlog">Prompt logging</a>
@@ -127,34 +127,34 @@
     <section id="overview">
       <h2>1. Overview</h2>
       <p class="lead">What this framework is, in short.</p>
-      <p><strong>Bootstrap.md</strong> is a shared, use-case-agnostic execution framework for processing a
+      <p><strong>bootstrap.md</strong> is a shared, use-case-agnostic execution framework for processing a
       <strong>source document</strong> against a <strong>supporting document</strong>. It never contains
       judgment logic, sample facts, or hardcoded paths itself — every concrete detail (which documents,
-      which use case, which skill) is resolved at execution time from <code class="pill">FileIndex.md</code>,
-      and every judgment rule lives in that use case's own <code class="pill">skills/&lt;usecase&gt;/Skill.md</code>.</p>
+      which use case, which skill) is resolved at execution time from <code class="pill">fileIndex.md</code>,
+      and every judgment rule lives in that use case's own <code class="pill">skills/&lt;usecase&gt;/skill.md</code>.</p>
       <p>The same orchestrator supports any number of use cases side by side — a bid evaluation, a document
       version comparison, or any other "read a source against a reference and produce findings" task — without
-      ever being edited for a specific one. Adding a use case means adding a <code class="pill">FileIndex.md</code>
-      entry and a skill file; it never means touching <code class="pill">Bootstrap.md</code>.</p>
+      ever being edited for a specific one. Adding a use case means adding a <code class="pill">fileIndex.md</code>
+      entry and a skill file; it never means touching <code class="pill">bootstrap.md</code>.</p>
     </section>
 
     <section id="architecture">
       <h2>2. Architecture &amp; workflow</h2>
       <p class="lead">Configuration → orchestration → judgment → output.</p>
       <div class="flow">
-        <div class="step">FileIndex.md <span class="mono" style="color:#9aa1ae">(configuration: which documents, which use case, which skill)</span></div>
+        <div class="step">fileIndex.md <span class="mono" style="color:#9aa1ae">(configuration: which documents, which use case, which skill)</span></div>
         <div class="arrow">↓ resolved by</div>
-        <div class="step">Bootstrap.md <span class="mono" style="color:#9aa1ae">(orchestrator — commands, execution flow, directory rules)</span></div>
+        <div class="step">bootstrap.md <span class="mono" style="color:#9aa1ae">(orchestrator — commands, execution flow, directory rules)</span></div>
         <div class="arrow">↓ applies</div>
-        <div class="step">skills/&lt;usecase&gt;/Skill.md <span class="mono" style="color:#9aa1ae">(judgment rules, verdict scale, absence handling)</span></div>
+        <div class="step">skills/&lt;usecase&gt;/skill.md <span class="mono" style="color:#9aa1ae">(judgment rules, verdict scale, absence handling)</span></div>
         <div class="arrow">↓ produces</div>
         <div class="step">actuals/ · findings/ · reports/ · HITL/ · manifest/ · prompt-log/</div>
       </div>
 
-      <h3>Bootstrap.md §6 execution flow</h3>
+      <h3>bootstrap.md §6 execution flow</h3>
       <pre><code>Terminal Command
        ↓
-Bootstrap.md
+bootstrap.md
        ↓
 Read file-index
        ↓
@@ -180,7 +180,7 @@ Manual Validate (MANUAL VALIDATE) — every sample, not only some</code></pre>
       <p><code class="pill">START</code> runs this to completion — <code class="pill">ENHANCE-SKILL</code> and
       <code class="pill">MANUAL VALIDATE</code> both run on <em>every</em> sample, unconditionally, as part of
       <code class="pill">START</code>'s own composed behavior — never as a separate automatic trigger. All
-      commands remain manual: nothing in Bootstrap.md ever fires a command on its own initiative.</p>
+      commands remain manual: nothing in bootstrap.md ever fires a command on its own initiative.</p>
     </section>
 
     <section id="structure">
@@ -188,9 +188,9 @@ Manual Validate (MANUAL VALIDATE) — every sample, not only some</code></pre>
       <p class="lead">Every generated root is isolated first by <code class="pill">&lt;usecase&gt;</code>, then by <code class="pill">&lt;source-document-name&gt;</code> where applicable.</p>
       <div class="card tree">Lippy Archive/
 │
-├── Bootstrap.md          orchestrator — commands, roles, structure; never use-case-specific
-├── FileIndex.md          list of entries — one per use case (4 fields each)
-├── Pivot.md              cross-use-case decision log — disputes settled, citations corrected
+├── bootstrap.md          orchestrator — commands, roles, structure; never use-case-specific
+├── fileIndex.md          list of entries — one per use case (4 fields each)
+├── pivot.md              cross-use-case decision log — disputes settled, citations corrected
 │
 ├── documents/&lt;usecase&gt;/
 │   ├── source/            every source document added under this use case
@@ -200,24 +200,24 @@ Manual Validate (MANUAL VALIDATE) — every sample, not only some</code></pre>
 │   ├── twin/               per-unit extraction (page/sheet/slide/row/whole-record)
 │   │   ├── &lt;document&gt;/…
 │   │   ├── derived/&lt;document&gt;.md
-│   │   └── SectionMap.md
-│   ├── Detection.md
-│   ├── Plan.md
-│   └── Graph.md
+│   │   └── sectionMap.md
+│   ├── detection.md
+│   ├── plan.md
+│   └── graph.md
 │
 ├── findings/&lt;usecase&gt;/&lt;source-document-name&gt;/&lt;unit&gt;.md
 │
 ├── skills/&lt;usecase&gt;/
-│   ├── Skill.md            LIVE copy — no sample facts
-│   ├── PatternLog.md      every observation from every sample, promoted or not
+│   ├── skill.md            LIVE copy — no sample facts
+│   ├── patternLog.md      every observation from every sample, promoted or not
 │   └── skill-versions/     immutable snapshot history (v1.md, v2.md, …)
 │
-├── reports/&lt;usecase&gt;/&lt;source-document-name&gt;/Report.md
+├── reports/&lt;usecase&gt;/&lt;source-document-name&gt;/report.md
 │
 ├── HITL/&lt;usecase&gt;/&lt;source-document-name&gt;/
 │   └── MANUAL_VALIDATE.md  append-only HITL sign-off record, oldest → newest
 │
-└── manifest/&lt;usecase&gt;/Manifest.md   validation gate — governance, sample context, digests</div>
+└── manifest/&lt;usecase&gt;/manifest.md   validation gate — governance, sample context, digests</div>
 
       <h3>Root purpose, one line each</h3>
       <table>
@@ -235,13 +235,13 @@ Manual Validate (MANUAL VALIDATE) — every sample, not only some</code></pre>
 
     <section id="commands">
       <h2>4. Command reference</h2>
-      <p class="lead">Every command is invoked manually, in CAPITAL LETTERS, and resolves against <code class="pill">FileIndex.md</code> at run time.</p>
+      <p class="lead">Every command is invoked manually, in CAPITAL LETTERS, and resolves against <code class="pill">fileIndex.md</code> at run time.</p>
 
       <details open>
         <summary>START <span class="badge">composes 7 commands</span></summary>
         <div class="body">
-          <p><strong>Syntax:</strong> <code class="pill">START</code> or <code class="pill">START &lt;usecase&gt;</code> (name required once more than one entry exists in FileIndex.md)</p>
-          <p><strong>Input:</strong> the resolved FileIndex.md entry (source path(s), supporting path(s), skill path)</p>
+          <p><strong>Syntax:</strong> <code class="pill">START</code> or <code class="pill">START &lt;usecase&gt;</code> (name required once more than one entry exists in fileIndex.md)</p>
+          <p><strong>Input:</strong> the resolved fileIndex.md entry (source path(s), supporting path(s), skill path)</p>
           <p><strong>Output:</strong> everything RESOLVE → NORMALIZE → JUDGE → ENHANCE-SKILL → REPORT → VALIDATE → MANUAL VALIDATE each produce, for every resolved source/supporting pair</p>
           <p><strong>Flow:</strong> Composes, in strict order: <code class="pill">RESOLVE</code> → <code class="pill">NORMALIZE</code> → <code class="pill">JUDGE</code> → <code class="pill">ENHANCE-SKILL</code> → <code class="pill">REPORT</code> → <code class="pill">VALIDATE</code> → <code class="pill">MANUAL VALIDATE</code>. <code class="pill">ENHANCE-SKILL</code> and <code class="pill">MANUAL VALIDATE</code> run every time, for every sample — not conditionally, not only when something new is found. This is part of START's own defined behavior, not a separate trigger.</p>
         </div>
@@ -267,7 +267,7 @@ Document      : &lt;document-name&gt;</code></pre>
       <details>
         <summary>RESOLVE</summary>
         <div class="body">
-          <p><strong>Input:</strong> FileIndex.md</p>
+          <p><strong>Input:</strong> fileIndex.md</p>
           <p><strong>Output:</strong> a confirmation per resolvable source/supporting pair, or <code class="pill">&lt;UNRESOLVED: reason&gt;</code> blocking only the failing pair(s)</p>
           <p><strong>Flow:</strong> selects the entry (implicit if exactly one; otherwise requires a use-case-name argument) → confirms all four fields are set and every path exists → confirms <code class="pill">use_case_name</code> matches the skill file's parent directory → confirms list-valued paths pair correctly per §2. First step of every run.</p>
         </div>
@@ -277,7 +277,7 @@ Document      : &lt;document-name&gt;</code></pre>
         <summary>NORMALIZE</summary>
         <div class="body">
           <p><strong>Input:</strong> resolved source + supporting documents</p>
-          <p><strong>Output:</strong> <code class="mono">actuals/&lt;usecase&gt;/&lt;source-document-name&gt;/</code> — twin extraction (per page/sheet/slide/row/record), derived read-through, section map, <code class="mono">Detection.md</code>, <code class="mono">Plan.md</code></p>
+          <p><strong>Output:</strong> <code class="mono">actuals/&lt;usecase&gt;/&lt;source-document-name&gt;/</code> — twin extraction (per page/sheet/slide/row/record), derived read-through, section map, <code class="mono">detection.md</code>, <code class="mono">plan.md</code></p>
         </div>
       </details>
 
@@ -293,15 +293,15 @@ Document      : &lt;document-name&gt;</code></pre>
       <details>
         <summary>JUDGE</summary>
         <div class="body">
-          <p><strong>Input:</strong> <code class="mono">actuals/&lt;usecase&gt;/&lt;source-document-name&gt;/Plan.md</code> + the resolved skill</p>
-          <p><strong>Output:</strong> <code class="mono">findings/&lt;usecase&gt;/&lt;source-document-name&gt;/&lt;unit&gt;.md</code> and <code class="mono">actuals/.../Graph.md</code></p>
+          <p><strong>Input:</strong> <code class="mono">actuals/&lt;usecase&gt;/&lt;source-document-name&gt;/plan.md</code> + the resolved skill</p>
+          <p><strong>Output:</strong> <code class="mono">findings/&lt;usecase&gt;/&lt;source-document-name&gt;/&lt;unit&gt;.md</code> and <code class="mono">actuals/.../graph.md</code></p>
         </div>
       </details>
 
       <details>
         <summary>OBSERVE</summary>
         <div class="body">
-          <p><strong>Output:</strong> an entry in <code class="mono">skills/&lt;usecase&gt;/PatternLog.md</code> — records a noticed pattern without changing the live skill.</p>
+          <p><strong>Output:</strong> an entry in <code class="mono">skills/&lt;usecase&gt;/patternLog.md</code> — records a noticed pattern without changing the live skill.</p>
         </div>
       </details>
 
@@ -309,8 +309,8 @@ Document      : &lt;document-name&gt;</code></pre>
         <summary>ENHANCE-SKILL</summary>
         <div class="body">
           <p><strong>Input:</strong> the current sample's findings + the live skill + PatternLog history</p>
-          <p><strong>Output:</strong> a new <code class="mono">skills/&lt;usecase&gt;/skill-versions/v&lt;N&gt;.md</code> snapshot (if promoted) + an updated live <code class="mono">Skill.md</code> with a bumped <code class="pill">version</code> field</p>
-          <p><strong>Flow:</strong> analyze sample against skill → log every observation in PatternLog.md → check each against the promotion bar (§8.2) → for promoted observations, generalize into the skill (never append raw sample context) → validate the change against all previous samples before considering it complete.</p>
+          <p><strong>Output:</strong> a new <code class="mono">skills/&lt;usecase&gt;/skill-versions/v&lt;N&gt;.md</code> snapshot (if promoted) + an updated live <code class="mono">skill.md</code> with a bumped <code class="pill">version</code> field</p>
+          <p><strong>Flow:</strong> analyze sample against skill → log every observation in patternLog.md → check each against the promotion bar (§8.2) → for promoted observations, generalize into the skill (never append raw sample context) → validate the change against all previous samples before considering it complete.</p>
         </div>
       </details>
 
@@ -318,15 +318,15 @@ Document      : &lt;document-name&gt;</code></pre>
         <summary>REPORT</summary>
         <div class="body">
           <p><strong>Input:</strong> <code class="mono">findings/&lt;usecase&gt;/&lt;source-document-name&gt;/</code> (that document's findings only)</p>
-          <p><strong>Output:</strong> <code class="mono">reports/&lt;usecase&gt;/&lt;source-document-name&gt;/Report.md</code></p>
+          <p><strong>Output:</strong> <code class="mono">reports/&lt;usecase&gt;/&lt;source-document-name&gt;/report.md</code></p>
         </div>
       </details>
 
       <details>
         <summary>VALIDATE</summary>
         <div class="body">
-          <p><strong>Input:</strong> <code class="mono">manifest/&lt;usecase&gt;/Manifest.md</code>'s checklist, cross-checked against FileIndex.md and PromptLog.md</p>
-          <p><strong>Output:</strong> an updated verdict for that document in Manifest.md</p>
+          <p><strong>Input:</strong> <code class="mono">manifest/&lt;usecase&gt;/manifest.md</code>'s checklist, cross-checked against fileIndex.md and promptLog.md</p>
+          <p><strong>Output:</strong> an updated verdict for that document in manifest.md</p>
         </div>
       </details>
 
@@ -341,12 +341,12 @@ Document      : &lt;document-name&gt;</code></pre>
       <details>
         <summary>EXPORT</summary>
         <div class="body">
-          <p><strong>Input:</strong> the <code class="pill">export-directory</code> value in Bootstrap.md's own front matter</p>
+          <p><strong>Input:</strong> the <code class="pill">export-directory</code> value in bootstrap.md's own front matter</p>
           <p><strong>Output:</strong> a full copy of that directory, structure preserved exactly, including every use case's isolated subtree</p>
           <p><strong>Flow:</strong> bypasses document resolution entirely — operates on the configured directory as a whole, not per use case.</p>
           <pre><code>EXPORT
   ↓
-Read export directory from Bootstrap.md front matter
+Read export directory from bootstrap.md front matter
   ↓
 Resolve configured directory
   ↓
@@ -361,7 +361,7 @@ Export the full directory</code></pre>
       <details>
         <summary>LOG</summary>
         <div class="body">
-          <p><strong>Output:</strong> a full-detail entry prepended to <code class="mono">prompt-log/&lt;usecase&gt;/PromptLog.md</code>. Invoked after every command that creates or changes a file.</p>
+          <p><strong>Output:</strong> a full-detail entry prepended to <code class="mono">prompt-log/&lt;usecase&gt;/promptLog.md</code>. Invoked after every command that creates or changes a file.</p>
         </div>
       </details>
     </section>
@@ -369,7 +369,7 @@ Export the full directory</code></pre>
     <section id="fileindex">
       <h2>5. file-index.md &amp; multiple use cases</h2>
       <p class="lead">One entry per use case; exactly four fields each.</p>
-      <p><code class="pill">FileIndex.md</code> is a list of entries. Each entry provides exactly
+      <p><code class="pill">fileIndex.md</code> is a list of entries. Each entry provides exactly
       <code class="pill">use_case_name</code>, <code class="pill">source_document_path</code>,
       <code class="pill">supporting_document_path</code>, and <code class="pill">skill_file_path</code> —
       nothing else. <code class="pill">use_case_name</code> is the unique key; two entries never share one.</p>
@@ -386,7 +386,7 @@ Export the full directory</code></pre>
 
       <h3>Selecting an entry when several exist</h3>
       <div class="note">
-        Exactly one entry in FileIndex.md → every command resolves against it, no argument needed.<br><br>
+        Exactly one entry in fileIndex.md → every command resolves against it, no argument needed.<br><br>
         More than one entry → a command that needs one use case <strong>requires</strong> its name as an argument
         (e.g. <code class="pill">START bid-evaluation</code>). Omitting it blocks with
         <code class="pill">&lt;UNRESOLVED: multiple use cases configured; specify which one&gt;</code> — never a
@@ -397,13 +397,13 @@ Export the full directory</code></pre>
     </section>
 
     <section id="bootstrap-control">
-      <h2>6. How Bootstrap.md controls the workflow</h2>
+      <h2>6. How bootstrap.md controls the workflow</h2>
       <p class="lead">Orchestrator only — never a holder of use-case-specific logic.</p>
-      <p>Bootstrap.md defines commands, roles, and directory structure that hold regardless of use case or
+      <p>bootstrap.md defines commands, roles, and directory structure that hold regardless of use case or
       sample. If it ever contains judging logic, verdict definitions, or domain rules, that is treated as a
       defect to be moved into the applicable skill.</p>
 
-      <h3>Amending Bootstrap.md (§11)</h3>
+      <h3>Amending bootstrap.md (§11)</h3>
       <p>Changes rarely, and only when justified by something true across every use case — never by one
       sample's needs. Every amendment is recorded in the PromptLog of whichever use case's run prompted it
       (or the most recently active use case's log, if none did), with what changed and why.</p>
@@ -411,12 +411,12 @@ Export the full directory</code></pre>
       <h3>Non-negotiable rules, grouped</h3>
       <table>
         <tr><th>Group</th><th>Rules</th></tr>
-        <tr><td>Authority &amp; scope</td><td>Bootstrap.md is root authority for orchestration but holds no use-case logic; only FileIndex.md-configured documents are ever processed; no command runs automatically — every invocation is explicit</td></tr>
-        <tr><td>Skill integrity</td><td>A skill changes only via the promotion bar + versioning procedure; historical skill-versions snapshots are immutable; Skill.md is the only live copy; every sample enhances the same skill, never a per-sample fork; every enhancement must still read true for a sample nobody has seen and remain valid for every prior sample</td></tr>
+        <tr><td>Authority &amp; scope</td><td>bootstrap.md is root authority for orchestration but holds no use-case logic; only fileIndex.md-configured documents are ever processed; no command runs automatically — every invocation is explicit</td></tr>
+        <tr><td>Skill integrity</td><td>A skill changes only via the promotion bar + versioning procedure; historical skill-versions snapshots are immutable; skill.md is the only live copy; every sample enhances the same skill, never a per-sample fork; every enhancement must still read true for a sample nobody has seen and remain valid for every prior sample</td></tr>
         <tr><td>Traceability</td><td>Every generated artifact records its skill + version; every file-creating/changing event is logged as a new entry prepended to that use case's own PromptLog</td></tr>
         <tr><td>Absence &amp; uncertainty</td><td>Absence is always the use case's defined label, never inferred or silent; when uncertain whether something is use-case-agnostic or specific, treat it as specific until the promotion bar is met</td></tr>
         <tr><td>Isolation</td><td>Every generated root is scoped first by &lt;usecase&gt;, then by &lt;source-document-name&gt; — nothing is ever mixed, shared, or merged across use cases; every use case's directory shape is structurally identical, only content differs</td></tr>
-        <tr><td>Onboarding</td><td>A new document/use case is onboarded by adding files and pointing FileIndex.md at them — never by deleting or overwriting another's files, never pre-templated</td></tr>
+        <tr><td>Onboarding</td><td>A new document/use case is onboarded by adding files and pointing fileIndex.md at them — never by deleting or overwriting another's files, never pre-templated</td></tr>
         <tr><td>Format &amp; naming</td><td>No file format is rejected or privileged; every generated .md filename follows CamelCase (except identifiers mirroring a real document's own name)</td></tr>
         <tr><td>Export</td><td>EXPORT's scope is always the configured export-directory — never a hardcoded or assumed path</td></tr>
       </table>
@@ -424,14 +424,14 @@ Export the full directory</code></pre>
 
     <section id="skills">
       <h2>7. Skill files &amp; versioning</h2>
-      <p class="lead"><code class="pill">Skill.md</code> is the only live copy; every version is preserved forever.</p>
-      <p><code class="mono">skills/&lt;usecase&gt;/Skill.md</code> holds verdict/label scales, the grain of
+      <p class="lead"><code class="pill">skill.md</code> is the only live copy; every version is preserved forever.</p>
+      <p><code class="mono">skills/&lt;usecase&gt;/skill.md</code> holds verdict/label scales, the grain of
       judgment, absence handling, and required output shape — phrased to hold for any document pair in that
       use case. It never contains a business name, document title, or example lifted from one sample as if
       universal.</p>
 
       <h3>The promotion bar (§8.2)</h3>
-      <p>An observation in <code class="mono">PatternLog.md</code> may be promoted into the live skill only when at least one holds:</p>
+      <p>An observation in <code class="mono">patternLog.md</code> may be promoted into the live skill only when at least one holds:</p>
       <table>
         <tr><th>Condition</th><th>Meaning</th></tr>
         <tr><td>Cross-sample confirmation</td><td>The same pattern was independently observed in 2+ samples that don't share an author, template, or origin</td></tr>
@@ -442,11 +442,11 @@ Export the full directory</code></pre>
 
       <h3>Version-bump procedure (§9)</h3>
       <div class="flow">
-        <div class="step">1. Snapshot current Skill.md → skill-versions/v&lt;N&gt;.md (immutable from that moment)</div>
+        <div class="step">1. Snapshot current skill.md → skill-versions/v&lt;N&gt;.md (immutable from that moment)</div>
         <div class="arrow">↓</div>
-        <div class="step">2. Edit live Skill.md in place, bump front-matter version to &lt;N+1&gt;</div>
+        <div class="step">2. Edit live skill.md in place, bump front-matter version to &lt;N+1&gt;</div>
         <div class="arrow">↓</div>
-        <div class="step">3. Validate against every previous sample (§8.4), then log the change in PromptLog.md</div>
+        <div class="step">3. Validate against every previous sample (§8.4), then log the change in promptLog.md</div>
       </div>
       <p>Non-material edits (typos, wording clarity with no behavior change) don't require a version bump but are still logged.</p>
 
@@ -467,7 +467,7 @@ absence-policy: &lt;how "not stated" is reported&gt;
     <section id="promptlog">
       <h2>8. Prompt logging</h2>
       <p class="lead">Every file-creating or file-changing event, logged in full, at the time it happens.</p>
-      <p><code class="mono">prompt-log/&lt;usecase&gt;/PromptLog.md</code> is maintained in <strong>descending
+      <p><code class="mono">prompt-log/&lt;usecase&gt;/promptLog.md</code> is maintained in <strong>descending
       chronological order</strong> — newest entry always at the top, directly under the header. New entries
       are always <strong>prepended</strong>, never appended below older ones. Each use case keeps its own
       complete, independent history — logs are never merged across use cases.</p>
@@ -507,12 +507,12 @@ Document      : &lt;document-name&gt;</code></pre>
       <h3>How it gates acceptance (§15)</h3>
       <p>No artifact is an accepted deliverable until <strong>all</strong> of:</p>
       <table>
-        <tr><td>1</td><td>Its Manifest.md checklist is fully checked for the current sample</td></tr>
+        <tr><td>1</td><td>Its manifest.md checklist is fully checked for the current sample</td></tr>
         <tr><td>2</td><td>Any skill change it depended on is versioned per §9</td></tr>
-        <tr><td>3</td><td>Its PromptLog.md entries are complete</td></tr>
+        <tr><td>3</td><td>Its promptLog.md entries are complete</td></tr>
         <tr><td>4</td><td>HITL review is complete wherever required</td></tr>
       </table>
-      <p>In <code class="mono">Manifest.md</code>, a document's Governance block records
+      <p>In <code class="mono">manifest.md</code>, a document's Governance block records
       <code class="pill">state</code>, <code class="pill">signed-by</code>, <code class="pill">verified-by</code>,
       and <code class="pill">verified-on</code> — filled in once the corresponding
       <code class="mono">MANUAL_VALIDATE.md</code> record exists, never before. A document's underlying content
@@ -525,18 +525,18 @@ Document      : &lt;document-name&gt;</code></pre>
         <tr><th>Artifact</th><th>Path pattern</th><th>Produced by</th></tr>
         <tr><td>Twin extraction</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/twin/</td><td>NORMALIZE / PLAIN</td></tr>
         <tr><td>Derived read-through</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/twin/derived/&lt;document&gt;.md</td><td>NORMALIZE</td></tr>
-        <tr><td>Section map</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/twin/SectionMap.md</td><td>NORMALIZE</td></tr>
+        <tr><td>Section map</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/twin/sectionMap.md</td><td>NORMALIZE</td></tr>
         <tr><td>Detection / Plan</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/{Detection,Plan}.md</td><td>NORMALIZE</td></tr>
         <tr><td>Findings</td><td class="mono">findings/&lt;usecase&gt;/&lt;doc&gt;/&lt;unit&gt;.md</td><td>JUDGE</td></tr>
-        <tr><td>Graph</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/Graph.md</td><td>JUDGE</td></tr>
-        <tr><td>Live skill</td><td class="mono">skills/&lt;usecase&gt;/Skill.md</td><td>ENHANCE-SKILL</td></tr>
-        <tr><td>Pattern log</td><td class="mono">skills/&lt;usecase&gt;/PatternLog.md</td><td>ENHANCE-SKILL / OBSERVE / JUDGE</td></tr>
+        <tr><td>Graph</td><td class="mono">actuals/&lt;usecase&gt;/&lt;doc&gt;/graph.md</td><td>JUDGE</td></tr>
+        <tr><td>Live skill</td><td class="mono">skills/&lt;usecase&gt;/skill.md</td><td>ENHANCE-SKILL</td></tr>
+        <tr><td>Pattern log</td><td class="mono">skills/&lt;usecase&gt;/patternLog.md</td><td>ENHANCE-SKILL / OBSERVE / JUDGE</td></tr>
         <tr><td>Skill version snapshot</td><td class="mono">skills/&lt;usecase&gt;/skill-versions/v&lt;N&gt;.md</td><td>ENHANCE-SKILL</td></tr>
-        <tr><td>Report</td><td class="mono">reports/&lt;usecase&gt;/&lt;doc&gt;/Report.md</td><td>REPORT</td></tr>
-        <tr><td>Manifest checklist/verdict</td><td class="mono">manifest/&lt;usecase&gt;/Manifest.md</td><td>VALIDATE</td></tr>
+        <tr><td>Report</td><td class="mono">reports/&lt;usecase&gt;/&lt;doc&gt;/report.md</td><td>REPORT</td></tr>
+        <tr><td>Manifest checklist/verdict</td><td class="mono">manifest/&lt;usecase&gt;/manifest.md</td><td>VALIDATE</td></tr>
         <tr><td>HITL sign-off record</td><td class="mono">HITL/&lt;usecase&gt;/&lt;doc&gt;/MANUAL_VALIDATE.md</td><td>MANUAL VALIDATE</td></tr>
-        <tr><td>Audit trail entry</td><td class="mono">prompt-log/&lt;usecase&gt;/PromptLog.md</td><td>LOG (every command)</td></tr>
-        <tr><td>Full project export</td><td class="mono">export-directory (Bootstrap.md front matter)</td><td>EXPORT</td></tr>
+        <tr><td>Audit trail entry</td><td class="mono">prompt-log/&lt;usecase&gt;/promptLog.md</td><td>LOG (every command)</td></tr>
+        <tr><td>Full project export</td><td class="mono">export-directory (bootstrap.md front matter)</td><td>EXPORT</td></tr>
       </table>
     </section>
 
@@ -544,25 +544,25 @@ Document      : &lt;document-name&gt;</code></pre>
       <h2>11. End-to-end execution flow</h2>
       <p class="lead">One <code class="pill">START</code> run, from invocation to accepted deliverable.</p>
       <div class="flow">
-        <div class="step">1. Invoke <code>START</code> (or <code>START &lt;usecase&gt;</code> if FileIndex.md has more than one entry)</div>
+        <div class="step">1. Invoke <code>START</code> (or <code>START &lt;usecase&gt;</code> if fileIndex.md has more than one entry)</div>
         <div class="arrow">↓</div>
-        <div class="step">2. RESOLVE — read FileIndex.md, select the entry, confirm every path exists and use_case_name matches the skill's directory</div>
+        <div class="step">2. RESOLVE — read fileIndex.md, select the entry, confirm every path exists and use_case_name matches the skill's directory</div>
         <div class="arrow">↓</div>
-        <div class="step">3. NORMALIZE — extract the twin, derived read-through, section map, Detection.md, Plan.md for each resolved pair</div>
+        <div class="step">3. NORMALIZE — extract the twin, derived read-through, section map, detection.md, plan.md for each resolved pair</div>
         <div class="arrow">↓</div>
-        <div class="step">4. JUDGE — apply the live skill to every planned unit, write findings + Graph.md</div>
+        <div class="step">4. JUDGE — apply the live skill to every planned unit, write findings + graph.md</div>
         <div class="arrow">↓</div>
         <div class="step">5. ENHANCE-SKILL — compare sample against the skill, log observations, promote what clears the bar, version-bump if warranted</div>
         <div class="arrow">↓</div>
-        <div class="step">6. REPORT — assemble Report.md from this document's findings only</div>
+        <div class="step">6. REPORT — assemble report.md from this document's findings only</div>
         <div class="arrow">↓</div>
-        <div class="step">7. VALIDATE — run the Manifest.md checklist, record a verdict</div>
+        <div class="step">7. VALIDATE — run the manifest.md checklist, record a verdict</div>
         <div class="arrow">↓</div>
         <div class="step">8. MANUAL VALIDATE — human reviewer signs off; appends a record to HITL/…/MANUAL_VALIDATE.md</div>
         <div class="arrow">↓</div>
-        <div class="step">9. Manifest.md's Governance block updates (state, signed-by, verified-by/on) — document becomes an accepted deliverable once §15's four gate conditions are all met</div>
+        <div class="step">9. manifest.md's Governance block updates (state, signed-by, verified-by/on) — document becomes an accepted deliverable once §15's four gate conditions are all met</div>
       </div>
-      <p>Every step along the way is logged as its own prepended entry in that use case's PromptLog.md (§10).</p>
+      <p>Every step along the way is logged as its own prepended entry in that use case's promptLog.md (§10).</p>
     </section>
 
     <section id="cheatsheet">
@@ -572,19 +572,19 @@ Document      : &lt;document-name&gt;</code></pre>
         <div class="body">
           <table>
             <tr><th>Command</th><th>Syntax</th><th>Input</th><th>Output</th></tr>
-            <tr><td class="mono">START</td><td class="mono">START [usecase]</td><td>FileIndex.md entry</td><td>Full pipeline output, every resolved pair</td></tr>
-            <tr><td class="mono">RESOLVE</td><td class="mono">RESOLVE [usecase]</td><td>FileIndex.md</td><td>Confirmation or &lt;UNRESOLVED&gt;</td></tr>
-            <tr><td class="mono">NORMALIZE</td><td class="mono">NORMALIZE</td><td>Resolved documents</td><td>actuals/ twin layer, Detection.md, Plan.md</td></tr>
+            <tr><td class="mono">START</td><td class="mono">START [usecase]</td><td>fileIndex.md entry</td><td>Full pipeline output, every resolved pair</td></tr>
+            <tr><td class="mono">RESOLVE</td><td class="mono">RESOLVE [usecase]</td><td>fileIndex.md</td><td>Confirmation or &lt;UNRESOLVED&gt;</td></tr>
+            <tr><td class="mono">NORMALIZE</td><td class="mono">NORMALIZE</td><td>Resolved documents</td><td>actuals/ twin layer, detection.md, plan.md</td></tr>
             <tr><td class="mono">PLAIN</td><td class="mono">PLAIN</td><td>Resolved source document</td><td>actuals/.../twin/ only</td></tr>
-            <tr><td class="mono">JUDGE</td><td class="mono">JUDGE</td><td>Plan.md + skill</td><td>findings/, Graph.md</td></tr>
-            <tr><td class="mono">OBSERVE</td><td class="mono">OBSERVE</td><td>Noticed pattern</td><td>PatternLog.md entry</td></tr>
-            <tr><td class="mono">ENHANCE-SKILL</td><td class="mono">ENHANCE-SKILL</td><td>Sample findings + skill</td><td>Updated Skill.md (+ version snapshot if promoted)</td></tr>
-            <tr><td class="mono">REPORT</td><td class="mono">REPORT</td><td>This document's findings</td><td>reports/.../Report.md</td></tr>
-            <tr><td class="mono">VALIDATE</td><td class="mono">VALIDATE</td><td>Manifest.md checklist</td><td>Updated verdict</td></tr>
+            <tr><td class="mono">JUDGE</td><td class="mono">JUDGE</td><td>plan.md + skill</td><td>findings/, graph.md</td></tr>
+            <tr><td class="mono">OBSERVE</td><td class="mono">OBSERVE</td><td>Noticed pattern</td><td>patternLog.md entry</td></tr>
+            <tr><td class="mono">ENHANCE-SKILL</td><td class="mono">ENHANCE-SKILL</td><td>Sample findings + skill</td><td>Updated skill.md (+ version snapshot if promoted)</td></tr>
+            <tr><td class="mono">REPORT</td><td class="mono">REPORT</td><td>This document's findings</td><td>reports/.../report.md</td></tr>
+            <tr><td class="mono">VALIDATE</td><td class="mono">VALIDATE</td><td>manifest.md checklist</td><td>Updated verdict</td></tr>
             <tr><td class="mono">MANUAL VALIDATE</td><td class="mono">MANUAL VALIDATE [usecase...]</td><td>Generated twin/findings/report</td><td>HITL/.../MANUAL_VALIDATE.md record</td></tr>
             <tr><td class="mono">SKILL CHANGE</td><td class="mono">SKILL CHANGE &lt;version_number&gt;</td><td>skill-versions history</td><td>Read-only version report</td></tr>
             <tr><td class="mono">EXPORT</td><td class="mono">EXPORT</td><td>export-directory front matter</td><td>Full directory copy</td></tr>
-            <tr><td class="mono">LOG</td><td class="mono">LOG</td><td>Prior command's result</td><td>PromptLog.md entry</td></tr>
+            <tr><td class="mono">LOG</td><td class="mono">LOG</td><td>Prior command's result</td><td>promptLog.md entry</td></tr>
           </table>
         </div>
       </details>
@@ -594,7 +594,7 @@ Document      : &lt;document-name&gt;</code></pre>
 </div>
 
 <footer>
-  Generated documentation reflecting Bootstrap.md v16 as read from disk. Describes framework mechanics only — no sample-specific content.
+  Generated documentation reflecting bootstrap.md v16 as read from disk. Describes framework mechanics only — no sample-specific content.
 </footer>
 
 <script>

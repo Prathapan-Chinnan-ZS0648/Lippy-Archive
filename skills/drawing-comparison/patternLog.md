@@ -4,7 +4,7 @@
 
 ```yaml
 observed-in: AD-3010-C-330030-SHT-004
-timestamp: 2026-09-15 (documented retroactively 2026-09-21, see Pivot.md note below)
+timestamp: 2026-09-15 (documented retroactively 2026-09-21, see pivot.md note below)
 observation: >
   version-compare's unit rule ("one clause of the source document... id = section
   mnemonic + running number") and its writing rules assume headings/paragraphs/tables.
@@ -24,7 +24,7 @@ rationale: >
   Module 2 MAP stage explicitly maps by content/label within a shared document structure,
   which this sheet does not have. A new skill was required to produce any finding at all.
 skill-change: >
-  skills/drawing-comparison/Skill.md created (v1), adapted from version-compare's shape
+  skills/drawing-comparison/skill.md created (v1), adapted from version-compare's shape
   (ADDED/REMOVED/CHANGED/UNCHANGED scale, source-is-newer/supporting-is-older convention,
   finding shape) with a grid-position-based unit rule and drawing-specific Module 6 rows
   (revision-cloud-untagged, already-communicated marker, reformat control case,
@@ -60,7 +60,7 @@ rationale: >
   not: presence of a change marker, and a second, drawing-specific layer (the asterisk)
   distinguishing already-known from newly-issued clouded changes.
 skill-change: >
-  skills/drawing-comparison/Skill.md Module 6 rows "revision-cloud-untagged" and
+  skills/drawing-comparison/skill.md Module 6 rows "revision-cloud-untagged" and
   "already-communicated marker" (v1, initial content — not a later amendment).
 ```
 
@@ -89,7 +89,7 @@ rationale: >
   implicit, mirroring how version-compare's Entry 2 recorded a structurally-necessary
   consequence of its own grain rule for clarity even though "already covered."
 skill-change: >
-  skills/drawing-comparison/Skill.md Module 6 row "repeated-callout ambiguity" (v1,
+  skills/drawing-comparison/skill.md Module 6 row "repeated-callout ambiguity" (v1,
   initial content).
 ```
 
@@ -117,7 +117,7 @@ rationale: >
   (worse — it would suppress a fabrication-relevant fact). confidence: UNSURE is the
   honest middle path already used elsewhere in this pack's finding front matter.
 skill-change: >
-  skills/drawing-comparison/Skill.md Module 6 row "grid-row uncertain from text-layer
+  skills/drawing-comparison/skill.md Module 6 row "grid-row uncertain from text-layer
   diff alone" (v1, initial content).
 ```
 
@@ -151,15 +151,15 @@ rationale: >
   Structural necessity via direct analogy to Module 1's existing "no verdict from one
   side" rule, extended to cover verification of a *correction*, not just an original
   finding — a correction accepted on a second pack's word alone would violate the same
-  principle that rule already protects. Not logged in root Pivot.md, since this was
+  principle that rule already protects. Not logged in root pivot.md, since this was
   resolved within this run as a same-sample correction, not an unresolved cross-use-case
   dispute.
 skill-change: >
-  skills/drawing-comparison/Skill.md Module 6 row "absence detected by a second,
+  skills/drawing-comparison/skill.md Module 6 row "absence detected by a second,
   independently-run attempt at the same document pair" (v1, initial content — the skill
   was still unversioned/pre-v1-snapshot at the time of the original correction on
-  2026-09-17; folded into v1 when this skill was migrated into the Bootstrap.md framework
+  2026-09-17; folded into v1 when this skill was migrated into the bootstrap.md framework
   on 2026-09-21). Corrected findings: findings/drawing-comparison/AD-3010-C-330030-SHT-004-
-  REV4/Ctrl1.md (verdict unchanged, note added), plus 5 new findings
+  REV4/ctrl1.md (verdict unchanged, note added), plus 5 new findings
   (MEMB-13, MEMB-14, MEMB-15, MEMB-16, CTRL-3).
 ```

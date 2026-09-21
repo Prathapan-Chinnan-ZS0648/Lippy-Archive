@@ -31,4 +31,4 @@ Twin: `actuals/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/twin/derived/AD-
 The second rotated vertical dimension figure at the same Grid A ladder cage, immediately below `MEMB-13`'s, changes from 545 to 515. Same Rev 4 cloud and `(*)` marker as `MEMB-13`.
 
 ## Why it matters
-Paired with `MEMB-13` — the two dimensions on this detail changed together (+80 and -30). Missed in the first pass for the same reason as `MEMB-13`; corrected 2026-09-17, see `prompt-log/drawing-comparison/PromptLog.md`'s 2026-09-17 correction entry.
+Paired with `MEMB-13` — the two dimensions on this detail changed together (+80 and -30). Missed in the first pass for the same reason as `MEMB-13`; corrected 2026-09-17, see `prompt-log/drawing-comparison/promptLog.md`'s 2026-09-17 correction entry.

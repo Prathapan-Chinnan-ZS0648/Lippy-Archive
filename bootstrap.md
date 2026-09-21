@@ -1,5 +1,5 @@
 ---
-document: Bootstrap.md
+document: bootstrap.md
 role: shared, use-case-agnostic execution framework for processing source and supporting
   documents — orchestration and execution layer only, never tied to any sample,
   document, or use case
@@ -18,10 +18,10 @@ example that appears below (a use case name, a file path, a command invocation) 
 **variable/example only** — it illustrates shape, not content, and introduces no
 assumption about any particular sample or use case.
 
-All use-case-specific behavior is **dynamically resolved from `FileIndex.md`** — the
+All use-case-specific behavior is **dynamically resolved from `fileIndex.md`** — the
 configurable input for whatever sample is currently loaded — **and the skill it points
-at** (`skills/<usecase>/Skill.md`). The same `Bootstrap.md` supports any number of
-different use cases by changing only `FileIndex.md`'s configuration, the documents in
+at** (`skills/<usecase>/skill.md`). The same `bootstrap.md` supports any number of
+different use cases by changing only `fileIndex.md`'s configuration, the documents in
 `documents/`, and which skill/version is referenced — never by editing this file.
 
 ## 1. Source and supporting document context
@@ -49,7 +49,7 @@ concern (§5), resolved dynamically per document, not a rule that lives in this 
 
 ## 2. `file-index` as the input configuration
 
-`FileIndex.md` is a **list of entries**. Each entry is the configurable input for one use
+`fileIndex.md` is a **list of entries**. Each entry is the configurable input for one use
 case, and provides exactly:
 
 - the use case name applicable to that entry,
@@ -87,12 +87,12 @@ resolving one pair (a path that does not exist) blocks only that pair with its o
 `<UNRESOLVED: ...>`; it does not block the other, resolvable pairs in the same entry (§3's
 "never mix" applies here too — one bad path never contaminates another pair's output).
 
-Paths and document selections in `FileIndex.md` are **variables/configuration**, never
-hardcoded in this file. `Bootstrap.md` never names a directory, filename, or document
+Paths and document selections in `fileIndex.md` are **variables/configuration**, never
+hardcoded in this file. `bootstrap.md` never names a directory, filename, or document
 example as if it were real input — every concrete path referenced anywhere in this file is
-notation for "wherever `FileIndex.md` currently points."
+notation for "wherever `fileIndex.md` currently points."
 
-**Selecting which entry a command acts on:** when `FileIndex.md` holds exactly one entry,
+**Selecting which entry a command acts on:** when `fileIndex.md` holds exactly one entry,
 every command resolves against it with no argument needed (the original, still-supported
 shape). When it holds more than one entry, a command that needs to resolve a single use
 case takes that use case's name as its argument (e.g. `START bid-evaluation`,
@@ -108,10 +108,10 @@ within it, must:
 2. Identify the applicable documents from those configured locations.
 3. Determine which use case/skill applies — read directly from that entry's
    `use_case_name` and `skill_file_path` fields (the skill version is whatever
-   `skill_file_path`'s own front matter states — not a separate `FileIndex.md` field).
+   `skill_file_path`'s own front matter states — not a separate `fileIndex.md` field).
    Confirm `use_case_name` matches `skill_file_path`'s parent directory name under
    `skills/` before proceeding — see `RESOLVE` in §5.
-4. Refer to the corresponding `skills/<usecase>/Skill.md` (i.e. `skill_file_path`) for
+4. Refer to the corresponding `skills/<usecase>/skill.md` (i.e. `skill_file_path`) for
    processing instructions.
 5. Generate findings based on the applicable skill's instructions, once per resolved
    source/supporting pair.
@@ -122,21 +122,21 @@ processing logic. (A field being list-valued per the pairing rules above does no
 fifth field — it is still exactly the same `source_document_path`/
 `supporting_document_path` field, just holding more than one value.) Governance fields
 (state, sign-off, retention, classification), sample context, and the digest ledger live
-in that use case's `manifest/<usecase>/Manifest.md`, never in `FileIndex.md`. See §13.
+in that use case's `manifest/<usecase>/manifest.md`, never in `fileIndex.md`. See §13.
 
 ## 3. Strict document scope
 
 Only process and generate output for the documents **explicitly configured** in
-`FileIndex.md`. Do not:
+`fileIndex.md`. Do not:
 
 - automatically process unrelated documents present elsewhere in `documents/` or
   anywhere else in the repository;
 - generate findings for documents outside the configured scope;
-- infer additional documents that were not specified in `FileIndex.md`;
-- mix documents from different use cases unless `FileIndex.md` explicitly configures
+- infer additional documents that were not specified in `fileIndex.md`;
+- mix documents from different use cases unless `fileIndex.md` explicitly configures
   that;
 - generate outputs for every sample merely because multiple samples' documents happen to
-  be present in a directory — only the one(s) `FileIndex.md` currently selects.
+  be present in a directory — only the one(s) `fileIndex.md` currently selects.
 
 Each selected document is processed using its own use case's skill — never a skill
 belonging to a different use case, and never a blend of two.
@@ -145,20 +145,20 @@ A source document is placed under `documents/<usecase>/source/` and a supporting
 document under `documents/<usecase>/supporting/` — never the other way around, never
 both directories holding copies of the same file under different roles, and never under
 another use case's `<usecase>` subdirectory. This placement is consistent for every use
-case; `FileIndex.md`'s `source_document_path`/`supporting_document_path` point into these
+case; `fileIndex.md`'s `source_document_path`/`supporting_document_path` point into these
 directories, and the bootstrap recognizes newly added files dynamically through those
 pointers, not by scanning the directories for whatever happens to be present. A document
 referenced by more than one use case is placed under each referencing use case's own
-`documents/<usecase>/source/` or `documents/<usecase>/supporting/` — `FileIndex.md`'s
+`documents/<usecase>/source/` or `documents/<usecase>/supporting/` — `fileIndex.md`'s
 explicit path is always what selects it, never a shared location inferred from filename
 match.
 
 ## 4. Skill-driven findings
 
-All findings are generated according to the relevant `skills/<usecase>/Skill.md`. The
+All findings are generated according to the relevant `skills/<usecase>/skill.md`. The
 bootstrap framework:
 
-- identifies the applicable use case from the configured input (`FileIndex.md`);
+- identifies the applicable use case from the configured input (`fileIndex.md`);
 - loads the corresponding skill's instructions;
 - extracts the required findings from the source and supporting documents per that
   skill's workflow;
@@ -167,7 +167,7 @@ bootstrap framework:
 - keeps findings phrased in a structure that holds across samples, never hardcoding a
   particular sample's content into this file.
 
-`Bootstrap.md` is the **orchestrator**. `skills/<usecase>/Skill.md` is the **source of
+`bootstrap.md` is the **orchestrator**. `skills/<usecase>/skill.md` is the **source of
 truth** for how findings are generated. If this file ever contains judging logic,
 verdict definitions, or domain rules, that is a defect — move it into the applicable
 skill.
@@ -176,32 +176,32 @@ skill.
 
 Execution is command-driven. Every command name is written in **CAPITAL LETTERS**. The
 command given determines what operation the bootstrap performs, always against the
-configuration currently resolved from `FileIndex.md` — never against a fixed example.
+configuration currently resolved from `fileIndex.md` — never against a fixed example.
 Every command below is use-case-agnostic: none take a use case, document name, or skill version as
-a hardcoded argument — all of that is resolved from `FileIndex.md` at the moment the
+a hardcoded argument — all of that is resolved from `fileIndex.md` at the moment the
 command runs, so the same command set applies to any use case.
 
-**All commands are manual.** `Bootstrap.md` never automatically executes a command —
+**All commands are manual.** `bootstrap.md` never automatically executes a command —
 not `START`, not any command `START` itself composes, not any command at all. A command
 runs only when explicitly invoked; this file defines and documents each command's
 behavior but never triggers one on its own initiative (e.g. on file changes, on a new
-`FileIndex.md` configuration being written, or as a side effect of running a different
+`fileIndex.md` configuration being written, or as a side effect of running a different
 command beyond what that command's own definition composes). See non-negotiable rule 14.
 
 | Command | Description |
 |---|---|
-| **`START`** | Start execution of the full `Bootstrap.md` workflow using the documents and configuration defined in `FileIndex.md`: read configuration → resolve documents → normalize → judge → enhance the skill → report → validate → manually validate (§6's execution flow). Composes `RESOLVE` → `NORMALIZE` → `JUDGE` → `ENHANCE-SKILL` → `REPORT` → `VALIDATE` → `MANUAL VALIDATE` in sequence — `ENHANCE-SKILL` runs against the sample `JUDGE` just produced findings for, and `MANUAL VALIDATE` runs against the sample `REPORT`/`VALIDATE` just produced output for, every time, for every sample, not only on some; this is part of `START`'s own defined behavior (§16 rule 16), not a separate automatic trigger. |
-| **`RESOLVE`** | Read `FileIndex.md`; select the entry to resolve (§2 — implicit if there's exactly one entry, otherwise the use-case-name argument this command was given, blocking with `<UNRESOLVED: multiple use cases configured; specify which one>` if omitted); confirm that entry's `use_case_name`, `source_document_path`(s), `supporting_document_path`(s), and `skill_file_path` are all set and every listed path resolves to an existing file; confirm `use_case_name` matches `skill_file_path`'s parent directory name under `skills/` — if they disagree, block with `<UNRESOLVED: use_case_name "<value>" does not match skill_file_path's directory "<value>">` rather than silently preferring one over the other; confirm list-valued source/supporting paths pair per §2's rules, blocking only the pair(s) that fail. Produces a confirmation (per resolvable source/supporting pair), or a list of `<UNRESOLVED: reason>` fields blocking the affected pair(s). First step of every run. |
-| **`NORMALIZE`** | Build the full actuals twin layer for the resolved source and supporting documents under `actuals/<usecase>/<source-document-name>/` (§12): per-unit twin extraction (a page for a paginated document, a sheet for a spreadsheet, a slide for a presentation, a row for a tabular file, or whatever unit fits the resolved document's actual format — never hardcoded to one format), the derived read-through, the section/unit map, `Detection.md`, and `Plan.md` — named and scoped to the resolved use case **and** source document, never mixed with another use case's or another source document's actuals. |
+| **`START`** | Start execution of the full `bootstrap.md` workflow using the documents and configuration defined in `fileIndex.md`: read configuration → resolve documents → normalize → judge → enhance the skill → report → validate → manually validate (§6's execution flow). Composes `RESOLVE` → `NORMALIZE` → `JUDGE` → `ENHANCE-SKILL` → `REPORT` → `VALIDATE` → `MANUAL VALIDATE` in sequence — `ENHANCE-SKILL` runs against the sample `JUDGE` just produced findings for, and `MANUAL VALIDATE` runs against the sample `REPORT`/`VALIDATE` just produced output for, every time, for every sample, not only on some; this is part of `START`'s own defined behavior (§16 rule 16), not a separate automatic trigger. |
+| **`RESOLVE`** | Read `fileIndex.md`; select the entry to resolve (§2 — implicit if there's exactly one entry, otherwise the use-case-name argument this command was given, blocking with `<UNRESOLVED: multiple use cases configured; specify which one>` if omitted); confirm that entry's `use_case_name`, `source_document_path`(s), `supporting_document_path`(s), and `skill_file_path` are all set and every listed path resolves to an existing file; confirm `use_case_name` matches `skill_file_path`'s parent directory name under `skills/` — if they disagree, block with `<UNRESOLVED: use_case_name "<value>" does not match skill_file_path's directory "<value>">` rather than silently preferring one over the other; confirm list-valued source/supporting paths pair per §2's rules, blocking only the pair(s) that fail. Produces a confirmation (per resolvable source/supporting pair), or a list of `<UNRESOLVED: reason>` fields blocking the affected pair(s). First step of every run. |
+| **`NORMALIZE`** | Build the full actuals twin layer for the resolved source and supporting documents under `actuals/<usecase>/<source-document-name>/` (§12): per-unit twin extraction (a page for a paginated document, a sheet for a spreadsheet, a slide for a presentation, a row for a tabular file, or whatever unit fits the resolved document's actual format — never hardcoded to one format), the derived read-through, the section/unit map, `detection.md`, and `plan.md` — named and scoped to the resolved use case **and** source document, never mixed with another use case's or another source document's actuals. |
 | **`PLAIN`** | Extract the twin from the actual/source document without applying unnecessary transformation or interpretation — a raw extraction pass only (per-page/per-unit extraction into `actuals/<usecase>/<source-document-name>/twin/`), stopping short of detection, planning, or judgment. The exact extraction logic (what counts as a "unit," how a page or section is delimited) stays format-neutral and is determined by the applicable skill/use case (§4) — `PLAIN` only controls *how much* of the pipeline runs, not *how* extraction is done for a given document type. |
-| **`JUDGE`** | Apply the resolved skill (`skill_file_path`) to every unit in `actuals/<usecase>/<source-document-name>/Plan.md`, producing `findings/<usecase>/<source-document-name>/<unit>.md` and `actuals/<usecase>/<source-document-name>/Graph.md`. |
-| **`OBSERVE`** | Record a noticed pattern against the resolved use case's pattern log (`skills/<usecase>/PatternLog.md`), without changing the skill itself. |
+| **`JUDGE`** | Apply the resolved skill (`skill_file_path`) to every unit in `actuals/<usecase>/<source-document-name>/plan.md`, producing `findings/<usecase>/<source-document-name>/<unit>.md` and `actuals/<usecase>/<source-document-name>/graph.md`. |
+| **`OBSERVE`** | Record a noticed pattern against the resolved use case's pattern log (`skills/<usecase>/patternLog.md`), without changing the skill itself. |
 | **`ENHANCE-SKILL`** | Analyze the current sample against the resolved skill, identify new/changed/conflicting knowledge, and — for whatever clears the promotion bar (§8.2) — generalize it into the skill: preserve what's valid, refine or generalize what a broader pattern now supersedes, never append raw sample context (§8.1). Snapshot the current skill to `skills/<usecase>/skill-versions/` first, edit the live `skill_file_path` in place, bump its front matter `version` field, then validate the change against previously processed samples (§8.4) before the versioning procedure (§9) is complete. |
-| **`REPORT`** | Assemble a report from the resolved source document's findings only (`findings/<usecase>/<source-document-name>/` → `reports/<usecase>/<source-document-name>/Report.md`) — never findings belonging to a different source document or a different use case. |
-| **`VALIDATE`** | Run the resolved source document's validation checklist (`manifest/<usecase>/Manifest.md`), checking it against `FileIndex.md` and `prompt-log/<usecase>/PromptLog.md`, producing an updated verdict for that document. |
-| **`SKILL CHANGE <version_number>`** | From the findings already generated using the current skill, extract the information that corresponds to skill version `<version_number>`: what that version's rules were (from `skills/<usecase>/skill-versions/v<version_number>.md` if not the current live version, or the live `skill_file_path` if it is), how they differ from the version immediately before it (per that version's promotion-bar record in `skills/<usecase>/PatternLog.md` and its `prompt-log/<usecase>/PromptLog.md` versioning entry), and — where resolvable — which current findings were produced under that version versus a later one. `<version_number>` is a variable supplied with the command, never a hardcoded value in this file. |
+| **`REPORT`** | Assemble a report from the resolved source document's findings only (`findings/<usecase>/<source-document-name>/` → `reports/<usecase>/<source-document-name>/report.md`) — never findings belonging to a different source document or a different use case. |
+| **`VALIDATE`** | Run the resolved source document's validation checklist (`manifest/<usecase>/manifest.md`), checking it against `fileIndex.md` and `prompt-log/<usecase>/promptLog.md`, producing an updated verdict for that document. |
+| **`SKILL CHANGE <version_number>`** | From the findings already generated using the current skill, extract the information that corresponds to skill version `<version_number>`: what that version's rules were (from `skills/<usecase>/skill-versions/v<version_number>.md` if not the current live version, or the live `skill_file_path` if it is), how they differ from the version immediately before it (per that version's promotion-bar record in `skills/<usecase>/patternLog.md` and its `prompt-log/<usecase>/promptLog.md` versioning entry), and — where resolvable — which current findings were produced under that version versus a later one. `<version_number>` is a variable supplied with the command, never a hardcoded value in this file. |
 | **`EXPORT`** | Export the full directory configured in this file's `export-directory` front-matter field, including its complete directory structure and all applicable files generated or maintained by the bootstrap workflow. See the diagram and rules below. |
-| **`LOG`** | Prepend a full-detail entry recording what a prior command did to the top of the resolved use case's `prompt-log/<usecase>/PromptLog.md` (per §10). Invoked after every command that creates or changes a file. |
+| **`LOG`** | Prepend a full-detail entry recording what a prior command did to the top of the resolved use case's `prompt-log/<usecase>/promptLog.md` (per §10). Invoked after every command that creates or changes a file. |
 | **`MANUAL VALIDATE`** | Record a human-in-the-loop (HITL) reviewer's manual validation of the generated documents and outputs for one, several, or (with no use-case argument) **every** configured use case, without touching document content. Composed automatically by `START`, every run, for every sample (§6) — see "`MANUAL VALIDATE` in detail" below for its multi-use-case scoping, which overrides §2's single-entry default. |
 
 ### `MANUAL VALIDATE` in detail
@@ -209,13 +209,13 @@ command beyond what that command's own definition composes). See non-negotiable 
 **Use-case scope (overrides §2's default for this command only):**
 
 - **No use-case argument** — `MANUAL VALIDATE` acts on **every use case currently
-  configured in `FileIndex.md`**, one entry at a time, not just the single entry §2 would
+  configured in `fileIndex.md`**, one entry at a time, not just the single entry §2 would
   otherwise assume. This is the one command where "no argument" means "all," not "the
   lone entry" or an `<UNRESOLVED: multiple use cases configured>` block.
 - **One or more use-case names given** (e.g. `MANUAL VALIDATE version-compare`,
   `MANUAL VALIDATE version-compare bid-evaluation`) — acts only on the named use case(s).
-  Any named use case that does not match an entry in `FileIndex.md` blocks with
-  `<UNRESOLVED: use case "<name>" not found in FileIndex.md>` for that name only; it does
+  Any named use case that does not match an entry in `fileIndex.md` blocks with
+  `<UNRESOLVED: use case "<name>" not found in fileIndex.md>` for that name only; it does
   not block validation of the other named (or, in the no-argument form, other configured)
   use cases.
 - When composed automatically by `START` (below), the scope is always the single use case
@@ -254,7 +254,7 @@ source/supporting pairs currently carrying generated output:
    prior record — the file is an auditable history of every manual validation performed
    for that document, oldest to newest.
 5. Log the invocation per §10 (prepend a full-detail entry to that use case's own
-   `prompt-log/<usecase>/PromptLog.md` — a multi-use-case invocation logs a separate entry
+   `prompt-log/<usecase>/promptLog.md` — a multi-use-case invocation logs a separate entry
    in each affected use case's own log, never one shared cross-use-case entry, per §12's
    isolation).
 
@@ -272,7 +272,7 @@ output; it never generates, judges, or alters findings itself.
 ```text
 EXPORT
   ↓
-Read export directory from Bootstrap.md (front matter: export-directory)
+Read export directory from bootstrap.md (front matter: export-directory)
   ↓
 Resolve configured directory
   ↓
@@ -302,7 +302,7 @@ The export operation:
 ```text
 Terminal Command
        ↓
-Bootstrap.md
+bootstrap.md
        ↓
 Read file-index
        ↓
@@ -330,7 +330,7 @@ Manual Validate (MANUAL VALIDATE, §5) — every sample, not only some
 `START` runs this flow to completion, which means every `START` run enhances the skill
 against the sample it just judged — not conditionally, and not only for a sample that
 happens to surface something new; a sample that surfaces nothing promotable still gets a
-`PatternLog.md` entry recording that (§8.1, §8.3). Likewise, every `START` run finishes by
+`patternLog.md` entry recording that (§8.1, §8.3). Likewise, every `START` run finishes by
 running `MANUAL VALIDATE` for the sample it just produced output for — not conditionally,
 and not only for some samples — recording the HITL sign-off before the run is considered
 complete. `PLAIN` stops after normalization (before "Apply Skill Instructions"). `SKILL
@@ -341,18 +341,18 @@ on the configured directory as a whole (§5).
 ## 7. Generic variable-based design
 
 Every configurable value below is a variable, resolved at execution time from
-`FileIndex.md` (or, for `export-directory`, from this file's own front matter) — never
+`fileIndex.md` (or, for `export-directory`, from this file's own front matter) — never
 embedded in this file as a sample-specific filename, path, document name, finding, or
 expected output.
 
 | Variable | Resolved from |
 |---|---|
-| Source document directory | `FileIndex.md`'s `source_document_path` |
-| Supporting document directory | `FileIndex.md`'s `supporting_document_path` |
-| File/document selection | `FileIndex.md` (the four configured inputs — nothing else is in scope, §3) |
-| Use case | `FileIndex.md`'s `use_case_name` |
-| Skill path | `FileIndex.md`'s `skill_file_path` |
-| Skill version | the resolved skill file's own front matter `version` field — never duplicated into `FileIndex.md` |
+| Source document directory | `fileIndex.md`'s `source_document_path` |
+| Supporting document directory | `fileIndex.md`'s `supporting_document_path` |
+| File/document selection | `fileIndex.md` (the four configured inputs — nothing else is in scope, §3) |
+| Use case | `fileIndex.md`'s `use_case_name` |
+| Skill path | `fileIndex.md`'s `skill_file_path` |
+| Skill version | the resolved skill file's own front matter `version` field — never duplicated into `fileIndex.md` |
 | Requested command | the terminal invocation (`START`, `PLAIN`, `SKILL CHANGE <version_number>`, `EXPORT`) |
 | Output location | the standard directory architecture (§12) |
 | Export directory | this file's front matter (`export-directory`) |
@@ -360,7 +360,7 @@ expected output.
 
 ## 8. Progressive skill enhancement — analysis, generalization, and the promotion bar
 
-**Core requirement:** `skills/<usecase>/Skill.md` must become progressively more
+**Core requirement:** `skills/<usecase>/skill.md` must become progressively more
 complete, accurate, and applicable across samples as additional samples are processed — never merely
 appended to, never left dependent on a single sample, and always applicable to both
 every previously processed sample and every newly introduced one.
@@ -369,16 +369,16 @@ every previously processed sample and every newly introduced one.
 
 This is required processing for every new sample, not an optional step:
 
-1. **Analyze the new sample against the existing `skills/<usecase>/Skill.md`** — read
+1. **Analyze the new sample against the existing `skills/<usecase>/skill.md`** — read
    the current skill in full before judging, not just enough to get started.
 2. **Identify new patterns, rules, structures, edge cases, exceptions, and
    domain-specific insights** the sample surfaces, whether or not the skill already
    handles them correctly. Record each as an observation in
-   `skills/<usecase>/PatternLog.md` (§8.3), including observations that turn out to
+   `skills/<usecase>/patternLog.md` (§8.3), including observations that turn out to
    already be covered — a confirmed-but-unpromoted or already-covered observation is
    still logged, not discarded silently.
 3. **Check each observation against the promotion bar** (§8.2). Only a promoted
-   observation may change `skills/<usecase>/Skill.md`.
+   observation may change `skills/<usecase>/skill.md`.
 4. For every promoted observation, **enhance the existing skill with generalized
    knowledge that holds across samples** — never with the new sample's specific names,
    values, or structure:
@@ -400,28 +400,28 @@ outputs anywhere in this process's output — every insight promoted into the sk
 stated at the level of a rule, per §13's "what belongs where" test.
 
 ```text
-Existing skills/<usecase>/Skill.md
+Existing skills/<usecase>/skill.md
         ↓
 New sample/document
         ↓
 Compare new sample against existing skill
         ↓
-Identify new / changed / conflicting knowledge (log in PatternLog.md)
+Identify new / changed / conflicting knowledge (log in patternLog.md)
         ↓
 Check against the promotion bar (§8.2)
         ↓
 Generalize cross-sample insights (never append sample context)
         ↓
-Enhance existing skills/<usecase>/Skill.md (preserve what's valid, refine what's narrow)
+Enhance existing skills/<usecase>/skill.md (preserve what's valid, refine what's narrow)
         ↓
 Validate against previous samples' findings AND the new sample (§8.4)
         ↓
-Updated skills/<usecase>/Skill.md, still holding across every use case's samples
+Updated skills/<usecase>/skill.md, still holding across every use case's samples
 ```
 
 ### 8.2 The promotion bar — avoiding overfitting
 
-An observation in a `PatternLog.md` may be promoted into `skills/<usecase>/Skill.md` only
+An observation in a `patternLog.md` may be promoted into `skills/<usecase>/skill.md` only
 when at least one of the following holds. Otherwise it stays logged as sample-specific and
 the live skill file is left untouched.
 
@@ -440,7 +440,7 @@ holds beyond one sample, once promoted, earns a new version of it.
 
 ### 8.3 The pattern log — where every observation is recorded
 
-`skills/<usecase>/PatternLog.md` is the ledger `ENHANCE-SKILL` and every JUDGE pass read
+`skills/<usecase>/patternLog.md` is the ledger `ENHANCE-SKILL` and every JUDGE pass read
 and write. Record, for every observation:
 
 - which sample it was observed in, and how many independent samples now show it;
@@ -462,36 +462,36 @@ Before treating a promoted enhancement as complete:
   sample under a wording that the new, more general rule would have produced the same
   way — if it would produce a *different* verdict, the enhancement is not actually a
   generalization, it is a behavior change, and the affected prior sample's findings must
-  be flagged for re-judgment (logged in `prompt-log/<usecase>/PromptLog.md`), not
+  be flagged for re-judgment (logged in `prompt-log/<usecase>/promptLog.md`), not
   silently left stale.
 - Confirm the new/updated rule, read on its own, is stated broadly enough to apply to
   a sample that has not yet been seen — not just precisely enough to fit the sample that
   prompted it.
-- Only after this check does the enhancement's `prompt-log/<usecase>/PromptLog.md` entry
+- Only after this check does the enhancement's `prompt-log/<usecase>/promptLog.md` entry
   (§9, step 3) get marked complete.
 
 ## 9. Skill versioning
 
-`skills/<usecase>/Skill.md` is the **only live copy** of a use case's skill.
+`skills/<usecase>/skill.md` is the **only live copy** of a use case's skill.
 `skills/<usecase>/skill-versions/` holds an **immutable history** of every version that
 file has ever held, scoped to that one use case — never shared with another use case's
 version history. Any material change requires, in order:
 
-1. **Copy the current `skills/<usecase>/Skill.md` to
+1. **Copy the current `skills/<usecase>/skill.md` to
    `skills/<usecase>/skill-versions/v<N>.md` first** — this snapshot is immutable from the
    moment it is written and is never edited or overwritten afterward.
-2. Edit `skills/<usecase>/Skill.md` in place to incorporate the promoted change(s) per
+2. Edit `skills/<usecase>/skill.md` in place to incorporate the promoted change(s) per
    §8's process (preserve what's valid, generalize what's narrow, never append raw
    sample context), and bump its front matter `version` field to `<N+1>`.
 3. Validate the change against previous samples per §8.4, then record it in
-   `prompt-log/<usecase>/PromptLog.md`: what gap, from which sample's pattern-log entry,
+   `prompt-log/<usecase>/promptLog.md`: what gap, from which sample's pattern-log entry,
    what changed, what stayed the same, old version number → new version number, and the
    result of the previous-samples validation (unaffected, or which samples need
    re-judgment).
 
-No `FileIndex.md` field needs updating for this — `FileIndex.md`'s `skill_file_path`
+No `fileIndex.md` field needs updating for this — `fileIndex.md`'s `skill_file_path`
 still points at the same live file; the version number it now serves is read from that
-file's own front matter, never tracked separately in `FileIndex.md` (§2).
+file's own front matter, never tracked separately in `fileIndex.md` (§2).
 
 Non-material edits (typo fixes, clarifying wording without changing behavior) do not
 require a new version but are still logged. `SKILL CHANGE <version_number>` (§5) is the
@@ -500,11 +500,11 @@ read path for this history; this section is the write path.
 ## 10. Prompt log — the traceability requirement
 
 Every event that creates or changes a file anywhere in this repository must be logged, in
-full, in that event's use case's own `prompt-log/<usecase>/PromptLog.md`, at the time it
+full, in that event's use case's own `prompt-log/<usecase>/promptLog.md`, at the time it
 happens — never reconstructed later from memory, and never logged into another use
 case's prompt log.
 
-`prompt-log/<usecase>/PromptLog.md` is maintained in **descending chronological order**:
+`prompt-log/<usecase>/promptLog.md` is maintained in **descending chronological order**:
 the most recent execution/prompt is always at the **top**, older entries below it. New
 entries are always **prepended**, directly under the file's header — never appended below
 older entries. Each use case accumulates its own complete, independent history this way;
@@ -521,28 +521,28 @@ item; write "not applicable" with a one-clause reason instead.
 This file changes rarely and only through the same discipline it imposes on skills: a
 change must be justified by something true across every use case and every sample, not by
 one sample's needs. Since this file itself is not use-case-scoped, every amendment is
-recorded as an entry in the `prompt-log/<usecase>/PromptLog.md` of whichever use case's
+recorded as an entry in the `prompt-log/<usecase>/promptLog.md` of whichever use case's
 run prompted the amendment (or, if none did, the most recently active use case's log),
 recording what changed and why, with the previous version diff-able from that entry.
 
 ## 12. Directory architecture
 
 **Every use case gets its own, completely isolated directory structure**, keyed by
-`<usecase>` — the exact string in `FileIndex.md`'s current `use_case_name` field. Under
+`<usecase>` — the exact string in `fileIndex.md`'s current `use_case_name` field. Under
 every generated/maintained top-level directory (`actuals/`, `skills/`, `findings/`,
 `reports/`, `HITL/`, `manifest/`, `prompt-log/`), the first-level subdirectory is always
 `<usecase>` — never a source-document name, never a shared/default folder, never a
 directory shared across two different use cases. A second use case processed by this
-same `Bootstrap.md` gets its own parallel `<usecase>` subdirectory under each of those
-roots, automatically, the first time `FileIndex.md`'s `use_case_name` names it — no
+same `bootstrap.md` gets its own parallel `<usecase>` subdirectory under each of those
+roots, automatically, the first time `fileIndex.md`'s `use_case_name` names it — no
 template, no manual directory creation step, and no edit to this file.
 
 ```text
 Lippy Archive/
 │
-├── Bootstrap.md            THIS FILE — use-case-agnostic, never changes per use case or sample
-├── FileIndex.md           exactly four inputs — use case name, source path, supporting path, skill path — rewritten to point at whichever document/use case is currently being worked on
-├── Pivot.md                cumulative decision log — disputes settled, rules clarified, citations corrected (cross-use-case by design: a citation or rule clarification may bear on more than one use case)
+├── bootstrap.md            THIS FILE — use-case-agnostic, never changes per use case or sample
+├── fileIndex.md           exactly four inputs — use case name, source path, supporting path, skill path — rewritten to point at whichever document/use case is currently being worked on
+├── pivot.md                cumulative decision log — disputes settled, rules clarified, citations corrected (cross-use-case by design: a citation or rule clarification may bear on more than one use case)
 │
 ├── documents/
 │   └── <usecase>/
@@ -562,10 +562,10 @@ Lippy Archive/
 │           │   │                              slide-### (presentation), row-### (tabular/CSV),
 │           │   │                              or whatever unit fits a format not listed here
 │           │   ├── derived/<document>.md
-│           │   └── SectionMap.md
-│           ├── Detection.md
-│           ├── Plan.md
-│           └── Graph.md
+│           │   └── sectionMap.md
+│           ├── detection.md
+│           ├── plan.md
+│           └── graph.md
 │
 ├── findings/
 │   └── <usecase>/
@@ -573,16 +573,16 @@ Lippy Archive/
 │
 ├── skills/
 │   └── <usecase>/
-│       ├── Skill.md              the LIVE, current skill for this use case — no sample facts
-│       ├── PatternLog.md        observations from every sample processed under this use case, and whether each was promoted
+│       ├── skill.md              the LIVE, current skill for this use case — no sample facts
+│       ├── patternLog.md        observations from every sample processed under this use case, and whether each was promoted
 │       └── skill-versions/       immutable history for THIS use case only — a snapshot written before every enhancement, never overwritten
 │           ├── v1.md             first version's snapshot
-│           ├── v2.md             snapshot taken before the enhancement that produced the current live Skill.md
+│           ├── v2.md             snapshot taken before the enhancement that produced the current live skill.md
 │           └── vN.md             one snapshot per version this use case's skill has ever had
 │
 ├── reports/
 │   └── <usecase>/
-│       └── <source-document-name>/Report.md   one report per source document under this use case — never shared, never mixed
+│       └── <source-document-name>/report.md   one report per source document under this use case — never shared, never mixed
 │
 ├── HITL/
 │   └── <usecase>/
@@ -591,15 +591,15 @@ Lippy Archive/
 │
 └── manifest/
     └── <usecase>/
-        └── Manifest.md         validation gate for this use case — governance fields, sample context, and the digest ledger, sectioned per source document within it (§13)
+        └── manifest.md         validation gate for this use case — governance fields, sample context, and the digest ledger, sectioned per source document within it (§13)
 ```
 
-**`<usecase>`** is `FileIndex.md`'s current `use_case_name`, verbatim — the top-level key
+**`<usecase>`** is `fileIndex.md`'s current `use_case_name`, verbatim — the top-level key
 under every generated directory. **`<source-document-name>`** is the source document's
 filename (without extension) — the second-level key, nested inside `<usecase>`, that ties
 a source document to its own `actuals/`, `findings/`, `reports/`, and `HITL/` output
 *within that use case*. Every command that writes to any of these directories resolves
-both keys from `FileIndex.md`'s current `use_case_name` and `source_document_path`, and
+both keys from `fileIndex.md`'s current `use_case_name` and `source_document_path`, and
 writes only under that exact `<usecase>/<source-document-name>` path — never into another
 use case's directory, never into another source document's subdirectory, never merging
 two use cases' or two source documents' output into one.
@@ -608,28 +608,28 @@ two use cases' or two source documents' output into one.
 per-use-case isolation as every other generated root (§17): each use case accumulates its
 own source and supporting documents in its own subtree (a source document is never placed
 under that use case's `supporting/` or vice versa, and a document is never removed just
-because `FileIndex.md` currently points elsewhere). Nothing is ever inferred from a
-use case's document pool (§3) — only `FileIndex.md`'s explicit paths select a document,
+because `fileIndex.md` currently points elsewhere). Nothing is ever inferred from a
+use case's document pool (§3) — only `fileIndex.md`'s explicit paths select a document,
 and its `use_case_name` determines both which `documents/<usecase>/` subtree it is placed
 under and which isolated `<usecase>` tree the resulting output lands in. A document
 genuinely shared by more than one use case is placed once under each referencing use
-case's own subtree — never in one shared location two `FileIndex.md` entries both point
+case's own subtree — never in one shared location two `fileIndex.md` entries both point
 into. `actuals/`, `findings/`, `reports/`, and `HITL/` likewise accumulate — one
 `<usecase>/<source-document-name>` subdirectory per document that has been processed
 under that use case — processing a new source document, or a new use case, does not
-overwrite or remove another's. `skills/<usecase>/` (that use case's live `Skill.md`, its
-`PatternLog.md`, and its immutable history in its own `skill-versions/`) and
-`manifest/<usecase>/Manifest.md` persist and accumulate the same way, one complete,
-independent tree per use case. `prompt-log/<usecase>/PromptLog.md` is each use case's own
+overwrite or remove another's. `skills/<usecase>/` (that use case's live `skill.md`, its
+`patternLog.md`, and its immutable history in its own `skill-versions/`) and
+`manifest/<usecase>/manifest.md` persist and accumulate the same way, one complete,
+independent tree per use case. `prompt-log/<usecase>/promptLog.md` is each use case's own
 cumulative log — prepended to (newest first, §10), never truncated, never shared with
-another use case's log. `Pivot.md` at the root is the one cumulative log kept
+another use case's log. `pivot.md` at the root is the one cumulative log kept
 cross-use-case by design (appended to, never truncated) since a settled dispute or
-citation correction can bear on more than one use case. `Bootstrap.md` is never rewritten
+citation correction can bear on more than one use case. `bootstrap.md` is never rewritten
 for a source document or a use case; it is the fixed orchestration layer every use case
 runs through. This whole tree, rooted at `export-directory`, is what `EXPORT` (§5) copies.
 
 There is no template layer. Switching which document or use case is being worked on means
-rewriting `FileIndex.md` to point at it (adding the document under that use case's own
+rewriting `fileIndex.md` to point at it (adding the document under that use case's own
 `documents/<usecase>/source/` and `documents/<usecase>/supporting/` first if it isn't
 there yet) — it does not mean deleting or
 overwriting any other use case's or document's `actuals/`, `findings/`, `reports/`, or
@@ -640,20 +640,20 @@ of the first `RESOLVE`/`NORMALIZE` for that use case, is not a template being ap
 it is the same per-document accumulation behavior described above happening for a
 `<usecase>` key that has never been seen before. Nothing needs an explicit retention
 decision for this reason alone; a retention decision is only needed if content is to be
-deleted outright (record that in `prompt-log/<usecase>/PromptLog.md` before deleting
+deleted outright (record that in `prompt-log/<usecase>/promptLog.md` before deleting
 anything).
 
 ## 13. What belongs where
 
-**`skills/<usecase>/Skill.md` may contain:** verdict/label scales, the grain of judgment,
+**`skills/<usecase>/skill.md` may contain:** verdict/label scales, the grain of judgment,
 absence handling, judging criteria stated as conditions, prohibitions, and required output
 shape — all phrased so they hold for any document pair/set in that use case.
 
-**`skills/<usecase>/Skill.md` may never contain:** a business name, a document title, a
+**`skills/<usecase>/skill.md` may never contain:** a business name, a document title, a
 specific number that isn't a rule threshold, or example text lifted from one sample
 presented as if it were a universal case.
 
-**`FileIndex.md` may contain only:** a list of entries, one per use case, each with
+**`fileIndex.md` may contain only:** a list of entries, one per use case, each with
 exactly `use_case_name`, `source_document_path`, `supporting_document_path`,
 `skill_file_path` — exactly these four fields, nothing else, though `source_document_path`
 and `supporting_document_path` may each be list-valued within an entry per §2's pairing
@@ -661,23 +661,23 @@ rules. No skill version, no classification, no terminology notes, no digests, no
 use-case-specific processing logic. It must not restate or override the skill's judging
 rules — it only points at the skill(s).
 
-**`manifest/<usecase>/Manifest.md` may contain:** governance fields, sample context
+**`manifest/<usecase>/manifest.md` may contain:** governance fields, sample context
 prose, the digest ledger, and the validation checklist — sectioned per source document
 within that use case, so one document's sign-off status is never confused with another's,
-and one use case's manifest is never confused with another's. Everything `FileIndex.md`
+and one use case's manifest is never confused with another's. Everything `fileIndex.md`
 used to carry beyond its four inputs lives here instead.
 
-**This file (`Bootstrap.md`) may contain:** none of the above — only commands, roles, and
+**This file (`bootstrap.md`) may contain:** none of the above — only commands, roles, and
 structure that hold regardless of use case or sample.
 
-If unsure whether a sentence belongs in the skill, `FileIndex.md`, or the use case's
-`Manifest.md`, ask,
+If unsure whether a sentence belongs in the skill, `fileIndex.md`, or the use case's
+`manifest.md`, ask,
 in order: "Is it a name or path identifying the use case, documents, or skill file?" →
-`FileIndex.md`. "Is it a rule
+`fileIndex.md`. "Is it a rule
 that must hold for any input to this use case?" → skill. "Is it a fact, status, or
 approval specific to the sample currently loaded?" → that use case's
-`manifest/<usecase>/Manifest.md`. "Is it true regardless of which skill or sample is
-involved at all?" → `Bootstrap.md`.
+`manifest/<usecase>/manifest.md`. "Is it true regardless of which skill or sample is
+involved at all?" → `bootstrap.md`.
 
 ## 14. Confidence and uncertainty
 
@@ -685,50 +685,50 @@ involved at all?" → `Bootstrap.md`.
   front matter or pattern-log entry until a second, independent sample confirms it.
 - A finding that cannot be judged from the evidence available uses the use case's defined
   absence label — never a guess, never silence.
-- A `FileIndex.md` field that cannot yet be resolved is written as `<UNRESOLVED: reason>`,
+- A `fileIndex.md` field that cannot yet be resolved is written as `<UNRESOLVED: reason>`,
   never deleted and never guessed; `RESOLVE` must block on it.
 
 ## 15. Validation gate
 
 No artifact is an accepted deliverable until:
 
-- Its use case's `manifest/<usecase>/Manifest.md` checklist is fully checked for the
+- Its use case's `manifest/<usecase>/manifest.md` checklist is fully checked for the
   current sample.
 - Any skill change it depended on is versioned per §9.
-- Its use case's `prompt-log/<usecase>/PromptLog.md` entries are complete per §10.
+- Its use case's `prompt-log/<usecase>/promptLog.md` entries are complete per §10.
 - HITL review is complete wherever the applicable skill or this file requires it.
 
 ## 16. Non-negotiable rules
 
-1. This file is root authority for orchestration; a skill or `FileIndex.md` may not
+1. This file is root authority for orchestration; a skill or `fileIndex.md` may not
    contradict it, but this file may never contain use-case-specific logic either.
 2. No sample-specific or use-case-specific fact is ever written into this file — it goes
-   in `FileIndex.md` (configuration) or the skill (generalized rule).
-3. Only the documents explicitly configured in `FileIndex.md` are processed — never an
+   in `fileIndex.md` (configuration) or the skill (generalized rule).
+3. Only the documents explicitly configured in `fileIndex.md` are processed — never an
    inferred, unrelated, or merely-present document (§3).
 4. A skill file is only ever changed via the promotion bar (§8.2) and versioning (§9).
 5. Historical skill versions in `skills/<usecase>/skill-versions/` are immutable.
-6. `skills/<usecase>/Skill.md` is the only live copy of a use case's skill.
+6. `skills/<usecase>/skill.md` is the only live copy of a use case's skill.
 7. Multiple samples for the same use case enhance that one evolving skill — they never
    produce separate, per-sample skill files.
 8. Every generated artifact records which skill and version produced it.
 9. Every new sample is analyzed against the existing skill before judging (§8.1) — a
    sample is never processed as if the skill were being written from scratch for it.
 10. A skill enhancement is never a raw append of the new sample's context — every change
-    to `skills/<usecase>/Skill.md` must be phrased so it would read as true for a
+    to `skills/<usecase>/skill.md` must be phrased so it would read as true for a
     sample nobody has seen yet (§8.1), and must remain applicable to every previously
     processed sample under that use case (§8.4), not just the one that prompted it.
 11. Absence is always the use case's defined absence label — never inferred, never
     guessed, never silent.
 12. Every file-creating or file-changing event is logged as a **new entry prepended to
-    the top** of that event's use case's own `prompt-log/<usecase>/PromptLog.md` at the
+    the top** of that event's use case's own `prompt-log/<usecase>/promptLog.md` at the
     time it happens, with the full field set from §10 — never appended below older
     entries, and never logged into a different use case's prompt log.
 13. A new document is onboarded by adding it to that use case's own
     `documents/<usecase>/source/` or `documents/<usecase>/supporting/` and rewriting
-    `FileIndex.md` to point at it — never by deleting or overwriting another document's
+    `fileIndex.md` to point at it — never by deleting or overwriting another document's
     files anywhere in the tree. A new use case is onboarded the same way: point
-    `FileIndex.md`'s `use_case_name` and `skill_file_path` at it — its `<usecase>`
+    `fileIndex.md`'s `use_case_name` and `skill_file_path` at it — its `<usecase>`
     subdirectories under `documents/`, `actuals/`, `findings/`, `skills/`, `reports/`,
     `HITL/`, `manifest/`, and `prompt-log/` are created on first use, never pre-templated,
     never by copying another use case's directory.
@@ -736,7 +736,7 @@ No artifact is an accepted deliverable until:
     specific until the promotion bar is met.
 15. `EXPORT`'s directory scope is always `export-directory` as configured in this file's
     front matter — never a hardcoded or assumed path.
-16. No command ever runs automatically. `Bootstrap.md` documents every command's
+16. No command ever runs automatically. `bootstrap.md` documents every command's
     behavior but triggers none of them on its own — a command runs only when explicitly
     invoked, and only that command's own defined behavior executes (§5).
 17. Every generated/maintained directory (`documents/`, `actuals/`, `findings/`,
@@ -744,23 +744,27 @@ No artifact is an accepted deliverable until:
     `<usecase>` and then, where
     applicable, by `<source-document-name>` (§12) — no command ever writes into a
     different use case's directory, or a different document's subdirectory, than the one
-    currently resolved from `FileIndex.md`. Nothing is ever mixed, shared, or merged
+    currently resolved from `fileIndex.md`. Nothing is ever mixed, shared, or merged
     across use cases.
 18. No file format is rejected and none is privileged. A source or supporting document
     in any format — PDF, DOCX, PPTX, XLSX, CSV, or any other — is processed by
     resolving the twin unit appropriate to that format (§1, §12); this file is never
     edited to add support for a new format, and a skill may never assume one specific
     format's structure applies to every input.
-19. Every `.md` filename created anywhere in this project follows **CamelCase**
-    (e.g., `FileIndex.md`, `PatternLog.md`, `SectionMap.md`, `01-CoverHeader.md`),
-    including files under `skills/`, `actuals/`, `findings/`, `reports/`, `HITL/`,
-    `manifest/`, and `prompt-log/`. The single exception is a filename derived directly
-    from a source or supporting document's own identifier (e.g.,
-    `twin/derived/<DocName>.md`, where `<DocName>` mirrors the real document's name) —
-    that identifier keeps its own casing verbatim, since it names a specific document
+19. Every `.md` filename created anywhere in this project follows **camelCase** (first
+    letter lowercase, e.g., `fileIndex.md`, `patternLog.md`, `sectionMap.md`,
+    `01-coverHeader.md`), including files under `skills/`, `actuals/`, `findings/`,
+    `reports/`, `HITL/`, `manifest/`, and `prompt-log/`. The single exception is a
+    filename derived directly from a source or supporting document's own identifier
+    (e.g., `twin/derived/<DocName>.md`, where `<DocName>` mirrors the real document's
+    name) — that identifier keeps its own casing verbatim, since it names a specific document
     rather than describing project structure. This rule governs filenames only; it never
-    requires rewriting the historical content of any `PromptLog.md`, `PatternLog.md`, or
-    `skills/<usecase>/skill-versions/` snapshot.
+    requires rewriting the historical content of any `promptLog.md`, `patternLog.md`, or
+    `skills/<usecase>/skill-versions/` snapshot. (Note: `origin/main`'s copy of this file
+    uses capital-first PascalCase for these same filenames, e.g. `Bootstrap.md`,
+    `FileIndex.md` — this branch deliberately diverges to true camelCase, lowercase
+    first letter, per explicit user instruction on 2026-09-21; see
+    `prompt-log/drawing-comparison/promptLog.md`.)
 20. Every use case's directory tree, under every generated root, is structurally
     identical in shape to every other use case's (§12's diagram) — the *content* differs
     per use case, but never the layout. A new use case is never given a bespoke directory
