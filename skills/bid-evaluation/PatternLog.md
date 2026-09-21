@@ -400,3 +400,203 @@ rationale: >
   scan-legibility failure, without changing the skill's live text on a single occurrence.
 skill-change: none
 ```
+
+## Entry 11
+
+```yaml
+observed-in: RESPONSE_DOC_S1, RESPONSE_DOC_S3, RESPONSE_DOC_S4, RESPONSE_DOC_S6 (first
+  samples for this use case, and first samples overall in this project, whose committee
+  record carries a genuine awarded numeric technical score against BASE_DOC's own 100-mark
+  scale — all six prior samples, ELECTRICAL and WATER_SCANNED, carried no numeric score
+  anywhere)
+timestamp: 2026-09-21 (bid-evaluation START run — GSPCL/SOLAR/2026/EPC-014 tender, six
+  RESPONSE_DOC_S1-S6.docx against the shared BASE_DOC.docx)
+observation: >
+  These four bidders each carry a genuine committee-awarded numeric technical score (82,
+  88, 65, and 91 out of 100 respectively). Skill.md already anticipates this — its opening
+  rule is "It opens with the awarded technical score as a bare number... on a score sheet
+  the total column is the score" — but every sample processed so far under this use case
+  had exercised only the *unscored* branch of that rule ("Where the committee awarded no
+  numeric score, open with the committee's own overall determination, quoted"). This run is
+  the first genuine exercise of the scored branch, and of the ranking arithmetic itself
+  (`reports/bid-evaluation/RankingSummary-Solar/Report.md` — the first ranking summary
+  under this use case that actually ranks more than zero bidders).
+occurrence-count: 4 of 6 samples in this run
+promotion-bar-check:
+  cross-sample-confirmation: "not applicable to promotion — the skill already states this
+    exact rule verbatim; this run confirms it applies correctly to real scored records,
+    it does not reveal a gap"
+  explicit-user-generalization: "no"
+  structural-necessity: "not applicable — nothing to promote"
+decision: already-covered — no skill-change action
+rationale: >
+  The score-opens-the-answer rule and the ranking arithmetic (§ "What the report must
+  show") both applied cleanly to real numeric scores for the first time under this use
+  case, with no ambiguity or gap surfacing. Logged per Bootstrap.md §8.3 since this is the
+  first time the scored branch of an already-written rule has actually been exercised by a
+  real sample — valuable evidence the rule generalizes correctly, not only evidence for the
+  unscored branch exercised by every prior sample.
+skill-change: none
+```
+
+## Entry 12
+
+```yaml
+observed-in: RESPONSE_DOC_S2
+timestamp: 2026-09-21 (bid-evaluation START run)
+observation: >
+  This bidder's record carries a numeric technical score (58/100, below the 60-mark
+  qualifying threshold) explicitly on a bid the committee disqualified — "Score computed
+  for record purposes only." Skill.md already states, verbatim: "A score the committee
+  marked 'for record purposes only' on a bid it disqualified still opens the answer,
+  disqualification following." This is the first real sample under this use case that
+  exercises that exact sentence — prior samples' disqualified bidders (RESPONSE_DOC_S3_
+  ELECTRICAL, RESPONSE_DOC_S3_WATER_SCANNED, and this run's own RESPONSE_DOC_S5) all
+  carried no numeric score at all, so the "for record purposes only" sentence had never
+  actually been applied to a real record before. Applied here: findings/bid-evaluation/
+  RESPONSE_DOC_S2/Bidder.md opens with the bare score 58, then the disqualification
+  determination follows in the Eligibility line, and the bidder is excluded from
+  `RankingSummary-Solar/Report.md`'s ranked table per the skill's absence-policy (a
+  rejected bid is not ranked) — extending that already-stated absence-policy, which does
+  not distinguish "rejected before scoring" from "rejected after being scored," to this
+  new, previously-unexercised case.
+occurrence-count: 1 (first real exercise of this specific already-written rule; no
+  independent second sample yet shows a scored-but-disqualified bid)
+promotion-bar-check:
+  cross-sample-confirmation: "no — first occurrence"
+  explicit-user-generalization: "no"
+  structural-necessity: "not applicable to promotion — the skill already states the
+    for-record-purposes-only sentence verbatim, and the absence-policy's 'a rejected bid
+    is not ranked' phrasing already covers a bid rejected at any stage, not only before
+    scoring, by its own plain wording (it does not say 'rejected before scoring'). Nothing
+    to promote."
+decision: already-covered — no skill-change action
+rationale: >
+  Both governing rules (the for-record-purposes-only sentence, and the absence-policy's
+  unqualified "a rejected bid is not ranked") were already written broadly enough to cover
+  this case without modification, and applied correctly. Logged per Bootstrap.md §8.3 as
+  the first real confirmation of a rule that had, until now, only ever been exercised in
+  the abstract.
+skill-change: none
+```
+
+## Entry 13
+
+```yaml
+observed-in: RESPONSE_DOC_S4
+timestamp: 2026-09-21 (bid-evaluation START run)
+observation: >
+  This bidder's EMD fell short by ₹5,00,000 at initial submission; the record shows the
+  shortfall rectified within the tender's stated 7-day cure period, and the committee's
+  overall determination is "CONDITIONALLY QUALIFIED" / eligibility "CONDITIONALLY
+  COMPLIANT" rather than disqualified. Skill.md's existing rule ("the committee's
+  determination, with the criteria that failed and why, quoted... eligibility outcomes are
+  the committee's own judgment call on each criterion's materiality, not an arithmetic
+  threshold this skill applies itself") already covers reporting whatever conditional
+  determination the committee reaches, without this skill computing eligibility itself.
+occurrence-count: 1 (first sample under this use case showing a cured/conditional
+  eligibility outcome, as distinct from a flat compliant/non-compliant/disqualified
+  determination)
+promotion-bar-check:
+  cross-sample-confirmation: "no — first occurrence"
+  explicit-user-generalization: "no"
+  structural-necessity: "not applicable to promotion — already covered by the existing
+    'committee's own judgment call, not an arithmetic threshold this skill applies itself'
+    principle, which by its own wording does not limit the committee's determination to a
+    binary compliant/non-compliant/disqualified set"
+decision: already-covered — no skill-change action
+rationale: >
+  The existing Eligibility-line rule already generalizes to any determination the committee
+  actually reaches, conditional or otherwise, since it instructs quoting the committee's own
+  words rather than a fixed vocabulary the skill itself enumerates. Logged per Bootstrap.md
+  §8.3 for visibility, since this is a materially different shape (a cured deficiency) from
+  every eligibility outcome seen in prior samples.
+skill-change: none
+```
+
+## Entry 14
+
+```yaml
+observed-in: RESPONSE_DOC_S6
+timestamp: 2026-09-21 (bid-evaluation START run)
+observation: >
+  This bidder's quoted Contract Price (₹20,10,00,000 base) stands beside a committee-
+  computed "Normalized Evaluated Base Price" (₹19,20,00,000, crediting voluntary free O&M
+  years) used only for financial comparison. This is the same shape already logged as
+  already-covered in PatternLog.md Entry 5 (RESPONSE_DOC_S2_ELECTRICAL's conditional/
+  alternate price), now confirmed on an unrelated tender (GSPCL/SOLAR vs. GSETCL/SS-MORBI),
+  different bidder, different committee, different document template/origin.
+occurrence-count: 2 independent samples now show this exact shape — RESPONSE_DOC_S2_
+  ELECTRICAL (Entry 5) and RESPONSE_DOC_S6 here — meeting the strict cross-sample
+  confirmation bar (different tender/template/committee/origin)
+promotion-bar-check:
+  cross-sample-confirmation: "yes — two independently-originated samples now confirm this
+    exact pattern"
+  explicit-user-generalization: "no"
+  structural-necessity: "also yes, redundantly — the skill already states this exact rule
+    verbatim ('Where a normalized or comparison figure stands beside the quoted one, the
+    quoted contract price is the price and the normalization is mentioned as the
+    committee's working')"
+decision: already-covered — no skill-change action (confirmed, not newly promoted)
+rationale: >
+  The skill's existing Price-line rule already handles this correctly and needed no change;
+  this observation upgrades Entry 5's confirmation status from "single sample" to
+  "independent cross-sample confirmation," worth recording per Bootstrap.md §8.3 even
+  though no wording changes, since it strengthens confidence this is a genuine cross-tender
+  pattern rather than one tender's own quirk.
+skill-change: none
+```
+
+## Entry 15
+
+```yaml
+observed-in: RESPONSE_DOC_S5 (cross-checked against RESPONSE_DOC_S3_ELECTRICAL and
+  RESPONSE_DOC_S3_WATER_SCANNED, both already cross-confirmed with each other in Entry 9)
+timestamp: 2026-09-21 (bid-evaluation START run)
+observation: >
+  Like the two previously-confirmed samples, this bidder is disqualified at eligibility
+  screening before technical scoring, and its price bid was opened for audit-trail purposes
+  only, with the record stating the price "is not considered in financial comparison." This
+  is now the THIRD independent tender/template showing this exact shape (GSETCL electrical
+  substation, GWSSB water treatment, GSPCL solar EPC — three unrelated procuring
+  authorities and bid templates).
+occurrence-count: 3 independent samples now show this exact shape
+promotion-bar-check:
+  cross-sample-confirmation: "yes — now three independently-originated samples"
+  explicit-user-generalization: "no"
+  structural-necessity: "also yes — see Entry 3/9's original structural-necessity finding"
+decision: already-covered — no skill-change action (confirmed, not newly promoted)
+rationale: >
+  Further strengthens Entry 9's already-established cross-sample confirmation; the skill's
+  existing absence-policy and Price-line rules continue to require no change. Logged per
+  Bootstrap.md §8.3 for the same reasons as Entry 9.
+skill-change: none
+```
+
+## Entry 16
+
+```yaml
+observed-in: not sample-driven — check of the RankingSummary-Solar synthesis this run
+  actually produced a populated ranked table for the first time under this use case
+timestamp: 2026-09-21 (bid-evaluation START run)
+observation: >
+  Every prior RankingSummary(-Water) synthesis under this use case ranked zero bidders,
+  since no prior sample carried a numeric score. This run's `RankingSummary-Solar/
+  Report.md` is the first to actually rank bidders (4 of 6, by awarded score, no ties),
+  exercising the "computed from the scores alone" ranking arithmetic and the "a tie is
+  declared, not broken" rule (no ties occurred in this run, so that specific sentence
+  remains unexercised by real data) for the first time.
+occurrence-count: not applicable — a structural confirmation, not a new content pattern
+promotion-bar-check:
+  cross-sample-confirmation: "not applicable"
+  explicit-user-generalization: "not applicable"
+  structural-necessity: "not applicable — nothing to promote; the ranking arithmetic is
+    already fully specified in Skill.md's 'What the report must show' section"
+decision: already-covered — no skill-change action
+rationale: >
+  Logged per Bootstrap.md §8.3 for visibility: the ranking mechanism worked correctly the
+  first time it was actually exercised with real scored data, and the "a tie is declared,
+  not broken" sentence remains a still-unexercised rule worth watching for in a future
+  sample rather than something this run can confirm or refute.
+skill-change: none
+```

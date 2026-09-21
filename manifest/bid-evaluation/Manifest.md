@@ -16,6 +16,12 @@ the digest ledger live here — not in `FileIndex.md`.
 | `RESPONSE_DOC_S1_WATER_SCANNED.pdf` | bid-evaluation | accepted | [below](#response_doc_s1_water_scannedpdf) |
 | `RESPONSE_DOC_S2_WATER_SCANNED.pdf` | bid-evaluation | accepted | [below](#response_doc_s2_water_scannedpdf) |
 | `RESPONSE_DOC_S3_WATER_SCANNED.pdf` | bid-evaluation | accepted | [below](#response_doc_s3_water_scannedpdf) |
+| `RESPONSE_DOC_S1.docx` | bid-evaluation | accepted | [below](#response_doc_s1docx) |
+| `RESPONSE_DOC_S2.docx` | bid-evaluation | accepted | [below](#response_doc_s2docx) |
+| `RESPONSE_DOC_S3.docx` | bid-evaluation | accepted | [below](#response_doc_s3docx) |
+| `RESPONSE_DOC_S4.docx` | bid-evaluation | accepted | [below](#response_doc_s4docx) |
+| `RESPONSE_DOC_S5.docx` | bid-evaluation | accepted | [below](#response_doc_s5docx) |
+| `RESPONSE_DOC_S6.docx` | bid-evaluation | accepted | [below](#response_doc_s6docx) |
 
 ---
 
