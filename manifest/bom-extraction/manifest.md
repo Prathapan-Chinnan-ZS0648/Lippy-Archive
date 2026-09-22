@@ -22,7 +22,7 @@ not in `fileIndex.md`, which holds only the four configured inputs per `bootstra
 ```yaml
 source-document: 260374 COMBINED PID SET 6-1-26.pdf
 use-case: bom-extraction
-skill-version: v2                  # currently live in skills/bom-extraction/skill.md's own front matter; this document's findings were produced under v1 — v2 only added a Module 3 row and Module 6 edge cases for the electrical-one-line drawing type (the second bom-extraction sample), changing no rule that applies to a P&ID; not re-judged, see skills/bom-extraction/patternLog.md Entry 6
+skill-version: v3                  # currently live in skills/bom-extraction/skill.md's own front matter; this document's findings were produced under v1 — v2 added electrical-one-line domain guidance, v3 relocated duplicated rules into skills/_shared/engineeringDrawingReading.md; neither changed a rule applicable to a P&ID; not re-judged, see skills/bom-extraction/patternLog.md Entries 6 and 9
 classification: customer-confidential — supplied for this project by 3S Services, LLC; not public-synthetic like the version-compare/bid-evaluation samples
 state: verified                    # agent self-verification only — see Checklist below; not yet "signed" or "accepted", no HITL record exists
 signed-by: —                       # no MANUAL VALIDATE has been run for this use case
@@ -41,8 +41,9 @@ set prepared by 3S Services, LLC (Midland, Texas), "ISSUED FOR APPROVAL", Rev B,
 allowance added to `bootstrap.md` §2 specifically to accommodate this genuinely
 single-document task shape (see `skills/bom-extraction/patternLog.md` Entry 2 and
 `prompt-log/bom-extraction/promptLog.md`). Judging rules and workflow are defined in
-`skills/bom-extraction/skill.md` (findings produced under v1; not re-judged under v2 —
-see Governance above) and `bootstrap.md`.
+`skills/bom-extraction/skill.md` (findings produced under v1; not re-judged under v2 or
+v3 — see Governance above), `skills/_shared/engineeringDrawingReading.md`, and
+`bootstrap.md`.
 
 This pack was originally built under a pre-`bootstrap.md` ad hoc directory layout
 (`bom-extraction/sample-1/`, on the separate `bom-extraction` branch), then migrated into
@@ -53,7 +54,7 @@ CONTROL-VALVE); the drawing's much larger INSTRUMENT bubble population and a 12-
 flowline list are counted and located by sheet but not individually extracted this pass —
 see `reports/bom-extraction/260374 COMBINED PID SET 6-1-26/report.md`'s Coverage section.
 
-Follows `skills/bom-extraction/skill.md` v1's rules (still valid under v2 — see above).
+Follows `skills/bom-extraction/skill.md` v1's rules (still valid under v2 and v3 — see above).
 
 ### Checklist
 
@@ -85,9 +86,12 @@ changes, every actual/finding built from it must be regenerated and this ledger 
 | File | Role | SHA-256 | Digest recorded |
 |---|---|---|---|
 | `documents/bom-extraction/source/260374 COMBINED PID SET 6-1-26.pdf` | source | `bdb3725ac983a2e591ba908ef8f3702d8f9bfd1659a6b56b0e7844c1a721bb2e` | 2026-09-17 |
-| `skills/bom-extraction/skill.md` | skill — live copy, current version (v2) | `b7f5520d6157efeeb2b2a856e20d466f8acae457fe21148182c14599dab2e628` | 2026-09-21 (v1 enhanced to v2, adding a Module 3 row and Module 6 edge cases for the electrical-one-line drawing type; no rule applicable to this P&ID document changed, findings below remain valid per `skills/bom-extraction/patternLog.md` Entry 6) |
+| `skills/bom-extraction/skill.md` | skill — live copy, current version (v3) | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 (v1 enhanced to v2 for electrical-one-line domain guidance, then v3 relocated duplicated rules into `skills/_shared/engineeringDrawingReading.md`; no rule applicable to this P&ID document changed either time, findings below remain valid per `skills/bom-extraction/patternLog.md` Entries 6 and 9) |
 | `skills/bom-extraction/skill-versions/v1.md` | skill — immutable snapshot of v1 (used to build this document's existing findings; superseded) | `d36020865cdff6f8c448ba6afaece1f85eb74b941477b680c98e1c9580e8426c` | 2026-09-21 |
-| `skills/bom-extraction/skill-versions/v2.md` | skill — immutable snapshot of v2 | `b7f5520d6157efeeb2b2a856e20d466f8acae457fe21148182c14599dab2e628` | 2026-09-21 |
+| `skills/bom-extraction/skill-versions/v2.md` | skill — immutable snapshot of v2 (superseded) | `b7f5520d6157efeeb2b2a856e20d466f8acae457fe21148182c14599dab2e628` | 2026-09-21 |
+| `skills/bom-extraction/skill-versions/v3.md` | skill — immutable snapshot of v3 | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 |
+| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v1) | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
+| `skills/_shared/shared-versions/engineeringDrawingReading-v1.md` | shared base layer — immutable snapshot of v1 | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
 
 No supporting-document digest exists for this use case — `supporting_document_path: "n/a"`
 per `bootstrap.md` §2. All 13 twin pages under
@@ -96,9 +100,11 @@ document digest above. All 27 findings files under
 `findings/bom-extraction/260374 COMBINED PID SET 6-1-26/` were built from those twin pages
 while `skills/bom-extraction/skill.md` held v1's content (now preserved immutably at
 `skills/bom-extraction/skill-versions/v1.md`); v2 added new Module 3/6 content for a
-different drawing type without changing any rule this P&ID document's findings depend on
-(see `skills/bom-extraction/patternLog.md` Entry 6), so they remain valid under v2 and
-were not re-judged. If a future skill version *does* change extraction-relevant behavior
+different drawing type, and v3 relocated duplicated rules into
+`skills/_shared/engineeringDrawingReading.md`, without either changing any rule this
+P&ID document's findings depend on (see `skills/bom-extraction/patternLog.md` Entries 6
+and 9), so they remain valid under v3 and were not re-judged. If a future skill version
+*does* change extraction-relevant behavior
 for a P&ID, re-run `NORMALIZE`, `JUDGE`, and `REPORT` for this document before treating
 these findings as current.
 
@@ -121,7 +127,7 @@ treating it as accepted.
 ```yaml
 source-document: Prepurchase Elect Dwgs_10-30-2024.pdf
 use-case: bom-extraction
-skill-version: v2                  # produced under v2 (the version this document's own processing motivated) — currently live
+skill-version: v3                  # produced under v2 (the version this document's own processing motivated); v3 relocated duplicated rules into skills/_shared/engineeringDrawingReading.md without changing extraction-relevant behavior — currently live, findings not re-judged, see skills/bom-extraction/patternLog.md Entry 9
 classification: internal working draft; project is Upper Trinity Regional Water District / Tom Harpool Regional WTP Phase 2 Expansion, prepared by GAI Gupta & Associates, Inc.; "ISSUED FOR THE PURPOSE OF PROCUREMENT ONLY" per every sheet's own stamp; no external distribution without a named recipient in pivot.md
 state: verified                    # agent self-verification only — see Checklist below; not yet "signed" or "accepted", no HITL record exists
 signed-by: —                       # no MANUAL VALIDATE has been run for this use case
@@ -153,8 +159,9 @@ Two findings (`mvswgre.md`, `mvswgrf.md`) carry an open, unresolved discrepancy 
 two sheets' stated bus wire-count/material for the same equipment — flagged
 `confidence: UNSURE` on that one detail, not silently resolved.
 
-Follows `skills/bom-extraction/skill.md` v2, including the electrical-one-line-set
-domain-guidance row this document itself motivated.
+Follows `skills/bom-extraction/skill.md` v2's rules (still valid under v3 — see above),
+including the electrical-one-line-set domain-guidance row this document itself motivated,
+now built on `skills/_shared/engineeringDrawingReading.md`.
 
 ### Checklist
 
@@ -182,8 +189,10 @@ domain-guidance row this document itself motivated.
 | File | Role | SHA-256 | Digest recorded |
 |---|---|---|---|
 | `documents/bom-extraction/source/Prepurchase Elect Dwgs_10-30-2024.pdf` | source | `422b2638d13fee272299e72f6fd9112852686baeea4863d3f79f9a79ad5ebb73` | 2026-09-21 |
-| `skills/bom-extraction/skill.md` | skill — live copy, current version (v2) | `b7f5520d6157efeeb2b2a856e20d466f8acae457fe21148182c14599dab2e628` | 2026-09-21 |
-| `skills/bom-extraction/skill-versions/v2.md` | skill — immutable snapshot of v2 (used to build this document's findings) | `b7f5520d6157efeeb2b2a856e20d466f8acae457fe21148182c14599dab2e628` | 2026-09-21 |
+| `skills/bom-extraction/skill.md` | skill — live copy, current version (v3) | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 |
+| `skills/bom-extraction/skill-versions/v2.md` | skill — immutable snapshot of v2 (used to build this document's findings; superseded) | `b7f5520d6157efeeb2b2a856e20d466f8acae457fe21148182c14599dab2e628` | 2026-09-21 |
+| `skills/bom-extraction/skill-versions/v3.md` | skill — immutable snapshot of v3 | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 |
+| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v1) | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
 
 No supporting-document digest exists for this use case — `supporting_document_path: "n/a"`
 per `bootstrap.md` §2. All 11 twin pages under

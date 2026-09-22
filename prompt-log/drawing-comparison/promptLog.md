@@ -10,6 +10,56 @@ marked as reconstructed where the original record did not use this file's exact 
 
 # Prompt log
 
+## Entry 8
+
+```yaml
+timestamp: "2026-09-22 (exact time not recorded)"
+command/prompt: >
+  "Okay, we have already understood the setup from the main branch... But now, I don't
+  want to simply copy or reproduce the same structure... think through the architecture
+  and structure for our use case and explain how we can proceed from here, don't commit
+  and push anything, just make changes"
+generated_output: >
+  Designed and implemented a genuine architectural contribution beyond main's framework:
+  skills/_shared/engineeringDrawingReading.md (v1) — a shared base layer stating 7 rules
+  both drawing-comparison and bom-extraction had independently, without coordination,
+  arrived at (position/tag-is-identity, legend-is-sole-authority, markers-are-hints-not-
+  proof, absence-needs-active-search, contradictions-are-recorded-not-resolved, figures-
+  are-the-default-answer, world-knowledge-decodes-never-fills). Refactored both skills to
+  build on it: skills/drawing-comparison/skill.md v1 -> v2, skills/bom-extraction/
+  skill.md v2 -> v3 (both snapshotted immutably first), each with duplicated Module 1/6
+  content replaced by a `builds-on` pointer and cross-references to the shared rule
+  numbers. Added bootstrap.md §17 (documenting the shared-layer pattern itself as a
+  general capability, including its own promotion-bar and versioning discipline) and §18
+  (documenting `_agent-comparison/` — a practice already in informal use since
+  2026-09-17 — as a first-class, explicitly-scoped part of this project's architecture,
+  something main has no equivalent of at all). Fixed a pre-existing dangling `(§17)`
+  cross-reference in bootstrap.md §12 (inherited from origin/main's own copy, which also
+  only goes to §16) to point at the correct `§12`. Updated both manifest.md files'
+  digest tables and skill-version governance fields for the new versions.
+reason: >
+  User explicitly did not want main's structure reproduced as-is, and asked for the
+  branch's own use cases to be thought through on their own terms — what's genuinely
+  reusable conceptually from main vs. what should be designed differently for what this
+  project actually has.
+explanation: >
+  The concrete finding motivating the shared layer: comparing the two skills' Module 1
+  content side by side showed near-identical rules independently written for each,
+  which is itself the evidence a shared layer belongs where main's structure has no
+  equivalent (main's two use cases are different enough domains that this never
+  happened there). Elevated `_agent-comparison/` from an ad hoc, undocumented convention
+  used several times already to an explicitly documented, scoped part of the
+  architecture, rather than leaving it as something main's framework has no room for.
+  No finding content, verdict, or extraction result changed for either skill's existing
+  samples (22 drawing-comparison findings, 27+23 bom-extraction findings across two
+  documents) — this is a restructuring for maintainability and genuine architectural
+  ownership, not a re-judgment; none were re-run. Per the user's explicit instruction, no
+  commit or push was made.
+model: Claude Sonnet 5
+skill/version_used: "skills/drawing-comparison/skill.md v2; skills/_shared/engineeringDrawingReading.md v1 (both created/enhanced in this entry)"
+other_metadata: "companion entry logged in prompt-log/bom-extraction/promptLog.md for the same action, since it touched both use cases at once"
+```
+
 ## Entry 7
 
 ```yaml

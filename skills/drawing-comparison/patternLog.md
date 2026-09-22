@@ -163,3 +163,59 @@ skill-change: >
   REV4/ctrl1.md (verdict unchanged, note added), plus 5 new findings
   (MEMB-13, MEMB-14, MEMB-15, MEMB-16, CTRL-3).
 ```
+
+## Entry 6
+
+```yaml
+observed-in: cross-skill (drawing-comparison + bom-extraction)
+timestamp: 2026-09-22
+observation: >
+  Comparing this skill's Module 1/6 against skills/bom-extraction/skill.md (written
+  independently, for a genuinely different output shape) shows the two skills converged,
+  without coordination, on materially the same discipline for a recurring set of
+  failure modes: position/tag is part of identity (this skill's grid-position rule and
+  repeated-callout-ambiguity edge case; bom-extraction's tag-exactly-as-printed rule and
+  legend-dependent-tag edge case), a drawing's own legend is the sole classification
+  authority, a sheet's own marker/convention (revision cloud, dashed line) is a hint never
+  proof, absence/negative facts need active search not inference, a contradiction between
+  two sources is recorded not silently resolved, figures are the default answer location
+  not a named exception, and world knowledge only decodes a legend rather than filling a
+  gap. Independently-arrived-at duplication across two skills, on a domain both skills
+  actually share (reading an engineering drawing), is itself evidence a shared layer
+  should exist.
+occurrence-count: 7 rules, each independently present in both skills before this entry
+promotion-bar-check:
+  cross-sample-confirmation: "yes — the clearest form of it: not a second sample under
+    the same skill, but the same rule independently reinvented by a second, differently-
+    shaped skill in the same domain"
+  explicit-user-generalization: "yes — the user explicitly asked for this branch's
+    architecture to be genuinely designed for its own use cases rather than copied from
+    main, and to identify what could be reused conceptually vs. redesigned; a shared base
+    layer for the two related use cases is a direct answer to that request"
+  structural-necessity: "yes — without a shared layer, a future correction to one of
+    these rules (as already happened once, to the absence/contradiction rule, via the
+    2026-09-17 CTRL-1 correction) has no mechanism to reach the other skill, which shares
+    the same underlying risk"
+decision: promoted
+rationale: >
+  All three promotion-bar conditions hold independently, which is stronger than any
+  single prior promotion in either skill's patternLog.md. This is not a new rule so much
+  as a relocation of seven existing, already-confirmed rules to a place where both
+  skills reference the same statement instead of maintaining two copies that can drift.
+skill-change: >
+  Created skills/_shared/engineeringDrawingReading.md (v1), stating the 7 shared rules.
+  skills/drawing-comparison/skill.md enhanced to v2 (v1 snapshotted immutably first):
+  added `builds-on` front matter, removed the restated forms of shared rules 1 and 4 from
+  Module 1 (grid-position-is-identity, no-verdict-from-one-side), replacing them with a
+  short pointer to the shared layer plus only what remains skill-specific (the four-verdict
+  scale, the material field, unchanged-is-a-finding framed as this skill's own instance of
+  the shared absence rule). Module 6 rows that are directly instances of a shared rule
+  (revision-cloud-untagged, already-communicated marker, repeated-callout-ambiguity,
+  figure-answer, grid-row-uncertain, absence-detected-by-a-second-attempt) now cross-
+  reference the relevant shared-layer rule number rather than standing alone; rows that
+  are not covered by the shared layer (reformat control case, out-of-pack cross-reference,
+  superseded-document) are left as this skill's own. No verdict-relevant behavior changed
+  for findings already produced under v1 — this is a restructuring for maintainability,
+  not a new judging rule; the existing 22 findings remain valid under v2 and were not
+  re-judged.
+```

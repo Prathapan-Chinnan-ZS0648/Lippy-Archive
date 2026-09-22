@@ -21,7 +21,7 @@ not in `fileIndex.md`, which holds only the four configured inputs per `bootstra
 ```yaml
 source-document: AD-3010-C-330030-SHT-004-REV4.pdf
 use-case: drawing-comparison
-skill-version: v1                  # currently live in skills/drawing-comparison/skill.md's own front matter; first and only version so far
+skill-version: v2                  # currently live in skills/drawing-comparison/skill.md's own front matter; findings below were produced under v1 — v2 only relocated duplicated rules into the new skills/_shared/engineeringDrawingReading.md layer, changing no verdict-relevant behavior; not re-judged, see skills/drawing-comparison/patternLog.md Entry 6
 classification: internal working draft; no external distribution without a named recipient in pivot.md
 state: verified                    # agent self-verification only — see Checklist below; not yet "signed" or "accepted", no HITL record exists
 signed-by: —                       # no MANUAL VALIDATE has been run for this use case
@@ -37,8 +37,9 @@ A two-revision document pair: a single-sheet A1 structural steel shop drawing
 now superseded) to Rev 4 (issued for construction 27.07.2026). Unlike `version-compare`'s
 samples, this pair shares no clause/heading structure to walk — the "document" is a
 figure, and its units are member/connection callouts identified by grid position.
-Judging rules and workflow are defined in `skills/drawing-comparison/skill.md` (v1, the
-only version so far) and `bootstrap.md`.
+Judging rules and workflow are defined in `skills/drawing-comparison/skill.md`
+(findings produced under v1; not re-judged under v2 — see Governance above),
+`skills/_shared/engineeringDrawingReading.md`, and `bootstrap.md`.
 
 Both source files originally arrived corrupted — raw HTTP `multipart/form-data` bodies (a
 DocuSign export artifact), not valid PDFs — and were repaired (byte span from the first
@@ -55,7 +56,7 @@ original for comparison purposes only; it is kept outside this managed tree at
 of this Manifest's scope. It is the reason `CTRL-1` was corrected and `MEMB-13`–`MEMB-16`/
 `CTRL-3` were added on 2026-09-17 — see `skills/drawing-comparison/patternLog.md` Entry 5.
 
-Follows `skills/drawing-comparison/skill.md` as-is.
+Follows `skills/drawing-comparison/skill.md` v1's rules (still valid under v2 — see above).
 
 ### Checklist
 
@@ -88,8 +89,11 @@ changes, every actual/finding built from it must be regenerated and this ledger 
 |---|---|---|---|
 | `documents/drawing-comparison/source/AD-3010-C-330030-SHT-004-REV4.pdf` | source | `e2c1629b3536b5f2c773200403c11edb73f1f0678931f2f3db1becad130034d1` | 2026-09-15 (repaired PDF — see Sample context above) |
 | `documents/drawing-comparison/supporting/AD-3010-C-330030-SHT-004-REV3.pdf` | supporting | `d8afdded2146507660d5f0e2de55790f13c910472e63f2a1adb47a628a65cbe6` | 2026-09-15 (repaired PDF — see Sample context above) |
-| `skills/drawing-comparison/skill.md` | skill — live copy, current version (v1) | `5af3db37bf9133bbc05f4e986153df228398cfc10cfa0ad558e99fbb7483c6d1` | 2026-09-21, updated 2026-09-21 (filename re-cased to camelCase — `Skill.md` -> `skill.md` — per explicit user instruction; content otherwise identical to the Module 1-6 structure recorded at the prior digest) |
-| `skills/drawing-comparison/skill-versions/v1.md` | skill — immutable snapshot of v1 (identical to the live copy; no later version exists yet) | `5af3db37bf9133bbc05f4e986153df228398cfc10cfa0ad558e99fbb7483c6d1` | 2026-09-21, updated 2026-09-21 (same re-casing) |
+| `skills/drawing-comparison/skill.md` | skill — live copy, current version (v2) | `b6a22b298d6bb58ec9208761dc279da9ca77d2d09baeb0c012ae1bbed9270185` | 2026-09-22 (v1 enhanced to v2: builds on the new shared layer `skills/_shared/engineeringDrawingReading.md`, removed duplicated Module 1/6 content now stated there once; no verdict-relevant behavior changed, see `skills/drawing-comparison/patternLog.md` Entry 6) |
+| `skills/drawing-comparison/skill-versions/v1.md` | skill — immutable snapshot of v1 (used to build this document's existing findings; superseded) | `5af3db37bf9133bbc05f4e986153df228398cfc10cfa0ad558e99fbb7483c6d1` | 2026-09-21 |
+| `skills/drawing-comparison/skill-versions/v2.md` | skill — immutable snapshot of v2 | `b6a22b298d6bb58ec9208761dc279da9ca77d2d09baeb0c012ae1bbed9270185` | 2026-09-22 |
+| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v1) | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
+| `skills/_shared/shared-versions/engineeringDrawingReading-v1.md` | shared base layer — immutable snapshot of v1 | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
 
 All twin pages under `actuals/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/twin/` were
 built from the two document digests above. All 22 findings files under

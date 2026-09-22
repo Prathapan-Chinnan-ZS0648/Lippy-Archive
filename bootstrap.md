@@ -544,7 +544,8 @@ recording what changed and why, with the previous version diff-able from that en
 every generated/maintained top-level directory (`actuals/`, `skills/`, `findings/`,
 `reports/`, `HITL/`, `manifest/`, `prompt-log/`), the first-level subdirectory is always
 `<usecase>` — never a source-document name, never a shared/default folder, never a
-directory shared across two different use cases. A second use case processed by this
+directory shared across two different use cases — **with exactly one documented
+exception: `skills/_shared/`, per §17.** A second use case processed by this
 same `bootstrap.md` gets its own parallel `<usecase>` subdirectory under each of those
 roots, automatically, the first time `fileIndex.md`'s `use_case_name` names it — no
 template, no manual directory creation step, and no edit to this file.
@@ -617,7 +618,7 @@ use case's directory, never into another source document's subdirectory, never m
 two use cases' or two source documents' output into one.
 
 `documents/<usecase>/source/` and `documents/<usecase>/supporting/` follow the same
-per-use-case isolation as every other generated root (§17): each use case accumulates its
+per-use-case isolation as every other generated root (§12): each use case accumulates its
 own source and supporting documents in its own subtree (a source document is never placed
 under that use case's `supporting/` or vice versa, and a document is never removed just
 because `fileIndex.md` currently points elsewhere). Nothing is ever inferred from a
@@ -781,3 +782,98 @@ No artifact is an accepted deliverable until:
     identical in shape to every other use case's (§12's diagram) — the *content* differs
     per use case, but never the layout. A new use case is never given a bespoke directory
     shape, and this file is never edited to special-case one use case's structure.
+
+## 17. Shared cross-skill principle layers (`skills/_shared/`)
+
+Added 2026-09-22. Not present in `origin/main`'s copy of this file — main has no
+equivalent, because its own two use cases (`bid-evaluation`, `version-compare`) are
+different enough domains that they never independently arrived at the same rule twice.
+This project's use cases have: `drawing-comparison` and `bom-extraction` are both, at
+root, the same underlying task (read an engineering drawing, extract structured facts
+from it) wearing two different output shapes, and their skills — written independently —
+converged without coordination on materially the same discipline for the domain's
+recurring failure modes. See `skills/_shared/engineeringDrawingReading.md`'s own opening
+section, and `skills/drawing-comparison/patternLog.md` / `skills/bom-extraction/
+patternLog.md`'s Entry 6/9, for the full evidence trail behind this section existing.
+
+**What a shared layer is.** A file under `skills/_shared/` stating a rule that is true
+across two or more skills sharing a real underlying domain — never a skill-specific rule
+relocated there merely to shorten one skill.md, and never created for a domain only one
+skill covers. It is **not itself a skill**: it has no `shape`, is never named as a
+`skill_file_path` in `fileIndex.md`, and `RESOLVE` never resolves it directly. A skill
+that depends on one declares this explicitly in its own front matter:
+
+```yaml
+builds-on: skills/_shared/<layer-name>.md
+```
+
+and its Module 1 opens with a one-line pointer to the layer before stating what is
+specific to itself. Modules 2–6 may still restate a shared rule's *name* when cross-
+referencing a domain-specific instance of it (e.g. a skill's own Module 6 edge-case row
+naming which shared rule it is a case of) but never restate the rule's *content* — the
+shared file is the single source of truth for the rule's wording, exactly as a per-skill
+`skill.md` is the single source of truth for that skill's own rules.
+
+**When a shared layer is justified.** The same promotion bar as any skill change (§8.2),
+applied one level up: cross-skill confirmation (a rule independently present, unforced, in
+two or more skills already), explicit user generalization, or structural necessity (a
+correction to the rule in one skill has no mechanism to reach a sibling skill that shares
+the same underlying risk, without one). A shared layer is never created preemptively for
+a domain only one skill currently covers, on the theory a second skill might someday need
+it — exactly the same discipline that already governs a single skill's own Module 6.
+
+**Versioning.** A shared layer versions exactly like a skill: its own `version` field, its
+own immutable snapshot directory (`skills/_shared/shared-versions/<layer-name>-v<N>.md`,
+written *before* the live file is edited), and its own entry in every dependent use case's
+`manifest/<usecase>/manifest.md` digest table (§13) alongside that use case's own
+`skill.md`. A shared-layer amendment is logged once, in whichever dependent skill's
+`patternLog.md` the observation first arose in, and cross-referenced (not duplicated) from
+every other dependent skill's own `patternLog.md`. Every dependent skill's own manifest
+records, the same way a skill-version bump already does, whether a shared-layer amendment
+changed verdict/extraction-relevant behavior for that use case's existing findings —
+independently per use case, since a rule change relevant to one dependent skill's domain
+is not guaranteed relevant to another's.
+
+**Directory exception.** `skills/_shared/` is the one documented exception to §12's
+"never a shared/default folder" rule (see §12's own note). It is never given a
+`<usecase>`-keyed subdirectory, since by definition it belongs to no single use case.
+
+## 18. Multi-agent comparison exercises (`_agent-comparison/`)
+
+Added 2026-09-22, describing a practice already in use on this branch since 2026-09-17.
+Not present in `origin/main`'s framework at all — main has no concept of two independent
+agents or models attempting the same document, because main's own samples are each
+produced once, by one process. This project has, more than once, deliberately run a
+second, differently-modeled agent (Hermes Agent + `qwen/qwen3.8-flash`, evaluated per an
+explicit manager/user instruction) independently against a document this project's own
+managed pipeline had already processed (or was about to), specifically so the two
+attempts could be compared — and at least once, the second attempt caught a real,
+independently-verified gap the first had missed (`skills/drawing-comparison/
+patternLog.md` Entry 5). That is a genuinely useful practice this framework should
+support explicitly, not something to force into `fileIndex.md`'s single-attempt-per-
+use-case model or leave undocumented.
+
+**What `_agent-comparison/` is.** A top-level directory, sibling to `documents/`,
+`actuals/`, `findings/`, etc., holding one subfolder per independent comparison attempt —
+`_agent-comparison/<descriptive-name>/`, internally free to mirror the managed tree's own
+shape (`actuals/<usecase>/<doc>/`, `findings/<usecase>/<doc>/`, etc.) or not, since it is
+explicitly **not** part of the managed tree §12 governs. It is never resolved by
+`RESOLVE`, never named in `fileIndex.md`, never counted toward a use case's `manifest/
+<usecase>/manifest.md` verdict, and a run's own commands never write into it except the
+independent attempt itself.
+
+**Independence is the entire point.** An attempt placed here must be built without
+reading this project's own findings/reports/actuals for the document(s) in question —
+otherwise it is not a second, independent read, just a copy with different wording. This
+project's own findings, correspondingly, are never corrected or amended *because* a
+comparison attempt disagrees, without first independently re-verifying the disagreement
+against the actual source document(s), exactly as if the comparison attempt were a
+human reviewer's dissenting opinion rather than ground truth (§14's confidence discipline
+applies to accepting a correction from *any* source, including this one).
+
+**Disposition.** A comparison exercise's conclusion — which attempt caught what, where
+they agreed, what if anything this project's own findings should learn from it — belongs
+in whichever skill's `patternLog.md` the lesson applies to (per the promotion bar, §8.2),
+not in `_agent-comparison/` itself. The comparison folder is retained as raw evidence for
+that conclusion, not as a deliverable in its own right, and is never treated as
+`ACCEPTED DELIVERABLE`-eligible under §15's validation gate.

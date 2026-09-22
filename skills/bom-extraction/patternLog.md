@@ -263,3 +263,51 @@ skill-change: >
   skills/bom-extraction/skill.md Module 6 row "contradictory rating across sheets for the
   same tag" (v2). Findings mvswgre.md and mvswgrf.md both carry this flag.
 ```
+
+## Entry 9
+
+```yaml
+observed-in: cross-skill (bom-extraction + drawing-comparison)
+timestamp: 2026-09-22
+observation: >
+  This skill's Module 1/6 and skills/drawing-comparison/skill.md's Module 1/6 (written
+  independently, for a different output shape) converged, without coordination, on the
+  same discipline for a recurring set of failure modes across this domain — see
+  skills/drawing-comparison/patternLog.md Entry 6 for the full comparison. In summary:
+  position/tag-is-identity, legend-is-sole-authority, a marker/convention is a hint never
+  proof, absence needs active search not inference, a contradiction is recorded not
+  resolved, figures are the default answer location, and world knowledge only decodes.
+occurrence-count: 7 rules, each independently present in both skills before this entry
+promotion-bar-check:
+  cross-sample-confirmation: "yes — the same rule independently reinvented by a second,
+    differently-shaped skill in the same domain, the strongest form available"
+  explicit-user-generalization: "yes — the user explicitly asked for this branch's
+    architecture to be genuinely designed for its own use cases, not copied from main,
+    and to identify what's reusable conceptually vs. what should differ"
+  structural-necessity: "yes — this skill's own Entries 7-8 (future-vs-current
+    convention; contradictory rating across sheets) are close cousins of rules this
+    skill's sibling had already confirmed under different names (self-annotation,
+    absence-detected-by-a-second-attempt) — without a shared layer, the same lesson has
+    to be independently relearned per skill, which is exactly what happened here"
+decision: promoted
+rationale: >
+  All three promotion-bar conditions hold independently. This relocates 7 already-
+  confirmed rules (this skill's own no-verdict-scale absence-policy language and world-
+  knowledge limits included) to one place both skills reference, rather than maintaining
+  copies that can drift apart under separate corrections.
+skill-change: >
+  skills/_shared/engineeringDrawingReading.md (v1) created — see
+  skills/drawing-comparison/patternLog.md Entry 6 for its full content. This skill
+  enhanced v2 -> v3 (v2 snapshotted immutably first): added `builds-on` front matter,
+  removed the restated form of shared rule 2 (legend-is-authority) from Module 1, kept
+  the home-sheet rule and stated-incomplete-value rule but reframed each as this skill's
+  own specialization of shared rules 1 and 7 respectively. Module 6 rows
+  legend-dependent-tag, future-vs-current-equipment-convention, and
+  contradictory-rating-across-sheets now cross-reference the relevant shared-layer rule
+  number. Rows not covered by the shared layer (hold-for-sizing, split-datasheet,
+  repeated-tag-no-datasheet, non-sequential-sheet-order, package-sub-item, out-of-pack
+  instrument/relay population) are left as this skill's own. No verdict/extraction-
+  relevant behavior changed for either existing sample's findings (27 P&ID, 23
+  electrical) — restructuring for maintainability, not a new judging rule; neither
+  sample's findings were re-judged.
+```

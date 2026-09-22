@@ -11,6 +11,38 @@ this file's exact format.
 
 # Prompt log
 
+## Entry 4
+
+```yaml
+timestamp: "2026-09-22 (exact time not recorded)"
+command/prompt: >
+  "Okay, we have already understood the setup from the main branch... But now, I don't
+  want to simply copy or reproduce the same structure... think through the architecture
+  and structure for our use case and explain how we can proceed from here, don't commit
+  and push anything, just make changes"
+generated_output: >
+  Same action as prompt-log/drawing-comparison/promptLog.md Entry 8 — see that entry for
+  the full record. In summary: created skills/_shared/engineeringDrawingReading.md (v1),
+  enhanced this skill's own skill.md v2 -> v3 to build on it (v2 snapshotted immutably
+  first), and added bootstrap.md §17/§18 documenting the shared-layer pattern and
+  `_agent-comparison/` as explicit, general capabilities of this project's own
+  architecture rather than main-inherited structure.
+reason: >
+  User explicitly did not want main's structure reproduced as-is; asked for this
+  branch's own use cases to be designed on their own terms.
+explanation: >
+  This skill's own Entries 6-8 (the new drawing type, the future-vs-current convention,
+  the contradictory-rating edge case) turned out to be close cousins of rules
+  skills/drawing-comparison/skill.md had already confirmed under different names — the
+  concrete evidence that motivated relocating both skills' shared discipline into one
+  place. No extraction result changed for either of this skill's existing samples (27
+  P&ID findings, 23 electrical findings) — restructuring only; neither was re-run. Per
+  the user's explicit instruction, no commit or push was made.
+model: Claude Sonnet 5
+skill/version_used: "skills/bom-extraction/skill.md v3; skills/_shared/engineeringDrawingReading.md v1"
+other_metadata: "companion entry in prompt-log/drawing-comparison/promptLog.md Entry 8 carries the full shared-layer rationale, not duplicated here"
+```
+
 ## Entry 3
 
 ```yaml
