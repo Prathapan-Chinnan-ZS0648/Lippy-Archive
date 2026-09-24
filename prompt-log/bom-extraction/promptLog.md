@@ -11,6 +11,46 @@ this file's exact format.
 
 # Prompt log
 
+## Entry 5
+
+```yaml
+timestamp: "2026-09-23 (exact time not recorded)"
+command/prompt: >
+  "Also, this AKU-based approach should not be limited to the Drawing Comparison use
+  case. It should be a common approach that works across all use cases, including
+  scenarios where there is only a single document... Ask those questions against the
+  relevant document(s), even when there is only one document available."
+generated_output: >
+  Same action as prompt-log/drawing-comparison/promptLog.md Entry 10 — see that entry for
+  the full record. In summary: skills/_shared/engineeringDrawingReading.md enhanced v1 ->
+  v2 with rule 8 (question-driven retrieval, generalized to work whether "the relevant
+  document(s)" is a second document or the same one an AKU came from). This skill enhanced
+  v3 -> v4 (v3 snapshotted immutably first): added a `retrieval-model` front-matter field,
+  added a Module 1 "AKU-driven retrieval" subsection specific to this skill (a
+  classification question asked of the drawing's own legend/tagging table; a specification
+  question asked of the tag's home sheet and every sheet it appears on — both against the
+  single source document, since this skill has none other). Restructured Module 2's
+  workflow table: CLASSIFY + RETRIEVE + JUDGE replaced by FORMULATE -> ASK -> DERIVE.
+  Updated Module 4's checklist and Module 5's output shape (added Classification/
+  Specification Question and Answer as explicit finding fields). Updated
+  manifest/bom-extraction/manifest.md for both documents (digests, governance, new
+  "Open items" entries).
+reason: >
+  User generalized the retrieval methodology drawing-comparison had just been given,
+  specifically resolving why it had been kept skill-specific: this use case, having no
+  supporting document at all, is exactly the case proving "ask against the relevant
+  document(s)" does not require a second document.
+explanation: >
+  Promoted to the shared layer per explicit user generalization, reinforced by both use
+  cases being updated together (cross-skill confirmation). No extraction-relevant
+  behavior changed for either existing sample's findings (27 P&ID, 23 electrical) — both
+  remain pre-v4 records, not retrofitted with reconstructed questions, with re-running
+  either under v4 left as an open decision, not made here.
+model: Claude Sonnet 5
+skill/version_used: "skills/bom-extraction/skill.md v4; skills/_shared/engineeringDrawingReading.md v2"
+other_metadata: "companion entry in prompt-log/drawing-comparison/promptLog.md Entry 10 carries the full shared-layer rationale, not duplicated here"
+```
+
 ## Entry 4
 
 ```yaml

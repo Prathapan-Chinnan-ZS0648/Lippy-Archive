@@ -10,6 +10,98 @@ marked as reconstructed where the original record did not use this file's exact 
 
 # Prompt log
 
+## Entry 10
+
+```yaml
+timestamp: "2026-09-23 (exact time not recorded)"
+command/prompt: >
+  "Also, this AKU-based approach should not be limited to the Drawing Comparison use
+  case. It should be a common approach that works across all use cases, including
+  scenarios where there is only a single document... Ask those questions against the
+  relevant document(s), even when there is only one document available... The
+  implementation should be designed so that the same AKU -> Question -> Answer approach
+  can be reused for Drawing Comparison and any future use case, rather than building it
+  specifically for one use case."
+generated_output: >
+  Generalized AKU-driven retrieval from a drawing-comparison-specific rule into
+  skills/_shared/engineeringDrawingReading.md's own rule 8 (v1 -> v2, v1 snapshotted
+  immutably first): "the relevant document(s)" a question is asked against may be a
+  second document (a comparison skill) or the same document the AKU came from (a
+  single-document skill) — the rule applies identically either way. Enhanced
+  skills/drawing-comparison/skill.md v3 -> v4 (v3 snapshotted first) to reference shared
+  rule 8 instead of restating it, keeping only what's specific to this skill (that "the
+  relevant document" is always the supporting drawing here). Enhanced
+  skills/bom-extraction/skill.md to the same generalized rule in the same action — see
+  prompt-log/bom-extraction/promptLog.md's corresponding entry for that skill's own
+  redesign (CLASSIFY+RETRIEVE+JUDGE -> FORMULATE+ASK+DERIVE, questions asked of the
+  source document's own legend and home sheet, since it has no supporting document).
+  Updated manifest/drawing-comparison/manifest.md and manifest/bom-extraction/
+  manifest.md's digest tables, governance fields, and Open-items sections for both
+  documents across both use cases.
+reason: >
+  User directly generalized the retrieval methodology added in Entry 9, specifically
+  addressing the reason it had been kept skill-specific (it looked like it required a
+  second document) by pointing out that "ask against the relevant document(s)" already
+  covers the single-document case — the same document, asked of itself.
+explanation: >
+  This resolves the open question Entry 9 left explicit in its own reasoning (why the
+  rule was not promoted to the shared layer at the time). Promoted immediately, since the
+  promotion bar's explicit-user-generalization leg is satisfied directly by the
+  instruction, reinforced by both use cases being updated together in one action
+  (cross-skill confirmation). No verdict/extraction-relevant behavior changed for any
+  existing finding in either use case (22 drawing-comparison, 27+23 bom-extraction across
+  two documents) — all remain pre-v4/pre-this-generalization records, explicitly not
+  retrofitted, with re-running each under the new methodology left as an open decision
+  per document, not decided unilaterally.
+model: Claude Sonnet 5
+skill/version_used: "skills/drawing-comparison/skill.md v4; skills/_shared/engineeringDrawingReading.md v2 (both enhanced in this entry)"
+other_metadata: "companion entry in prompt-log/bom-extraction/promptLog.md for the same action, since it touched both use cases at once"
+```
+
+## Entry 9
+
+```yaml
+timestamp: "2026-09-22 (exact time not recorded)"
+command/prompt: >
+  "The source document, from which the actual AKU is identified, should first be used to
+  formulate the relevant question(s). That question should then be asked against the
+  supporting document(s), and the answer/result should be derived specifically from those
+  supporting documents... Source Document -> Identify AKU -> Formulate Question -> Ask
+  Question Against Supporting Document -> Derive Result -> Prepare Final Report. Please
+  update the flow accordingly rather than directly deriving the final result from the
+  source document alone."
+generated_output: >
+  Enhanced skills/drawing-comparison/skill.md v2 -> v3 (v2 snapshotted immutably first):
+  changed the retrieval methodology from direct comparison (look up the same grid
+  position on both drawings and match) to question-driven retrieval. Added front-matter
+  `retrieval-model: question-driven`; rewrote `declines-with`/`absence-policy` (both
+  previously contradicted the new flow). Added Module 1 "AKU-driven retrieval" subsection
+  defining AKU (Atomic Knowledge Unit), formulate-before-searching discipline, and
+  answer-as-its-own-record. Restructured Module 2's workflow table: ALIGN+CLASSIFY+
+  JUDGE+RETRIEVE replaced by FORMULATE -> ASK -> DERIVE. Updated Module 4's checklist and
+  Module 5's output shape (added Question/Answer as explicit finding fields). Updated
+  manifest/drawing-comparison/manifest.md's Governance, Sample context, Digests, and
+  added an explicit "Open items" note that the 22 existing findings are pre-v3 records,
+  not retrofitted, and that whether to re-run this pack under v3 is an open decision.
+reason: >
+  User specified this exact flow directly and asked for the skill to follow it instead of
+  deriving results from the source document (or a direct source-vs-supporting
+  glance-and-match) alone.
+explanation: >
+  Confirmed two things before acting, since this changes core judging methodology: what
+  "AKU" means (confirmed: Atomic Knowledge Unit) and scope (confirmed: drawing-comparison
+  only, since bom-extraction has no supporting document to ask a question against at
+  all — the flow does not structurally apply there, and was not promoted to
+  skills/_shared/engineeringDrawingReading.md for the same reason). Explicitly did not
+  retrofit the 22 existing findings with reconstructed questions, since composing a
+  question after its answer is already known is exactly what the new Module 1 rule
+  forbids — flagged as an open, undecided question for the user rather than silently
+  choosing to re-run or to leave the pack as pre-v3.
+model: Claude Sonnet 5
+skill/version_used: "skills/drawing-comparison/skill.md v3 (created in this entry)"
+other_metadata: "not yet committed to git at the time this entry was written"
+```
+
 ## Entry 8
 
 ```yaml

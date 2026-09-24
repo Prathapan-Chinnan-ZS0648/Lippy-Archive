@@ -21,7 +21,7 @@ not in `fileIndex.md`, which holds only the four configured inputs per `bootstra
 ```yaml
 source-document: AD-3010-C-330030-SHT-004-REV4.pdf
 use-case: drawing-comparison
-skill-version: v2                  # currently live in skills/drawing-comparison/skill.md's own front matter; findings below were produced under v1 — v2 only relocated duplicated rules into the new skills/_shared/engineeringDrawingReading.md layer, changing no verdict-relevant behavior; not re-judged, see skills/drawing-comparison/patternLog.md Entry 6
+skill-version: v4                  # currently live in skills/drawing-comparison/skill.md's own front matter; findings below were produced under v1 — v2 relocated duplicated rules into skills/_shared/engineeringDrawingReading.md, v3 changed the retrieval methodology to question-driven (AKU -> formulate -> ask -> derive), v4 generalized that methodology into the shared layer itself (v1 -> v2) per explicit user instruction; findings below are NOT re-judged under v3/v4's new methodology — see "Open items" below and skills/drawing-comparison/patternLog.md Entries 6-8
 classification: internal working draft; no external distribution without a named recipient in pivot.md
 state: verified                    # agent self-verification only — see Checklist below; not yet "signed" or "accepted", no HITL record exists
 signed-by: —                       # no MANUAL VALIDATE has been run for this use case
@@ -38,8 +38,14 @@ now superseded) to Rev 4 (issued for construction 27.07.2026). Unlike `version-c
 samples, this pair shares no clause/heading structure to walk — the "document" is a
 figure, and its units are member/connection callouts identified by grid position.
 Judging rules and workflow are defined in `skills/drawing-comparison/skill.md`
-(findings produced under v1; not re-judged under v2 — see Governance above),
-`skills/_shared/engineeringDrawingReading.md`, and `bootstrap.md`.
+(findings produced under v1; not re-judged under v2 or v3 — see Governance above and
+"Open items" below), `skills/_shared/engineeringDrawingReading.md`, and `bootstrap.md`.
+v3 (2026-09-22) changed this skill's retrieval methodology from direct comparison to
+question-driven retrieval (identify the AKU on the source drawing, formulate a question,
+ask it against the supporting drawing, derive the verdict from the answer) per explicit
+user instruction — see `skills/drawing-comparison/patternLog.md` Entry 7. This pack's
+existing findings were built under the pre-v3 direct-comparison methodology and do not
+carry the Question/Answer fields v3 now requires of a finding; they are not retrofitted.
 
 Both source files originally arrived corrupted — raw HTTP `multipart/form-data` bodies (a
 DocuSign export artifact), not valid PDFs — and were repaired (byte span from the first
@@ -56,7 +62,9 @@ original for comparison purposes only; it is kept outside this managed tree at
 of this Manifest's scope. It is the reason `CTRL-1` was corrected and `MEMB-13`–`MEMB-16`/
 `CTRL-3` were added on 2026-09-17 — see `skills/drawing-comparison/patternLog.md` Entry 5.
 
-Follows `skills/drawing-comparison/skill.md` v1's rules (still valid under v2 — see above).
+Follows `skills/drawing-comparison/skill.md` v1's rules for its actual content (still
+valid — see above); does not follow v3's question-driven retrieval methodology, since
+that methodology postdates this pack's findings.
 
 ### Checklist
 
@@ -89,26 +97,48 @@ changes, every actual/finding built from it must be regenerated and this ledger 
 |---|---|---|---|
 | `documents/drawing-comparison/source/AD-3010-C-330030-SHT-004-REV4.pdf` | source | `e2c1629b3536b5f2c773200403c11edb73f1f0678931f2f3db1becad130034d1` | 2026-09-15 (repaired PDF — see Sample context above) |
 | `documents/drawing-comparison/supporting/AD-3010-C-330030-SHT-004-REV3.pdf` | supporting | `d8afdded2146507660d5f0e2de55790f13c910472e63f2a1adb47a628a65cbe6` | 2026-09-15 (repaired PDF — see Sample context above) |
-| `skills/drawing-comparison/skill.md` | skill — live copy, current version (v2) | `b6a22b298d6bb58ec9208761dc279da9ca77d2d09baeb0c012ae1bbed9270185` | 2026-09-22 (v1 enhanced to v2: builds on the new shared layer `skills/_shared/engineeringDrawingReading.md`, removed duplicated Module 1/6 content now stated there once; no verdict-relevant behavior changed, see `skills/drawing-comparison/patternLog.md` Entry 6) |
+| `skills/drawing-comparison/skill.md` | skill — live copy, current version (v4) | `f1a46940e3bd9fa869b5a1550107ea1b3f745e7a6f193cc96c5958586454b4fb` | 2026-09-23 (v1 -> v2: builds on the shared layer. v2 -> v3: question-driven retrieval added, skill-specific. v3 -> v4: that methodology generalized into the shared layer itself (rule 8), per explicit user instruction — see `skills/drawing-comparison/patternLog.md` Entries 6-8. This pack's 22 findings predate all three changes and are not re-judged.) |
 | `skills/drawing-comparison/skill-versions/v1.md` | skill — immutable snapshot of v1 (used to build this document's existing findings; superseded) | `5af3db37bf9133bbc05f4e986153df228398cfc10cfa0ad558e99fbb7483c6d1` | 2026-09-21 |
-| `skills/drawing-comparison/skill-versions/v2.md` | skill — immutable snapshot of v2 | `b6a22b298d6bb58ec9208761dc279da9ca77d2d09baeb0c012ae1bbed9270185` | 2026-09-22 |
-| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v1) | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
-| `skills/_shared/shared-versions/engineeringDrawingReading-v1.md` | shared base layer — immutable snapshot of v1 | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
+| `skills/drawing-comparison/skill-versions/v2.md` | skill — immutable snapshot of v2 (superseded) | `b6a22b298d6bb58ec9208761dc279da9ca77d2d09baeb0c012ae1bbed9270185` | 2026-09-22 |
+| `skills/drawing-comparison/skill-versions/v3.md` | skill — immutable snapshot of v3 (superseded) | `46f0c007ff193f5a669722352aa58321eaa506fa24e599fe7ded1cb2385767c5` | 2026-09-22 |
+| `skills/drawing-comparison/skill-versions/v4.md` | skill — immutable snapshot of v4 | `f1a46940e3bd9fa869b5a1550107ea1b3f745e7a6f193cc96c5958586454b4fb` | 2026-09-23 |
+| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v2) | `9533c40f8aa91d53532fe2d7bb8cbb56f7af5132e9e216d88be86c58d0f1f98b` | 2026-09-23 (v1 enhanced to v2: added rule 8, question-driven retrieval, generalized from drawing-comparison's own v3 — see `skills/drawing-comparison/patternLog.md` Entry 8) |
+| `skills/_shared/shared-versions/engineeringDrawingReading-v1.md` | shared base layer — immutable snapshot of v1 (superseded) | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
+| `skills/_shared/shared-versions/engineeringDrawingReading-v2.md` | shared base layer — immutable snapshot of v2 | `9533c40f8aa91d53532fe2d7bb8cbb56f7af5132e9e216d88be86c58d0f1f98b` | 2026-09-23 |
 
 All twin pages under `actuals/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/twin/` were
 built from the two document digests above. All 22 findings files under
 `findings/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/` were built from those twin
 pages under the skill content now snapshotted at
-`skills/drawing-comparison/skill-versions/v1.md` — no skill version change has occurred
-since. If a future skill version changes verdict-relevant behavior, re-run `NORMALIZE`,
-`JUDGE`, and `REPORT` for this document before treating existing findings as current.
+`skills/drawing-comparison/skill-versions/v1.md`. v2 (relocating shared rules) changed no
+verdict-relevant behavior; **v3/v4 (question-driven retrieval, then its generalization
+into the shared layer) is a real methodology change**, but whether it would change any of
+this pack's 22 verdicts if re-run is not yet known — the existing findings were produced
+by direct comparison, not by the formulate/ask/derive sequence v3/v4 requires, so they
+are not currently valid *v3/v4* records even though their content has not been shown to
+be wrong. Re-running `NORMALIZE`, `JUDGE`, and `REPORT` under v4 for this document is an
+open decision, not yet made — see "Open items before this pack can be signed off" below.
+
+### Open items before this pack can be signed off
+
+- No human-in-the-loop reviewer has yet run `MANUAL VALIDATE` for this use case — no
+  `HITL/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/MANUAL_VALIDATE.md` exists.
+- **Whether to re-run this pack under v3's question-driven retrieval methodology is an
+  open decision, not yet made.** The 22 existing findings were produced by direct
+  comparison (v1/v2 methodology) and are not v3 records — v3's Question/Answer fields
+  are absent from all 22. Their content has not been shown to be wrong (the underlying
+  facts on the drawing have not changed), but a re-run is the only way to confirm v3's
+  stricter, auditable retrieval process would reach the identical 22 verdicts rather
+  than surface something the original glance-and-match pass missed — the way an
+  independent second attempt once already did once, for `CTRL-1` (see
+  `skills/drawing-comparison/patternLog.md` Entry 5).
 
 ### Verdict
 
 **NOT YET AN ACCEPTED DELIVERABLE.** `reports/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/report.md`
 and `findings/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/*.md` are self-verified by
 the producing agent (independent re-checks against the source PDFs, including the
-2026-09-17 correction) but have not undergone human-in-the-loop review — no
-`HITL/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/MANUAL_VALIDATE.md` exists, and no
-named reviewer has signed this pack. Run `MANUAL VALIDATE` for this use case before
-treating it as accepted.
+2026-09-17 correction) but have not undergone human-in-the-loop review, and are pre-v3
+records under a superseded retrieval methodology — see "Open items" above. Run
+`MANUAL VALIDATE` for this use case, and decide on a v3 re-run, before treating this pack
+as accepted.

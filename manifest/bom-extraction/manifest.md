@@ -22,7 +22,7 @@ not in `fileIndex.md`, which holds only the four configured inputs per `bootstra
 ```yaml
 source-document: 260374 COMBINED PID SET 6-1-26.pdf
 use-case: bom-extraction
-skill-version: v3                  # currently live in skills/bom-extraction/skill.md's own front matter; this document's findings were produced under v1 — v2 added electrical-one-line domain guidance, v3 relocated duplicated rules into skills/_shared/engineeringDrawingReading.md; neither changed a rule applicable to a P&ID; not re-judged, see skills/bom-extraction/patternLog.md Entries 6 and 9
+skill-version: v4                  # currently live in skills/bom-extraction/skill.md's own front matter; this document's findings were produced under v1 — v2 added electrical-one-line domain guidance, v3 relocated duplicated rules into skills/_shared/engineeringDrawingReading.md, v4 changed the retrieval methodology to question-driven (AKU -> formulate -> ask -> derive) and generalized it into the shared layer itself, per explicit user instruction; findings below are NOT re-judged under v4's new methodology — see "Open items" below and skills/bom-extraction/patternLog.md Entries 6, 9, and 10
 classification: customer-confidential — supplied for this project by 3S Services, LLC; not public-synthetic like the version-compare/bid-evaluation samples
 state: verified                    # agent self-verification only — see Checklist below; not yet "signed" or "accepted", no HITL record exists
 signed-by: —                       # no MANUAL VALIDATE has been run for this use case
@@ -41,9 +41,15 @@ set prepared by 3S Services, LLC (Midland, Texas), "ISSUED FOR APPROVAL", Rev B,
 allowance added to `bootstrap.md` §2 specifically to accommodate this genuinely
 single-document task shape (see `skills/bom-extraction/patternLog.md` Entry 2 and
 `prompt-log/bom-extraction/promptLog.md`). Judging rules and workflow are defined in
-`skills/bom-extraction/skill.md` (findings produced under v1; not re-judged under v2 or
-v3 — see Governance above), `skills/_shared/engineeringDrawingReading.md`, and
-`bootstrap.md`.
+`skills/bom-extraction/skill.md` (findings produced under v1; not re-judged under v2, v3,
+or v4 — see Governance above and "Open items" below), `skills/_shared/
+engineeringDrawingReading.md`, and `bootstrap.md`. v4 (2026-09-23) changed this skill's
+retrieval methodology to question-driven (identify the AKU, formulate a classification
+question and a specification question, ask both of the drawing itself, derive the
+result) and generalized it into the shared layer's own rule 8, per explicit user
+instruction — see `skills/bom-extraction/patternLog.md` Entry 10. This pack's existing
+findings were built under the pre-v4 methodology and do not carry the Question/Answer
+fields v4 now requires; they are not retrofitted.
 
 This pack was originally built under a pre-`bootstrap.md` ad hoc directory layout
 (`bom-extraction/sample-1/`, on the separate `bom-extraction` branch), then migrated into
@@ -54,7 +60,9 @@ CONTROL-VALVE); the drawing's much larger INSTRUMENT bubble population and a 12-
 flowline list are counted and located by sheet but not individually extracted this pass —
 see `reports/bom-extraction/260374 COMBINED PID SET 6-1-26/report.md`'s Coverage section.
 
-Follows `skills/bom-extraction/skill.md` v1's rules (still valid under v2 and v3 — see above).
+Follows `skills/bom-extraction/skill.md` v1's rules for its actual content (still valid —
+see above); does not follow v4's question-driven retrieval methodology, since that
+methodology postdates this pack's findings.
 
 ### Checklist
 
@@ -86,12 +94,14 @@ changes, every actual/finding built from it must be regenerated and this ledger 
 | File | Role | SHA-256 | Digest recorded |
 |---|---|---|---|
 | `documents/bom-extraction/source/260374 COMBINED PID SET 6-1-26.pdf` | source | `bdb3725ac983a2e591ba908ef8f3702d8f9bfd1659a6b56b0e7844c1a721bb2e` | 2026-09-17 |
-| `skills/bom-extraction/skill.md` | skill — live copy, current version (v3) | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 (v1 enhanced to v2 for electrical-one-line domain guidance, then v3 relocated duplicated rules into `skills/_shared/engineeringDrawingReading.md`; no rule applicable to this P&ID document changed either time, findings below remain valid per `skills/bom-extraction/patternLog.md` Entries 6 and 9) |
+| `skills/bom-extraction/skill.md` | skill — live copy, current version (v4) | `08c9e4d656b5f70b3c993c025bc894a07019fef9bc66e2accae4e958efe665d1` | 2026-09-23 (v1->v2: electrical-one-line domain guidance. v2->v3: builds on shared layer. v3->v4: retrieval methodology changed to question-driven and generalized into the shared layer itself, per explicit user instruction. No rule applicable to this P&ID document's existing content changed by any of these; findings below predate all of them and are not re-judged — see `skills/bom-extraction/patternLog.md` Entries 6, 9, 10) |
 | `skills/bom-extraction/skill-versions/v1.md` | skill — immutable snapshot of v1 (used to build this document's existing findings; superseded) | `d36020865cdff6f8c448ba6afaece1f85eb74b941477b680c98e1c9580e8426c` | 2026-09-21 |
 | `skills/bom-extraction/skill-versions/v2.md` | skill — immutable snapshot of v2 (superseded) | `b7f5520d6157efeeb2b2a856e20d466f8acae457fe21148182c14599dab2e628` | 2026-09-21 |
-| `skills/bom-extraction/skill-versions/v3.md` | skill — immutable snapshot of v3 | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 |
-| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v1) | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
-| `skills/_shared/shared-versions/engineeringDrawingReading-v1.md` | shared base layer — immutable snapshot of v1 | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
+| `skills/bom-extraction/skill-versions/v3.md` | skill — immutable snapshot of v3 (superseded) | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 |
+| `skills/bom-extraction/skill-versions/v4.md` | skill — immutable snapshot of v4 | `08c9e4d656b5f70b3c993c025bc894a07019fef9bc66e2accae4e958efe665d1` | 2026-09-23 |
+| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v2) | `9533c40f8aa91d53532fe2d7bb8cbb56f7af5132e9e216d88be86c58d0f1f98b` | 2026-09-23 (v1 enhanced to v2: added rule 8, question-driven retrieval) |
+| `skills/_shared/shared-versions/engineeringDrawingReading-v1.md` | shared base layer — immutable snapshot of v1 (superseded) | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
+| `skills/_shared/shared-versions/engineeringDrawingReading-v2.md` | shared base layer — immutable snapshot of v2 | `9533c40f8aa91d53532fe2d7bb8cbb56f7af5132e9e216d88be86c58d0f1f98b` | 2026-09-23 |
 
 No supporting-document digest exists for this use case — `supporting_document_path: "n/a"`
 per `bootstrap.md` §2. All 13 twin pages under
@@ -103,17 +113,29 @@ while `skills/bom-extraction/skill.md` held v1's content (now preserved immutabl
 different drawing type, and v3 relocated duplicated rules into
 `skills/_shared/engineeringDrawingReading.md`, without either changing any rule this
 P&ID document's findings depend on (see `skills/bom-extraction/patternLog.md` Entries 6
-and 9), so they remain valid under v3 and were not re-judged. If a future skill version
-*does* change extraction-relevant behavior
-for a P&ID, re-run `NORMALIZE`, `JUDGE`, and `REPORT` for this document before treating
-these findings as current.
+and 9). **v4 is a real methodology change** — retrieval is now question-driven (identify
+the AKU, formulate a classification and a specification question, ask both of the
+drawing, derive the result) — and whether it would change any of this pack's 27 findings
+if re-run is not yet known: the existing findings were produced by direct read-and-assert,
+not the formulate/ask/derive sequence v4 requires, so they are not currently valid *v4*
+records even though their content has not been shown to be wrong. Re-running `NORMALIZE`,
+`JUDGE`, and `REPORT` under v4 for this document is an open decision, not yet made.
+
+### Open items before this pack can be signed off
+
+- No human-in-the-loop reviewer has yet run `MANUAL VALIDATE` for this use case — no
+  `HITL/bom-extraction/260374 COMBINED PID SET 6-1-26/MANUAL_VALIDATE.md` exists.
+- **Whether to re-run this pack under v4's question-driven retrieval methodology is an
+  open decision, not yet made.** The 27 existing findings predate v4 and are not v4
+  records — v4's Question/Answer fields are absent from all 27.
 
 ### Verdict
 
 **NOT YET AN ACCEPTED DELIVERABLE.**
 `reports/bom-extraction/260374 COMBINED PID SET 6-1-26/report.md` and
 `findings/bom-extraction/260374 COMBINED PID SET 6-1-26/*.md` are self-verified by the
-producing agent but have not undergone human-in-the-loop review — no
+producing agent but have not undergone human-in-the-loop review, and are pre-v4 records
+under a superseded retrieval methodology — see "Open items" above. No
 `HITL/bom-extraction/260374 COMBINED PID SET 6-1-26/MANUAL_VALIDATE.md` exists, and no
 named reviewer has signed this pack. Run `MANUAL VALIDATE` for this use case before
 treating it as accepted.
@@ -127,7 +149,7 @@ treating it as accepted.
 ```yaml
 source-document: Prepurchase Elect Dwgs_10-30-2024.pdf
 use-case: bom-extraction
-skill-version: v3                  # produced under v2 (the version this document's own processing motivated); v3 relocated duplicated rules into skills/_shared/engineeringDrawingReading.md without changing extraction-relevant behavior — currently live, findings not re-judged, see skills/bom-extraction/patternLog.md Entry 9
+skill-version: v4                  # produced under v2 (the version this document's own processing motivated); v3 relocated duplicated rules into the shared layer, v4 changed the retrieval methodology to question-driven and generalized it into the shared layer itself, per explicit user instruction — currently live, findings not re-judged, see skills/bom-extraction/patternLog.md Entries 9-10
 classification: internal working draft; project is Upper Trinity Regional Water District / Tom Harpool Regional WTP Phase 2 Expansion, prepared by GAI Gupta & Associates, Inc.; "ISSUED FOR THE PURPOSE OF PROCUREMENT ONLY" per every sheet's own stamp; no external distribution without a named recipient in pivot.md
 state: verified                    # agent self-verification only — see Checklist below; not yet "signed" or "accepted", no HITL record exists
 signed-by: —                       # no MANUAL VALIDATE has been run for this use case
@@ -159,9 +181,10 @@ Two findings (`mvswgre.md`, `mvswgrf.md`) carry an open, unresolved discrepancy 
 two sheets' stated bus wire-count/material for the same equipment — flagged
 `confidence: UNSURE` on that one detail, not silently resolved.
 
-Follows `skills/bom-extraction/skill.md` v2's rules (still valid under v3 — see above),
-including the electrical-one-line-set domain-guidance row this document itself motivated,
-now built on `skills/_shared/engineeringDrawingReading.md`.
+Follows `skills/bom-extraction/skill.md` v2's rules for its actual content (still valid
+— see above), including the electrical-one-line-set domain-guidance row this document
+itself motivated; does not follow v4's question-driven retrieval methodology, since that
+methodology postdates this pack's findings.
 
 ### Checklist
 
@@ -189,27 +212,41 @@ now built on `skills/_shared/engineeringDrawingReading.md`.
 | File | Role | SHA-256 | Digest recorded |
 |---|---|---|---|
 | `documents/bom-extraction/source/Prepurchase Elect Dwgs_10-30-2024.pdf` | source | `422b2638d13fee272299e72f6fd9112852686baeea4863d3f79f9a79ad5ebb73` | 2026-09-21 |
-| `skills/bom-extraction/skill.md` | skill — live copy, current version (v3) | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 |
+| `skills/bom-extraction/skill.md` | skill — live copy, current version (v4) | `08c9e4d656b5f70b3c993c025bc894a07019fef9bc66e2accae4e958efe665d1` | 2026-09-23 |
 | `skills/bom-extraction/skill-versions/v2.md` | skill — immutable snapshot of v2 (used to build this document's findings; superseded) | `b7f5520d6157efeeb2b2a856e20d466f8acae457fe21148182c14599dab2e628` | 2026-09-21 |
-| `skills/bom-extraction/skill-versions/v3.md` | skill — immutable snapshot of v3 | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 |
-| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v1) | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
+| `skills/bom-extraction/skill-versions/v3.md` | skill — immutable snapshot of v3 (superseded) | `52a04fa983dc737baaea417f7bde702dcd568e02669d4c813b6058b0ffc32ba3` | 2026-09-22 |
+| `skills/bom-extraction/skill-versions/v4.md` | skill — immutable snapshot of v4 | `08c9e4d656b5f70b3c993c025bc894a07019fef9bc66e2accae4e958efe665d1` | 2026-09-23 |
+| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v2) | `9533c40f8aa91d53532fe2d7bb8cbb56f7af5132e9e216d88be86c58d0f1f98b` | 2026-09-23 |
 
 No supporting-document digest exists for this use case — `supporting_document_path: "n/a"`
 per `bootstrap.md` §2. All 11 twin pages under
 `actuals/bom-extraction/Prepurchase Elect Dwgs_10-30-2024/twin/` and all 23 findings under
 `findings/bom-extraction/Prepurchase Elect Dwgs_10-30-2024/` were built while
 `skills/bom-extraction/skill.md` held v2's content (immutably preserved at
-`skills/bom-extraction/skill-versions/v2.md`). If a future skill version changes
-extraction-relevant behavior for an electrical-one-line-set document, re-run `NORMALIZE`,
-`JUDGE`, and `REPORT` for this document before treating these findings as current.
+`skills/bom-extraction/skill-versions/v2.md`). v3 (relocating shared rules) changed no
+extraction-relevant behavior; **v4 (question-driven retrieval) is a real methodology
+change**, and whether it would change any of this pack's 23 findings if re-run is not yet
+known — they predate the formulate/ask/derive sequence v4 requires, so they are not
+currently valid *v4* records even though their content has not been shown to be wrong.
+Re-running `NORMALIZE`, `JUDGE`, and `REPORT` under v4 for this document is an open
+decision, not yet made.
+
+### Open items before this pack can be signed off
+
+- No human-in-the-loop reviewer has yet run `MANUAL VALIDATE` for this use case — no
+  `HITL/bom-extraction/Prepurchase Elect Dwgs_10-30-2024/MANUAL_VALIDATE.md` exists.
+- **Whether to re-run this pack under v4's question-driven retrieval methodology is an
+  open decision, not yet made.** The 23 existing findings predate v4 and are not v4
+  records.
+- The MVSWGR-E/MVSWGR-F bus wire-count/material discrepancy remains unresolved.
 
 ### Verdict
 
 **NOT YET AN ACCEPTED DELIVERABLE.**
 `reports/bom-extraction/Prepurchase Elect Dwgs_10-30-2024/report.md` and
 `findings/bom-extraction/Prepurchase Elect Dwgs_10-30-2024/*.md` are self-verified by the
-producing agent but have not undergone human-in-the-loop review — no
-`HITL/bom-extraction/Prepurchase Elect Dwgs_10-30-2024/MANUAL_VALIDATE.md` exists, and no
+producing agent but have not undergone human-in-the-loop review, and are pre-v4 records
+under a superseded retrieval methodology — see "Open items" above. No
 named reviewer has signed this pack. Run `MANUAL VALIDATE` for this use case before
 treating it as accepted. Two findings (`mvswgre.md`, `mvswgrf.md`) additionally carry an
 unresolved cross-sheet rating discrepancy that a human reviewer should specifically

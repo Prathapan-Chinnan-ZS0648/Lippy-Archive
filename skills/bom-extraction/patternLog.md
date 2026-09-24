@@ -311,3 +311,50 @@ skill-change: >
   electrical) — restructuring for maintainability, not a new judging rule; neither
   sample's findings were re-judged.
 ```
+
+## Entry 10
+
+```yaml
+observed-in: not sample-driven — direct user instruction
+timestamp: 2026-09-23
+observation: >
+  The user explicitly instructed that skills/drawing-comparison/skill.md's AKU-driven
+  retrieval approach (added there for a comparison-shaped skill with a supporting
+  document to ask questions against) should generalize to every use case, explicitly
+  including single-document ones: "Ask those questions against the relevant document(s),
+  even when there is only one document available." This directly resolves the reason
+  this project's shared layer had not yet absorbed that rule — it had looked
+  supporting-document-specific, and this skill (which has none) is exactly the case that
+  proves it isn't.
+occurrence-count: not applicable — explicit generalization request
+promotion-bar-check:
+  cross-sample-confirmation: "yes, immediately — skills/drawing-comparison/skill.md was
+    updated to build on the same generalized rule in the same action; see that skill's
+    patternLog.md Entry 8 for the full record"
+  explicit-user-generalization: "yes — see observation above, quoting the user directly"
+  structural-necessity: "not applicable — the generalization was explicit"
+decision: promoted
+rationale: >
+  Explicit user generalization is sufficient alone, reinforced by immediate cross-skill
+  confirmation (both of this project's use cases updated together). This use case is the
+  one that specifically demonstrates the rule's generality: a "relevant document" can be
+  the same document an AKU came from, not necessarily a second one.
+skill-change: >
+  skills/_shared/engineeringDrawingReading.md enhanced v1 -> v2 — see
+  skills/drawing-comparison/patternLog.md Entry 8 for the shared layer's full content.
+  This skill enhanced v3 -> v4 (v3 snapshotted immutably first): added a
+  `retrieval-model` front-matter field and a Module 1 "AKU-driven retrieval" subsection
+  specific to this skill (with no supporting document, a tag's classification question
+  is asked of the drawing's own legend/tagging table, and its specification question is
+  asked of its home sheet and every other sheet it appears on — both are still questions
+  asked of "the relevant document(s)" per shared rule 8, just of the source document
+  itself). Restructured Module 2's workflow table: CLASSIFY + RETRIEVE + JUDGE replaced
+  by FORMULATE -> ASK -> DERIVE. Updated Module 4's checklist and Module 5's output shape
+  (added Classification/Specification Question and Answer as explicit finding fields,
+  alongside Tag/Description/Specification). The existing 50 findings across this skill's
+  two documents (27 P&ID, 23 electrical), produced under v1-v3, are explicitly left as
+  pre-v4 records and are **not** retrofitted with reconstructed questions, for the same
+  reason skills/drawing-comparison/skill.md's Entry 7 gave: composing a question after
+  its answer is already known is exactly what shared rule 8 forbids. Whether to re-run
+  either document's extraction under v4's methodology is an open decision, not made here.
+```

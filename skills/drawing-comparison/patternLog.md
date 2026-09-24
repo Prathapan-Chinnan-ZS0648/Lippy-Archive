@@ -219,3 +219,103 @@ skill-change: >
   not a new judging rule; the existing 22 findings remain valid under v2 and were not
   re-judged.
 ```
+
+## Entry 7
+
+```yaml
+observed-in: not sample-driven — direct user instruction
+timestamp: 2026-09-22
+observation: >
+  The user explicitly instructed that this skill's retrieval methodology change from
+  direct comparison (look up the same grid position on both drawings and match) to
+  question-driven retrieval: identify the AKU (Atomic Knowledge Unit) on the source
+  drawing first, formulate an explicit question about it, ask that question against the
+  supporting drawing specifically, derive the verdict from the answer actually retrieved,
+  then prepare the finding — rather than deriving the result directly from a source-vs-
+  supporting glance-and-match.
+occurrence-count: not applicable — this is an explicit generalization request, not a
+  pattern observed across samples
+promotion-bar-check:
+  cross-sample-confirmation: "not applicable"
+  explicit-user-generalization: "yes — the user directly specified this exact flow
+    (Source Document -> Identify AKU -> Formulate Question -> Ask Question Against
+    Supporting Document -> Derive Result -> Prepare Final Report) and asked for the skill
+    to be updated to follow it, rather than deriving results from the source document
+    (or a direct comparison) alone"
+  structural-necessity: "not applicable"
+decision: promoted
+rationale: >
+  Explicit user generalization alone is sufficient (bootstrap.md §8.2 condition 2) — no
+  sample or structural argument is needed when the user states the generalization
+  directly. Scoped to drawing-comparison only, per the user's own confirmed scope choice
+  (this project's other use case, bom-extraction, has no supporting document to ask a
+  question against at all, so the flow does not structurally apply there) — not promoted
+  to skills/_shared/engineeringDrawingReading.md, since that would require the pattern
+  to be independently useful to a second skill, which is not the case here.
+skill-change: >
+  skills/drawing-comparison/skill.md enhanced v2 -> v3 (v2 snapshotted immutably first).
+  Added front-matter `retrieval-model: question-driven` field; rewrote `declines-with`
+  and `absence-policy` (both previously said this skill "does not ask questions that can
+  go unaddressed", which directly contradicted the new methodology). Added Module 1
+  subsection "AKU-driven retrieval — question, then answer" (formulate before searching;
+  ask against the supporting drawing specifically; record the answer as its own field,
+  separate from the AKU's own source-side value). Restructured Module 2's workflow table:
+  the old ALIGN + CLASSIFY + JUDGE + RETRIEVE stages replaced by FORMULATE -> ASK ->
+  DERIVE. Updated Module 4's checklist (a question must be formulated before the
+  supporting drawing is searched, never composed after the fact to justify an
+  already-known answer) and Module 5's output shape (added Question and Answer as their
+  own finding fields, alongside Old/New). The existing 22 findings, produced under v1/v2,
+  are explicitly left as v1/v2 records and are **not** retrofitted with a reconstructed
+  question — doing so after their answers are already known would itself violate the new
+  rule against composing a question after the fact. Whether to re-run JUDGE for this
+  sample under v3's methodology (which could, in principle, surface findings the old
+  direct-comparison pass missed, the way sample-2's independent attempt once did) is left
+  as an open decision for the user, not decided unilaterally here.
+```
+
+## Entry 8
+
+```yaml
+observed-in: not sample-driven — direct user instruction
+timestamp: 2026-09-23
+observation: >
+  Entry 7 added AKU-driven retrieval to this skill specifically, because at the time it
+  was written the reason it hadn't been proposed as a shared rule was that it seemed to
+  require a second document (a "supporting" drawing to ask the question against). The
+  user then explicitly instructed that the same approach should work identically for a
+  single-document use case: the question is still formulated and still asked, just
+  against the *same* document, since "ask against the relevant document(s)" already
+  covers a relevant-document count of one. That resolves the exact reason the rule had
+  been kept skill-specific.
+occurrence-count: not applicable — explicit generalization request
+promotion-bar-check:
+  cross-sample-confirmation: "yes, immediately — bom-extraction was redesigned to build
+    on the same generalized rule in the same action (see
+    skills/bom-extraction/patternLog.md's corresponding entry), the two use cases this
+    project actually has"
+  explicit-user-generalization: "yes — the user stated directly: 'this AKU-based approach
+    should not be limited to the Drawing Comparison use case... the implementation should
+    be designed so that the same AKU -> Question -> Answer approach can be reused for
+    Drawing Comparison and any future use case'"
+  structural-necessity: "not applicable — the generalization was explicit, no structural
+    argument was needed"
+decision: promoted
+rationale: >
+  Explicit user generalization is sufficient alone; cross-skill confirmation also holds
+  here since both of this project's use cases were updated to build on the same rule in
+  one action. This is exactly the shared-layer promotion bar this project's own
+  bootstrap.md SS17 already documents.
+skill-change: >
+  skills/_shared/engineeringDrawingReading.md enhanced v1 -> v2 (v1 snapshotted
+  immutably first): added rule 8 (every value is retrieved by asking a question, never
+  by reading a document and asserting), stated generally — "the relevant document(s)"
+  a question is asked against may be a second document (a comparison skill) or the same
+  document the AKU came from (a single-document skill); the rule applies identically
+  either way. skills/drawing-comparison/skill.md enhanced v3 -> v4 (v3 snapshotted
+  immutably first): the skill-specific "AKU-driven retrieval" subsection trimmed to a
+  pointer at shared rule 8 plus only what remains skill-specific (that "the relevant
+  document" is always the supporting drawing, for this skill). No verdict-relevant
+  behavior changed for this pack's 22 existing findings, which remain pre-v3/v4 records
+  as already noted in Entry 7 — this entry only relocates v3's own methodology
+  statement, it does not add a new one.
+```
