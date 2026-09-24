@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Shared helper for every command wrapper in bin/. Not a command itself.
 #
-# Each wrapper is a thin shim: it does not reimplement any Bootstrap.md or
-# Skill.md logic (that would duplicate the source of truth). It only invokes
+# Each wrapper is a thin shim: it does not reimplement any bootstrap.md or
+# skill.md logic (that would duplicate the source of truth). It only invokes
 # an LLM-agent CLI with an instruction to execute the named command exactly
-# as Bootstrap.md defines it, resolved against this project's current
-# FileIndex.md — the same thing that happens when you type the command
-# directly into a chat with an agent that has read Bootstrap.md.
+# as bootstrap.md defines it, resolved against this project's current
+# fileIndex.md — the same thing that happens when you type the command
+# directly into a chat with an agent that has read bootstrap.md.
 #
 # Which agent CLI runs the prompt is configurable, not hardcoded, so these
 # wrappers are not tied to one vendor's harness:
@@ -23,11 +23,11 @@
 #                             "stdin"           — piped in on standard input
 #                             Pick whichever matches the target CLI's own interface.
 #
-# Whatever agent runs, it still has to actually read and follow Bootstrap.md's
+# Whatever agent runs, it still has to actually read and follow bootstrap.md's
 # command definitions and have tool access matching what that command needs
 # (Read/Write/Edit for artifacts, a shell for digests, etc.) — this file only
 # makes *which binary is invoked* swappable, not the requirement that some
-# LLM agent capable of following Bootstrap.md is doing the work.
+# LLM agent capable of following bootstrap.md is doing the work.
 
 set -euo pipefail
 
@@ -35,19 +35,19 @@ LIPPY_AGENT_CMD="${LIPPY_AGENT_CMD:-claude -p}"
 LIPPY_AGENT_PROMPT_MODE="${LIPPY_AGENT_PROMPT_MODE:-arg}"
 
 # Walk up from this script's directory to find the project root (the
-# directory containing Bootstrap.md), so these wrappers work regardless of
+# directory containing bootstrap.md), so these wrappers work regardless of
 # the caller's current working directory.
 _find_project_root() {
   local dir
   dir="$(cd "$(dirname "${BASH_SOURCE[1]}")" && pwd)"
   while [ "$dir" != "/" ]; do
-    if [ -f "$dir/Bootstrap.md" ]; then
+    if [ -f "$dir/bootstrap.md" ]; then
       echo "$dir"
       return 0
     fi
     dir="$(dirname "$dir")"
   done
-  echo "error: could not find Bootstrap.md above $(dirname "${BASH_SOURCE[1]}")" >&2
+  echo "error: could not find bootstrap.md above $(dirname "${BASH_SOURCE[1]}")" >&2
   exit 1
 }
 
@@ -60,12 +60,12 @@ run_command() {
   local extra_args="$*"
 
   local prompt
-  prompt="Execute the ${command_name} command exactly as defined in Bootstrap.md's"
+  prompt="Execute the ${command_name} command exactly as defined in bootstrap.md's"
   prompt+=" \"Terminal commands\" section, in this project directory (${PROJECT_ROOT}),"
-  prompt+=" resolving all configuration from FileIndex.md as it currently stands there."
+  prompt+=" resolving all configuration from fileIndex.md as it currently stands there."
   prompt+=" Do not ask for confirmation before taking the actions that command's"
   prompt+=" definition itself already specifies; do proceed to log the result in"
-  prompt+=" PromptLog.md per Bootstrap.md's traceability requirement."
+  prompt+=" promptLog.md per bootstrap.md's traceability requirement."
   if [ -n "$extra_args" ]; then
     prompt+=" Command arguments: ${extra_args}"
   fi

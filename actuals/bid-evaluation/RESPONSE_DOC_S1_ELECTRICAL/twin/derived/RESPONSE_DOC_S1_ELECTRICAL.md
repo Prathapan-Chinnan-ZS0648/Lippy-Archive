@@ -1,30 +1,20 @@
-# Twin — RESPONSE_DOC_S1_ELECTRICAL.docx (committee record, embedded in the bid document)
+# Derived — RESPONSE_DOC_S1_ELECTRICAL.docx
 
-Ltd. |
+**Summary** (per `bootstrap.md` §12, amended v17/v19/v20) — this file is a summary, not the full
+read-through; the twin unit files remain the source of truth for exact wording and are
+what every finding quotes from.
 
-## 2. Eligibility Compliance Statement
+Committee record for bidder Voltamp Grid Engineers Pvt. Ltd. Overall determination:
+TECHNICALLY QUALIFIED — Price Bid Opened. Eligibility: COMPLIANT on all 8 criteria. No
+numeric technical score recorded. One minor deviation: module warranty offered at 22
+years instead of the required 25, flagged for committee waiver.
 
-| Criteria | Bidder Submission |
-|---|---|
-| EC-1: Average Annual Turnover (last 3 FY) | ₹58.4 Cr / ₹62.1 Cr / ₹66.8 Cr — Average: ₹62.43 Cr |
-| EC-2: Relevant Experience (132kV+ substations) | 9 qualifying project(s) submitted |
-| EC-3: Net Worth | ₹42.6 Cr (positive, per FY 2024-25 audited statement) |
-| EC-4: Quality Certifications (ISO) | ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 — all valid, all submitted |
-| EC-5: Statutory Registrations / Electrical Contractor License | Electrical Contractor License Grade A No. GJ/EC/A/2018/00312, valid to Dec 2027 |
-| EC-6: OEM Approval | Transformer: TBEA Energy (India) Pvt. Ltd. — AVL Rev.14, Sl.No. 7; Breaker: Siemens Ltd. — AVL Rev.14, Sl.No. 3; Relay: Siemens (SIPROTEC 5) — AVL Rev.14, Sl.No. 2 |
-| EC-8: EMD | ₹1,20,00,000 Bank Guarantee, State Bank of India, valid 220 days — CONFORMS |
-| **Overall Eligibility Determination** | **COMPLIANT — all criteria (EC-1 to EC-8) met** |
+---
 
-## 18. Deviations from Tender Requirements
+## Report summary
 
-| Clause / Requirement | Deviation Stated | Evaluation Committee Assessment |
-|---|---|---|
-| Fire Protection System (Transformer) | Nitrogen Injection Fire Protection (NIFPS) offered as standard; Water Spray offered only as optional add-on at extra cost | Minor — acceptable, NIFPS is an equivalent/superior alternative per IS 3034; no waiver required |
+Voltamp Grid Engineers Pvt. Ltd. — committee determination "TECHNICALLY QUALIFIED - Price Bid Opened"; COMPLIANT on all 8 eligibility criteria; final Stage 2 price ₹36,22,91,164; 1 minor deviation (no waiver needed). No awarded numeric technical score is stated in the record, so this bidder is not ranked, per skill.md's read-never-computed rule.
 
-## 20/21. Priced Bill of Quantities — totals
+This document is part of a multi-bidder batch; for the shared tender ranking synthesis for GSETCL/SS-MORBI/2026/EPC-021, see `reports/bid-evaluation/RankingSummary/report.md`.
 
-
-## 25. Evaluation Committee Remarks
-
-
-this document.
+Full report: `reports/bid-evaluation/RankingSummary/report.md` (this document has no own report.md — bootstrap.md §12, amended v33)
