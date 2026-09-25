@@ -11,6 +11,44 @@ this file's exact format.
 
 # Prompt log
 
+## Entry 6
+
+```yaml
+timestamp: "2026-09-24 (exact time not recorded)"
+command/prompt: >
+  "In the Twin -> Derived section, we are currently providing a summary for each
+  document. The requirement is that the content should depend on the document type: If
+  the document is a Source Document, the Derived section should contain the identified
+  AKU(s) and the corresponding question(s)... If the document is a Supporting Document,
+  the Derived section should contain the summary/extracted information from that
+  document... Please update the implementation accordingly and proceed with this
+  requirement."
+generated_output: >
+  Same action as prompt-log/drawing-comparison/promptLog.md Entry 11 — see that entry for
+  the full record. In summary: skills/_shared/engineeringDrawingReading.md enhanced v2 ->
+  v3 with twin/derived-layer guidance on rule 8. This skill enhanced v4 -> v5 (v4
+  snapshotted immutably first) with a cross-reference noting that, having no supporting
+  document, this skill's one document is always in the source role and its derived
+  summary always takes the AKU+question-pair form. Regenerated both of this use case's
+  existing twin/derived files: `260374 COMBINED PID SET 6-1-26.md` (27 tags) and
+  `Prepurchase Elect Dwgs_10-30-2024.md` (23 tags) now each list a classification
+  question and a specification question per extracted tag.
+reason: >
+  User pointed out the derived-file format was the same regardless of document role and
+  asked for it to actually be applied, not just documented.
+explanation: >
+  Same distinction as drawing-comparison's Entry 11 between retrofitting a finding
+  (not done) and regenerating a derived-file summary (done): the questions are mechanical
+  restatements of each tag's already-fixed identity from plan.md and the existing
+  findings, assert no specification value, and none of the 27+23 findings' own content
+  was touched. The two findings already carrying an open cross-sheet discrepancy
+  (mvswgre.md, mvswgrf.md) had their specification questions written to surface that same
+  open discrepancy, not to resolve it.
+model: Claude Sonnet 5
+skill/version_used: "skills/bom-extraction/skill.md v5; skills/_shared/engineeringDrawingReading.md v3"
+other_metadata: "companion entry in prompt-log/drawing-comparison/promptLog.md Entry 11 carries the full policy-distinction rationale, not duplicated here"
+```
+
 ## Entry 5
 
 ```yaml

@@ -1,28 +1,56 @@
-# Derived — full tag inventory
+---
+document: Prepurchase Elect Dwgs_10-30-2024.pdf
+role: source
+for-document: sha256:422b2638d13fee272299e72f6fd9112852686baeea4863d3f79f9a79ad5ebb73
+verified-by: single-reader cross-check
+verified-on: 2026-09-21
+confidence: SURE
+---
 
-Full tag inventory by sheet, cut under the bom-extraction unit rule in
-`skills/bom-extraction/skill.md`. The tags marked **[F]** below are extracted in full as
-findings in `findings/bom-extraction/Prepurchase Elect Dwgs_10-30-2024/` — that is the
-authoritative, one-file-per-unit set to count BOM line items against. Every other tag is
-named here so this pack's coverage is checkable, but is not individually detailed — see
-`reports/bom-extraction/Prepurchase Elect Dwgs_10-30-2024/report.md`'s Coverage section.
+# Prepurchase Elect Dwgs_10-30-2024.pdf — AKUs and questions
 
-## New/current equipment — extracted [F]
+Per `skills/_shared/engineeringDrawingReading.md` rule 8 and `skills/bom-extraction/
+skill.md`'s AKU-driven retrieval: this use case has no supporting document
+(`fileIndex.md`'s `supporting_document_path: "n/a"`), so this document is the **source**,
+and its derived summary records the AKU identified at each tag and the two questions
+formulated for it — a classification question (asked of this drawing set's own GE01/GE02
+legend and tagging table) and a specification question (asked of the tag's home sheet and
+every other sheet it appears on) — never a plain content summary.
 
-- GEN-G3, GEN-G4, GEN-G5 — 2000kW generators (E10, E05, E06)
-- NGR-G3, NGR-G4, NGR-G5 — neutral grounding resistors, 400A/6 ohms/10 sec (E10)
-- GSW-2 — Generator Paralleling/Switchgear (E10, E05, E06)
-- MVSWGR-E, MVSWGR-F — medium voltage switchgear (E07, E08, E09, E05, E06)
-- PMGR-1, PMGR-2 — pad-mounted switchgear (E05, E07)
-- TX-M1, TX-M2 — substation-type transformers (E05, E07)
-- NGR-TX-M1, NGR-TX-M2 — neutral grounding resistors for TX-M1/TX-M2 (E07)
-- TX-7, TX-8, TX-9, TX-10 — 2000KVA distribution transformers (E05, E06, E08, E09)
-- LB — on-site generator load bank, 2000KVA/2000KW (E10, E06)
-- Generator Master Control Panel — houses the ATO controls (E05, E07, E15)
-- VFD-9 — 1200HP VFD serving Finished Water Pump P9, MVSWGR-E breaker 5 (E08, E15)
-- VFD-10 — 1200HP VFD serving Finished Water Pump P10, MVSWGR-F breaker 6 (E09, E15)
+The 23 tags below are extracted in full as findings in `findings/bom-extraction/
+Prepurchase Elect Dwgs_10-30-2024/` — that is the authoritative, one-file-per-unit set to
+count BOM line items against. Every other tag named further below is not an AKU this
+pass processed, so it carries no question.
 
-## Future equipment — named, not extracted as current BOM lines
+## AKUs with a formulated question pair (extracted findings)
+
+| Tag | Classification question (asked of GE02's tagging table) | Specification question (asked of the home sheet(s)) |
+|---|---|---|
+| GEN-G3 | Does this drawing set's tagging table assign the `GEN-1` pattern to this tag, and is it drawn solid (current) or dashed (future) on its own one-line? | What rated capacity, voltage, and generator-bus connection does E10 state for GEN-G3, confirmed on E05/E06? |
+| GEN-G4 | Same classification question as GEN-G3, for this tag. | What rated capacity, voltage, and generator-bus connection does E10 state for GEN-G4, confirmed on E05/E06? |
+| GEN-G5 | Same classification question as GEN-G3, for this tag. | What rated capacity, voltage, and generator-bus connection does E10 state for GEN-G5, confirmed on E05/E06? |
+| NGR-G3 | What does this drawing set's own diagrams (not GE02's abbreviations table, which has no NGR row) spell out for the "NGR" label at this tag? | What resistance, current, and time rating does E10 state for NGR-G3? |
+| NGR-G4 | Same classification question as NGR-G3, for this tag. | What resistance, current, and time rating does E10 state for NGR-G4? |
+| NGR-G5 | Same classification question as NGR-G3, for this tag. | What resistance, current, and time rating does E10 state for NGR-G5? |
+| GSW-2 | Does the tagging table's `SWGR-1` pattern apply to this tag? | What voltage, wire count, bus amperage, and SCCR does E10 state for GSW-2, confirmed on E05/E06? |
+| MVSWGR-E | Does the tagging table's `SWGR-1` pattern apply to this tag? | What voltage, wire count, bus amperage, and SCCR does E08 (this tag's own dedicated sheet) state, and does it agree with E07's overview statement? |
+| MVSWGR-F | Does the tagging table's `SWGR-1` pattern apply to this tag? | What voltage, wire count, bus amperage, and SCCR does E09 (this tag's own dedicated sheet) state, and does it agree with E07's overview statement? |
+| PMGR-1 | Does the tagging table's `SWGR-1` pattern apply to this pad-mounted switchgear tag? | What voltage, bus amperage, and SCCR does E05 state for PMGR-1, confirmed on E07? |
+| PMGR-2 | Same classification question as PMGR-1, for this tag. | What voltage, bus amperage, and SCCR does E05 state for PMGR-2, confirmed on E07? |
+| TX-M1 | Does the tagging table's service/low-voltage-transformer pattern apply to this substation-type transformer tag? | What MVA rating, voltage transformation, and temperature rise does E07 state for TX-M1, confirmed on E05? |
+| TX-M2 | Same classification question as TX-M1, for this tag. | What MVA rating, voltage transformation, and temperature rise does E07 state for TX-M2, confirmed on E05? |
+| NGR-TX-M1 | What does this drawing set's own diagrams spell out for the "NGR" label at this tag? | What rating, if any, does E07 state for NGR-TX-M1 independently of TX-M1's own rating? |
+| NGR-TX-M2 | Same classification question as NGR-TX-M1, for this tag. | What rating, if any, does E07 state for NGR-TX-M2 independently of TX-M2's own rating? |
+| TX-7 | Does the tagging table's transformer pattern apply to this tag? | What KVA rating and voltage transformation does E08 state for TX-7, confirmed on E05/E06? |
+| TX-8 | Same classification question as TX-7, for this tag. | What KVA rating and voltage transformation does E09 state for TX-8, confirmed on E05/E06? |
+| TX-9 | Same classification question as TX-7, for this tag. | What KVA rating and voltage transformation does E08 state for TX-9, confirmed on E05/E06? |
+| TX-10 | Same classification question as TX-7, for this tag. | What KVA rating and voltage transformation does E09 state for TX-10, confirmed on E05/E06? |
+| LB | Does any tagging-table pattern apply to this on-site load bank, or is it read directly from its own labelled box? | What KVA/KW rating does E10 state for LB, confirmed on E06? |
+| Generator Master Control Panel | Is this tag itself present in the tagging table, or only described functionally (housing ATO controls)? | What functional requirements does E05/E07/E15 state for this panel, and is any electrical rating stated for it? |
+| VFD-9 | Does the tagging table's `VFD-1` pattern apply, and does the tag number match the pump number it serves on every sheet? | What HP rating and breaker position does E08 state for VFD-9, confirmed on E15? |
+| VFD-10 | Same classification question as VFD-9, for this tag. | What HP rating and breaker position does E09 state for VFD-10, confirmed on E15? |
+
+## Future equipment — named, not extracted as current BOM lines (no question formulated)
 
 - GEN-G6, NGR-G6 — dashed/future 2000kW generator + NGR (E05, E06, E10, E15 — E15
   explicitly labels it "(FUTURE)")
@@ -33,7 +61,7 @@ named here so this pack's coverage is checkable, but is not individually detaile
   match one-for-one; see `detection.md`) — four future 1200HP VFDs
 - Future Clearwell No.3 (E02) — civil, not electrical equipment, named for completeness
 
-## Existing equipment — not new, not part of this pre-purchase BOM
+## Existing equipment — not new, not part of this pre-purchase BOM (no question formulated)
 
 - GEN-G1, GEN-G2 — existing 1250kW generators (E05, E06)
 - Main Switchgear (existing), Generator Parallel Switchgear (existing) (E05)
@@ -43,7 +71,7 @@ named here so this pack's coverage is checkable, but is not individually detaile
   Pump Station (E05)
 - VFD (600HP) x3 — existing, feeding "Finished Water Pump 6/7/8 (RELOCATED)" (E06)
 
-## Named but not individually detailed (locations, panels, sub-items)
+## Named but not individually detailed (no question formulated)
 
 - Generator Control Panel (one per generator bay, G3-G6 — a sub-component of its
   generator, no independent rating stated) (E10)
@@ -66,3 +94,11 @@ named here so this pack's coverage is checkable, but is not individually detaile
 
 Drawing EBFNE01 ("equipment tag table"), referenced twice on page 11 (EBFNE02) as the
 authoritative tag list, is not included in this 11-page excerpt — see `detection.md`.
+
+**Note on this file's relationship to the existing 23 findings:** these questions are
+written from the same source-side tag identities `plan.md` and the findings already
+establish (including the two findings, `mvswgre.md`/`mvswgrf.md`, whose specification
+question already surfaces the open cross-sheet discrepancy those findings record) — they
+do not restate or imply any specification value beyond what those findings already state,
+and none of the 23 findings' own content was changed to produce this file. See
+`skills/bom-extraction/patternLog.md` for the entry recording this reformatting.

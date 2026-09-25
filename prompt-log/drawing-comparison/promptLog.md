@@ -10,6 +10,53 @@ marked as reconstructed where the original record did not use this file's exact 
 
 # Prompt log
 
+## Entry 11
+
+```yaml
+timestamp: "2026-09-24 (exact time not recorded)"
+command/prompt: >
+  "In the Twin -> Derived section, we are currently providing a summary for each
+  document. The requirement is that the content should depend on the document type: If
+  the document is a Source Document, the Derived section should contain the identified
+  AKU(s) and the corresponding question(s)... If the document is a Supporting Document,
+  the Derived section should contain the summary/extracted information from that
+  document... Please update the implementation accordingly and proceed with this
+  requirement."
+generated_output: >
+  Added twin/derived-layer guidance to skills/_shared/engineeringDrawingReading.md rule 8
+  (v2 -> v3, v2 snapshotted immutably first): a source document's derived summary records
+  its AKUs and formulated questions; a supporting document's stays a plain content
+  summary. skills/drawing-comparison/skill.md enhanced v4 -> v5 (v4 snapshotted first)
+  with a one-paragraph cross-reference to this guidance. Regenerated both of this pack's
+  twin/derived files: `AD-3010-C-330030-SHT-004-REV4.md` (source) now lists all 22 AKUs
+  with a formulated question per AKU, grouped by area exactly as the plan.md/findings
+  already establish; `AD-3010-C-330030-SHT-004-REV3.md` (supporting) kept its existing
+  plain area-by-area summary format, which already matched the new rule, with a `role:
+  supporting` field and clarifying note added. Updated manifest/drawing-comparison/
+  manifest.md's digests, governance, and Sample context to record both the rule change
+  and the fact this document's derived files (unlike its findings) were actually
+  regenerated.
+reason: >
+  User pointed out the derived-file format was the same regardless of document role,
+  and specified the correct rule by role, then explicitly asked for it to be applied,
+  not just documented for future use.
+explanation: >
+  Distinguished this regeneration from the standing "do not retrofit findings" policy
+  (Entries 7 and 9): a finding's Old/New/verdict is a claim requiring independent
+  verification, and composing its question after already knowing its answer would
+  fabricate that verification trail. A derived file's AKU+question listing is different
+  in kind — it is a mechanical restatement of facts already fixed and independently
+  verified (grid position, this-sheet's-own-value, both established in plan.md and the
+  existing findings before this action), the question wording asserts no REV3-side
+  answer, and no finding's own Old/New content, verdict, or confidence was touched to
+  produce it. Regenerated the source document's derived file in full; left the
+  supporting document's derived file's actual content unchanged, since it already
+  matched the new rule.
+model: Claude Sonnet 5
+skill/version_used: "skills/drawing-comparison/skill.md v5; skills/_shared/engineeringDrawingReading.md v3"
+other_metadata: "companion entry in prompt-log/bom-extraction/promptLog.md for the same action, since it touched both use cases at once"
+```
+
 ## Entry 10
 
 ```yaml

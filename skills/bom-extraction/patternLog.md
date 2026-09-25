@@ -358,3 +358,51 @@ skill-change: >
   its answer is already known is exactly what shared rule 8 forbids. Whether to re-run
   either document's extraction under v4's methodology is an open decision, not made here.
 ```
+
+## Entry 11
+
+```yaml
+observed-in: not sample-driven — direct user instruction
+timestamp: 2026-09-24
+observation: >
+  The user instructed that the twin/derived summary format should depend on document
+  role: a source document's derived summary should record its AKUs and their formulated
+  questions; a supporting document's should stay a plain extracted-content summary. This
+  use case has no supporting document at all, so both of its documents are always in the
+  "source" role — a clean confirming case for the rule, not a complication of it.
+occurrence-count: not applicable — explicit generalization request
+promotion-bar-check:
+  cross-sample-confirmation: "yes, immediately — drawing-comparison's document pair was
+    reformatted under the same rule in the same action; see that skill's patternLog.md
+    Entry 9 for the full shared-layer record"
+  explicit-user-generalization: "yes — see skills/drawing-comparison/patternLog.md
+    Entry 9's observation, quoting the instruction"
+  structural-necessity: "not applicable — the generalization was explicit"
+decision: promoted
+rationale: >
+  Explicit user generalization is sufficient alone, reinforced by cross-skill
+  confirmation. This skill's own two AKU questions per tag (classification,
+  specification) map cleanly onto the shared rule without needing a skill-specific
+  carve-out: both questions are asked of the one source document, so the derived summary
+  records both questions for every extracted tag.
+skill-change: >
+  skills/_shared/engineeringDrawingReading.md enhanced v2 -> v3 — see
+  skills/drawing-comparison/patternLog.md Entry 9 for the full shared-layer content
+  (twin/derived-layer guidance added to rule 8). This skill enhanced v4 -> v5 (v4
+  snapshotted immutably first): added a one-paragraph cross-reference in the AKU-driven
+  retrieval subsection noting that, with no supporting document, this skill's one
+  document is always in the source role and always takes the AKU+question-pair form.
+
+  Also regenerated both of this use case's existing twin/derived files: `actuals/
+  bom-extraction/260374 COMBINED PID SET 6-1-26/twin/derived/260374 COMBINED PID SET
+  6-1-26.md` and `actuals/bom-extraction/Prepurchase Elect Dwgs_10-30-2024/twin/derived/
+  Prepurchase Elect Dwgs_10-30-2024.md` now each list their extracted tags' classification
+  question and specification question (27 and 23 tag pairs respectively), with tags not
+  individually extracted this pass left as plain named-but-no-question entries as before.
+  Treated as materially different from retrofitting a finding, for the same reasons
+  skills/drawing-comparison/skill.md's Entry 9 gives: the questions are mechanical
+  restatements of each tag's already-fixed identity (from plan.md and the existing
+  findings), state or imply no specification value, and none of the 27+23 findings' own
+  Tag/Description/Specification content, confidence, or coverage scoping were changed to
+  produce this.
+```

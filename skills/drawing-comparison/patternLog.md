@@ -319,3 +319,49 @@ skill-change: >
   as already noted in Entry 7 — this entry only relocates v3's own methodology
   statement, it does not add a new one.
 ```
+
+## Entry 9
+
+```yaml
+observed-in: not sample-driven — direct user instruction
+timestamp: 2026-09-24
+observation: >
+  The user instructed that the twin/derived summary should not be the same format for
+  every document — a source document's derived summary should record its AKUs and their
+  formulated questions, while a supporting document's derived summary should stay a plain
+  extracted-content summary, and asked for this to be implemented and applied, not just
+  documented as a rule for future runs.
+occurrence-count: not applicable — explicit generalization request
+promotion-bar-check:
+  cross-sample-confirmation: "yes, immediately — bom-extraction's two documents were
+    reformatted under the same rule in the same action; see
+    skills/bom-extraction/patternLog.md's corresponding entry"
+  explicit-user-generalization: "yes — the user stated the rule directly and by document
+    role (source vs. supporting), covering both this skill and any future one"
+  structural-necessity: "not applicable — the generalization was explicit"
+decision: promoted
+rationale: >
+  Explicit user generalization is sufficient alone, reinforced by cross-skill
+  confirmation. Recorded in the shared layer (rule 8's own twin/derived-layer guidance)
+  rather than as a skill-specific addition, since the rule is phrased by document role,
+  not by skill — the same logic applies identically to bom-extraction's source-only case.
+skill-change: >
+  skills/_shared/engineeringDrawingReading.md enhanced v2 -> v3 (v2 snapshotted
+  immutably first): added twin/derived-layer guidance to rule 8 (source = AKUs +
+  questions; supporting = plain summary). skills/drawing-comparison/skill.md enhanced
+  v4 -> v5 (v4 snapshotted first): added a one-paragraph cross-reference to this guidance
+  in the AKU-driven retrieval subsection; no other content changed.
+
+  Also regenerated the two existing twin/derived files for this pack's only document
+  pair: `actuals/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/twin/derived/
+  AD-3010-C-330030-SHT-004-REV4.md` (source) now lists all 22 AKUs with a formulated
+  question per AKU; `.../AD-3010-C-330030-SHT-004-REV3.md` (supporting) kept its existing
+  plain area-by-area summary format (it already matched the new rule) with a short
+  explanatory note and `role: supporting` added. This is treated as materially different
+  from retrofitting a finding: the questions were derived mechanically from facts
+  `plan.md` and the 22 findings already establish (grid position + this-sheet's-own-value
+  are part of a unit's already-fixed identity, not something the question wording could
+  bias), no question states or implies a REV3-side answer, and none of the 22 findings'
+  own Old/New content, verdicts, or confidence were changed to produce this. See
+  `prompt-log/drawing-comparison/promptLog.md` for the full record of this distinction.
+```

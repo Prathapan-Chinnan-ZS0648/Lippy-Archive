@@ -21,7 +21,7 @@ not in `fileIndex.md`, which holds only the four configured inputs per `bootstra
 ```yaml
 source-document: AD-3010-C-330030-SHT-004-REV4.pdf
 use-case: drawing-comparison
-skill-version: v4                  # currently live in skills/drawing-comparison/skill.md's own front matter; findings below were produced under v1 — v2 relocated duplicated rules into skills/_shared/engineeringDrawingReading.md, v3 changed the retrieval methodology to question-driven (AKU -> formulate -> ask -> derive), v4 generalized that methodology into the shared layer itself (v1 -> v2) per explicit user instruction; findings below are NOT re-judged under v3/v4's new methodology — see "Open items" below and skills/drawing-comparison/patternLog.md Entries 6-8
+skill-version: v5                  # currently live in skills/drawing-comparison/skill.md's own front matter; findings below were produced under v1 — v2 relocated duplicated rules into the shared layer, v3 changed the retrieval methodology to question-driven, v4 generalized that methodology into the shared layer itself, v5 added twin/derived-layer guidance (source docs get AKUs+questions, supporting docs get a plain summary); findings below are NOT re-judged under v3-v5's new methodology, but this document's twin/derived files WERE regenerated under v5's guidance (no finding content changed) — see "Open items" below and skills/drawing-comparison/patternLog.md Entries 6-9
 classification: internal working draft; no external distribution without a named recipient in pivot.md
 state: verified                    # agent self-verification only — see Checklist below; not yet "signed" or "accepted", no HITL record exists
 signed-by: —                       # no MANUAL VALIDATE has been run for this use case
@@ -38,7 +38,7 @@ now superseded) to Rev 4 (issued for construction 27.07.2026). Unlike `version-c
 samples, this pair shares no clause/heading structure to walk — the "document" is a
 figure, and its units are member/connection callouts identified by grid position.
 Judging rules and workflow are defined in `skills/drawing-comparison/skill.md`
-(findings produced under v1; not re-judged under v2 or v3 — see Governance above and
+(findings produced under v1; not re-judged under v2-v5 — see Governance above and
 "Open items" below), `skills/_shared/engineeringDrawingReading.md`, and `bootstrap.md`.
 v3 (2026-09-22) changed this skill's retrieval methodology from direct comparison to
 question-driven retrieval (identify the AKU on the source drawing, formulate a question,
@@ -46,6 +46,20 @@ ask it against the supporting drawing, derive the verdict from the answer) per e
 user instruction — see `skills/drawing-comparison/patternLog.md` Entry 7. This pack's
 existing findings were built under the pre-v3 direct-comparison methodology and do not
 carry the Question/Answer fields v3 now requires of a finding; they are not retrofitted.
+
+v5 (2026-09-24) added a further requirement, per explicit user instruction: a document's
+`twin/derived/<document>.md` summary must reflect its role — the source document's
+summary records its AKUs and their formulated questions; the supporting document's stays
+a plain content summary. Unlike the findings above, **this pack's two `twin/derived/`
+files WERE regenerated** under this guidance:
+`twin/derived/AD-3010-C-330030-SHT-004-REV4.md` (source) now lists all 22 AKUs with a
+question per AKU, and `twin/derived/AD-3010-C-330030-SHT-004-REV3.md` (supporting) kept
+its existing plain-summary format with a clarifying note added. This regeneration is
+treated as distinct in kind from a finding retrofit — the questions are mechanical
+restatements of each unit's already-fixed identity (established in `plan.md` and the 22
+findings), assert no REV3-side answer, and changed no finding's own Old/New content,
+verdict, or confidence. See `skills/drawing-comparison/patternLog.md` Entry 9 for the
+full reasoning.
 
 Both source files originally arrived corrupted — raw HTTP `multipart/form-data` bodies (a
 DocuSign export artifact), not valid PDFs — and were repaired (byte span from the first
@@ -97,14 +111,16 @@ changes, every actual/finding built from it must be regenerated and this ledger 
 |---|---|---|---|
 | `documents/drawing-comparison/source/AD-3010-C-330030-SHT-004-REV4.pdf` | source | `e2c1629b3536b5f2c773200403c11edb73f1f0678931f2f3db1becad130034d1` | 2026-09-15 (repaired PDF — see Sample context above) |
 | `documents/drawing-comparison/supporting/AD-3010-C-330030-SHT-004-REV3.pdf` | supporting | `d8afdded2146507660d5f0e2de55790f13c910472e63f2a1adb47a628a65cbe6` | 2026-09-15 (repaired PDF — see Sample context above) |
-| `skills/drawing-comparison/skill.md` | skill — live copy, current version (v4) | `f1a46940e3bd9fa869b5a1550107ea1b3f745e7a6f193cc96c5958586454b4fb` | 2026-09-23 (v1 -> v2: builds on the shared layer. v2 -> v3: question-driven retrieval added, skill-specific. v3 -> v4: that methodology generalized into the shared layer itself (rule 8), per explicit user instruction — see `skills/drawing-comparison/patternLog.md` Entries 6-8. This pack's 22 findings predate all three changes and are not re-judged.) |
+| `skills/drawing-comparison/skill.md` | skill — live copy, current version (v5) | `52aea7f5a3f6dd621d6a78694f07ceacd58660f2538b045ea09698de3eafebf3` | 2026-09-24 (v1->v2: builds on the shared layer. v2->v3: question-driven retrieval added, skill-specific. v3->v4: that methodology generalized into the shared layer (rule 8). v4->v5: added a cross-reference to rule 8's new twin/derived-layer guidance (source = AKUs+questions, supporting = plain summary) — see `skills/drawing-comparison/patternLog.md` Entries 6-9. This pack's 22 findings predate all changes and are not re-judged; its twin/derived files WERE regenerated under the new guidance — see Sample context above.) |
 | `skills/drawing-comparison/skill-versions/v1.md` | skill — immutable snapshot of v1 (used to build this document's existing findings; superseded) | `5af3db37bf9133bbc05f4e986153df228398cfc10cfa0ad558e99fbb7483c6d1` | 2026-09-21 |
 | `skills/drawing-comparison/skill-versions/v2.md` | skill — immutable snapshot of v2 (superseded) | `b6a22b298d6bb58ec9208761dc279da9ca77d2d09baeb0c012ae1bbed9270185` | 2026-09-22 |
 | `skills/drawing-comparison/skill-versions/v3.md` | skill — immutable snapshot of v3 (superseded) | `46f0c007ff193f5a669722352aa58321eaa506fa24e599fe7ded1cb2385767c5` | 2026-09-22 |
-| `skills/drawing-comparison/skill-versions/v4.md` | skill — immutable snapshot of v4 | `f1a46940e3bd9fa869b5a1550107ea1b3f745e7a6f193cc96c5958586454b4fb` | 2026-09-23 |
-| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v2) | `9533c40f8aa91d53532fe2d7bb8cbb56f7af5132e9e216d88be86c58d0f1f98b` | 2026-09-23 (v1 enhanced to v2: added rule 8, question-driven retrieval, generalized from drawing-comparison's own v3 — see `skills/drawing-comparison/patternLog.md` Entry 8) |
+| `skills/drawing-comparison/skill-versions/v4.md` | skill — immutable snapshot of v4 (superseded) | `f1a46940e3bd9fa869b5a1550107ea1b3f745e7a6f193cc96c5958586454b4fb` | 2026-09-23 |
+| `skills/drawing-comparison/skill-versions/v5.md` | skill — immutable snapshot of v5 | `52aea7f5a3f6dd621d6a78694f07ceacd58660f2538b045ea09698de3eafebf3` | 2026-09-24 |
+| `skills/_shared/engineeringDrawingReading.md` | shared base layer — live copy, current version (v3) | `45702dc2a4ed5f722d8bdd23b5527dcfb1b33e393ba4864b0b3b7c1acf9bdcc4` | 2026-09-24 (v2 enhanced to v3: added twin/derived-layer guidance to rule 8 — source documents get AKUs+questions, supporting documents get a plain summary — see `skills/drawing-comparison/patternLog.md` Entry 9) |
 | `skills/_shared/shared-versions/engineeringDrawingReading-v1.md` | shared base layer — immutable snapshot of v1 (superseded) | `40faa5243063da89b0cc1ef5fbd73a2b2265db24444df28cae3081765272105d` | 2026-09-22 |
-| `skills/_shared/shared-versions/engineeringDrawingReading-v2.md` | shared base layer — immutable snapshot of v2 | `9533c40f8aa91d53532fe2d7bb8cbb56f7af5132e9e216d88be86c58d0f1f98b` | 2026-09-23 |
+| `skills/_shared/shared-versions/engineeringDrawingReading-v2.md` | shared base layer — immutable snapshot of v2 (superseded) | `9533c40f8aa91d53532fe2d7bb8cbb56f7af5132e9e216d88be86c58d0f1f98b` | 2026-09-23 |
+| `skills/_shared/shared-versions/engineeringDrawingReading-v3.md` | shared base layer — immutable snapshot of v3 | `45702dc2a4ed5f722d8bdd23b5527dcfb1b33e393ba4864b0b3b7c1acf9bdcc4` | 2026-09-24 |
 
 All twin pages under `actuals/drawing-comparison/AD-3010-C-330030-SHT-004-REV4/twin/` were
 built from the two document digests above. All 22 findings files under
