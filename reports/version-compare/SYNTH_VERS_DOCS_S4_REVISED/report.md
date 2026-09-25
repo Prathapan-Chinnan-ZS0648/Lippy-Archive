@@ -2,7 +2,7 @@
 source-document: SYNTH_VERS_DOCS_S4_REVISED.xlsx
 use-case: version-compare
 skill-version: v5 (current — see skills/version-compare/patternLog.md Entry 11; findings below judged under v2, re-judged 2026-09-20 for the Requirements Matrix unit's vendor-response/vendor-notes columns only under v5's column-granularity rule, remaining units content-compatible and not re-run)
-based-on: findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/ (6 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/plan.md)
+based-on: actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/ (6 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/plan.md)
 source: documents/source/SYNTH_VERS_DOCS_S4_REVISED.xlsx
 supporting: documents/supporting/SYNTH_VERS_DOCS_S4_ORIGINAL.xlsx
 state: draft — pending HITL review, not yet signed off in manifest.md
@@ -17,7 +17,7 @@ Meridian Public School District's original RFP (RFP-MPSD-2026-0053, issued Febru
 following the opening of a new elementary school and a district-wide cybersecurity
 assessment completed March 2026. Unlike the two prior samples processed under this use
 case, both documents here are multi-sheet Excel workbooks (`.xlsx`), not PDFs — the full
-clause-by-clause account is in `findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/` (one file
+clause-by-clause account is in `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/` (one file
 per sheet, per `plan.md`); this report summarizes it.
 
 ## Verdict counts
@@ -59,7 +59,7 @@ per sheet, per `plan.md`); this report summarizes it.
   carries a vendor response code and a note (e.g. R-01: "F" / "Proposing Aruba/HPE
   Networking 630 Series Wi-Fi 6E access points district-wide."), judged as 32 individual
   ADDED cells (16 rows × 2 columns) rather than one aggregate note, per the skill's
-  column-granularity rule — see `findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/02-RequirementsMatrix.md`
+  column-granularity rule — see `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/02-RequirementsMatrix.md`
   for the full per-cell breakdown.
 - **Pricing filled in from a blank template:** the original's Pricing Form had every
   price cell set to a `0` placeholder (it is the unfilled original RFP); the revised
@@ -90,7 +90,7 @@ fields on the Cover sheet, the workbook's list of original section names (Cover,
 Requirements Matrix, Pricing Form, Reference Form, Project Timeline — though their
 position in that list shifted), and several Requirements Matrix rows whose text was not
 touched (switch replacement, uplink speed, firewall deployment, E-Rate assistance and
-eligibility, installation scheduling). See `findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/`
+eligibility, installation scheduling). See `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/`
 for the complete list with quotes, per unit.
 
 ## Provenance
@@ -109,7 +109,7 @@ actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/detection.md, plan.md
       ↓
 actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/twin/{SYNTH_VERS_DOCS_S4_REVISED,SYNTH_VERS_DOCS_S4_ORIGINAL}/sheet-*.md
       ↓
-findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/*.md (6 unit files)
+actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/*.md (6 unit files)
       ↓
 this report
 ```

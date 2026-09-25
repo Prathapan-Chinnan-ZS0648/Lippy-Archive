@@ -35,7 +35,7 @@ shape:
 
 Per `skills/bid-evaluation/skill.md`'s absence-policy, every one of the 10 bidders is
 **NOT ADDRESSED** and **not ranked** — see each bidder's own findings file
-(`findings/bid-evaluation/<document-name>/score.md`, `eligibility.md`, `price.md`, `deviations.md`, `basis.md` — plus informational fields such as `companyProfile.md`, `financialStanding.md`, per skill.md v5) for the individually-verified basis.
+(`actuals/bid-evaluation/<document-name>/findings/score.md`, `eligibility.md`, `price.md`, `deviations.md`, `basis.md` — plus informational fields such as `companyProfile.md`, `financialStanding.md`, per skill.md v5) for the individually-verified basis.
 A ranking table would be meaningless here regardless of the absence outcome, since there
 is no shared tender or committee for a ranking to compare bidders *within*.
 
@@ -59,5 +59,5 @@ bidder's own submission, per its findings file) — it is not a ranking, and no 
 figure here has been evaluated, verified, or compared against any other's by a committee.
 
 Full evidence for every row above is in each bidder's own findings file:
-`findings/bid-evaluation/<document-name>/score.md`/`eligibility.md`/`price.md`/`deviations.md`/`basis.md` (see the Index in
+`actuals/bid-evaluation/<document-name>/findings/score.md`/`eligibility.md`/`price.md`/`deviations.md`/`basis.md` (see the Index in
 `manifest/bid-evaluation/manifest.md` for each document's exact name).

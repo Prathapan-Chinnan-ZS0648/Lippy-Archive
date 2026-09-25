@@ -2,7 +2,7 @@
 sample: SYNTH_VERS_DOCS_S1
 use-case: version-compare
 skill-version: v5 (current — see skills/version-compare/patternLog.md Entries 3, 12; findings below were judged under v1, re-judged 2026-09-20 for the "12. Commercial Terms" unit only under v5's explicit-non-applicability-clause rule, remaining units content-compatible and not re-run)
-based-on: findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/ (19 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/plan.md)
+based-on: actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/ (19 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/plan.md)
 source: documents/source/SYNTH_VERS_DOCS_S1_REVISED.pdf
 supporting: documents/supporting/SYNTH_VERS_DOCS_S1_ORIGINAL.pdf
 state: draft — pending HITL review, not yet signed off in manifest.md
@@ -15,7 +15,7 @@ state: draft — pending HITL review, not yet signed off in manifest.md
 Brightline Retail Group's original RFP (RFP-BRG-2026-0231, issued March 9, 2026) versus
 its revised reissue (RFP-BRG-2026-0231-R1, issued June 2, 2026), following BRG's
 acquisition of Meridian Grocers' logistics network. The full clause-by-clause account is
-in `findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/` (one file per unit, per `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/plan.md`); this report summarizes
+in `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/` (one file per unit, per `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/plan.md`); this report summarizes
 it.
 
 ## Verdict counts
@@ -58,12 +58,12 @@ it.
     though RFID/barcode support itself remains a stated technical requirement in section
     5.1 (UNCHANGED) — this is a checklist omission, not a withdrawn requirement, and
     should be confirmed with the issuing officer before relying on the checklist as
-    exhaustive. See `findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/19-AppendixCComplianceCertificationChecklist.md`
-    and `findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/06-5TechnicalRequirements.md`.
+    exhaustive. See `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/19-AppendixCComplianceCertificationChecklist.md`
+    and `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/06-5TechnicalRequirements.md`.
   - The original's Deliverables table does not include a distinct "WMS Full Rollout —
     Remaining Distribution Centers" row (that milestone appears only in the Project
     Timeline in the original); the revised Deliverables table adds it as an explicit row
-    (ADDED). See `findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/09-8Deliverables.md`.
+    (ADDED). See `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/09-8Deliverables.md`.
 
 ## What did not change
 
@@ -72,7 +72,7 @@ than the new lot/expiration tracking line, the SAP and Zebra integration require
 Cost and Support & Maintenance evaluation weights, encryption requirements, all four
 original Terms & Conditions clauses (Governing Law, Confidentiality, Reservation of
 Rights, Intellectual Property), and most base definitions (WMS, ERP, Telematics, RFID, DC,
-SLA). See `findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/` for the complete list with quotes, per unit.
+SLA). See `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/` for the complete list with quotes, per unit.
 
 ## Provenance
 
@@ -89,7 +89,7 @@ actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/detection.md, actuals/version
       ↓
 actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/twin/{SYNTH_VERS_DOCS_S1_REVISED,SYNTH_VERS_DOCS_S1_ORIGINAL}/page-###.md
       ↓
-findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/*.md (19 unit files)
+actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/*.md (19 unit files)
       ↓
 this report
 ```

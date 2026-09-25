@@ -1,9 +1,12 @@
-# Detection — RESPONSE_DOC_S2 (bidder: GreenVolt Power Systems Ltd.)
+---
+skill: bid-evaluation
+confidence: HIGH
+why: the source document is a bidder's own tender submission (or the tender's evaluation-committee register naming this bidder), paired with a supporting document that carries the tender's own criteria or the committee's determination; the brief asks for a per-bidder verdict on score, eligibility, price, and deviations, each cited to that bidder's own record.
+verified-by: Prathapan C approved this skill's assignment via `fileIndex.md` (§2, already resolved before NORMALIZE); confirmed by manual review, recorded in `HITL/bid-evaluation/RESPONSE_DOC_S2/manualValidate.md`
+verified-on: 2026-09-21
+confidence-of-actual: CONFIRMED
+---
 
-Quirks noticed while building the twin and reading this record, ahead of judgment.
+# Detection
 
-| Quirk | Where observed | Handling |
-|---|---|---|
-| No explicit bid-opening register was supplied | fileIndex.md's bid-evaluation entry lists six source paths, all named RESPONSE_DOC_*, against one shared BASE_DOC supporting path — no separate register file | Per skill Module "UNDERSTAND" (`from=supporting, documents=RESPONSE`), the register is built programmatically: one row per RESPONSE-named document, this document is that row's record. |
-| A numeric technical score IS recorded for this bidder (58 / 100) | Section 3, Technical Evaluation Summary | Unlike the ELECTRICAL/WATER_SCANNED samples previously processed under this use case (which carried no numeric score), this tender's committee records one directly — read as-is per skill's "score is read, never computed" rule; opens the answer as a bare number. |
-| A numeric score (58 / 100) is recorded on a bid the committee ultimately disqualified | Section 3 explicitly states the score was "computed for record purposes only" | Per skill's explicit rule: "A score the committee marked 'for record purposes only' on a bid it disqualified still opens the answer, disqualification following." Applied as written — the score opens the answer, the disqualification follows, and the bidder is not ranked (absence-policy: a rejected bid is not ranked). |
+bid-evaluation. Alternatives considered and rejected: version-compare (there is one version of each bid document, not two revisions of the same document to diff); a fixed-control compliance-assessment (bidders are judged against this tender's own committee criteria, not a reusable external control register).

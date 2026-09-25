@@ -16,6 +16,320 @@ order* changed to descending.
 
 # Prompt log — version-compare
 
+## Entry 68
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "Both use cases, start with bid-evaluation" (rollout of Entry 67's paper-wise extraction amendment, this use case's half)
+generated_output: >
+  Renamed all 46 existing per-page twin files across SYNTH_VERS_DOCS_S1_REVISED's and
+  SYNTH_VERS_DOCS_S2_REVISED's own twin/ (both the REVISED and ORIGINAL sub-trees: 12+11
+  for S1, 13+10 for S2) from PageNNN.md (capitalized, unhyphenated — a standing rule-19
+  violation) to page-NNN.md, per bootstrap.md §12's now-explicit casing rule. This use
+  case needed no structural change — S1/S2 already extracted one file per page, unlike
+  bid-evaluation's combined-record.md documents; only the filename casing was
+  non-compliant. S3 (docx), S4 (xlsx), and S5 (pptx) are unaffected — none of them have a
+  page concept, and their existing unit-named twin files (section/sheet/slide) already
+  match §12's per-format convention paper-wise extraction does not override.
+reason: >
+  User confirmed rollout of the paper-wise extraction requirement to both use cases.
+explanation: >
+  Covered by the same backup taken in prompt-log/bid-evaluation/promptLog.md Entry 92
+  (before either use case's files were touched). Grepped the whole project for any
+  literal reference to the old PageNNN.md filenames (case-sensitive, to avoid false
+  positives from the new page-NNN.md names) across findings, graph.md, plan.md,
+  manifest.md, and reports before and after the rename, and found zero — this use case's
+  findings and other artifacts had always cited pages by number in prose, never by a
+  literal twin filename, so the rename needed no downstream reference fixes at all.
+model: Claude Sonnet 5
+skill/version_used: "version-compare skill.md v6 (twin filenames only, no finding content changed)"
+other_metadata: >
+  Files changed: none besides the renames. Renamed: 46 twin files (PageNNN.md ->
+  page-NNN.md) across 4 directories (S1_REVISED/S1_ORIGINAL, S2_REVISED/S2_ORIGINAL twin
+  sub-trees).
+```
+
+## Entry 67
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  Same paper-wise extraction requirement as bid-evaluation — see
+  prompt-log/bid-evaluation/promptLog.md Entry 91 for the full bootstrap.md diff, since
+  the change is use-case-agnostic and applies identically to both use cases.
+generated_output: >
+  No files changed for version-compare in this task — this was a bootstrap.md-only
+  documentation amendment. Noted for the record: SYNTH_VERS_DOCS_S1_REVISED and
+  SYNTH_VERS_DOCS_S2_REVISED's existing per-page twin files (Page001.md, Page002.md, ...)
+  already follow the one-file-per-page principle this amendment requires, but their
+  filenames (capitalized "Page", no hyphen) do not match the now-explicit page-###.md
+  casing rule (rule 19) — flagged as a pending rename, not yet performed.
+reason: >
+  Recorded for traceability alongside the bid-evaluation entry, since this use case has
+  2 of its 5 documents already partway compliant and worth flagging.
+explanation: >
+  Verified S1/S2's actual twin directory listing before writing this note, rather than
+  assuming from memory, to state the compliance gap precisely (naming only, not
+  structure — S3/S4/S5 are docx/xlsx/pptx with no page concept and are unaffected by this
+  amendment).
+model: Claude Sonnet 5
+skill/version_used: "not applicable — bootstrap.md documentation amendment, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v44 -> v45, shared with bid-evaluation) only.
+```
+
+## Entry 66
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  Same priority.md rollout / sectionMap.md move request as bid-evaluation — see
+  prompt-log/bid-evaluation/promptLog.md Entry 88 for the full bootstrap.md diff, since
+  the change was use-case-agnostic and applied identically to both use cases.
+generated_output: >
+  Generated twin/priority.md for all 5 version-compare documents, using unit (not raw
+  page) as the location grain — this use case's own plan.md/graph.md already treat one
+  unit (section/sheet/slide) as the reviewable location, and 3 of the 5 documents' twin
+  extraction is itself organized as one file per unit (S3 docx, S4 xlsx, S5 pptx have no
+  separate page numbering at all), so citing raw PDF page numbers for S1/S2 while citing
+  unit names for S3-S5 would have been inconsistent within the same use case. Citation
+  counts reused the per-clause file counts already verified in each document's own
+  graph.md Nodes table (Entry 64's work). Table-layout flags were verified directly per
+  document, not assumed from unit names: S4's sheets confirmed via their own cell-grid
+  notation (`A1: 'ID' [fill=...]`); S3 and S5's flagged units confirmed via literal
+  markdown-pipe/TABLEROW markers in their twin extraction; S1's Appendix units confirmed
+  by reading the actual space-aligned tabular layout in its twin pages; S2 inferred from
+  S1's identical template/appendix numbering after confirming the section list matches.
+  Moved SYNTH_VERS_DOCS_S2_REVISED and S4_REVISED's sectionMap.md-adjacent graph.md
+  wording ("full-text search / sectionMap.md") to the correct "twin/sectionMap.md" path
+  for consistency with S5's own already-correct phrasing (S1 and S3's sectionMap.md files
+  were moved from actuals/<doc>/ top level to twin/, matching bootstrap.md's diagram).
+reason: >
+  User asked for priority.md project-wide and sectionMap.md's real location corrected;
+  applied identically to version-compare's 5 documents.
+explanation: >
+  Covered by the same backup and verification-script pass described in
+  prompt-log/bid-evaluation/promptLog.md Entry 88 (taken once for the whole project).
+  Did not fabricate a table-layout flag for any unit without direct evidence — checked
+  each document's own twin extraction content (grep for pipe/TABLEROW markers, or direct
+  read for space-aligned tables) before flagging, and explicitly noted where S2's flags
+  were inferred by template-match rather than independently re-verified, since S1 and S2
+  share an identical RFP template structure already confirmed section-by-section.
+model: Claude Sonnet 5
+skill/version_used: "version-compare skill.md v6 (findings/graph.md content read, not modified)"
+other_metadata: >
+  Files changed: bootstrap.md (v43 -> v44, shared with bid-evaluation); 2 graph.md files
+  (sectionMap.md path wording). New files: 5
+  actuals/version-compare/<doc>/twin/priority.md. Moved: 3
+  actuals/version-compare/<doc>/sectionMap.md -> twin/sectionMap.md (2 were already
+  correctly placed).
+```
+
+## Entry 65
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "check the manifest.md files for both use cases too" (verification request)
+generated_output: >
+  Audit of manifest/version-compare/manifest.md found: (1) 5 "`detection.md` and
+  `plan.md` complete" checklist rows still described detection.md's old purpose ("quirks
+  logged") and plan.md's old per-unit ledger — rewrote all 5 to describe the current
+  skill-selection-rationale/Module-2-workflow content. (2) 15 non-historical references
+  (10 checklist rows, 5 ACCEPTED-DELIVERABLE verdict paragraphs) still pointed at
+  actuals/version-compare/<doc>/reports/report.md — the orphaned duplicate path deleted
+  during the earlier graph.md fix pass — rewrote all 15 to the canonical
+  reports/version-compare/<doc>/report.md path. (3) One "Known pending correction" note
+  for SYNTH_VERS_DOCS_S1_REVISED cited a specific finding file
+  (13-12CommercialTerms.md) that no longer exists as a single file after the unit-wise
+  restructuring split it into 12 per-clause files — identified the correct successor file
+  (13-12CommercialTerms-11-LiquidatedDamages.md) by cross-referencing the surrounding
+  prose (which names "a real liquidated-damages clause"), verified it on disk, and added
+  a note that this clause's finding now reads `verdict: CHANGED`, suggesting the flagged
+  re-judgment was already applied — left the original audit-trail note in place rather
+  than deleting it, since removing a promotion-bar record is a retention decision, not a
+  correction.
+reason: >
+  User asked to check manifest.md for both use cases; the audit found these three
+  patterns, one of them (the orphaned reports/ path) directly caused by an earlier fix
+  this session performed on graph.md without checking manifest.md for the same stale path.
+explanation: >
+  Applied the same false-positive discipline described in
+  prompt-log/bid-evaluation/promptLog.md Entry 85 (ellipsis placeholders, deliberate
+  negation sentences, intentional relative shorthand) before treating anything as broken.
+  For the ambiguous "which per-clause file" question, did not guess — read the two
+  sentences immediately preceding the citation, which explicitly named the liquidated-
+  damages clause, then confirmed that exact file exists and checked its current verdict
+  before writing the correction, rather than picking any plausible-looking filename from
+  the 12 candidates.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — documentation consistency fixes, no skill judgment involved"
+other_metadata: >
+  Files changed: manifest/version-compare/manifest.md only (5 detection/plan rows, 15
+  reports/ path references, 1 pending-correction note). No bootstrap.md, findings,
+  actuals, or report changes.
+```
+
+## Entry 64
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  Same plan.md/graph.md restructuring request as bid-evaluation — see
+  prompt-log/bid-evaluation/promptLog.md Entry 84 for the full bootstrap.md diff, since
+  the change was use-case-agnostic and applied identically to both use cases.
+generated_output: >
+  Rewrote all 5 version-compare actuals/version-compare/<doc>/plan.md files: front matter
+  (skill, version 6, steps = 6 = version-compare skill.md's own Module 2 stage count,
+  verified-by/verified-on from each document's real HITL record), body table with one
+  row per Module 2 stage (UNDERSTAND/MAP/RETRIEVE/JUDGE/VALIDATE/REPORT), Example column
+  populated from each document's own real unit/clause counts and edge cases (S2's
+  [Reserved] section-number-only mapping, S4's uncountered Cybersecurity Addendum sheet,
+  S5's uncountered EV Charging slide) and real verdict-count totals pulled from each
+  document's own report.md. Rewrote all 5 graph.md files to the new schema: Nodes table
+  at unit granularity (not per-clause, given 73-566 clause files per document would make
+  the table unusable) showing each unit's real per-clause file count, Relationships/
+  Dependencies/Evidence-flow tables reflecting each document's own actual edge cases.
+reason: >
+  User asked for the same structure applied project-wide; version-compare's unit-wise
+  restructuring (566 total per-clause files) made per-clause node listing impractical, so
+  nodes were rolled up to unit level with an accurate per-clause file count noted instead.
+explanation: >
+  Covered by the same backup and verification pass described in
+  prompt-log/bid-evaluation/promptLog.md Entry 84 (taken once for the whole project).
+  Recovered each document's canonical unit list (title + original per-unit ordering) from
+  the pre-restructure backup's plan.md content, since the live findings/ directory only
+  has per-clause filenames post-split, not the original unit titles — cross-referenced
+  each unit's numeric prefix against real on-disk files to get an accurate per-clause
+  count per unit rather than guessing. Verified every glob-pattern node's stated file
+  count against the real `ls` count for all 5 documents before considering this complete.
+model: Claude Sonnet 5
+skill/version_used: "version-compare skill.md v6 (Module 2 stages quoted verbatim into plan.md; no skill judgment/finding content changed)"
+other_metadata: >
+  Files changed: bootstrap.md (v41 -> v42, shared with bid-evaluation); all 5
+  actuals/version-compare/<doc>/plan.md (full rewrite); all 5
+  actuals/version-compare/<doc>/graph.md (full rewrite to tables schema, unit-level
+  granularity).
+```
+
+## Entry 63
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "check the graph.md files for both use cases too" (verification request, followed by confirmed "fix everything now")
+generated_output: >
+  Audit of all 5 version-compare graph.md files found pre-existing staleness that
+  predates this session's other work: these files were never updated after the earlier
+  unit-wise restructuring split section-level finding files into per-clause files (73
+  section files -> 566 per-clause files, project-wide). Specifically: (1) all 5 files'
+  ASCII diagrams pointed at actuals/version-compare/<doc>/reports/report.md, an old
+  location that predates the current canonical reports/version-compare/<doc>/report.md
+  top-level path — fixed all 5, and deleted the 5 orphaned actuals/.../reports/
+  directories after confirming each was byte-identical to the real report first. (2)
+  SYNTH_VERS_DOCS_S2/S4/S5's graph.md named specific section-level files that no longer
+  exist as single files (e.g. findings/07-EvChargingAndInterconnectionRequirements.md is
+  now 5 separate 07-EvChargingAndInterconnectionRequirements-NN-*.md files) — rewrote each
+  citation to reference the real per-clause file set (verified actual filenames via `ls`
+  before citing, including correcting one citation I initially wrote from memory rather
+  than by checking disk, which named a non-existent filename for S4's R-07/R-17 pair).
+  (3) SYNTH_VERS_DOCS_S3/S4's graph.md had truncated intro sentences (mid-sentence
+  line breaks left over from an earlier edit, e.g. "# Graph\n\ntraces back to." missing
+  its own lead-in) — restored the missing text.
+reason: >
+  User asked to check graph.md files for both use cases, then confirmed "fix everything
+  now" once the audit surfaced these issues.
+explanation: >
+  Covered by the same backup and verification-script pass described in
+  prompt-log/bid-evaluation/promptLog.md Entry 83 (taken once for the whole project).
+  Before deleting any actuals/version-compare/<doc>/reports/report.md, ran `diff` against
+  the canonical reports/version-compare/<doc>/report.md and only deleted where they were
+  byte-identical — all 5 were. Caught and corrected my own fabricated filename mid-task by
+  running `ls` against the real findings/ directory rather than trusting a name I'd
+  guessed from context; this project's own discipline (verify claims against real files,
+  never invent a citation) applies to my own edits, not only to the findings I check.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — documentation consistency fixes, no skill judgment involved"
+other_metadata: >
+  Files changed: all 5 actuals/version-compare/<doc>/graph.md files (reports/ path fixed
+  in all 5; stale per-clause citations fixed in S2/S4/S5; truncated intros fixed in
+  S3/S4). Deleted: 5 orphaned actuals/version-compare/<doc>/reports/ directories.
+```
+
+## Entry 62
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  Pasted a detection.md template and asked to update detection.md across all documents
+  to this structure, and bootstrap.md accordingly. This is a shared, cross-use-case
+  bootstrap.md amendment — see prompt-log/bid-evaluation/promptLog.md Entry 82 for the
+  full bootstrap.md diff, since the change was use-case-agnostic and applied identically
+  to both use cases in one pass.
+generated_output: >
+  Rewrote all 5 actuals/version-compare/<doc>/detection.md files to the new
+  skill-selection-rationale schema (front matter: skill/confidence/why/verified-by/
+  verified-on/confidence-of-actual; body: chosen skill + alternatives considered and
+  rejected). why cites this use case's actual shape (two versions of the same document
+  being diffed); verified-by/verified-on pulled from each document's own real
+  HITL/version-compare/<doc>/manualValidate.md record. Body names bid-evaluation and a
+  fixed-control compliance-assessment as the alternatives considered and why each was
+  rejected for a version-diff pairing.
+reason: >
+  User provided this exact template and asked for it project-wide, confirming full
+  replacement of the prior quirks-table content.
+explanation: >
+  Covered by the same backup and verification pass described in
+  prompt-log/bid-evaluation/promptLog.md Entry 82 (taken once for the whole project,
+  before either use case's files were touched). Parsed each of the 5 documents' own
+  manualValidate.md Reviewer/Status/Date fields rather than inventing them.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — structural/documentation change, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v40 -> v41, shared with bid-evaluation); all 5
+  actuals/version-compare/<doc>/detection.md files (full rewrite, prior quirks-table
+  content removed).
+```
+
+## Entry 61
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "move to findings into the actuals" (confirmed scope: both use cases)
+generated_output: >
+  Moved every document's findings out of the separate top-level findings/version-compare/
+  tree and nested them inside that document's own actuals/version-compare/<doc>/ subtree,
+  as actuals/version-compare/<doc>/findings/<unit>.md — alongside that document's existing
+  twin/, detection.md, plan.md, and graph.md. This is a shared, cross-use-case
+  bootstrap.md amendment (v37 -> v38, per §11) — see prompt-log/bid-evaluation/
+  promptLog.md Entry 79 for the full bootstrap.md diff, since the change was use-case-
+  agnostic and applied identically to both use cases in one pass. For version-compare
+  specifically: updated each of the 5 documents' graph.md/plan.md files, both entries in
+  manifest/version-compare/manifest.md's checklist (31 occurrences), and all 5
+  reports/version-compare/SYNTH_VERS_DOCS_*_REVISED/report.md files that cited the old
+  findings/version-compare/<doc>/ path.
+reason: >
+  User explicitly requested restructuring findings to live under actuals rather than as
+  a separate top-level tree, applied to both use cases.
+explanation: >
+  Backed up the project to /tmp/lippy-skills-backup-20260925104511-pre-findings-move
+  before moving anything (covers both use cases, taken once for the whole project). Moved
+  files with `mv`, not copy+delete. Verified post-move that findings/version-compare/ no
+  longer exists as a standalone tree and that every one of the 5 documents'
+  actuals/version-compare/<doc>/findings/ holds the same file count it held before the
+  move. Deliberately left this log's own and skills/version-compare/patternLog.md's
+  historical entries referencing the old findings/version-compare/<doc>/ path untouched,
+  per this project's established historical-content convention.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — structural/documentation change, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v37 -> v38, shared with bid-evaluation);
+  manifest/version-compare/manifest.md (31 path occurrences); all 5 documents'
+  actuals/version-compare/<doc>/graph.md and plan.md; all 5
+  reports/version-compare/SYNTH_VERS_DOCS_*_REVISED/report.md files. Moved: files from
+  findings/version-compare/<doc>/ to actuals/version-compare/<doc>/findings/ (part of
+  726 total files moved project-wide, both use cases combined). Deleted: the now-empty
+  top-level findings/ tree.
+```
+
 ## Entry 60
 
 ```yaml

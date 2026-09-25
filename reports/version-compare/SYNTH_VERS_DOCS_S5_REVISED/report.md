@@ -2,7 +2,7 @@
 sample: SYNTH_VERS_DOCS_S5
 use-case: version-compare
 skill-version: v6 (current — see skills/version-compare/patternLog.md Entry 13; findings below were judged under v5, content-compatible, not re-run — the v5→v6 enhancement only broadened Module 6 wording, it did not change any verdict logic this sample's findings depend on)
-based-on: findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/ (12 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/plan.md)
+based-on: actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/ (12 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/plan.md)
 source: documents/source/SYNTH_VERS_DOCS_S5_REVISED.pptx
 supporting: documents/supporting/SYNTH_VERS_DOCS_S5_ORIGINAL.pptx
 state: draft — pending HITL review, not yet signed off in manifest.md
@@ -16,7 +16,7 @@ Solstice Energy Cooperative's original vendor pre-bid briefing deck for its Comm
 Solar & Battery Storage Program (RFP-SEC-2026-0029, issued March 3, 2026) versus its
 revised reissue (RFP-SEC-2026-0029-R1, issued May 19, 2026), which expands the program to
 add a public EV fast-charging hub alongside the original solar and battery-storage scope.
-The full clause-by-clause account is in `findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/`
+The full clause-by-clause account is in `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/`
 (one file per slide, per `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/plan.md`); this report
 summarizes it.
 

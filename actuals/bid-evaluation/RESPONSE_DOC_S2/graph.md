@@ -1,11 +1,49 @@
+---
+purpose: Traces this document's 5 findings back to their evidence in the twin, and forward to the report that cites them.
+version: 6
+verification: verified
+confidence: HIGH
+---
+
 # Graph — RESPONSE_DOC_S2
 
-`findings/bid-evaluation/RESPONSE_DOC_S2/score.md`
-`findings/bid-evaluation/RESPONSE_DOC_S2/eligibility.md`
-`findings/bid-evaluation/RESPONSE_DOC_S2/price.md`
-`findings/bid-evaluation/RESPONSE_DOC_S2/deviations.md`
-`findings/bid-evaluation/RESPONSE_DOC_S2/basis.md`
-  ← retrieved from → `actuals/bid-evaluation/RESPONSE_DOC_S2/twin/RESPONSE_DOC_S2/record.md`
-  ← context only  → `actuals/bid-evaluation/RESPONSE_DOC_S2/twin/BASE_DOC/base.md`
-  → cited by → `reports/bid-evaluation/RankingSummary-Solar/report.md` (group-level synthesis; bootstrap.md §12, amended v33)
-  → cited by → `reports/bid-evaluation/RankingSummary-Solar/report.md` (cross-bidder ranking view, built from Score/Eligibility/Price fields only, per skill.md v6 Module 6 (renumbered from v5's Module 5; findings reformatted to v6's Module 4 finding-format shape))
+## Nodes
+
+| Node | Type | Notes |
+|---|---|---|
+| `actuals/bid-evaluation/RESPONSE_DOC_S2/findings/basis.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2/findings/deviations.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2/findings/eligibility.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2/findings/price.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2/findings/score.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2/twin/RESPONSE_DOC_S2/record.md` | twin (this bidder's own record) | evidence source for every finding above |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2/twin/BASE_DOC/base.md` | twin (base/context document) | context only, never quoted as evidence |
+| `reports/bid-evaluation/RankingSummary-Solar/report.md` | report | group-level cross-bidder ranking synthesis, built from Score/Eligibility/Price/Deviations/Basis only |
+
+## Relationships
+
+| From | To | Edge type |
+|---|---|---|
+| `findings/basis.md` | `twin/RESPONSE_DOC_S2/record.md` | retrieved from |
+| `findings/deviations.md` | `twin/RESPONSE_DOC_S2/record.md` | retrieved from |
+| `findings/eligibility.md` | `twin/RESPONSE_DOC_S2/record.md` | retrieved from |
+| `findings/price.md` | `twin/RESPONSE_DOC_S2/record.md` | retrieved from |
+| `findings/score.md` | `twin/RESPONSE_DOC_S2/record.md` | retrieved from |
+| (all findings above) | `actuals/bid-evaluation/RESPONSE_DOC_S2/twin/BASE_DOC/base.md` | context only — never quoted as evidence |
+| (all 5 findings above) | `reports/bid-evaluation/RankingSummary-Solar/report.md` | cited by |
+
+## Dependencies
+
+| Finding | Depends on | Notes |
+|---|---|---|
+| (none) | — | Every field's verdict rests on an independent retrieval from this document's own twin/record.md; no finding here depends on another finding's evidence. |
+
+## Evidence flow
+
+| Finding | Twin source | Report destination |
+|---|---|---|
+| `findings/basis.md` | `twin/RESPONSE_DOC_S2/record.md` | `reports/bid-evaluation/RankingSummary-Solar/report.md` |
+| `findings/deviations.md` | `twin/RESPONSE_DOC_S2/record.md` | `reports/bid-evaluation/RankingSummary-Solar/report.md` |
+| `findings/eligibility.md` | `twin/RESPONSE_DOC_S2/record.md` | `reports/bid-evaluation/RankingSummary-Solar/report.md` |
+| `findings/price.md` | `twin/RESPONSE_DOC_S2/record.md` | `reports/bid-evaluation/RankingSummary-Solar/report.md` |
+| `findings/score.md` | `twin/RESPONSE_DOC_S2/record.md` | `reports/bid-evaluation/RankingSummary-Solar/report.md` |

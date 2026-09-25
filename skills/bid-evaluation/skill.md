@@ -147,7 +147,7 @@ has no informational findings — this is not a gap to fill.
 
 Every finding (Module 3's five required fields, and every informational field a
 document's own structure carries) is its own file,
-`findings/bid-evaluation/<source-document-name>/<Field>.md`, with this front matter and
+`actuals/bid-evaluation/<source-document-name>/findings/<Field>.md`, with this front matter and
 body shape:
 
 ```yaml

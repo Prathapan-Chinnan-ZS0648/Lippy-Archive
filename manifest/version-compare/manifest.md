@@ -63,16 +63,16 @@ Follows `skills/version-compare/skill.md` as-is.
 | Runtime inputs resolved (source/supporting/skill) | ✅ | `documents/source/SYNTH_VERS_DOCS_S1_REVISED.pdf`, `documents/supporting/SYNTH_VERS_DOCS_S1_ORIGINAL.pdf`, `skills/version-compare/skill.md` |
 | Digests recorded for all inputs | ✅ | see Digests section below |
 | Skill gap analysis performed | ✅ | `promptLog.md` — no gaps found, v1 unmodified; observations logged in `skills/version-compare/patternLog.md` |
-| Skill version recorded on artifacts | ✅ | v1 (unmodified) noted in every `findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/*.md` and `reports/version-compare/SYNTH_VERS_DOCS_S1_REVISED/report.md` front matter |
+| Skill version recorded on artifacts | ✅ | v1 (unmodified) noted in every `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/*.md` and `reports/version-compare/SYNTH_VERS_DOCS_S1_REVISED/report.md` front matter |
 | `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/twin` extracted from both documents (per-page) | ✅ | `.../twin/SYNTH_VERS_DOCS_S1_REVISED/` (12 pages), `.../twin/SYNTH_VERS_DOCS_S1_ORIGINAL/` (11 pages), plus `derived/` and `sectionMap.md` |
-| `detection.md` and `plan.md` complete | ✅ | quirks logged; all 19 units planned and marked done |
-| Findings cover full source document (all units) | ✅ | `findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/` — 154 unit files, one per clause (restructured 2026-09-22 from 19 section-wise table files to one-finding-per-unit, per skill.md's own `grain: one clause` and bootstrap.md §4.1; re-judged 2026-09-20: "12. Commercial Terms" liquidated-damages REMOVED+ADDED merged to one CHANGED under skill v5) |
+| `detection.md` and `plan.md` complete | ✅ | `detection.md` records why version-compare fits (rejecting bid-evaluation and a fixed-control compliance-assessment); `plan.md` documents the skill's 6-stage Module 2 workflow with this document's own real unit/clause counts and edge cases (19 units) |
+| Findings cover full source document (all units) | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/` — 154 unit files, one per clause (restructured 2026-09-22 from 19 section-wise table files to one-finding-per-unit, per skill.md's own `grain: one clause` and bootstrap.md §4.1; re-judged 2026-09-20: "12. Commercial Terms" liquidated-damages REMOVED+ADDED merged to one CHANGED under skill v5) |
 | Every non-UNCHANGED verdict shows both sides quoted | ✅ | spot-checked during generation; see `findings/` |
 | `graph.md` traces findings to report | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/graph.md` |
 | Findings verified-by / verified-on filled | ✅ | confirmed via the independent HITL record (findings content itself left unedited per `bootstrap.md`'s `MANUAL VALIDATE` — "never modify content merely to indicate it was reviewed"); see `HITL/version-compare/SYNTH_VERS_DOCS_S1_REVISED/manualValidate.md` |
 | HITL review completed | ✅ | `HITL/version-compare/SYNTH_VERS_DOCS_S1_REVISED/manualValidate.md` — Reviewer: Prathapan C, Status: VERIFIED, 2026-09-21 06:34:58 UTC |
 | `pivot.md` decisions recorded (if any disputes arise) | ⬜ | not yet needed — no disputes raised; `pivot.md` exists and is empty |
-| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S1_REVISED/report.md` cites `findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/` only |
+| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S1_REVISED/report.md` cites `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/` only |
 | Signed by a reviewer | ✅ | `signed-by: Prathapan C` above, per `HITL/version-compare/SYNTH_VERS_DOCS_S1_REVISED/manualValidate.md` |
 
 ### Digests
@@ -93,7 +93,7 @@ changes, every actual/finding built from it must be regenerated and this ledger 
 All 23 twin pages under `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/twin/SYNTH_VERS_DOCS_S1_REVISED/`
 (12 pages) and `.../twin/SYNTH_VERS_DOCS_S1_ORIGINAL/` (11 pages) were built from the two
 document digests above. All 19 findings files under
-`findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/` were built from those twin pages while
+`actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/` were built from those twin pages while
 `skills/version-compare/skill.md` held v1's content (now preserved immutably at
 `skills/version-compare/skill-versions/v1.md`); v2 restructured and v3 further clarified
 v1's rules, neither changing any verdict-relevant behavior for units already judged (see
@@ -105,11 +105,11 @@ them as current.
 ### Verdict
 
 **ACCEPTED DELIVERABLE.** `reports/version-compare/SYNTH_VERS_DOCS_S1_REVISED/report.md` and
-`findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/*.md` are accepted. HITL review complete and
+`actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/*.md` are accepted. HITL review complete and
 signed per `HITL/version-compare/SYNTH_VERS_DOCS_S1_REVISED/manualValidate.md` (Reviewer: Prathapan C,
 2026-09-21).
 
-**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/` finding files present, `reports/version-compare/SYNTH_VERS_DOCS_S1_REVISED/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S1_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
+**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/` finding files present, `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/reports/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S1_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
 
 ---
 ## `SYNTH_VERS_DOCS_S2_REVISED.pdf`
@@ -167,16 +167,16 @@ MAP). See `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/detection.md` and
 | Runtime inputs resolved (source/supporting/skill) | ✅ | `documents/source/SYNTH_VERS_DOCS_S2_REVISED.pdf`, `documents/supporting/SYNTH_VERS_DOCS_S2_ORIGINAL.pdf`, `skills/version-compare/skill.md` |
 | Digests recorded for all inputs | ✅ | see Digests section below |
 | Skill gap analysis performed | ✅ | no gaps — self-annotation, section-removal, and reformatting edge cases all already covered by skill v2; see Sample context above |
-| Skill version recorded on artifacts | ✅ | v2 noted in every `findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/*.md` and `reports/version-compare/SYNTH_VERS_DOCS_S2_REVISED/report.md` front matter |
+| Skill version recorded on artifacts | ✅ | v2 noted in every `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/*.md` and `reports/version-compare/SYNTH_VERS_DOCS_S2_REVISED/report.md` front matter |
 | `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/twin` extracted from both documents (per-page) | ✅ | `.../twin/SYNTH_VERS_DOCS_S2_REVISED/` (13 pages), `.../twin/SYNTH_VERS_DOCS_S2_ORIGINAL/` (10 pages), plus `derived/` and `sectionMap.md` |
-| `detection.md` and `plan.md` complete | ✅ | quirks logged; all 20 units planned and marked done |
-| Findings cover full source document (all units) | ✅ | `findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/` — 148 unit files, one per clause (restructured 2026-09-22 from 20 section-wise table files to one-finding-per-unit) |
+| `detection.md` and `plan.md` complete | ✅ | `detection.md` records why version-compare fits (rejecting bid-evaluation and a fixed-control compliance-assessment); `plan.md` documents the skill's 6-stage Module 2 workflow with this document's own real unit/clause counts and edge cases (20 units) |
+| Findings cover full source document (all units) | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/` — 148 unit files, one per clause (restructured 2026-09-22 from 20 section-wise table files to one-finding-per-unit) |
 | Every non-UNCHANGED verdict shows both sides quoted | ✅ | spot-checked during generation; see `findings/` |
 | `graph.md` traces findings to report | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/graph.md` |
 | Findings verified-by / verified-on filled | ✅ | confirmed via the independent HITL record (findings content itself left unedited per `bootstrap.md`'s `MANUAL VALIDATE`); see `HITL/version-compare/SYNTH_VERS_DOCS_S2_REVISED/manualValidate.md` |
 | HITL review completed | ✅ | `HITL/version-compare/SYNTH_VERS_DOCS_S2_REVISED/manualValidate.md` — Reviewer: Prathapan C, Status: VERIFIED, 2026-09-21 06:34:58 UTC |
 | `pivot.md` decisions recorded (if any disputes arise) | ⬜ | not yet needed — no disputes raised for this document |
-| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S2_REVISED/report.md` cites `findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/` only |
+| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S2_REVISED/report.md` cites `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/` only |
 | Signed by a reviewer | ✅ | `signed-by: Prathapan C` above, per `HITL/version-compare/SYNTH_VERS_DOCS_S2_REVISED/manualValidate.md` |
 
 ### Digests
@@ -192,17 +192,17 @@ content digest.
 All 23 twin pages under `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/twin/SYNTH_VERS_DOCS_S2_REVISED/`
 (13 pages) and `.../twin/SYNTH_VERS_DOCS_S2_ORIGINAL/` (10 pages) were built from the two
 All 20 findings files under
-`findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/` were built from those twin pages under
+`actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/` were built from those twin pages under
 `skills/version-compare/skill.md` v3 (findings judged under v2, validated unaffected per patternLog.md Entry 10).
 
 ### Verdict
 
 **ACCEPTED DELIVERABLE.** `reports/version-compare/SYNTH_VERS_DOCS_S2_REVISED/report.md` and
-`findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/*.md` are accepted. HITL review complete and
+`actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/*.md` are accepted. HITL review complete and
 signed per `HITL/version-compare/SYNTH_VERS_DOCS_S2_REVISED/manualValidate.md` (Reviewer: Prathapan C,
 2026-09-21).
 
-**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/` finding files present, `reports/version-compare/SYNTH_VERS_DOCS_S2_REVISED/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S2_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
+**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/` finding files present, `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/reports/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S2_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
 
 ---
 ## `SYNTH_VERS_DOCS_S3_REVISED.docx`
@@ -245,12 +245,19 @@ covered by the existing skill with no change needed.
 
 **Known pending correction (see `promptLog.md`):** the §8.4 validation performed for this
 sample's skill change found that `SYNTH_VERS_DOCS_S1_REVISED`'s existing findings
-(`findings/version-compare/SYNTH_VERS_DOCS_S1_REVISED/13-12CommercialTerms.md`) recorded the same
+(originally the single file `13-12CommercialTerms.md`, since split by the unit-wise
+restructuring into `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/findings/13-12CommercialTerms-11-LiquidatedDamages.md`,
+the clause this note concerns) recorded the same
 explicit-negation-replaced-by-a-real-clause shape as REMOVED + ADDED, under the
 skill version live at the time — this now contradicts the v5 wording and is flagged for
 re-judgment. This does not block this document's own validation, since this document's
 own finding was judged correctly under the rule as promoted; it is recorded here because
 `skills/version-compare/patternLog.md` Entry 12 is the entry that surfaced it.
+**Update:** this clause's finding file currently reads `verdict: CHANGED` (checked while
+verifying manifest.md), which already matches v5's wording — the flagged re-judgment
+appears to have since been applied, though this note is left in place rather than
+deleted, since removing a promotion-bar audit trail is a retention decision, not a
+correction (bootstrap.md §12).
 
 ### Checklist
 
@@ -261,16 +268,16 @@ own finding was judged correctly under the rule as promoted; it is recorded here
 | Runtime inputs resolved (source/supporting/skill) | ✅ | `documents/source/SYNTH_VERS_DOCS_S3_REVISED.docx`, `documents/supporting/SYNTH_VERS_DOCS_S3_ORIGINAL.docx`, `skills/version-compare/skill.md` |
 | Digests recorded for all inputs | ✅ | see Digests section below |
 | New sample analyzed against existing skill before judging (`bootstrap.md` §8.1) | ✅ | new format + edge cases logged in `patternLog.md` Entry 12; one wording refinement promoted (v4→v5), rest already covered |
-| Skill version recorded on artifacts | ✅ | v4 noted in every `findings/version-compare/SYNTH_VERS_DOCS_S3_REVISED/*.md` front matter (judged before the v4→v5 ENHANCE-SKILL step ran, per this run's composed `START` order); `reports/version-compare/SYNTH_VERS_DOCS_S3_REVISED/report.md` records both v4 (judged-under) and v5 (current) |
+| Skill version recorded on artifacts | ✅ | v4 noted in every `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/findings/*.md` front matter (judged before the v4→v5 ENHANCE-SKILL step ran, per this run's composed `START` order); `reports/version-compare/SYNTH_VERS_DOCS_S3_REVISED/report.md` records both v4 (judged-under) and v5 (current) |
 | `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/twin` extracted from both documents (per-section) | ✅ | `.../twin/SYNTH_VERS_DOCS_S3_REVISED/` (16 sections), `.../twin/SYNTH_VERS_DOCS_S3_ORIGINAL/` (16 sections), plus `derived/` and `sectionMap.md` |
-| `detection.md` and `plan.md` complete | ✅ | quirks logged; all 16 units planned and marked done |
-| Findings cover full source document (all units) | ✅ | `findings/version-compare/SYNTH_VERS_DOCS_S3_REVISED/` — 93 unit files, one per clause (restructured 2026-09-22 from 16 section-wise table files to one-finding-per-unit) |
+| `detection.md` and `plan.md` complete | ✅ | `detection.md` records why version-compare fits (rejecting bid-evaluation and a fixed-control compliance-assessment); `plan.md` documents the skill's 6-stage Module 2 workflow with this document's own real unit/clause counts and edge cases (16 units) |
+| Findings cover full source document (all units) | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/findings/` — 93 unit files, one per clause (restructured 2026-09-22 from 16 section-wise table files to one-finding-per-unit) |
 | Every non-UNCHANGED verdict shows both sides quoted | ✅ | spot-checked during generation; see `findings/` |
 | `graph.md` traces findings to report | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/graph.md` |
 | Findings verified-by / verified-on filled | ✅ | confirmed via the independent HITL record (findings content itself left unedited per `bootstrap.md`'s `MANUAL VALIDATE`); see `HITL/version-compare/SYNTH_VERS_DOCS_S3_REVISED/manualValidate.md` |
 | HITL review completed | ✅ | `HITL/version-compare/SYNTH_VERS_DOCS_S3_REVISED/manualValidate.md` — Reviewer: Prathapan C, Status: VERIFIED, 2026-09-21 06:34:58 UTC |
 | `pivot.md` decisions recorded (if any disputes arise) | ⬜ | not yet needed — no disputes raised for this document itself (the S1 re-judgment flag is recorded in `promptLog.md`, not a dispute) |
-| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S3_REVISED/report.md` cites `findings/version-compare/SYNTH_VERS_DOCS_S3_REVISED/` only |
+| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S3_REVISED/report.md` cites `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/findings/` only |
 | Signed by a reviewer | ✅ | `signed-by: Prathapan C` above, per `HITL/version-compare/SYNTH_VERS_DOCS_S3_REVISED/manualValidate.md` |
 
 ### Digests
@@ -286,21 +293,21 @@ content digest.
 All 32 twin section files under `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/twin/SYNTH_VERS_DOCS_S3_REVISED/`
 (16 sections) and `.../twin/SYNTH_VERS_DOCS_S3_ORIGINAL/` (16 sections) were built from
 the two document digests above. All 16 findings files under
-`findings/version-compare/SYNTH_VERS_DOCS_S3_REVISED/` were built from those twin sections under
+`actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/findings/` were built from those twin sections under
 `skills/version-compare/skill.md` v4 (the live version at the time `JUDGE` ran, before
 this same `START` invocation's `ENHANCE-SKILL` step produced v5).
 
 ### Verdict
 
 **ACCEPTED DELIVERABLE.** `reports/version-compare/SYNTH_VERS_DOCS_S3_REVISED/report.md` and
-`findings/version-compare/SYNTH_VERS_DOCS_S3_REVISED/*.md` are accepted. HITL review complete and
+`actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/findings/*.md` are accepted. HITL review complete and
 signed per `HITL/version-compare/SYNTH_VERS_DOCS_S3_REVISED/manualValidate.md` (Reviewer: Prathapan C,
 2026-09-21). This document's own acceptance is independent of the pending re-judgment
 flagged against `SYNTH_VERS_DOCS_S1_REVISED`'s Commercial Terms findings (see above and
 `promptLog.md`), which should still be resolved before both documents' reports are
 treated as a consistent pair for cross-sample reference.
 
-**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `findings/version-compare/SYNTH_VERS_DOCS_S3_REVISED/` finding files present, `reports/version-compare/SYNTH_VERS_DOCS_S3_REVISED/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S3_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
+**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/findings/` finding files present, `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/reports/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S3_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
 
 ---
 ## `SYNTH_VERS_DOCS_S4_REVISED.xlsx`
@@ -348,16 +355,16 @@ unrelated addition).
 | Runtime inputs resolved (source/supporting/skill) | ✅ | `documents/source/SYNTH_VERS_DOCS_S4_REVISED.xlsx`, `documents/supporting/SYNTH_VERS_DOCS_S4_ORIGINAL.xlsx`, `skills/version-compare/skill.md` |
 | Digests recorded for all inputs | ✅ | see Digests section below |
 | New sample analyzed against existing skill before judging (`bootstrap.md` §8.1) | ✅ | new format + 2 new edge cases logged in `patternLog.md` Entries 7-9; all already covered, no skill change needed |
-| Skill version recorded on artifacts | ✅ | v2 noted in every `findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/*.md` and `reports/version-compare/SYNTH_VERS_DOCS_S4_REVISED/report.md` front matter |
+| Skill version recorded on artifacts | ✅ | v2 noted in every `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/*.md` and `reports/version-compare/SYNTH_VERS_DOCS_S4_REVISED/report.md` front matter |
 | `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/twin` extracted from both documents (per-sheet) | ✅ | `.../twin/SYNTH_VERS_DOCS_S4_REVISED/` (6 sheets), `.../twin/SYNTH_VERS_DOCS_S4_ORIGINAL/` (5 sheets), plus `derived/` and `sectionMap.md` |
-| `detection.md` and `plan.md` complete | ✅ | quirks logged; all 6 units planned and marked done |
-| Findings cover full source document (all units) | ✅ | `findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/` — 98 unit files, one per clause (restructured 2026-09-22 from 6 section-wise table files to one-finding-per-unit; re-judged 2026-09-20: Requirements Matrix's aggregate Vendor Response/Vendor Notes column ADDED note re-expanded to 32 per-cell ADDED verdicts under skill v5) |
+| `detection.md` and `plan.md` complete | ✅ | `detection.md` records why version-compare fits (rejecting bid-evaluation and a fixed-control compliance-assessment); `plan.md` documents the skill's 6-stage Module 2 workflow with this document's own real unit/clause counts and edge cases (6 units) |
+| Findings cover full source document (all units) | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/` — 98 unit files, one per clause (restructured 2026-09-22 from 6 section-wise table files to one-finding-per-unit; re-judged 2026-09-20: Requirements Matrix's aggregate Vendor Response/Vendor Notes column ADDED note re-expanded to 32 per-cell ADDED verdicts under skill v5) |
 | Every non-UNCHANGED verdict shows both sides quoted | ✅ | spot-checked during generation; see `findings/` |
 | `graph.md` traces findings to report | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/graph.md` |
 | Findings verified-by / verified-on filled | ✅ | confirmed via the independent HITL record (findings content itself left unedited per `bootstrap.md`'s `MANUAL VALIDATE`); see `HITL/version-compare/SYNTH_VERS_DOCS_S4_REVISED/manualValidate.md` |
 | HITL review completed | ✅ | `HITL/version-compare/SYNTH_VERS_DOCS_S4_REVISED/manualValidate.md` — Reviewer: Prathapan C, Status: VERIFIED, 2026-09-21 06:34:58 UTC |
 | `pivot.md` decisions recorded (if any disputes arise) | ⬜ | not yet needed — no disputes raised for this document |
-| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S4_REVISED/report.md` cites `findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/` only |
+| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S4_REVISED/report.md` cites `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/` only |
 | Signed by a reviewer | ✅ | `signed-by: Prathapan C` above, per `HITL/version-compare/SYNTH_VERS_DOCS_S4_REVISED/manualValidate.md` |
 
 ### Digests
@@ -373,16 +380,16 @@ content digest.
 All 11 twin sheet files under `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/twin/SYNTH_VERS_DOCS_S4_REVISED/`
 (6 sheets) and `.../twin/SYNTH_VERS_DOCS_S4_ORIGINAL/` (5 sheets) were built from the two
 All 6 findings files under
-`findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/` were built from those twin sheets under
+`actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/` were built from those twin sheets under
 
 ### Verdict
 
 **ACCEPTED DELIVERABLE.** `reports/version-compare/SYNTH_VERS_DOCS_S4_REVISED/report.md` and
-`findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/*.md` are accepted. HITL review complete and
+`actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/*.md` are accepted. HITL review complete and
 signed per `HITL/version-compare/SYNTH_VERS_DOCS_S4_REVISED/manualValidate.md` (Reviewer: Prathapan C,
 2026-09-21).
 
-**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `findings/version-compare/SYNTH_VERS_DOCS_S4_REVISED/` finding files present, `reports/version-compare/SYNTH_VERS_DOCS_S4_REVISED/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S4_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
+**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/findings/` finding files present, `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/reports/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S4_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
 
 ---
 ## `SYNTH_VERS_DOCS_S5_REVISED.pptx`
@@ -432,16 +439,16 @@ rows relabeled alongside their values).
 | Runtime inputs resolved (source/supporting/skill) | ✅ | `documents/source/SYNTH_VERS_DOCS_S5_REVISED.pptx`, `documents/supporting/SYNTH_VERS_DOCS_S5_ORIGINAL.pptx`, `skills/version-compare/skill.md` |
 | Digests recorded for all inputs | ✅ | see Digests section below |
 | New sample analyzed against existing skill before judging (`bootstrap.md` §8.1) | ✅ | new format + 5 quirks logged in `patternLog.md` Entry 13; 2 promoted as wording refinements (v5→v6), 3 already covered |
-| Skill version recorded on artifacts | ✅ | v5 noted in every `findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/*.md`; `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` front matter records both v5 (judged-under) and v6 (current) |
+| Skill version recorded on artifacts | ✅ | v5 noted in every `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/*.md`; `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` front matter records both v5 (judged-under) and v6 (current) |
 | `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/twin` extracted from both documents (per-slide) | ✅ | `.../twin/SYNTH_VERS_DOCS_S5_REVISED/` (12 slides), `.../twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` (11 slides), plus `derived/` and `sectionMap.md` |
-| `detection.md` and `plan.md` complete | ✅ | quirks logged; all 12 units planned and marked done |
-| Findings cover full source document (all units) | ✅ | `findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/` — 73 unit files, one per clause (restructured 2026-09-22 from 12 section-wise table files to one-finding-per-unit) |
+| `detection.md` and `plan.md` complete | ✅ | `detection.md` records why version-compare fits (rejecting bid-evaluation and a fixed-control compliance-assessment); `plan.md` documents the skill's 6-stage Module 2 workflow with this document's own real unit/clause counts and edge cases (12 units) |
+| Findings cover full source document (all units) | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/` — 73 unit files, one per clause (restructured 2026-09-22 from 12 section-wise table files to one-finding-per-unit) |
 | Every non-UNCHANGED verdict shows both sides quoted | ✅ | spot-checked during generation; see `findings/` |
 | `graph.md` traces findings to report | ✅ | `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/graph.md` |
 | Findings verified-by / verified-on filled | ✅ | confirmed via the independent HITL record (findings content itself left unedited per `bootstrap.md`'s `MANUAL VALIDATE`); see `HITL/version-compare/SYNTH_VERS_DOCS_S5_REVISED/manualValidate.md` |
 | HITL review completed | ✅ | `HITL/version-compare/SYNTH_VERS_DOCS_S5_REVISED/manualValidate.md` — Reviewer: Prathapan C, Status: VERIFIED, 2026-09-21 06:34:58 UTC |
 | `pivot.md` decisions recorded (if any disputes arise) | ⬜ | not yet needed — no disputes raised for this document |
-| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` cites `findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/` only |
+| Report derives only from approved findings | ✅ | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` cites `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/` only |
 | Signed by a reviewer | ✅ | `signed-by: Prathapan C` above, per `HITL/version-compare/SYNTH_VERS_DOCS_S5_REVISED/manualValidate.md` |
 
 ### Digests
@@ -457,15 +464,15 @@ content digest.
 All 12 twin slide files under `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/twin/SYNTH_VERS_DOCS_S5_REVISED/`
 and 11 twin slide files under `.../twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` were built from the
 two document digests above. All 12 findings files under
-`findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/` were built from those twin slides under
+`actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/` were built from those twin slides under
 the skill digest recorded above.
 
 ### Verdict
 
 **ACCEPTED DELIVERABLE.** `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` and
-`findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/*.md` are accepted. HITL review complete and
+`actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/*.md` are accepted. HITL review complete and
 signed per `HITL/version-compare/SYNTH_VERS_DOCS_S5_REVISED/manualValidate.md` (Reviewer: Prathapan C,
 2026-09-21).
 
-**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/` finding files present, `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S5_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
+**VALIDATE re-run (2026-09-23):** checklist re-checked against the current `fileIndex.md` (this source path still resolves; `useCaseName`/`skillFilePath` still match) and `prompt-log/version-compare/promptLog.md` (no entry since this document's prior verdict that would change it). All required artifacts confirmed present on disk: `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/` finding files present, `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/reports/report.md`, `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/graph.md`, `HITL/version-compare/SYNTH_VERS_DOCS_S5_REVISED/manualValidate.md`. `skill-version` confirmed v6 across all finding files (verified via automated scan). Verdict unchanged.
 

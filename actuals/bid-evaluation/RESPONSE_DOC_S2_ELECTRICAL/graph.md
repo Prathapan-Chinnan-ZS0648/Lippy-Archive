@@ -1,17 +1,49 @@
+---
+purpose: Traces this document's 5 findings back to their evidence in the twin, and forward to the report that cites them.
+version: 6
+verification: verified
+confidence: HIGH
+---
+
 # Graph — RESPONSE_DOC_S2_ELECTRICAL
 
-`findings/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/score.md`
-`findings/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/eligibility.md`
-`findings/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/price.md`
-`findings/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/deviations.md`
-`findings/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/basis.md`
-  ← retrieved from → `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/twin/RESPONSE_DOC_S2_ELECTRICAL/record.md`
-  ← context only  → `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/twin/BASE_DOC_ELECTRICAL/base.md`
-  → cited by → `reports/bid-evaluation/RankingSummary/report.md` (group-level synthesis; bootstrap.md §12, amended v33)
+## Nodes
 
-Restructured 2026-09-23 from a single `bidder.md` to five per-field finding files, per
-skill.md v5's grain (one finding per field/section) — no informational fields beyond the
-five required ones were present in this document (a committee scoring record, not a
-self-declared bidder submission).
+| Node | Type | Notes |
+|---|---|---|
+| `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/findings/basis.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/findings/deviations.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/findings/eligibility.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/findings/price.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/findings/score.md` | finding | required field |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | twin (this bidder's own record) | evidence source for every finding above |
+| `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/twin/BASE_DOC_ELECTRICAL/base.md` | twin (base/context document) | context only, never quoted as evidence |
+| `reports/bid-evaluation/RankingSummary/report.md` | report | group-level cross-bidder ranking synthesis, built from Score/Eligibility/Price/Deviations/Basis only |
 
-Reformatted 2026-09-23 to skill.md v6's finding-format shape (Module 4: item/question/verdict/addressed front matter, "What the record says"/"Why this verdict"/"Evidence" body sections) — same 5 files, same facts, format only.
+## Relationships
+
+| From | To | Edge type |
+|---|---|---|
+| `findings/basis.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | retrieved from |
+| `findings/deviations.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | retrieved from |
+| `findings/eligibility.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | retrieved from |
+| `findings/price.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | retrieved from |
+| `findings/score.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | retrieved from |
+| (all findings above) | `actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/twin/BASE_DOC_ELECTRICAL/base.md` | context only — never quoted as evidence |
+| (all 5 findings above) | `reports/bid-evaluation/RankingSummary/report.md` | cited by |
+
+## Dependencies
+
+| Finding | Depends on | Notes |
+|---|---|---|
+| (none) | — | Every field's verdict rests on an independent retrieval from this document's own twin/record.md; no finding here depends on another finding's evidence. |
+
+## Evidence flow
+
+| Finding | Twin source | Report destination |
+|---|---|---|
+| `findings/basis.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | `reports/bid-evaluation/RankingSummary/report.md` |
+| `findings/deviations.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | `reports/bid-evaluation/RankingSummary/report.md` |
+| `findings/eligibility.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | `reports/bid-evaluation/RankingSummary/report.md` |
+| `findings/price.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | `reports/bid-evaluation/RankingSummary/report.md` |
+| `findings/score.md` | `twin/RESPONSE_DOC_S2_ELECTRICAL/record.md` | `reports/bid-evaluation/RankingSummary/report.md` |

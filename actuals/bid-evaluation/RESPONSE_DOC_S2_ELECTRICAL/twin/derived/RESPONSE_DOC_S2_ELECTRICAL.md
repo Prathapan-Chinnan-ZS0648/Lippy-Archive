@@ -17,4 +17,4 @@ Powerline Switchgear & Systems Ltd. — committee determination "TECHNICALLY QUA
 
 This document is part of a multi-bidder batch; for the shared tender ranking synthesis for GSETCL/SS-MORBI/2026/EPC-021, see `reports/bid-evaluation/RankingSummary/report.md`.
 
-Full report: `reports/bid-evaluation/RankingSummary/report.md` (this document has no own report.md — bootstrap.md §12, amended v33)
+Full report: `reports/bid-evaluation/RankingSummary/report.md` (this document has no own report.md — bootstrap.md §12, amended v40)

@@ -12,4 +12,4 @@ Meridian Public School District's revised reissue (RFP-MPSD-2026-0053-R1), retit
 
 Meridian Public School District's original RFP (RFP-MPSD-2026-0053) versus its revised reissue (RFP-MPSD-2026-0053-R1), following a new elementary school opening and a district-wide cybersecurity assessment. Verdict counts: 34 CHANGED, 52 ADDED, 2 REMOVED, 10 UNCHANGED. Full clause-by-clause account is in this document's own findings and report.
 
-Full report: `reports/version-compare/SYNTH_VERS_DOCS_S4_REVISED/report.md`
+Full report: `actuals/version-compare/SYNTH_VERS_DOCS_S4_REVISED/reports/report.md`

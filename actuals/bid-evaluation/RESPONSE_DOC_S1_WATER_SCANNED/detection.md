@@ -1,9 +1,12 @@
-# Detection — RESPONSE_DOC_S1_WATER_SCANNED (bidder: AquaBuild Infra Ltd.)
+---
+skill: bid-evaluation
+confidence: HIGH
+why: the source document is a bidder's own tender submission (or the tender's evaluation-committee register naming this bidder), paired with a supporting document that carries the tender's own criteria or the committee's determination; the brief asks for a per-bidder verdict on score, eligibility, price, and deviations, each cited to that bidder's own record.
+verified-by: Prathapan C approved this skill's assignment via `fileIndex.md` (§2, already resolved before NORMALIZE); confirmed by manual review, recorded in `HITL/bid-evaluation/RESPONSE_DOC_S1_WATER_SCANNED/manualValidate.md`
+verified-on: 2026-09-21
+confidence-of-actual: CONFIRMED
+---
 
+# Detection
 
-| Quirk | Where observed | Handling |
-|---|---|---|
-| Source and supporting documents are scanned image PDFs with no embedded text layer — first time this use case has processed a scanned format (prior ELECTRICAL samples were native .docx) | `documents/source/RESPONSE_DOC_S1_WATER_SCANNED.pdf`, `documents/supporting/BASE_DOC_WATER_SCANNED.pdf` | Extracted via tesseract OCR (200 DPI page rasterization, then OCR per page), whole-document read-through, per bootstrap.md §1's rule that format only determines *how* extraction happens, never *whether* a document can be processed. |
-| No explicit bid-opening register was supplied | `fileIndex.md`'s bid-evaluation entry lists three source paths, all named RESPONSE_DOC_*, against one shared BASE_DOC supporting path | Per skill's `UNDERSTAND` step (`from=supporting, documents=RESPONSE`), the register is built programmatically: one row per RESPONSE-named document, this document is that row's record. Same handling already confirmed correct on the ELECTRICAL samples (patternLog.md Entry 1). |
-| No numeric technical score is recorded anywhere in this document | Checked every section, including the remarks and eligibility table | Per skill: "Where the committee awarded no numeric score, open with the committee's own overall determination, quoted." Applied. |
-| OCR quality is high and consistent for this document — all figures in the Eligibility table, BOQ totals, and O&M schedule are legible and internally consistent (Stage 1 → Stage 2 price uplift of +0.3% matches the stated "minor value engineering correction") | Cross-checked BOQ Stage 1 vs Stage 2 totals and the stated correction note | No legibility issue for this bidder's price figures (contrast with RESPONSE_DOC_S2_WATER_SCANNED, where OCR corrupted one BOQ line item and its downstream totals — see that document's own detection.md). |
+bid-evaluation. Alternatives considered and rejected: version-compare (there is one version of each bid document, not two revisions of the same document to diff); a fixed-control compliance-assessment (bidders are judged against this tender's own committee criteria, not a reusable external control register).

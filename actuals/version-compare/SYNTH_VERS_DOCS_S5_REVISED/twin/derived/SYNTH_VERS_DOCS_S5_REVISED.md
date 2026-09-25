@@ -12,4 +12,4 @@ Solstice Energy Cooperative's revised reissue (RFP-SEC-2026-0029-R1), retitled t
 
 Solstice Energy Cooperative's original vendor pre-bid briefing deck (RFP-SEC-2026-0029) versus its revised reissue (RFP-SEC-2026-0029-R1), which adds a public EV fast-charging hub alongside the original solar/battery-storage scope. Verdict counts: 38 CHANGED, 11 ADDED, 0 REMOVED, 24 UNCHANGED. Full clause-by-clause account is in this document's own findings and report.
 
-Full report: `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md`
+Full report: `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/reports/report.md`

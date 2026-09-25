@@ -6,6 +6,825 @@ ALWAYS PREPENDED here, directly under this header — never appended below older
 
 # Prompt log — bid-evaluation
 
+## Entry 92
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "Both use cases, start with bid-evaluation" (rollout of Entry 91's paper-wise extraction amendment)
+generated_output: >
+  Converted all 13 paginated bid-evaluation documents from a single combined record.md
+  (page boundaries marked inline) into genuine one-file-per-page twins, per bootstrap.md
+  §12 (amended v45): 10 Tender-Qualification PDFs split at their own "Page N of 6"
+  markers into page-001.md..page-006.md each (60 files total); 3 WATER_SCANNED OCR'd PDFs
+  split at their own "===== PAGE NN =====" markers into page-001.md..page-051.md each
+  (153 files total) — 213 new page files, 13 combined record.md files deleted. The 9 DOCX
+  bid-evaluation documents (RESPONSE_DOC_S1-S6, S1-S3_ELECTRICAL) were correctly left
+  untouched — their twin's own header already states ".docx has no pages, so the whole
+  document is the one twin unit," and this amendment only applies where a paper/page is a
+  real countable unit of the format. Fixed every downstream reference to the deleted
+  record.md files: 60 finding-file citations across the 10 Tender-Qualification documents
+  (cites field + Evidence body, mapped to the specific page(s) each field's evidence
+  falls on, reusing the section-to-page mapping already verified for those documents'
+  priority.md work); regenerated all 13 affected graph.md files' Nodes/Relationships/
+  Evidence-flow tables to reference specific page-NNN.md files instead of one blanket
+  record.md node; added page-file citations to the 3 WATER_SCANNED documents' 5 findings
+  each (these already cited by Section number/name, never a literal record.md path, so no
+  finding was actually broken — this was a precision addition, not a repair); fixed the 3
+  WATER_SCANNED twin/priority.md files' explanatory prose; fixed 13 manifest.md rows.
+reason: >
+  User confirmed rollout of the paper-wise extraction requirement to both use cases,
+  starting with bid-evaluation.
+explanation: >
+  Backed up the project to /tmp/lippy-skills-backup-<timestamp>-pre-paperwise-rollout
+  before splitting anything. Verified each document's page-marker count matched its own
+  stated total (asserted programmatically: found marker count == total pages the document
+  itself states) before treating the split as complete, catching any document where a
+  page marker might be missing or malformed before writing files. Confirmed via `wc`/`find`
+  that 213 page files were created (10*6 + 3*51, exact match) and exactly 9 record.md
+  files remain (the DOCX documents, correctly untouched) before considering the split
+  done. Ran a project-wide grep afterward for any remaining reference to
+  twin/<deleted-doc>/record.md and confirmed zero matches outside historical logs before
+  reporting completion. Reused the WATER_SCANNED page-to-section mapping already verified
+  during the priority.md task (Entry 88) rather than re-deriving it, since the underlying
+  document content had not changed.
+model: Claude Sonnet 5
+skill/version_used: "bid-evaluation skill.md v6 (page references corrected, no finding verdict/content changed)"
+other_metadata: >
+  Files changed: 60 finding files (10 Tender-Qualification docs' citations); 13 graph.md
+  files (full Nodes/Relationships/Evidence-flow regeneration); 3 twin/priority.md files;
+  manifest/bid-evaluation/manifest.md (13 rows). New files: 213 page-NNN.md files.
+  Deleted: 13 combined record.md files. version-compare's own paper-wise conversion
+  (S1/S2's Page001.md -> page-001.md rename) is a separate follow-up task, not done here.
+```
+
+## Entry 91
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  "Update bootstrap.md to include the following paper-wise extraction requirement:
+  Inside actual/twin/{file_name}/, extracted content must be generated paper-wise, with
+  each paper/page stored as a separate Markdown file... page-001.md, page-002.md, ...
+  preserve original order... never hardcode document names/page counts/content."
+generated_output: >
+  Amended bootstrap.md (v44 -> v45, per §11): tightened §12's twin/ diagram entry for
+  paginated documents from a permissive "page-### (paginated)" example into a mandatory,
+  explicitly-cased rule (one page-###.md per paper/page, hyphenated, zero-padded to at
+  least 3 digits — explicitly ruling out any prior "Page001.md"-style or unhyphenated
+  naming as non-compliant under rule 19, not a second accepted style). Added a new
+  "Paper-wise extraction" section with a flow diagram (resolve format -> is a page a real
+  countable unit? -> yes: one page-###.md per page in original order / no: existing
+  per-format unit convention applies) and an explicit requirements list (one file per
+  page, original order preserved, each file's content complete and independent so a page
+  can be reviewed/compared/displayed on its own, never hardcoded). Updated the NORMALIZE
+  command description (§5) to reference this. Framed the whole amendment as a
+  documentation-vs-practice correction, not a new invention, since §12 had already named
+  page-### as the paginated unit before this amendment tightened it.
+reason: >
+  User provided this exact requirement and asked for bootstrap.md to document it,
+  covering the twin directory structure, extraction workflow, and generated artifacts
+  wherever they're described.
+explanation: >
+  Before writing anything, checked what bootstrap.md already said (it already named
+  "page-###" as the paginated unit) and what actually exists on disk, and found a
+  pre-existing documentation-vs-practice gap identical in shape to the earlier
+  sectionMap.md discovery: version-compare's paginated documents (S1, S2) already extract
+  one file per page but name them "Page001.md" (capitalized, unhyphenated — a standing
+  rule-19 violation nobody had caught), while bid-evaluation's paginated documents (the 3
+  WATER_SCANNED PDFs and the 10 Tender-Qualification PDFs) extract each document's full
+  multi-page content into one combined record.md with page boundaries only marked inline
+  by embedded "Page N of M" / "===== PAGE NN =====" text — genuinely one whole-document
+  twin file, not one file per page. Did not touch any of these existing twin files in
+  this task — the user's request was scoped to updating bootstrap.md's documentation;
+  actually converting 13 existing documents' twins (which would mean generating roughly
+  400+ new page-###.md files and deleting/renaming the combined record.md files and
+  Page001.md-style files, plus fixing every cross-reference to them in findings/graph.md/
+  detection.md/manifest.md across both use cases) is a separately-scoped rollout, flagged
+  to the user rather than assumed.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — bootstrap.md documentation amendment, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v44 -> v45) only. No actuals/, findings/, or twin/ files
+  changed in this task — existing paginated twins (version-compare S1/S2's Page001.md
+  style; bid-evaluation's WATER_SCANNED and Tender-Qualification combined record.md
+  files) do not yet comply with this amendment and remain unconverted pending a scoped
+  rollout decision.
+```
+
+## Entry 90
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "START brd-documents and create a initial skill.md by our own"
+generated_output: >
+  Found fileIndex.md had been overwritten (not by any command in this session's history)
+  to contain ONLY a malformed brd-documents entry — bid-evaluation and version-compare
+  entries were gone, field names were snake_case (use_case_name etc.) instead of this
+  project's camelCase convention, and the 3-item source path list was invalid YAML
+  (missing list-item dashes), pointing at files outside the project
+  (~/sample-1/Meridian_ProjectVertex_*.docx) rather than under documents/brd-documents/.
+  Restored bid-evaluation and version-compare's entries from the last backup that had
+  them (/tmp/lippy-skills-backup-20260924111526-pre-report-dedup), converting their field
+  names from that backup's own snake_case to camelCase in the process (matching
+  bootstrap.md's documented, but until-now never-actually-applied, field-naming rule for
+  this file). Onboarded the 4 brd-documents files properly: copied them from
+  ~/sample-1/ into documents/brd-documents/source/ (3 files) and
+  documents/brd-documents/supporting/ (1 file, the BRD itself), then wrote a
+  correctly-formatted brd-documents entry (proper YAML list, camelCase fields,
+  in-project paths) as a third fileIndex.md entry.
+reason: >
+  User asked to "START brd-documents" — this required a resolvable fileIndex.md entry
+  first; confirmed via clarifying question to restore the two existing use cases (not
+  leave them dropped) before proceeding.
+explanation: >
+  Did not blindly trust the existing brd-documents entry's paths or format — verified via
+  `ls` that the external ~/sample-1/ files actually existed before copying them, and
+  verified via a script that all 58 paths across all 3 fileIndex.md entries resolve to
+  real files and that each entry's source/supporting path list lengths pair correctly
+  (22/22, 5/5, 3/1 broadcast) before considering fileIndex.md ready for RESOLVE. Caught
+  and fixed one of my own transcription errors (BASE_DOC_WATER_SCANNED's real extension
+  is .pdf, not .docx as I initially copied from memory) by checking the real
+  documents/bid-evaluation/supporting/ directory listing rather than assuming from the
+  filename pattern.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — configuration repair, no skill judgment involved"
+other_metadata: >
+  Files changed: fileIndex.md (full rewrite: restored 2 entries, fixed casing, added
+  brd-documents as a 3rd entry). New files: documents/brd-documents/source/*.docx (3),
+  documents/brd-documents/supporting/*.docx (1) — copied from
+  ~/sample-1/, originals left in place there.
+```
+
+## Entry 89
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  "If remove context.md - It affects anything?" followed by "then remove it" once
+  confirmed it has no live dependents.
+generated_output: >
+  Deleted the root-level context.md — a standalone "Lippy Archive" design document
+  (revision 3, credited to Lumina) that predated/overlapped with bootstrap.md but was
+  never a bootstrap.md-defined artifact and carried no live cross-references from any
+  current-state file, skill, or bin/ script.
+reason: >
+  User asked to confirm impact before deleting, per bootstrap.md §12's retention-decision
+  rule (a deletion needs a recorded reason, not a blanket ban); confirmed zero dependents
+  before removing.
+explanation: >
+  Backed up context.md to /tmp/context.md.backup-<timestamp> before deleting. Verified no
+  dependents via project-wide grep: not referenced by bootstrap.md, any skill.md,
+  fileIndex.md, or any bin/ script; the only project mentions were two historical
+  promptLog.md entries (Entries ~27-28) already noting it was deliberately excluded from
+  an earlier camelCase renaming pass as "not a bootstrap.md-defined artifact" per explicit
+  user instruction at the time — this deletion is consistent with, not a reversal of,
+  that earlier decision.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — root-level file deletion, no skill judgment involved"
+other_metadata: >
+  Files changed: none. Deleted: context.md (root). No bootstrap.md amendment needed,
+  since context.md was never part of bootstrap.md's own documented architecture.
+```
+
+## Entry 88
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  "Create and maintain a priority.md file for all applicable documents/use cases inside
+  the twin directory. Move the existing sectionMap.md file into the twin directory.
+  Update the context and directory structure in bootstrap.md to reflect these changes."
+generated_output: >
+  Rolled priority.md out to the remaining 21 bid-evaluation documents (Coastline was
+  already done in Entry 87), categorized by real document format/structure: 9 DOCX
+  RESPONSE_DOC/*_ELECTRICAL documents get a single "whole document" row (these formats
+  have no page concept at all, per their own twin record's stated grain), each citation
+  count pulled from that document's own findings' `source` field (NONE vs. a real
+  citation); 3 WATER_SCANNED documents get all 51 real OCR'd pages enumerated, ranked by
+  citation count derived from mapping each finding's "Section N" evidence citation to its
+  actual page via the twin record's own page markers and numbered-heading positions
+  (distinguishing table-of-contents occurrences from real section content by taking the
+  correct occurrence, verified per document), with "no text layer" applied to every page
+  since the whole document is OCR'd; 9 further Tender-Qualification PDF documents reuse
+  Coastline's exact page-citation pattern after confirming (not assuming) their twin
+  records share an identical templated page/section structure and their findings cite the
+  same sections. Also found and moved all 24 pre-existing `sectionMap.md` files from each
+  document's `actuals/<usecase>/<doc>/` top level to `twin/sectionMap.md` — bootstrap.md
+  had already documented this location since the detection/plan/graph restructure, but no
+  prior task had actually moved the files to match; fixed the resulting stale references
+  in 2 version-compare graph.md files. Amended bootstrap.md (v43 -> v44, per §11):
+  rewrote the sectionMap.md diagram entry with a real description (previously a bare
+  filename) and an explicit note that every existing file was moved to match the
+  documented location, and made priority.md's requirement explicit as universal — required
+  for every resolved pair in every use case, not opt-in, with a stated rule for the
+  degenerate single-unit case.
+reason: >
+  User asked for priority.md project-wide (not just Coastline) and for sectionMap.md's
+  documented-but-not-actually-true location to be made real, plus bootstrap.md updated to
+  match both changes.
+explanation: >
+  Backed up the project to
+  /tmp/lippy-skills-backup-<timestamp>-pre-sectionmap-priority-rollout before moving or
+  generating anything. Before generating each document's priority.md, verified its actual
+  format (docx/pdf) and page structure rather than assuming every bid-evaluation document
+  is paginated the same way — this surfaced the genuine 3-way split (DOCX has no pages;
+  OCR'd PDF has plain "===== PAGE NN =====" markers with no embedded text layer; regular
+  PDF has "Page N of M" markers). For the WATER_SCANNED page-to-section mapping, verified
+  each candidate line was real section content and not a table-of-contents listing before
+  assigning it a page, since OCR'd tender documents in this project always carry an early
+  TOC that repeats every section title. For the 9 reused-pattern Tender-Qualification
+  documents, spot-checked 2 of them against Coastline's exact citation pattern before
+  applying it to all 9, rather than assuming template consistency without checking.
+  Verified all 27 resulting priority.md files structurally (heading, table header, at
+  least one data row, citation counts non-increasing down the table) with a script before
+  reporting completion.
+model: Claude Sonnet 5
+skill/version_used: "bid-evaluation skill.md v6 (findings content read, not modified)"
+other_metadata: >
+  Files changed: bootstrap.md (v43 -> v44). New files: 21
+  actuals/bid-evaluation/<doc>/twin/priority.md. Moved: 24
+  actuals/bid-evaluation/<doc>/sectionMap.md -> twin/sectionMap.md.
+```
+
+## Entry 87
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  Pasted a priority.md reference example (from the ABB assessment pack:
+  actuals/twin/priority.md, a "Pages to correct first" table ranked by citation count
+  and quality flags) and asked to add this as a new twin/priority.md file, generated
+  from findings rather than hardcoded, with bootstrap.md documenting the requirement and
+  the findings -> priority-extraction -> priority.md flow. Scoped first to
+  Coastline_Builders_Tender_Qualification_ILLUSTRATIVE_SAMPLE only.
+generated_output: >
+  Generated actuals/bid-evaluation/Coastline_Builders_Tender_Qualification_ILLUSTRATIVE_SAMPLE/twin/priority.md:
+  a "document | page | why first" table listing all 6 pages of this document's twin
+  record, ranked by real citation counts extracted from this document's own 10 findings
+  files' Evidence sections (companyProfile.md and price.md both cite the cover page;
+  companyProfile.md and financialStanding.md both cite page 2; equipmentAndCertifications.md
+  and statutoryDeclarationsAndChecklist.md both cite page 5 — each giving 2 citations;
+  pages 3, 4, 6 get 1 citation each from projectExperienceAndTeam.md and
+  statutoryDeclarationsAndChecklist.md's own section spans). No "no text layer" or "table
+  layout" flags applied, since this document's twin record is clean extracted text with
+  no such quirks (unlike the WATER_SCANNED bid-evaluation samples) — the format supports
+  those flags but nothing here was fabricated to fill them. Amended bootstrap.md (v42 ->
+  v43, per §11): added `priority.md` to §12's twin/ diagram entry, added a full "How
+  priority.md is generated" prose block with the findings -> extract -> identify -> rank
+  -> generate flow diagram, and updated JUDGE's own command description (§5) to note it
+  now also produces this file alongside graph.md.
+reason: >
+  User provided the exact reference format and asked for it applied first to one
+  document (Coastline_Builders_Tender_Qualification_ILLUSTRATIVE_SAMPLE) before any
+  wider rollout, and for bootstrap.md to document the generic, reusable requirement
+  (never hardcoding this sample's document name/page numbers/counts into the spec itself).
+explanation: >
+  Derived every page-to-section mapping from this document's own twin record.md (its
+  embedded "Page N of 6" markers cross-referenced against each section heading's line
+  number) rather than guessing, and cross-checked every finding's own Evidence section
+  for its literal cited section/page wording (e.g. "Sections 3–4" for
+  projectExperienceAndTeam.md, correctly attributed to both page 3 and page 4 since
+  Section 4's content itself spans both pages) before computing citation counts — verified
+  the resulting 2/2/2/1/1/1 count distribution against the source citations line by line
+  before writing the file, rather than approximating. Did not invent "no text layer" or
+  "table layout" flags for a document that has neither, even though the reference example
+  used both — the format's optional evidence types apply only when a document's own
+  findings/detection actually surface them.
+model: Claude Sonnet 5
+skill/version_used: "bid-evaluation skill.md v6 (findings content read, not modified)"
+other_metadata: >
+  Files changed: bootstrap.md (v42 -> v43). New file:
+  actuals/bid-evaluation/Coastline_Builders_Tender_Qualification_ILLUSTRATIVE_SAMPLE/twin/priority.md.
+  Scoped to this one document only, per explicit user instruction — the other 21
+  bid-evaluation documents and 5 version-compare documents do not yet have a
+  twin/priority.md.
+```
+
+## Entry 86
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "do the same for findings.md" (i.e. the findings/<unit>.md entry in §12's diagram, matching the enrichment just done for detection.md/plan.md/graph.md)
+generated_output: >
+  Amended bootstrap.md (v42 -> v43, per §11): enriched §12's diagram entry for
+  findings/<unit>.md to match the level of detail its detection.md/plan.md/graph.md
+  siblings had already accumulated (v38-v42, work done outside this entry's own prior
+  edits — re-read the full current §12 section before editing, since the file had moved
+  substantially since this session's last touch). Rewrote the entry to state: grain
+  comes from plan.md (§4.1); front matter/body shape is the resolved skill's own
+  decision (whichever module that skill uses for finding format/output requirements,
+  never a fixed schema bootstrap.md invents); every finding still satisfies §4.1's four
+  existing requirements regardless of shape (derived from the skill, reviewer-style and
+  human-auditable, precisely-citable, no unsupported assumption) — quoted/restated
+  accurately from §4.1 itself, re-read in full first to confirm it still said this before
+  citing it. Closed with how this ties to the other three files: what graph.md's
+  node/relationship tables trace back to, what plan.md names as each stage's expected
+  output, and the one artifact detection.md/plan.md/graph.md collectively exist to
+  produce or account for.
+reason: >
+  User asked for the same documentation treatment already applied to detection.md,
+  plan.md, and graph.md, extended to findings/<unit>.md — the fourth and last
+  per-pair artifact under actuals/<usecase>/<source-document-name>/.
+explanation: >
+  Given how much bootstrap.md had changed since this session's last edit (v37 -> v42,
+  including a real structural change moving findings/ to nest inside actuals/ rather
+  than being a top-level root, and detection.md/plan.md/graph.md all gaining full
+  front-matter/body schemas rather than the one-line notes this session originally
+  added), re-read the entire current §12 section and §4.1 fresh before writing anything,
+  rather than assuming the file still matched this session's own earlier edits. Kept the
+  new text genuinely use-case-agnostic (initially wrote "Module 4/output-requirements
+  module," caught that this is only true for bid-evaluation's own module numbering,
+  not version-compare's Module 5 — corrected to a shape-agnostic phrasing before
+  finishing) per bootstrap.md's own rule against hardcoding one use case's structure.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — bootstrap.md diagram documentation fix, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v42 -> v43) only. No findings file was created, modified,
+  or regenerated by this entry. This completes descriptions for all four per-pair
+  actuals/<usecase>/<source-document-name>/ artifacts (detection.md, plan.md, graph.md,
+  findings/<unit>.md) in §12's diagram.
+```
+
+## Entry 85
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "check the manifest.md files for both use cases too" (verification request)
+generated_output: >
+  Audit of manifest/bid-evaluation/manifest.md surfaced two stale patterns, one from this
+  session's own recent work and one pre-existing: (1) all 22 documents' "`detection.md`
+  and `plan.md` complete" checklist rows still described detection.md's old purpose
+  ("quirks logged") and plan.md's old per-unit "done" ledger — both superseded by
+  yesterday's schema change (Entry 84) — rewrote all 22 to describe the current
+  skill-selection-rationale/Module-2-workflow content instead. (2) A long-standing,
+  pre-existing defect independent of this session's work: every one of the 22 documents'
+  "Skill version recorded on artifacts" and "Findings cover the unit" checklist rows still
+  cited `findings/bidder.md` — a single-file format retired when bid-evaluation moved to
+  per-field findings (score.md/eligibility.md/etc.), per each document's own
+  "Restructure note" already present earlier in the same manifest sections — rewrote all
+  22 rows to cite the real per-field files instead.
+reason: >
+  User asked to check manifest.md for both use cases; the audit found these two patterns.
+explanation: >
+  Distinguished genuinely broken references from three categories of false positive
+  before fixing anything: (a) literal "..." ellipsis placeholders like
+  `actuals/.../graph.md` meaning "actuals/<usecase>/<doc>/graph.md" generically; (b)
+  deliberate negation sentences ("this document has no own `reports/.../report.md`")
+  where the non-existence of the named file IS the point being made; (c) intentional
+  relative shorthand paths (e.g. `findings/price.md`) that resolve correctly against the
+  document's own actuals/ directory rather than the repo root. Verified each finding-file
+  reference against real `ls` output per document before writing a replacement, rather
+  than assuming every document has the same five fields (10 Tender-Qualification
+  documents also carry five informational fields not present in the six RESPONSE-named
+  and SOLAR/ELECTRICAL/WATER_SCANNED documents). Noted that the manifest already carried
+  an explicit disclaimer ("Rows below describe the state as originally validated
+  (pre-restructure)...") acknowledging this exact staleness as a known, deliberate gap —
+  my fix closes that gap rather than conflicting with it; the disclaimer text itself was
+  left in place since it remains true and harmless. Also found and fixed one unrelated
+  stale citation in version-compare's manifest (see prompt-log/version-compare/
+  promptLog.md Entry 65) while cross-checking both files together.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — documentation consistency fixes, no skill judgment involved"
+other_metadata: >
+  Files changed: manifest/bid-evaluation/manifest.md only (44 detection/plan rows + ~40
+  bidder.md citations rewritten). No bootstrap.md, findings, actuals, or report changes.
+```
+
+## Entry 84
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  Pasted an exact plan.md template (front matter: skill/version/steps/verified-by/
+  verified-on/confidence; body: "# Plan of Action" + Operation/What-it-does/Example
+  table) and asked for the same structured approach applied to graph.md (frontmatter:
+  purpose/version/verification/confidence; Nodes/Relationships/Dependencies/Evidence-flow
+  tables), and for bootstrap.md to document both structures generically, their front
+  matter conventions, and how detection.md/plan.md/graph.md relate.
+generated_output: >
+  Rewrote all 22 bid-evaluation actuals/bid-evaluation/<doc>/plan.md files: front matter
+  (skill, version pulled from skill.md's own live version, steps = count of that skill's
+  Module 2 stages, verified-by/verified-on from the document's own real
+  HITL/manualValidate.md), body table with one row per Module 2 stage
+  (UNDERSTAND/RETRIEVE/ANSWER/VALIDATE/RANK), each row's Example column populated from
+  that document's own real findings content (bidder name extracted from its derived
+  summary, Score field's real source/section/verdict, real ranking-group membership) —
+  never invented or copy-pasted across documents. Rewrote all 22 graph.md files to the
+  new schema (front matter: purpose/version/verification-from-HITL/confidence; Nodes,
+  Relationships, Dependencies, Evidence-flow tables), replacing the old free-text arrow
+  notation. Amended bootstrap.md (v41 -> v42, per §11): redefined plan.md's §12 diagram
+  entry as the skill's own Module 2 workflow applied to this pair (superseding v20's
+  per-unit progress-ledger content), redefined graph.md's entry with the same
+  front-matter-plus-tables shape, changed JUDGE's own mechanism for tracking
+  "what still needs a finding" from reading a status column in plan.md to checking which
+  findings/<unit>.md files already exist (since plan.md no longer carries that ledger),
+  and added a new prose block explaining how detection.md (why) -> plan.md (how) ->
+  graph.md (what happened) relate and share terminology.
+reason: >
+  User provided this exact template (again traced to the ABB reference pack) and asked
+  for it applied project-wide, plus a generic (not example-specific) bootstrap.md
+  description, consistent with the precedent set in Entry 82's detection.md change.
+explanation: >
+  Backed up the project to /tmp/lippy-skills-backup-<timestamp>-pre-plan-graph-restructure
+  before rewriting anything. Did not re-ask for confirmation before proceeding despite
+  this reversing a live command mechanism (JUDGE's progress tracking) — the user's
+  instructions were already fully explicit and detailed (including how bootstrap.md
+  should describe the relationship to detection.md), consistent with the same
+  full-replacement precedent already confirmed for detection.md moments earlier in this
+  session; redesigned JUDGE's tracking mechanism as a resolution rather than leaving it
+  broken. Caught and corrected two of my own bugs before finishing: (1) a regex that
+  captured multi-paragraph garbage into 10 Tender-Qualification documents' bidder-name
+  field by allowing `[^']` to match newlines — caught by grepping the output for a known
+  garbage phrase across all 22 files and finding all 10 instances; (2) a bidder-name
+  regex that truncated legal-entity suffixes ("Pvt" instead of "Pvt. Ltd.") for the other
+  12 documents — caught the same way and rewrote the regex to require a real suffix
+  pattern before accepting a match. Verified every finding/twin/report path plan.md and
+  graph.md reference actually exists on disk (including glob-pattern per-clause file
+  counts matching real `ls` counts) before considering the task complete.
+model: Claude Sonnet 5
+skill/version_used: "bid-evaluation skill.md v6 (Module 2 stages quoted verbatim into plan.md; no skill judgment/finding content changed)"
+other_metadata: >
+  Files changed: bootstrap.md (v41 -> v42); all 22 actuals/bid-evaluation/<doc>/plan.md
+  (full rewrite, prior per-unit progress-ledger content removed); all 22
+  actuals/bid-evaluation/<doc>/graph.md (full rewrite to tables schema).
+```
+
+## Entry 83
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "check the graph.md files for both use cases too" (verification request, followed by confirmed "fix everything now")
+generated_output: >
+  Audit of all 27 graph.md files surfaced real defects in both use cases (see
+  prompt-log/version-compare/promptLog.md Entry 63 for that use case's half). For
+  bid-evaluation: (1) 10 documents (S1_ELECTRICAL, all 6 SOLAR, all 3 WATER_SCANNED) had
+  duplicate "cited by" lines pointing at the same group report — one from this session's
+  v40 report-dedup redo, one pre-existing with different, more specific wording — merged
+  into a single line combining both. (2) All 10 Tender-Qualification documents' graph.md
+  cited detection.md for "the documents' own silence on any committee determination," but
+  Entry 82 rewrote detection.md to a skill-selection-rationale schema that no longer
+  covers this — repointed the citation to a full-text search of each document's own
+  twin/record.md instead, with a note that detection.md's scope changed. (3) Those same
+  10 files also self-contradicted: stating upfront "this document has no own report.md"
+  but ending with "so this graph terminates at this bidder's own report only" — fixed to
+  "the group's report only, not a per-bidder one."
+reason: >
+  User asked to check graph.md files for both use cases, then confirmed "fix everything
+  now" once the audit surfaced these issues, rather than fixing bid-evaluation only.
+explanation: >
+  Backed up the project to /tmp/lippy-skills-backup-<timestamp>-pre-graph-fixes before
+  changing anything. Wrote a verification script checking every finding/report/twin file
+  a graph.md references actually exists on disk, rather than eyeballing a sample — this
+  is what surfaced the duplicate-citation and self-contradiction patterns as
+  machine-checkable facts, not just prose review. Re-ran the same script after fixing to
+  confirm zero remaining issues before reporting completion.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — documentation consistency fixes, no skill judgment involved"
+other_metadata: >
+  Files changed: 10 actuals/bid-evaluation/<doc>/graph.md (duplicate cited-by lines
+  merged); 10 actuals/bid-evaluation/<Tender-Qualification-doc>/graph.md (detection.md
+  cross-reference and self-contradiction fixed).
+```
+
+## Entry 82
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  Pasted a detection.md template (front matter: skill/confidence/why/verified-by/
+  verified-on/confidence-of-actual; body: chosen skill + alternatives considered and
+  rejected) and asked to update detection.md across all documents to this structure, and
+  bootstrap.md accordingly. Confirmed via follow-up question: full replacement of the
+  existing "quirks noticed" content with this skill-selection-rationale format (not an
+  addition alongside it).
+generated_output: >
+  Rewrote all 22 bid-evaluation actuals/bid-evaluation/<doc>/detection.md files (and all
+  5 version-compare ones, see prompt-log/version-compare/promptLog.md) to the new schema:
+  front matter naming the resolved skill (verbatim from fileIndex.md), a confidence
+  rating, a why-this-fits rationale specific to this use case's actual document/brief
+  shape, verified-by/verified-on pulled from that document's own real
+  HITL/<usecase>/<doc>/manualValidate.md record (not invented), and a
+  confidence-of-actual field. Body names the resolved skill and the other configured use
+  case (version-compare) as the alternative considered and why it was rejected for this
+  pairing, plus a fixed-control "compliance-assessment" alternative and why it doesn't
+  fit either. Amended bootstrap.md (v40 -> v41, per §11): rewrote §12's detection.md
+  diagram entry to describe this new schema in full (field-by-field), explicitly noting
+  detection.md now records the rationale for a decision `fileIndex.md` still makes alone
+  — it is not detection.md re-deciding the use case, only documenting why the existing
+  decision holds. Removed the "never a skill or use-case classification" language from
+  detection.md's own entry (it now names the skill by design) and moved that language to
+  stand alone under plan.md's entry, since plan.md's own status-not-classification rule
+  no longer needs to lean on detection.md's for support.
+reason: >
+  User provided this exact template (traced to the ABB assessment reference pack) and
+  asked for it project-wide, confirming the change should fully replace the existing
+  content and reverse bootstrap.md's prior rule rather than layer alongside it.
+explanation: >
+  Backed up the project to /tmp/lippy-skills-backup-<timestamp>-pre-detection-restructure
+  before rewriting anything. Verified all 27 documents (22 bid-evaluation + 5
+  version-compare) had exactly one HITL manualValidate.md record each before generating
+  content, and parsed each file's own Reviewer/Status/Date fields (using the most recent
+  entry for the 3 WATER_SCANNED documents that carry two dated re-validations) rather than
+  inventing a reviewer or date. Confirmed this change is a genuine reversal of a
+  documented rule, not an oversight — flagged the conflict to the user via a clarifying
+  question before proceeding, since bootstrap.md previously stated explicitly that skill
+  classification is fileIndex.md's job, never detection.md's.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — structural/documentation change, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v40 -> v41); all 22 actuals/bid-evaluation/<doc>/
+  detection.md files (full rewrite, prior quirks-table content removed).
+```
+
+## Entry 81
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  "Inside the `reports` directory: Keep `rankingSummary` as a standalone directory.
+  Restore the `version-compare` reports within the `reports` directory. Update
+  `bootstrap.md` to reflect the correct directory structure for the findings and
+  reports." Confirmed via follow-up question: "rankingSummary standalone" means
+  re-applying the report-deduplication (delete the 22 per-document report.md copies
+  restored in Entry 80, keep only the 4 RankingSummary* directories).
+generated_output: >
+  Two independent fixes: (1) discovered reports/version-compare/ was entirely missing
+  from disk (0 files) despite having existed with correct content one backup earlier —
+  restored all 5 SYNTH_VERS_DOCS_*_REVISED/report.md files from
+  /tmp/lippy-skills-backup-20260925105021-pre-report-move, verified their content already
+  reflected the Entry 79 findings/actuals path fix (9 actuals/version-compare/ references
+  per file, not the stale findings/version-compare/ path). (2) Re-applied the
+  report-deduplication this session had reverted in Entry 80: deleted the 22
+  per-document reports/bid-evaluation/<doc>/report.md copies again, leaving only the 4
+  RankingSummary* directories. Amended bootstrap.md (v39 -> v40, per §11): restored the
+  REPORT command (§5), §12's reports/ diagram entry, and the derived/<source-document>.md
+  entry's conditional "Report summary" logic back to v33's rule (re-establishing it,
+  explicitly superseding v39's temporary reversion). Then re-applied the same 22
+  manifest.md checklist rows, 12 "skill version" rows, 8 ACCEPTED-DELIVERABLE + 10
+  NOT-ADDRESSED verdict paragraphs, 22 graph.md "cited by" lines, and 22 derived-file
+  "Full report:" lines back to the group-only framing (citing v40 instead of v33).
+reason: >
+  User wants rankingSummary to remain the sole standalone report per batch (no
+  per-document duplicates) and needs version-compare's reports restored (they had gone
+  missing, apparently during this session's work, though not through any command this
+  agent ran deliberately — cause not fully diagnosed, flagged here for visibility).
+explanation: >
+  Backed up the project to /tmp/lippy-skills-backup-<timestamp>-pre-rankingsummary-redo
+  before making changes. For the missing version-compare reports, checked every backup
+  taken this session in order and found content present through
+  pre-report-move (10:50:21) but absent (0 files) in pre-report-revert (11:00:03) — since
+  no command in this agent's own history between those two backups touched
+  reports/version-compare/, the disappearance is unexplained and worth the user's
+  awareness even though the fix (restore from the last known-good backup) was
+  straightforward. Verified restored content matches the post-Entry-79 path fixes rather
+  than reintroducing the pre-fix findings/version-compare/ path. For the RankingSummary
+  redo, reused the exact same group-membership mapping verified in Entry 80 (by group
+  report content, not assumption) to avoid misassigning any of the 22 documents.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — structural/documentation change, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v39 -> v40); manifest/bid-evaluation/manifest.md (52
+  rows/paragraphs re-reverted). Deleted: 22x reports/bid-evaluation/<doc>/report.md
+  (re-deduplicated). Restored: reports/version-compare/ (5 documents' report.md, from
+  backup). No findings/ or actuals/ content changed beyond graph.md/derived-file report
+  pointers.
+```
+
+## Entry 80
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: >
+  "move the report as older directory structure" — clarified via follow-up question as:
+  revert the report-deduplication change (bootstrap.md v33), restoring each document's
+  own reports/bid-evaluation/<doc>/report.md as a copy of its group's synthesis, rather
+  than moving reports/ under actuals/.
+generated_output: >
+  Reverted the v33 report-deduplication change: restored reports/bid-evaluation/<doc>/
+  report.md for all 22 documents as an identical copy of their batch's group-level
+  synthesis (3 ELECTRICAL docs <- RankingSummary, 6 SOLAR docs <- RankingSummary-Solar, 3
+  WATER_SCANNED docs <- RankingSummary-Water, 10 Tender-Qualification docs <-
+  RankingSummary-TenderQualification). Amended bootstrap.md (v38 -> v39, per §11):
+  reverted the REPORT command (§5) and §12's reports/ diagram entry back to v23's rule —
+  every document has its own report.md, and where the shape is a group-level synthesis,
+  that same content is copied into every group member's own report.md rather than living
+  solely at the group location. Also reverted the derived/<source-document>.md entry's
+  conditional "Report summary" section logic (which depended on v33's per-document/group
+  split) back to unconditional: every pair now has its own report.md to point to. Then
+  swept every document that had been rewritten during the v33 pass and restored the
+  original per-document framing: 22 manifest.md checklist rows, 12 manifest.md "Skill
+  version recorded on artifacts" rows, 8 ACCEPTED-DELIVERABLE and 10 NOT-ADDRESSED
+  Verdict paragraphs, 22 graph.md "cited by" lines, and 22 derived-file "Full report:"
+  lines — all now point at each document's own report.md again instead of the group's.
+reason: >
+  User explicitly asked to reverse the earlier report-deduplication change and go back
+  to the prior (pre-v33) per-document report-copy structure.
+explanation: >
+  Backed up the project to /tmp/lippy-skills-backup-<timestamp>-pre-report-revert before
+  restoring anything. Confirmed group membership for all 22 documents by reading each
+  group's own report.md content (grepping which document names it discusses) rather than
+  assuming from memory, since a wrong group assignment would silently copy the wrong
+  synthesis into a document's report.md. Front matter version was already at v38 on disk
+  (bumped past v33 by the intervening findings/actuals restructure, Entry 79) — bumped to
+  v39 rather than reusing a number. Verified post-revert that all 22 documents have their
+  own reports/bid-evaluation/<doc>/report.md, the 4 group directories are unchanged, and
+  no "amended v33"/"has no own report.md" phrasing survives outside promptLog.md/
+  patternLog.md's historical entries (which were deliberately left untouched, per this
+  project's established historical-content convention).
+model: Claude Sonnet 5
+skill/version_used: "not applicable — structural/documentation change, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v38 -> v39); manifest/bid-evaluation/manifest.md (52 rows/
+  paragraphs reverted); 22x actuals/bid-evaluation/<doc>/graph.md; 22x
+  actuals/bid-evaluation/<doc>/twin/derived/<doc>.md ("Full report:" line only).
+  Restored: 22x reports/bid-evaluation/<doc>/report.md (copies of their group's
+  synthesis). No findings/ files changed.
+```
+
+## Entry 79
+
+```yaml
+timestamp: 2026-09-25
+command/prompt: "move to findings into the actuals" (confirmed scope: both use cases)
+generated_output: >
+  Moved every document's findings out of the separate top-level findings/bid-evaluation/
+  tree and nested them inside that document's own actuals/bid-evaluation/<doc>/ subtree,
+  as actuals/bid-evaluation/<doc>/findings/<unit>.md — alongside that document's existing
+  twin/, detection.md, plan.md, and graph.md. Amended bootstrap.md (v37 -> v38, per §11):
+  removed findings/ from the list of top-level generated roots (§12), added it as a
+  nested entry under actuals/<usecase>/<source-document-name>/ in the directory diagram,
+  and updated every prose reference across §1-§12 and non-negotiable rules 13/17 that
+  previously listed findings/ as a sibling of actuals/reports/HITL. Updated the JUDGE
+  command (§5) and §4.1's findings-generation discipline to cite the new path. Then swept
+  every current-state document referencing the old findings/bid-evaluation/<doc>/ path
+  and rewrote it to actuals/bid-evaluation/<doc>/findings/: all 22 documents' own
+  graph.md/plan.md files, manifest/bid-evaluation/manifest.md (118 occurrences),
+  skills/bid-evaluation/skill.md, and all reports/bid-evaluation/*/report.md files.
+reason: >
+  User explicitly requested restructuring findings to live under actuals rather than as
+  a separate top-level tree, applied to both use cases.
+explanation: >
+  Backed up the project to /tmp/lippy-skills-backup-20260925104511-pre-findings-move
+  before moving anything. Moved files with `mv`, not copy+delete, to avoid any risk of a
+  stale duplicate surviving. Verified post-move that the top-level findings/ directory no
+  longer exists and that actuals/bid-evaluation/<doc>/findings/ holds exactly the same
+  726 files (both use cases combined) that findings/ held before the move. Front matter
+  version was already at v37 on disk (bumped past my last-known v33 by a concurrent
+  process this session did not author) — bumped to v38 rather than reusing a number, and
+  confirmed no other "amended v34-v37" citations already existed in bootstrap.md before
+  claiming v38 for this change. Deliberately left this repository's promptLog.md/
+  patternLog.md historical entries referencing the old findings/bid-evaluation/<doc>/
+  path untouched, per this project's established historical-content convention.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — structural/documentation change, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v37 -> v38); manifest/bid-evaluation/manifest.md (118
+  path occurrences); skills/bid-evaluation/skill.md (1 occurrence); all 22 documents'
+  actuals/bid-evaluation/<doc>/graph.md and plan.md; reports/bid-evaluation/RankingSummary/
+  report.md, RankingSummary-Water/report.md, RankingSummary-TenderQualification/report.md.
+  Moved: 726 files total (both use cases) from findings/<usecase>/<doc>/ to
+  actuals/<usecase>/<doc>/findings/. Deleted: the now-empty top-level findings/ tree.
+```
+
+## Entry 78
+
+```yaml
+timestamp: 2026-09-24
+command/prompt: "How the findings relate [...] Edges between findings resting on the same evidence, and what each document claims about itself. actual Optional in the first packs; where a reviewer knows two controls are one finding, the edge is written, otherwise the file says 'not verified' and is not scored. [...] update in the graph.md" (clarified via question to: enrich bootstrap.md's §12 diagram description with "how findings relate" framing, grounded in graph.md's actual existing structure — no new cross-finding-edge/evidence-sharing/not-verified capability added)
+generated_output: >
+  Amended bootstrap.md (v36 -> v37, per §11): reworded graph.md's §12 diagram
+  description (added in Entry 77) to open with "how this pair's findings relate to
+  their evidence and to each other," then describe the same real, existing structure
+  (retrieved-from/context-only/cited-by, written by JUDGE) rather than the pasted
+  edges/evidence-sharing/not-verified concept, which does not exist in this project's
+  actual graph.md format and uses vocabulary ("controls") matching a different,
+  previously-referenced compliance-assessment project. Added one clarifying sentence:
+  graph.md is confined to its own pair's findings, never an edge into another pair's or
+  use case's graph.md — an existing, already-true constraint (per §12's per-pair/
+  per-usecase isolation elsewhere in the file), made explicit here since the pasted text
+  raised the question of cross-finding relationships.
+reason: >
+  User's pasted text described a materially different capability (optional cross-finding
+  edges sharing evidence, a "not verified" unscored state) than what this project's
+  JUDGE command and existing graph.md files actually implement. Asked which was intended
+  before editing, given that adding the described capability for real would be a behavior
+  change to JUDGE (§5) requiring bootstrap.md's amendment protocol and regeneration
+  across both use cases' existing graph.md files — not a documentation fix. User
+  confirmed documentation-only.
+explanation: >
+  Recognized the "controls" terminology as matching the abb-intics reference project
+  referenced earlier this session (a different, compliance-assessment codebase), not
+  this project's own vocabulary, before assuming the pasted text was a legitimate
+  extension. Kept the new diagram wording grounded in the real graph.md sample already
+  read in Entry 77, only adding relational framing language, no new fields or file
+  content.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — bootstrap.md diagram documentation fix, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v36 -> v37) only. No graph.md file was created, modified,
+  or regenerated by this entry, and no new cross-finding-edge capability was added to
+  JUDGE or any other command.
+```
+
+## Entry 77
+
+```yaml
+timestamp: 2026-09-24
+command/prompt: "add the same description for graph.md"
+generated_output: >
+  Amended bootstrap.md (v35 -> v36, per §11): added a description to §12's directory
+  diagram for graph.md, matching the pattern established for detection.md (Entry 75)
+  and plan.md (Entry 76) — previously graph.md's diagram entry also had no description.
+  States its actual purpose: a traceability map, one entry per finding file the pair
+  produced, recording what it was retrieved from in the twin (and any document used as
+  context only, never quoted as evidence) and which report(s) cite it — written by
+  JUDGE (§5) alongside the findings themselves.
+reason: >
+  User asked for the same documentation treatment applied to graph.md that was applied
+  to detection.md and plan.md.
+explanation: >
+  Read an actual graph.md file (actuals/bid-evaluation/RESPONSE_DOC_S1/graph.md) before
+  writing the description, confirming it lists each finding file with a "retrieved
+  from"/"context only"/"cited by" structure, rather than assuming its shape from JUDGE's
+  command definition alone.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — bootstrap.md diagram documentation fix, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v35 -> v36) only. No graph.md file was created, modified,
+  or regenerated by this entry. This completes descriptions for all three previously
+  undocumented actuals/<usecase>/<source-document-name>/ entries (detection.md, plan.md,
+  graph.md) in §12's diagram.
+```
+
+## Entry 76
+
+```yaml
+timestamp: 2026-09-24
+command/prompt: "add the same description for plan.md"
+generated_output: >
+  Amended bootstrap.md (v34 -> v35, per §11): added a description to §12's directory
+  diagram for plan.md, matching the style/pattern just established for detection.md
+  (Entry 75) — previously plan.md's diagram entry also had no description at all.
+  States plan.md's actual current purpose: one row per unit at the grain the resolved
+  skill defines (§4.1), each row naming its findings file and a done/not-done status —
+  what JUDGE (§5) reads to know what still needs a finding — and, matching
+  detection.md's note, explicitly stated as never a skill or use-case classification
+  either.
+reason: >
+  User asked for the same documentation treatment applied to plan.md that was just
+  applied to detection.md.
+explanation: >
+  Cross-referenced §4.1's grain definition and §5's JUDGE command description (which
+  explicitly reads from plan.md) before writing the description, and reused the actual
+  plan.md sample already read earlier this session (actuals/bid-evaluation/
+  RESPONSE_DOC_S1/plan.md — a grain statement, a unit/findings-file/status table, and a
+  completion count) to confirm the description matches real file content, not assumption.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — bootstrap.md diagram documentation fix, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v34 -> v35) only. No plan.md file was created, modified,
+  or regenerated by this entry.
+```
+
+## Entry 75
+
+```yaml
+timestamp: 2026-09-24
+command/prompt: "detection.md the use case a person says this project is [...] Detection says which skill the project is and why; the plan is the skill's steps made concrete for this project [...] update in all the detection.md" (clarified via question to: add a one-line description to bootstrap.md's §12 diagram entry for detection.md, matching its actual current purpose — not redefine or regenerate the 27 existing detection.md files)
+generated_output: >
+  Amended bootstrap.md (v33 -> v34, per §11): added a description to §12's directory
+  diagram for detection.md, which previously had none at all (unlike sibling entries
+  like sectionMap.md/derived/<source-document>.md). Description states detection.md's
+  actual current purpose: quirks noticed while building the twin and reading a pair's
+  own documents, ahead of judgment — explicitly distinguished from a skill/use-case
+  classification, which is fileIndex.md's job (§2), already settled before NORMALIZE
+  runs. Did not adopt the user's pasted "which skill the project is and why" framing
+  literally, since that describes a different purpose than what NORMALIZE (§5) and every
+  actual detection.md file on disk currently do (confirmed by reading
+  actuals/bid-evaluation/RESPONSE_DOC_S1/detection.md — a quirks table, not a
+  skill-classification statement) — the user confirmed (via clarifying question) this was
+  a documentation gap to fill, not a request to redefine and regenerate all 27 existing
+  detection.md files.
+reason: >
+  User's pasted text described a materially different purpose for detection.md than what
+  this project's NORMALIZE command and existing detection.md files actually implement.
+  Asked which was intended before acting, given the scale (27 files across both use
+  cases) a literal redefinition would have required, and the fact that changing
+  detection.md's actual purpose would be a real behavior change to NORMALIZE (§5), not a
+  documentation fix.
+explanation: >
+  Read an actual detection.md file from disk before writing the new diagram description,
+  to describe what the artifact truly contains rather than the user's pasted (differently
+  scoped) framing. Cross-referenced §5's NORMALIZE definition and §2's RESOLVE-time
+  use-case/skill determination to make the "never a skill/use-case classification"
+  distinction explicit and accurate.
+model: Claude Sonnet 5
+skill/version_used: "not applicable — bootstrap.md diagram documentation fix, no skill judgment involved"
+other_metadata: >
+  Files changed: bootstrap.md (v33 -> v34) only. No detection.md file (27 across both
+  use cases) was created, modified, or regenerated by this entry.
+```
+
 ## Entry 74
 
 ```yaml

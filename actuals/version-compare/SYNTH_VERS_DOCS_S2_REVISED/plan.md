@@ -1,30 +1,19 @@
-# Plan
+---
+skill: version-compare
+version: 6
+steps: 6
+verified-by: Prathapan C approved this plan's parameters, recorded in `HITL/version-compare/SYNTH_VERS_DOCS_S2_REVISED/manualValidate.md`
+verified-on: 2026-09-21
+confidence: CONFIRMED
+---
 
-`skills/version-compare/skill.md`'s grain (one clause, rolled up to one findings file per
-unit/section). Each row becomes one file under `findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/`.
+# Plan of Action · version 6
 
-| # | Unit | Findings file | Status |
+| # | Operation | What it does on this project | Example |
 |---|---|---|---|
-| 1 | Cover / header | `01-cover-header.md` | done |
-| 2 | 1. Introduction & Background | `02-1-introduction-background.md` | done |
-| 3 | 2. Definitions | `03-2-definitions.md` | done |
-| 4 | 3. Project Objectives | `04-3-project-objectives.md` | done |
-| 5 | 4. Scope of Work | `05-4-scope-of-work.md` | done |
-| 6 | 5. Technical Requirements | `06-5-technical-requirements.md` | done |
-| 7 | 6. [Reserved] (was Vendor Onboarding & Staffing Requirements) | `07-6-reserved.md` | done |
-| 8 | 7. Functional Requirements Matrix | `08-7-functional-requirements-matrix.md` | done |
-| 9 | 8. Eligibility Criteria | `09-8-eligibility-criteria.md` | done |
-| 10 | 9. Deliverables | `10-9-deliverables.md` | done |
-| 11 | 10. Project Timeline | `11-10-project-timeline.md` | done |
-| 12 | 11. Evaluation Criteria | `12-11-evaluation-criteria.md` | done |
-| 13 | 12. Insurance Requirements | `13-12-insurance-requirements.md` | done |
-| 14 | 13. Commercial Terms (incl. 13.3 Service Level Credit Schedule) | `14-13-commercial-terms.md` | done |
-| 15 | 14. Submission Instructions | `15-14-submission-instructions.md` | done |
-| 16 | 15. Terms & Conditions (incl. 15.5) | `16-15-terms-conditions.md` | done |
-| 17 | 16. Contact Information | `17-16-contact-information.md` | done |
-| 18 | Appendix A: Pricing Form | `18-appendix-a-pricing-form.md` | done |
-| 19 | Appendix B: Reference Form | `19-appendix-b-reference-form.md` | done |
-| 20 | Appendix C: Compliance Certification Checklist | `20-appendix-c-compliance-certification-checklist.md` | done |
-
-All 20 units complete. Any new unit discovered during a
-future re-read is added as a new row here before a findings file is created for it.
+| 1 | UNDERSTAND | Determine this document's grain — the atomic unit that gets one verdict each — and whether the two documents share a common structure or must be aligned by content. | SYNTH_VERS_DOCS_S2_REVISED.pdf (20 sections, 148 clauses total) — grain fixed at one clause per verdict |
+| 2 | MAP | Build a mapping from each unit in the newer document to its counterpart (if any) in the older document, by content/label, not position, ID, or presentation format. | 19 of 20 units mapped 1:1 by title; unit 7 ([Reserved]) mapped by section number only, since its counterpart shares the number but not the title or content |
+| 3 | RETRIEVE | For each mapped (or unmapped) unit, retrieve the exact wording from each document it appears in. | each of the 20 sections' exact wording retrieved from both SYNTH_VERS_DOCS_S2_REVISED.pdf and its supporting original — never from memory of a similar section seen elsewhere |
+| 4 | JUDGE | Apply Module 1's verdict rules to each unit using only what was retrieved — CHANGED/ADDED/REMOVED/UNCHANGED/NOT ADDRESSED, both sides quoted. | every clause within unit 7 ([Reserved]) resolved to REMOVED/ADDED rather than CHANGED/UNCHANGED, per `findings/07-6Reserved-*.md` |
+| 5 | VALIDATE | Run the Module 4 checklist before treating any output as final. | `manifest/version-compare/manifest.md`'s own checklist section for SYNTH_VERS_DOCS_S2_REVISED |
+| 6 | REPORT | Assemble the output per Module 5 — verdict-count summary and thematic rollup, citing findings only. | `reports/version-compare/SYNTH_VERS_DOCS_S2_REVISED/report.md`'s verdict-count summary: 58 CHANGED, 25 ADDED, 6 REMOVED |

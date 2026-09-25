@@ -12,4 +12,4 @@ Ashford Financial Group's revised reissue (RFP-AFG-2026-0064-R1), adding a Major
 
 Ashford Financial Group's original RFP (RFP-AFG-2026-0064) versus its revised reissue (RFP-AFG-2026-0064-R1), following AFG's acquisition of Colonial Trust Bank and the addition of a formal Major Incident Response program. Verdict counts: 58 CHANGED, 25 ADDED, 6 REMOVED, 59 UNCHANGED — 148 clauses examined. Full clause-by-clause account is in this document's own findings and report.
 
-Full report: `reports/version-compare/SYNTH_VERS_DOCS_S2_REVISED/report.md`
+Full report: `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/reports/report.md`

@@ -1,8 +1,12 @@
-# Detection — RESPONSE_DOC_S3_ELECTRICAL (bidder: Circuit Breakers India Corp.)
+---
+skill: bid-evaluation
+confidence: HIGH
+why: the source document is a bidder's own tender submission (or the tender's evaluation-committee register naming this bidder), paired with a supporting document that carries the tender's own criteria or the committee's determination; the brief asks for a per-bidder verdict on score, eligibility, price, and deviations, each cited to that bidder's own record.
+verified-by: Prathapan C approved this skill's assignment via `fileIndex.md` (§2, already resolved before NORMALIZE); confirmed by manual review, recorded in `HITL/bid-evaluation/RESPONSE_DOC_S3_ELECTRICAL/manualValidate.md`
+verified-on: 2026-09-21
+confidence-of-actual: CONFIRMED
+---
 
+# Detection
 
-| Quirk | Where observed | Handling |
-|---|---|---|
-| No explicit bid-opening register was supplied | fileIndex.md's bid-evaluation entry lists three source paths, all named RESPONSE_DOC_*, against one shared BASE_DOC supporting path — no separate register file | Per skill Module "UNDERSTAND" (`from=supporting, documents=RESPONSE`), the register is built programmatically: one row per RESPONSE-named document, this document is that row's record. |
-| The committee record is embedded inside the bid document itself, not a separate scoresheet | This document's own Section 2 (Eligibility Compliance Statement), Section 18 (Deviations), Section 20/21 (priced BOQ + committee's Stage 2 framing), and Section 25 (Evaluation Committee Remarks) all carry committee-authored determinations, not just the bidder's own submission | Retrieved the whole document as the record per skill's `documents-from=record` rule — no search for the bidder's name across other bidders' documents. |
-| No numeric technical score (out of the tender's 100-mark scale defined in BASE_DOC §5) is recorded anywhere in this document | Checked every section, including the remarks and eligibility table | Per skill: "Where the committee awarded no numeric score, open with the committee's own overall determination, quoted." Applied — see findings file. |
+bid-evaluation. Alternatives considered and rejected: version-compare (there is one version of each bid document, not two revisions of the same document to diff); a fixed-control compliance-assessment (bidders are judged against this tender's own committee criteria, not a reusable external control register).

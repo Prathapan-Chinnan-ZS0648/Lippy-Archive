@@ -4,8 +4,8 @@ role: shared, use-case-agnostic execution framework for processing source and su
   documents — orchestration and execution layer only, never tied to any sample,
   document, or use case
 state: living document — amended only through the change protocol in §11
-version: 33
-last-amended: 2026-09-24
+version: 45
+last-amended: 2026-09-25
 export-directory: .   # VARIABLE — the project root this bootstrap governs; override per
                         # deployment, never hardcode a machine- or project-specific path
 ---
@@ -83,7 +83,8 @@ list of paths**, within one entry:
 
 Every resolved source/supporting pair within an entry is processed as its own independent
 run through the pipeline (§6) — its own `<source-document-name>` subdirectory under that
-one `<usecase>`'s `actuals/`, `findings/`, `reports/`, and `HITL/` trees (§12) — using the
+one `<usecase>`'s `actuals/` (which nests that pair's own `findings/`, amended v38),
+`reports/`, and `HITL/` trees (§12) — using the
 same `useCaseName` and `skillFilePath` for every pair in that entry. A failure
 resolving one pair (a path that does not exist) blocks only that pair with its own
 `<UNRESOLVED: ...>`; it does not block the other, resolvable pairs in the same entry (§3's
@@ -180,7 +181,8 @@ skill.
 
 ### 4.1 Findings-generation discipline (amended v29, §11)
 
-One `findings/<usecase>/<source-document-name>/<unit>.md` file per unit (§12) — `<unit>`
+One `actuals/<usecase>/<source-document-name>/findings/<unit>.md` file per unit (§12,
+amended v38, superseding v20/v29's top-level `findings/` location) — `<unit>`
 is whatever grain that use case's skill defines (one bidder, one clause, one evaluation
 item/question, one row — Module 1/3 of the resolved skill, never a grain this file
 invents). Every finding in it must satisfy, regardless of use case:
@@ -244,12 +246,12 @@ command beyond what that command's own definition composes). See non-negotiable 
 |---|---|
 | **`START`** | Start execution of the full `bootstrap.md` workflow using the documents and configuration defined in `fileIndex.md`: read configuration → resolve documents → normalize → judge → enhance the skill → report → validate → manually validate (§6's execution flow). Composes `RESOLVE` → `NORMALIZE` → `JUDGE` → `ENHANCE-SKILL` → `REPORT` → `VALIDATE` → `MANUAL VALIDATE` in sequence — `ENHANCE-SKILL` runs against the sample `JUDGE` just produced findings for, and `MANUAL VALIDATE` runs against the sample `REPORT`/`VALIDATE` just produced output for, every time, for every sample, not only on some; this is part of `START`'s own defined behavior (§16 rule 16), not a separate automatic trigger. |
 | **`RESOLVE`** | Read `fileIndex.md`; select the entry to resolve (§2 — implicit if there's exactly one entry, otherwise the use-case-name argument this command was given, blocking with `<UNRESOLVED: multiple use cases configured; specify which one>` if omitted); confirm that entry's `useCaseName`, `sourceDocumentPath`(s), `supportingDocumentPath`(s), `skillFilePath`, and `signedBy` are all set and every listed path resolves to an existing file; confirm `useCaseName` matches `skillFilePath`'s parent directory name under `skills/` — if they disagree, block with `<UNRESOLVED: useCaseName "<value>" does not match skillFilePath's directory "<value>">` rather than silently preferring one over the other; confirm list-valued source/supporting paths pair per §2's rules, blocking only the pair(s) that fail. Produces a confirmation (per resolvable source/supporting pair), or a list of `<UNRESOLVED: reason>` fields blocking the affected pair(s). First step of every run. |
-| **`NORMALIZE`** | Build the full actuals twin layer for the resolved source and supporting documents under `actuals/<usecase>/<source-document-name>/` (§12): per-unit twin extraction (a page for a paginated document, a sheet for a spreadsheet, a slide for a presentation, a row for a tabular file, or whatever unit fits the resolved document's actual format — never hardcoded to one format), the derived summary, the section/unit map, `detection.md`, and `plan.md` — named and scoped to the resolved use case **and** source document, never mixed with another use case's or another source document's actuals. |
+| **`NORMALIZE`** | Build the full actuals twin layer for the resolved source and supporting documents under `actuals/<usecase>/<source-document-name>/` (§12): per-unit twin extraction (one `page-###.md` per paper/page for a paginated document — amended v45, §11, see "Paper-wise extraction" below — a sheet for a spreadsheet, a slide for a presentation, a row for a tabular file, or whatever unit fits the resolved document's actual format — never hardcoded to one format), the derived summary, the section/unit map, `detection.md`, and `plan.md` — named and scoped to the resolved use case **and** source document, never mixed with another use case's or another source document's actuals. |
 | **`PLAIN`** | Extract the twin from the actual/source document without applying unnecessary transformation or interpretation — a raw extraction pass only (per-page/per-unit extraction into `actuals/<usecase>/<source-document-name>/twin/`), stopping short of detection, planning, or judgment. The exact extraction logic (what counts as a "unit," how a page or section is delimited) stays format-neutral and is determined by the applicable skill/use case (§4) — `PLAIN` only controls *how much* of the pipeline runs, not *how* extraction is done for a given document type. |
-| **`JUDGE`** | Apply the resolved skill (`skillFilePath`) to every unit in `actuals/<usecase>/<source-document-name>/plan.md`, producing `findings/<usecase>/<source-document-name>/<unit>.md` and `actuals/<usecase>/<source-document-name>/graph.md`. |
+| **`JUDGE`** | Apply the resolved skill (`skillFilePath`) to every unit identified per its Module 2 UNDERSTAND stage (documented, for this pair, in `actuals/<usecase>/<source-document-name>/plan.md`, amended v42 — see §12's plan.md entry), producing `actuals/<usecase>/<source-document-name>/findings/<unit>.md` (amended v38, §11, superseding the prior top-level `findings/<usecase>/<source-document-name>/<unit>.md` location), `actuals/<usecase>/<source-document-name>/graph.md` (amended v42, §11 — see §12's graph.md entry), and `actuals/<usecase>/<source-document-name>/twin/priority.md` (amended v43, §11 — extracted from the findings and `graph.md` this same run just produced; see §12's priority.md entry and "How `priority.md` is generated" below). |
 | **`OBSERVE`** | Record a noticed pattern against the resolved use case's pattern log (`skills/<usecase>/patternLog.md`), without changing the skill itself. |
 | **`ENHANCE-SKILL`** | Analyze the current sample against the resolved skill, identify new/changed/conflicting knowledge, and — for whatever clears the promotion bar (§8.2) — generalize it into the skill: preserve what's valid, refine or generalize what a broader pattern now supersedes, never append raw sample context (§8.1). Snapshot the current skill to `skills/<usecase>/skill-versions/` first, edit the live `skillFilePath` in place, bump its front matter `version` field, then validate the change against previously processed samples (§8.4) before the versioning procedure (§9) is complete. |
-| **`REPORT`** | Assemble the resolved use case's canonical report (§12: whatever shape that use case's skill defines) and write it to exactly one location, never duplicated (amended v33, §11, superseding v23's per-document-copy behavior). Where the shape is genuinely per-document, write `reports/<usecase>/<source-document-name>/report.md` — one file, that document's own content only. Where the shape is a synthesis spanning a group of documents, write it once to `reports/<usecase>/<group-name>/report.md`, assembled from findings belonging to that group only (never findings belonging to a different use case or an unrelated group) — no group member's own `<source-document-name>/` directory receives a copy of it. |
+| **`REPORT`** | Assemble the resolved use case's canonical report (§12: whatever shape that use case's skill defines) and write it to exactly one location, never duplicated (amended v40, §11, re-establishing v33's rule, superseding v39's per-document-copy reversion). Where the shape is genuinely per-document, write `reports/<usecase>/<source-document-name>/report.md` — one file, that document's own content only. Where the shape is a synthesis spanning a group of documents, write it once to `reports/<usecase>/<group-name>/report.md`, assembled from findings belonging to that group only (never findings belonging to a different use case or an unrelated group) — no group member's own `<source-document-name>/` directory receives a copy of it. |
 | **`VALIDATE`** | Run the resolved source document's validation checklist (`manifest/<usecase>/manifest.md`), checking it against `fileIndex.md` and `prompt-log/<usecase>/promptLog.md`, producing an updated verdict for that document. |
 | **`SKILL CHANGE <version_number>`** | From the findings already generated using the current skill, extract the information that corresponds to skill version `<version_number>`: what that version's rules were (from `skills/<usecase>/skill-versions/v<version_number>.md` if not the current live version, or the live `skillFilePath` if it is), how they differ from the version immediately before it (per that version's promotion-bar record in `skills/<usecase>/patternLog.md` and its `prompt-log/<usecase>/promptLog.md` versioning entry), and — where resolvable — which current findings were produced under that version versus a later one. `<version_number>` is a variable supplied with the command, never a hardcoded value in this file. |
 | **`EXPORT`** | Export the full directory configured in this file's `export-directory` front-matter field, including its complete directory structure and all applicable files generated or maintained by the bootstrap workflow. See the diagram and rules below. |
@@ -279,8 +281,8 @@ source/supporting pairs currently carrying generated output:
 
 1. Act as a human reviewer reviewing the applicable generated documents and outputs for
    that source document — the twin, findings, and report artifacts already produced under
-   `actuals/<usecase>/<source-document-name>/`, `findings/<usecase>/<source-document-name>/`,
-   and `reports/<usecase>/<source-document-name>/`.
+   `actuals/<usecase>/<source-document-name>/` (which now also holds that document's own
+   `findings/` subdirectory, amended v38) and `reports/<usecase>/<source-document-name>/`.
 2. Mark those documents as manually reviewed and validated, without modifying their
    content — the validation record (below) is the evidence of review; the underlying
    document is never edited merely to indicate it was reviewed.
@@ -344,8 +346,9 @@ The export operation:
 - resolves the export directory from the configurable `export-directory` value in this
   file's front matter — never a hardcoded directory or filename;
 - exports the **entire directory**, not only individual output files;
-- preserves the directory structure exactly (`skills/`, `documents/`, `actuals/`,
-  `findings/`, `reports/`, `HITL/`, `manifest/`, `prompt-log/`, and the root-level
+- preserves the directory structure exactly (`skills/`, `documents/`, `actuals/`
+  (which nests each document's own `findings/`, amended v38), `reports/`, `HITL/`,
+  `manifest/`, `prompt-log/`, and the root-level
   config/decision files together, in their existing layout, including each of those
   directories' per-`<usecase>` isolation, §12);
 - includes all applicable generated artifacts, configuration files, skill files,
@@ -617,13 +620,18 @@ changed and why, with the previous version diff-able from that entry.
 
 **Every use case gets its own, completely isolated directory structure**, keyed by
 `<usecase>` — the exact string in `fileIndex.md`'s current `useCaseName` field. Under
-every generated/maintained top-level directory (`actuals/`, `skills/`, `findings/`,
-`reports/`, `HITL/`, `manifest/`, `prompt-log/`), the first-level subdirectory is always
+every generated/maintained top-level directory (`actuals/`, `skills/`, `reports/`,
+`HITL/`, `manifest/`, `prompt-log/`), the first-level subdirectory is always
 `<usecase>` — never a source-document name, never a shared/default folder, never a
 directory shared across two different use cases. A second use case processed by this
 same `bootstrap.md` gets its own parallel `<usecase>` subdirectory under each of those
 roots, automatically, the first time `fileIndex.md`'s `useCaseName` names it — no
-template, no manual directory creation step, and no edit to this file.
+template, no manual directory creation step, and no edit to this file. `findings/` is no
+longer one of these top-level roots (amended v38, §11, superseding v20's/v29's separate
+top-level `findings/<usecase>/` tree): a document's findings now live nested inside that
+document's own `actuals/<usecase>/<source-document-name>/findings/` subdirectory instead,
+alongside its twin, detection.md, plan.md, and graph.md, rather than in a directory
+mirrored on the side.
 
 ```text
 Lippy Archive/
@@ -645,10 +653,15 @@ Lippy Archive/
 │   └── <usecase>/
 │       └── <source-document-name>/      one subdirectory per source document processed under this use case — never shared, never mixed with another use case's or another document's
 │           ├── twin/
-│           │   ├── <document>/<unit>-###.md   unit name matches the document's own format:
-│           │   │                              page-### (paginated), sheet-<name> (spreadsheet),
-│           │   │                              slide-### (presentation), row-### (tabular/CSV),
-│           │   │                              or whatever unit fits a format not listed here
+│           │   ├── <document>/<unit>-###.md   one file per unit, unit name matching the document's own format:
+│           │   │                              page-### (paginated — every paper/page of a paginated document,
+│           │   │                              scanned or not, is its own file; amended v45, §11, tightened from a
+│           │   │                              rule that had allowed a whole paginated document to sit in one
+│           │   │                              combined file — see "Paper-wise extraction" below), sheet-<name>
+│           │   │                              (spreadsheet), slide-### (presentation), row-### (tabular/CSV), or
+│           │   │                              whatever unit fits a format not listed here. `###` is always the
+│           │   │                              unit's own position, zero-padded to at least 3 digits (`page-001.md`,
+│           │   │                              not `page-1.md` or `Page001.md`), per rule 19's filename convention.
 │           │   ├── derived/<source-document>.md   the resolved SOURCE document's own overall summary only (amended v20, §11, superseding v17/v19) — never
 │           │   │                              the supporting document's, and never a full read-through: the twin unit files remain the source of truth
 │           │   │                              for exact wording. Named after and scoped to that pair's own source document — a supporting document is never
@@ -656,17 +669,112 @@ Lippy Archive/
 │           │   │                              content (§1). This applies to every resolved pair in every use case, not a per-document exception. Where this
 │           │   │                              pair has its own genuinely per-document report.md (§12's reports/ entry below), this file also carries a
 │           │   │                              "Report summary" section (amended v32, §11) pointing to it — never a standalone copy. Where the resolved
-│           │   │                              use case's canonical report is instead a group-level synthesis (amended v33, §11), this pair has no own
-│           │   │                              report.md to summarize, so no "Report summary" section is added here — a reader wanting the group view goes
-│           │   │                              to the group's own report.md directly (§12's reports/ entry below), never a per-pair copy or pointer.
-│           │   └── sectionMap.md
-│           ├── detection.md
-│           ├── plan.md
-│           └── graph.md
-│
-├── findings/
-│   └── <usecase>/
-│       └── <source-document-name>/<unit>.md   one findings file per unit, scoped to this use case and this document — never mixed with another use case's findings
+│           │   │                              use case's canonical report is instead a group-level synthesis (amended v40, §11, re-establishing v33's
+│           │   │                              rule), this pair has no own report.md to summarize, so no "Report summary" section is added here — a reader
+│           │   │                              wanting the group view goes to the group's own report.md directly (§12's reports/ entry below), never a
+│           │   │                              per-pair copy or pointer.
+│           │   ├── sectionMap.md       the map from this pair's own logical sections/units to where each is located in
+│           │   │                       the twin (§1's location unit for that document's format) — built once during
+│           │   │                       `NORMALIZE` (§5), read by `JUDGE` and by `priority.md`'s own generation below.
+│           │   │                       Lives inside `twin/` (amended v44, §11 — corrected from a same-named file
+│           │   │                       previously sitting at this pair's `actuals/<usecase>/<source-document-name>/`
+│           │   │                       top level on disk, which this section's own diagram never actually described;
+│           │   │                       every existing `sectionMap.md` was moved to match this diagram, not the other
+│           │   │                       way around).
+│           │   └── priority.md         which pages/units of this pair's documents most need a reviewer's attention, and
+│           │                           why — extracted entirely from this pair's own already-generated
+│           │                           `findings/<unit>.md` files (new in amended v43, §11; required for every
+│           │                           resolved pair in every use case as of amended v44, §11 — not an opt-in), never
+│           │                           hardcoded, hand-entered, or duplicated from any other pair's priority.md. See
+│           │                           "How `priority.md` is generated" below.
+│           ├── detection.md            a record of why the use case/skill already resolved by `fileIndex.md`
+│           │                           (§2) genuinely fits this pair — never the decision itself, which
+│           │                           remains `fileIndex.md`'s alone and is already settled before
+│           │                           NORMALIZE runs (amended v41, §11, superseding the prior "quirks
+│           │                           noticed" content this file carried through v40). Front matter:
+│           │                           `skill` (the resolved use case's name, verbatim from `fileIndex.md`),
+│           │                           `confidence` (this pairing's fit, e.g. HIGH/MEDIUM/LOW), `why` (what
+│           │                           about these specific documents and the brief makes this use case the
+│           │                           right one — never a fixed sentence copied across pairs without regard
+│           │                           to their actual content), `verified-by` (who confirmed the assignment
+│           │                           and how, citing `HITL/<usecase>/<source-document-name>/
+│           │                           manualValidate.md` where a manual confirmation exists), `verified-on`
+│           │                           (the confirmation date, or `—` if unconfirmed), and
+│           │                           `confidence-of-actual` (this file's own confidence that its stated
+│           │                           `why` holds up, e.g. CONFIRMED/UNSURE — never conflated with
+│           │                           `confidence`, which is about the pairing, not about this record).
+│           │                           Body: the resolved skill's name, followed by the other use case(s)
+│           │                           this project configures that were considered and the specific reason
+│           │                           each was rejected for this pair — never an alternative invented for
+│           │                           the sake of the list, and never omitted even when only one use case
+│           │                           is currently configured (a single-use-case project still names what a
+│           │                           plausible alternative shape would have been and why it doesn't fit).
+│           ├── plan.md                 the resolved skill's own processing pipeline (its Module 2 workflow,
+│           │                           §4) applied to this specific pair — never a fixed sequence this file
+│           │                           invents or imposes (amended v42, §11, superseding v20's per-unit
+│           │                           progress-ledger content). Front matter: `skill` (verbatim from
+│           │                           `fileIndex.md`), `version` (the resolved `skill.md`'s current
+│           │                           front-matter `version`, so a plan visibly ages when its skill is
+│           │                           enhanced), `steps` (the count of stages in that skill's Module 2
+│           │                           table), `verified-by`/`verified-on` (as `detection.md`'s, §12's
+│           │                           detection.md entry above), and `confidence` (this plan's own fitness
+│           │                           for this pair, e.g. CONFIRMED/UNSURE — distinct from `detection.md`'s
+│           │                           `confidence`, which is about the use-case pairing, not the plan).
+│           │                           Body: `# Plan of Action · version <version>`, then one table row per
+│           │                           Module 2 stage — columns `#`, `Operation` (the stage name, verbatim
+│           │                           from the skill), `What it does on this project` (that stage's rule
+│           │                           restated for this specific pair's actual document shape, never a
+│           │                           copy-pasted generic sentence), and `Example` (a real, verifiable
+│           │                           instance from this pair's own content — a specific unit, page, or
+│           │                           quote — never invented or borrowed from another pair). `JUDGE` (§5)
+│           │                           no longer reads a status column from this file to know what still
+│           │                           needs a finding; it derives that directly from which
+│           │                           `findings/<unit>.md` files already exist for this pair (§12's
+│           │                           findings/ entry below) — plan.md documents the *process*, not a
+│           │                           per-run progress ledger.
+│           ├── graph.md                the evidence graph for this pair's findings, in the resolved skill's
+│           │                           own terminology (consistent with `detection.md`'s and `plan.md`'s
+│           │                           field names) — never a fixed schema this file invents (amended v42,
+│           │                           §11, superseding v20's free-text entry). Front matter: `purpose` (a
+│           │                           one-line statement of what this graph traces — evidence-to-finding
+│           │                           and finding-to-report relationships, restated for this pair, never a
+│           │                           fixed sentence), `version` (the resolved `skill.md`'s current
+│           │                           version, as in `plan.md`), `verification` (`verified` once this
+│           │                           pair's `HITL/<usecase>/<source-document-name>/manualValidate.md`
+│           │                           carries a record, `not verified` until then), and `confidence` (this
+│           │                           graph's own fitness, e.g. HIGH/MEDIUM/LOW). Body, in tables: **Nodes**
+│           │                           (one row per `findings/<unit>.md` file and per twin unit it can point
+│           │                           to), **Relationships** (one row per retrieved-from/context-only/
+│           │                           cited-by edge, naming source node, target node, and edge type),
+│           │                           **Dependencies** (any finding whose verdict rests on another finding's
+│           │                           evidence, e.g. a shared citation — never invented where no such
+│           │                           dependency exists), and **Evidence flow** (the path from twin unit →
+│           │                           finding → report for this pair, one row per finding). Confined to
+│           │                           this one pair's own findings; never an edge into another pair's or
+│           │                           another use case's graph.md.
+│           └── findings/<unit>.md      one file per unit, at the grain `plan.md` names (§4.1) — nested
+│                                       inside this document's own actuals subtree (amended v38, §11,
+│                                       superseding the prior separate top-level
+│                                       findings/<usecase>/<source-document-name>/ location) — still scoped
+│                                       to this one use case and this one document, never mixed with
+│                                       another use case's or another document's findings. Front matter
+│                                       and body shape are the resolved skill's own decision (whichever
+│                                       module that skill uses for finding format/output requirements —
+│                                       never a fixed schema this file invents, §4.1, §13), but every
+│                                       finding satisfies §4.1's four
+│                                       requirements regardless of shape: derived from the skill (never an
+│                                       invented question, verdict word, or unit), reviewer-style and
+│                                       human-auditable (states the question, the verdict in the skill's
+│                                       own vocabulary, what the source documents actually say, and why —
+│                                       reasoning kept visibly separate from quoted evidence), every
+│                                       citation precise enough to check (a page/section/row/sheet/slide,
+│                                       whatever §1 already establishes for that format), and no
+│                                       unsupported assumption, speculation, or invented evidence. This is
+│                                       what `graph.md`'s Nodes/Relationships/Dependencies/Evidence-flow
+│                                       tables (§12's graph.md entry above) trace back to, and what
+│                                       `plan.md` names as each stage's expected output (§12's plan.md
+│                                       entry above) — the one artifact `detection.md`, `plan.md`, and
+│                                       `graph.md` all exist to produce or account for.
 │
 ├── skills/
 │   └── <usecase>/
@@ -690,11 +798,12 @@ Lippy Archive/
 │       └── <group-name>/report.md             ONLY where the resolved skill's canonical report shape is a synthesis spanning a GROUP of documents (e.g. a
 │                                              cross-bidder ranking for a `RANKED_COMPARISON` shape) — this synthesis is generated and stored exactly
 │                                              ONCE, under its own group-identified location, never duplicated into each group member's own
-│                                              `<source-document-name>/` subdirectory (amended v33, §11, superseding v23's "every document in that group's
-│                                              report.md holds an identical copy" rule) — a group member with no genuinely-distinct report of its own gets
-│                                              no `reports/<usecase>/<source-document-name>/` entry at all; a reader wanting the group view reads the one
-│                                              group-level report.md directly. `<group-name>` is whatever the resolved skill's own grouping concept is
-│                                              (a tender reference, a comparison batch) — never a per-document name, and never invented by this file.
+│                                              `<source-document-name>/` subdirectory (amended v40, §11, re-establishing v33's rule — superseding v39's
+│                                              temporary reversion to v23's "every document in that group's report.md holds an identical copy") — a
+│                                              group member with no genuinely-distinct report of its own gets no `reports/<usecase>/<source-document-name>/`
+│                                              entry at all; a reader wanting the group view reads the one group-level report.md directly. `<group-name>`
+│                                              is whatever the resolved skill's own grouping concept is (a tender reference, a comparison batch) — never
+│                                              a per-document name, and never invented by this file.
 │
 ├── HITL/
 │   └── <usecase>/
@@ -709,7 +818,8 @@ Lippy Archive/
 **`<usecase>`** is `fileIndex.md`'s current `useCaseName`, verbatim — the top-level key
 under every generated directory. **`<source-document-name>`** is the source document's
 filename (without extension) — the second-level key, nested inside `<usecase>`, that ties
-a source document to its own `actuals/`, `findings/`, `reports/`, and `HITL/` output
+a source document to its own `actuals/` (whose own `findings/` subdirectory nests one
+level deeper still, amended v38), `reports/`, and `HITL/` output
 *within that use case*. Every command that writes to any of these directories resolves
 both keys from `fileIndex.md`'s current `useCaseName` and `sourceDocumentPath`, and
 writes only under that exact `<usecase>/<source-document-name>` path — never into another
@@ -726,7 +836,8 @@ and its `useCaseName` determines both which `documents/<usecase>/` subtree it is
 under and which isolated `<usecase>` tree the resulting output lands in. A document
 genuinely shared by more than one use case is placed once under each referencing use
 case's own subtree — never in one shared location two `fileIndex.md` entries both point
-into. `actuals/`, `findings/`, `reports/`, and `HITL/` likewise accumulate — one
+into. `actuals/` (and the `findings/` subdirectory nested within it, amended v38),
+`reports/`, and `HITL/` likewise accumulate — one
 `<usecase>/<source-document-name>` subdirectory per document that has been processed
 under that use case — processing a new source document, or a new use case, does not
 overwrite or remove another's. `skills/<usecase>/` (that use case's live `skill.md`, its
@@ -744,8 +855,9 @@ There is no template layer. Switching which document or use case is being worked
 rewriting `fileIndex.md` to point at it (adding the document under that use case's own
 `documents/<usecase>/source/` and `documents/<usecase>/supporting/` first if it isn't
 there yet) — it does not mean deleting or
-overwriting any other use case's or document's `actuals/`, `findings/`, `reports/`, or
-`HITL/` output, because each lives in its own `<usecase>/<source-document-name>`
+overwriting any other use case's or document's `actuals/` (or its nested `findings/`,
+amended v38), `reports/`, or `HITL/` output, because each lives in its own
+`<usecase>/<source-document-name>`
 subdirectory. The very first time a new `useCaseName` is resolved, its `<usecase>`
 subdirectories under each generated root do not yet exist — creating them then, as part
 of the first `RESOLVE`/`NORMALIZE` for that use case, is not a template being applied,
@@ -754,6 +866,129 @@ it is the same per-document accumulation behavior described above happening for 
 decision for this reason alone; a retention decision is only needed if content is to be
 deleted outright (record that in `prompt-log/<usecase>/promptLog.md` before deleting
 anything).
+
+**How `detection.md`, `plan.md`, and `graph.md` relate (amended v42, §11):** the three
+files record, in order, why, how, and what happened for one resolved pair. `detection.md`
+records *why* the use case/skill `fileIndex.md` already assigned genuinely fits this
+pair — the rationale and the alternatives that were considered and rejected. `plan.md`
+records *how* that skill's own Module 2 workflow applies here — its stages, restated in
+this pair's own terms, each with a real example drawn from this pair's own content.
+`graph.md` records *what happened* once `JUDGE` (§5) ran that plan: the resulting nodes,
+relationships, dependencies, and evidence flow connecting this pair's twin, findings, and
+report. Terminology stays consistent across all three — a stage named in `plan.md` (e.g.
+RETRIEVE) is the same word `graph.md`'s relationships use for that same step, and both
+use the same use-case name `detection.md` names in its own front matter. None of the
+three ever contains a fixed sentence copied from another pair without regard to its own
+actual content; each is written fresh from what genuinely applies to *this* pair.
+
+**How `priority.md` is generated (new in amended v43, §11; required for every resolved
+pair in every use case as of amended v44, §11):** `priority.md` answers a
+question none of the three files above do — of everything already judged for this pair,
+what should a human reviewer look at first? It is generated *after* `graph.md`, from the
+same findings the graph already traces, never from the source/supporting documents
+directly and never hand-entered. This applies to every use case this file governs, not a
+subset chosen per project or per document — a use case whose grain happens to produce
+only one location unit for a given pair (e.g. a whole-document twin with no internal
+pages) still gets a `priority.md`, with that one unit as its only row:
+
+```text
+Findings (actuals/<usecase>/<source-document-name>/findings/<unit>.md)
+   ↓
+Extract priority-related evidence — for each finding, the page(s)/unit(s) it cites
+(graph.md's own Relationships/Evidence-flow tables, §12's graph.md entry, are the
+authoritative source of these citations) and any quality flag the twin/detection
+process already recorded for that page/unit (e.g. no extractable text layer, a
+table-based layout) — never a new judgment invented at this step
+   ↓
+Identify documents/pages requiring attention — every page/unit cited by at least one
+finding, or carrying at least one quality flag, is a candidate; a page/unit cited by
+nothing and carrying no flag is not listed unless every page is being enumerated for
+completeness (§4.1's own use case decides which)
+   ↓
+Rank/order based on findings — highest citation count first (a page many findings
+depend on is wrong-more-expensively if it is wrong), then by quality flags, then by
+document/page order for ties — never an order this file invents independently of what
+the findings actually show
+   ↓
+Generate twin/priority.md
+```
+
+Front matter is minimal (this file is a derived index, not a record needing its own
+verification metadata) — a one-line heading statement of what "first" means for this
+pair, then a table: `document` (the resolved source or supporting document's own
+filename), `page` (or whatever location unit §1 establishes for that document's format —
+a page, a row, a slide, a sheet), and `why first` (the evidence: citation count, phrased
+"cited by N unit(s)", plus any quality flag such as "no text layer" or "table layout",
+separated by `;` when more than one applies to the same page/unit). Rows are ordered
+citation-count-descending, quality-flagged-but-uncited rows following, ties broken by
+document/page order — never by any other criterion this file invents. `priority.md`
+contains no page numbers, document names, counts, or reasons that are not directly
+traceable to this pair's own `findings/` and `graph.md` — regenerating it from the same
+findings must always produce the same file, and a findings change (a new finding added,
+an existing one's citation corrected) means `priority.md` is regenerated, never
+hand-edited to match. This structure is generic across every use case and document
+format; no use case may hardcode its own sample's document names, page numbers, or
+reasons into this file's shape, only into one run's actual generated content.
+
+**Paper-wise extraction (amended v45, §11):** for any document whose format is genuinely
+paginated (a paper/page is a real, countable unit of that format — a PDF, a scanned PDF,
+a paginated DOCX print layout, or any other format where §1's location unit is a page),
+`NORMALIZE` (§5) extracts that document's twin **one file per paper/page**, never a single
+file holding the whole document's content with page boundaries only marked inline. This
+applies regardless of whether the paper/page has an extractable text layer (a scanned
+page with no text layer still gets its own `page-###.md`, populated from whatever OCR or
+other extraction the document's own condition requires — §1's "any file format is
+accepted, format only determines how content is extracted" already covers this) and
+regardless of how many papers/pages the resolved skill's own grain ultimately rolls
+several pages up into for judgment purposes (§4's grain is a *judging* decision made from
+already-extracted twin content; it never determines how many *twin* files exist — a skill
+whose grain is "one whole record" still reads that record from N separate `page-###.md`
+files, not from one file it happens to prefer).
+
+```text
+Findings/reports never determine extraction granularity
+   ↓
+Resolve the document's format (§1) — is a paper/page a real, countable unit of this format?
+   ↓
+  Yes (PDF, scanned PDF, paginated print layout, ...) → one page-###.md per paper/page,
+  in that document's own original order, `###` zero-padded to at least 3 digits
+   ↓
+  No (a spreadsheet, a slide deck, a single-flow document with no page concept, ...) →
+  §12's existing per-format unit convention applies instead (sheet-<name>, slide-###, or
+  whatever unit fits) — paper-wise extraction is never forced onto a format that has no
+  papers/pages to begin with
+   ↓
+actuals/<usecase>/<source-document-name>/twin/<document>/page-001.md, page-002.md, ...
+```
+
+Requirements, all of them use-case-agnostic and format-agnostic:
+
+- **One file per paper/page**, never more than one page folded into a single file and
+  never one page split across more than one file.
+- **`page-001.md`, `page-002.md`, `page-003.md`, ...** — lowercase, hyphenated, the numeric
+  suffix zero-padded to at least 3 digits regardless of how many pages the document
+  actually has, per rule 19's filename convention (this supersedes any twin file that was
+  previously named without the hyphen, without zero-padding, or with a capitalized
+  prefix — those are non-compliant filenames under rule 19, not a second accepted style).
+- **Original paper/page order preserved** — `page-001.md` is always this document's own
+  first paper/page as the document itself orders them, never reordered by content,
+  relevance, or anything this skill or bootstrap.md decides.
+- **Each `page-###.md` holds that page's complete extracted content** — nothing from an
+  adjacent page folded in, nothing from this page deferred to another file.
+- **Pages are extracted independently of one another** — one page's extraction never
+  depends on reading a neighboring page first, so that any single page can be opened,
+  reviewed, compared, or displayed on its own (e.g. in a UI) without pulling in the rest
+  of the document.
+- **Never hardcoded.** The document name, the page count, and every page's content are
+  always read from the actual resolved document at `NORMALIZE` time — this file names no
+  sample's document, no sample's page count, and no sample's content; a use case's own
+  `skill.md` does not get to shortcut this either.
+
+This is a documentation-vs-practice correction, not a new invention: §12's own diagram
+already named `page-###` as the paginated-document unit before this amendment; this
+amendment makes that rule explicit, mandatory, and correctly cased, and closes the gap
+where some existing paginated twins had instead been extracted as one combined file with
+inline page markers.
 
 ## 13. What belongs where
 
@@ -846,7 +1081,8 @@ No artifact is an accepted deliverable until:
     `fileIndex.md` to point at it — never by deleting or overwriting another document's
     files anywhere in the tree. A new use case is onboarded the same way: point
     `fileIndex.md`'s `useCaseName` and `skillFilePath` at it — its `<usecase>`
-    subdirectories under `documents/`, `actuals/`, `findings/`, `skills/`, `reports/`,
+    subdirectories under `documents/`, `actuals/` (whose own nested `findings/`
+    subdirectory follows the same rule, amended v38), `skills/`, `reports/`,
     `HITL/`, `manifest/`, and `prompt-log/` are created on first use, never pre-templated,
     never by copying another use case's directory.
 14. When uncertain whether something is use-case-agnostic or sample/use-case-specific, treat it as
@@ -856,8 +1092,9 @@ No artifact is an accepted deliverable until:
 16. No command ever runs automatically. `bootstrap.md` documents every command's
     behavior but triggers none of them on its own — a command runs only when explicitly
     invoked, and only that command's own defined behavior executes (§5).
-17. Every generated/maintained directory (`documents/`, `actuals/`, `findings/`,
-    `skills/`, `reports/`, `HITL/`, `manifest/`, `prompt-log/`) is scoped first by
+17. Every generated/maintained directory (`documents/`, `actuals/` — whose own nested
+    `findings/` subdirectory follows the same scoping, amended v38 — `skills/`, `reports/`,
+    `HITL/`, `manifest/`, `prompt-log/`) is scoped first by
     `<usecase>` and then, where
     applicable, by `<source-document-name>` (§12) — no command ever writes into a
     different use case's directory, or a different document's subdirectory, than the one

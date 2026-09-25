@@ -1,35 +1,59 @@
-# Graph
+---
+purpose: Traces this document's 73 clause-level findings (across 12 units) back to their evidence in the twin, and forward to the report that cites them.
+version: 6
+verification: verified
+confidence: HIGH
+---
 
-The relationships this document's findings depend on: which slide in the source deck was
-checked against which slide in the supporting deck, and which findings a report claim
-traces back to.
+# Graph — SYNTH_VERS_DOCS_S5_REVISED
 
-```text
-documents/source/SYNTH_VERS_DOCS_S5_REVISED.pptx   (12 slides, per plan.md)
-        │  11 slides mapped 1:1 by title/topic against the supporting deck
-        │  (slide numbering shifts by one from "Eligibility Criteria" onward)
-        │  1 slide ("EV Charging & Interconnection Requirements") has NO counterpart at all
-        ▼
-documents/supporting/SYNTH_VERS_DOCS_S5_ORIGINAL.pptx   (11 slides)
-        ▼
-findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/<01..12>-*.md   (one file per slide)
-        │
-        ▼
-reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md   (verdict-count summary + thematic rollup)
-```
+## Nodes
 
-This is the first `.pptx` sample in this project, and the first sample where a whole
-uncountered unit (a slide) is also accompanied by its own self-annotation naming itself
-as new — see `findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/07-EvChargingAndInterconnectionRequirements.md`,
-where the ADDED verdict rests on `sectionMap.md`'s independent slide-by-slide absence
-check, not on the self-annotation's own claim (per skill Module 6).
+| Node | Type | Notes |
+|---|---|---|
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/01-Cover-*.md` | finding (unit 1: Cover) | 9 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/02-Agenda-*.md` | finding (unit 2: Agenda) | 10 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/03-AboutSolsticeEnergyCooperative-*.md` | finding (unit 3: About Solstice Energy Cooperative) | 4 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/04-ProjectObjectives-*.md` | finding (unit 4: Project Objectives) | 5 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/05-ScopeOfWork-*.md` | finding (unit 5: Scope of Work) | 6 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/06-TechnicalRequirementsOverview-*.md` | finding (unit 6: Technical Requirements Overview) | 5 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/07-EvChargingAndInterconnectionRequirements-*.md` | finding (unit 7: EV Charging & Interconnection Requirements (new slide, no counterpart)) | 5 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/08-EligibilityCriteria-*.md` | finding (unit 8: Eligibility Criteria) | 5 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/09-ProjectTimeline-*.md` | finding (unit 9: Project Timeline) | 7 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/10-EvaluationCriteria-*.md` | finding (unit 10: Evaluation Criteria) | 6 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/11-CommercialTermsAndNextSteps-*.md` | finding (unit 11: Commercial Terms & Next Steps) | 6 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/findings/12-QuestionsAndContact-*.md` | finding (unit 12: Questions & Contact) | 5 per-clause files (unit-wise split, per `skills/version-compare/skill.md`'s one-clause-one-verdict grain) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/twin/SYNTH_VERS_DOCS_S5_REVISED/` | twin (source document, revised) | evidence source (this version) |
+| `actuals/version-compare/SYNTH_VERS_DOCS_S5_REVISED/twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | twin (supporting document, original) | evidence source (prior version) |
+| `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` | report | verdict-count summary + thematic rollup, citing findings only |
 
-The revision also inserts one new agenda line pointing at the new slide
-(`findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/02-Agenda.md`) and one new row in the
-Evaluation Criteria table alongside four redistributed existing weights
-(`findings/version-compare/SYNTH_VERS_DOCS_S5_REVISED/10-EvaluationCriteria.md`) — both judged as
-independent units from the slide/criterion they reference or sit beside, per Module 1's
-one-clause-one-verdict grain.
+## Relationships
 
-Verdict totals across all 12 findings files: 38 CHANGED, 11 ADDED, 0 REMOVED,
-24 UNCHANGED, 0 NOT ADDRESSED (73 clauses total).
+| From | To | Edge type |
+|---|---|---|
+| (all 12 units above) | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | retrieved from (this version's wording) |
+| (all 12 units above) | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | retrieved from (prior version's wording, where a counterpart exists) |
+| (all 12 units above) | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` | cited by |
+
+## Dependencies
+
+| Finding | Depends on | Notes |
+|---|---|---|
+| unit with no counterpart | absence confirmed by full-text search / sectionMap.md, not by another finding | Every clause within the uncountered EV Charging & Interconnection Requirements slide is ADDED individually — its ADDED verdict rests on twin/sectionMap.md's independent slide-by-slide absence check, not on the self-annotation's own claim or on any other finding's evidence. |
+
+## Evidence flow
+
+| Unit | Twin source (revised) | Twin source (original) | Report destination |
+|---|---|---|---|
+| 1. Cover | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 2. Agenda | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 3. About Solstice Energy Cooperative | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 4. Project Objectives | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 5. Scope of Work | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 6. Technical Requirements Overview | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 7. EV Charging & Interconnection Requirements (new slide, no counterpart) | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 8. Eligibility Criteria | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 9. Project Timeline | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 10. Evaluation Criteria | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 11. Commercial Terms & Next Steps | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |
+| 12. Questions & Contact | `twin/SYNTH_VERS_DOCS_S5_REVISED/` | `twin/SYNTH_VERS_DOCS_S5_ORIGINAL/` | `reports/version-compare/SYNTH_VERS_DOCS_S5_REVISED/report.md` |

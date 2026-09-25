@@ -17,4 +17,4 @@ AquaBuild Infra Ltd. — committee determination "TECHNICALLY QUALIFIED - Price 
 
 This document is part of a multi-bidder batch; for the shared tender ranking synthesis for GWSSB/WTP-SURAT/2026/DBO-009, see `reports/bid-evaluation/RankingSummary-Water/report.md`.
 
-Full report: `reports/bid-evaluation/RankingSummary-Water/report.md` (this document has no own report.md — bootstrap.md §12, amended v33)
+Full report: `reports/bid-evaluation/RankingSummary-Water/report.md` (this document has no own report.md — bootstrap.md §12, amended v40)

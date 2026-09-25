@@ -1,13 +1,12 @@
+---
+skill: version-compare
+confidence: HIGH
+why: the source and supporting documents are two versions (an original and a revised issue) of the same document; the brief asks what changed, was added, removed, or stayed the same between them, per clause.
+verified-by: Prathapan C approved this skill's assignment via `fileIndex.md` (§2, already resolved before NORMALIZE); confirmed by manual review, recorded in `HITL/version-compare/SYNTH_VERS_DOCS_S1_REVISED/manualValidate.md`
+verified-on: 2026-09-21
+confidence-of-actual: CONFIRMED
+---
+
 # Detection
 
-Document quirks and edge cases detected while building the twin and reading these
-documents, ahead of judgment. Recorded here per-run; anything that recurs across
-independent samples is a candidate for `skills/<usecase>/patternLog.md` (see
-`bootstrap.md` §8.2, the promotion bar).
-
-| Quirk | Where observed | Handling |
-|---|---|---|
-| Self-annotation | The source document (revised issue) marks some of its own additions/changes with bracketed tags (e.g. a marker after new or modified text) in Definitions, Objectives, Scope of Work, Technical Requirements, Functional Requirements, Eligibility Criteria, Deliverables, Project Timeline, Evaluation Criteria, Insurance & Bonding, Commercial Terms, Terms & Conditions, and both appendices. | Used only as a cross-check, never as the sole basis for a verdict — every marked and unmarked clause was independently compared against the supporting document's text per `skills/version-compare/skill.md`. Logged in `skills/version-compare/patternLog.md` Entry 1 (not promoted — single sample so far). |
-| Row renumbering | Several tables (Deliverables, Pricing Form, Appendix C) insert new rows partway through the sequence, shifting the numeric/lettered IDs of unrelated rows below the insertion point (e.g. `A-9` in the original becomes a different line item's position in the revised). | Compared rows by their content/label, not their positional ID, to avoid a false CHANGED verdict on a row that only moved position. |
-| Absence without a marker | One checklist line in the supporting document (RFID/barcode certification) has no counterpart in the source document's checklist, and the source carries no `[REMOVED]`-style marker for it — the self-annotation convention marks additions/changes but not removals. | Detected only by confirming the supporting document's line was searched for and not found in the source; verdict REMOVED per skill rules, not inferred from any marker. |
-| No printed page numbers | Neither PDF prints page numbers on its pages (aside from the table of contents' page references, which are followed but not machine-visible on the pages themselves). | Adopted the counting convention in `bootstrap.md`: pages counted from page 1 of the file. |
+version-compare. Alternatives considered and rejected: bid-evaluation (these are not competing bidder submissions being scored against criteria — they are the same party's own document at two points in time); a fixed-control compliance-assessment (there is no control register or verdict scale to apply here, only a diff between two drafts).

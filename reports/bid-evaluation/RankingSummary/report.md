@@ -31,6 +31,6 @@ that is correct" (skill.md).
 
 Full evidence for every cell above is in each bidder's own findings files (score.md,
 eligibility.md, price.md, deviations.md, basis.md, per skill.md v5's per-field grain):
-`findings/bid-evaluation/RESPONSE_DOC_S1_ELECTRICAL/`,
-`findings/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/`,
-`findings/bid-evaluation/RESPONSE_DOC_S3_ELECTRICAL/`.
+`actuals/bid-evaluation/RESPONSE_DOC_S1_ELECTRICAL/findings/`,
+`actuals/bid-evaluation/RESPONSE_DOC_S2_ELECTRICAL/findings/`,
+`actuals/bid-evaluation/RESPONSE_DOC_S3_ELECTRICAL/findings/`.

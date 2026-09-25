@@ -2,7 +2,7 @@
 sample: SYNTH_VERS_DOCS_S3
 use-case: version-compare
 skill-version: v5 (current — see skills/version-compare/patternLog.md Entry 12; findings below were judged under v4, content-compatible, not re-run)
-based-on: findings/version-compare/SYNTH_VERS_DOCS_S3_REVISED/ (16 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/plan.md)
+based-on: actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/findings/ (16 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/plan.md)
 source: documents/source/SYNTH_VERS_DOCS_S3_REVISED.docx
 supporting: documents/supporting/SYNTH_VERS_DOCS_S3_ORIGINAL.docx
 state: draft — pending HITL review, not yet signed off in manifest.md
@@ -16,7 +16,7 @@ Northfield University's original dining services RFP (RFP-NU-2026-0115, issued
 January 20, 2026) versus its revised reissue (RFP-NU-2026-0115-R1, issued April 6, 2026),
 which expands the program to add a campus catering operation and a new Winthrop Commons
 dining hall. The full clause-by-clause account is in
-`findings/version-compare/SYNTH_VERS_DOCS_S3_REVISED/` (one file per unit, per
+`actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/findings/` (one file per unit, per
 `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/plan.md`); this report summarizes it.
 
 ## Verdict counts

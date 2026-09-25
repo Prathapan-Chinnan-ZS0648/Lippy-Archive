@@ -2,7 +2,7 @@
 source-document: SYNTH_VERS_DOCS_S2_REVISED.pdf
 use-case: version-compare
 skill-version: v2
-based-on: findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/ (20 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/plan.md)
+based-on: actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/ (20 unit files, per actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/plan.md)
 source: documents/source/SYNTH_VERS_DOCS_S2_REVISED.pdf
 supporting: documents/supporting/SYNTH_VERS_DOCS_S2_ORIGINAL.pdf
 state: draft — pending HITL review, not yet signed off in manifest.md
@@ -16,7 +16,7 @@ Ashford Financial Group's original RFP (RFP-AFG-2026-0064, issued February 16, 2
 versus its revised reissue (RFP-AFG-2026-0064-R1, issued May 11, 2026), following AFG's
 acquisition of Colonial Trust Bank and a rise in Severity 1 outages that drove the
 addition of a formal Major Incident Response program. The full clause-by-clause account
-is in `findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/` (one file per unit, per `plan.md`);
+is in `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/` (one file per unit, per `plan.md`);
 this report summarizes it.
 
 ## Verdict counts
@@ -49,7 +49,7 @@ this report summarizes it.
   notification, physical access control, subcontracting approval) are all REMOVED, with
   a note that they are now governed by the Master Services Agreement instead — a document
   not available for this comparison. See
-  `findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/07-6Reserved.md`.
+  `actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/07-6Reserved.md`.
 - **Helpdesk coverage significantly expanded:** from business-hours-only (7 AM–7 PM,
   Mon–Fri) to full 24/7/365 coverage — reflected consistently across the technical
   requirement, the reformatted support-responsibilities table, and the compliance
@@ -92,7 +92,7 @@ Requirements, all four Terms & Conditions clauses (15.1–15.4), most Functional
 Requirements (FR-01–FR-06), the Cost and Support & Maintenance evaluation weights, core
 technical requirements (ITIL v4 alignment, CMDB, self-service portal, encryption, Azure
 AD SSO, FIS integration), and Appendix B in full. See
-`findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/` for the complete list with quotes, per
+`actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/` for the complete list with quotes, per
 unit.
 
 ## Provenance
@@ -110,7 +110,7 @@ actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/detection.md, plan.md
       ↓
 actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/twin/{SYNTH_VERS_DOCS_S2_REVISED,SYNTH_VERS_DOCS_S2_ORIGINAL}/page-###.md
       ↓
-findings/version-compare/SYNTH_VERS_DOCS_S2_REVISED/*.md (20 unit files)
+actuals/version-compare/SYNTH_VERS_DOCS_S2_REVISED/findings/*.md (20 unit files)
       ↓
 this report
 ```

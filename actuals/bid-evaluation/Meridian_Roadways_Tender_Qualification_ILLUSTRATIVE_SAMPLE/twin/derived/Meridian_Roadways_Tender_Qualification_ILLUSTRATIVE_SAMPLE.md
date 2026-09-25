@@ -24,4 +24,4 @@ Meridian Roadways & Infrastructure Limited's own self-declared Tender Qualificat
 
 This document is part of a multi-bidder batch; for why the whole 10-document batch has no ranking table (no shared tender/committee across any of them), see `reports/bid-evaluation/RankingSummary-TenderQualification/report.md`.
 
-Full report: this document has no own report.md — per bootstrap.md §12 (amended v33), see `reports/bid-evaluation/RankingSummary-TenderQualification/report.md`
+Full report: this document has no own report.md — per bootstrap.md §12 (amended v40), see `reports/bid-evaluation/RankingSummary-TenderQualification/report.md`

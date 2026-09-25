@@ -34,11 +34,11 @@ Combined Evaluated Cost is a ~48x outlier vs. S1 and S3, most plausibly a bidder
 drafting error (an LS-unit line item carrying quantity 900), and separately conflicts
 with the Evaluation Committee's own Section 32 remark that S2 carries the "lowest quoted
 Combined Cost among all bidders" — see
-`findings/bid-evaluation/RESPONSE_DOC_S2_WATER_SCANNED/{Score,Eligibility,Price,Deviations,Basis}.md` for both. This table
+`actuals/bid-evaluation/RESPONSE_DOC_S2_WATER_SCANNED/findings/{Score,Eligibility,Price,Deviations,Basis}.md` for both. This table
 reports each bidder's price exactly as their own findings file states it, flagging these
 discrepancies rather than resolving or excluding them.
 
 Full evidence for every cell above is in each bidder's own findings file:
-`findings/bid-evaluation/RESPONSE_DOC_S1_WATER_SCANNED/{Score,Eligibility,Price,Deviations,Basis}.md`,
-`findings/bid-evaluation/RESPONSE_DOC_S2_WATER_SCANNED/{Score,Eligibility,Price,Deviations,Basis}.md`,
-`findings/bid-evaluation/RESPONSE_DOC_S3_WATER_SCANNED/{Score,Eligibility,Price,Deviations,Basis}.md`.
+`actuals/bid-evaluation/RESPONSE_DOC_S1_WATER_SCANNED/findings/{Score,Eligibility,Price,Deviations,Basis}.md`,
+`actuals/bid-evaluation/RESPONSE_DOC_S2_WATER_SCANNED/findings/{Score,Eligibility,Price,Deviations,Basis}.md`,
+`actuals/bid-evaluation/RESPONSE_DOC_S3_WATER_SCANNED/findings/{Score,Eligibility,Price,Deviations,Basis}.md`.

@@ -1,26 +1,19 @@
-# Plan
+---
+skill: version-compare
+version: 6
+steps: 6
+verified-by: Prathapan C approved this plan's parameters, recorded in `HITL/version-compare/SYNTH_VERS_DOCS_S3_REVISED/manualValidate.md`
+verified-on: 2026-09-21
+confidence: CONFIRMED
+---
 
-`skills/version-compare/skill.md`'s grain (one clause; one row for table-carried
-sections) rolled up to one findings file per unit (section). Each row becomes one file
-under `findings/version-compare/SYNTH_VERS_DOCS_S3_REVISED/`.
+# Plan of Action · version 6
 
-| # | Unit | Findings file | Status |
+| # | Operation | What it does on this project | Example |
 |---|---|---|---|
-| 1 | Cover / header | `01-Cover.md` | done |
-| 2 | 1. Introduction & Background | `02-1-IntroductionBackground.md` | done |
-| 3 | 2. Project Objectives | `03-2-ProjectObjectives.md` | done |
-| 4 | 3. Scope of Work | `04-3-ScopeOfWork.md` | done |
-| 5 | 4. Operational Requirements | `05-4-OperationalRequirements.md` | done |
-| 6 | 5. Eligibility Criteria | `06-5-EligibilityCriteria.md` | done |
-| 7 | 6. Deliverables | `07-6-Deliverables.md` | done |
-| 8 | 7. Project Timeline | `08-7-ProjectTimeline.md` | done |
-| 9 | 8. Evaluation Criteria | `09-8-EvaluationCriteria.md` | done |
-| 10 | 9. Insurance Requirements | `10-9-InsuranceRequirements.md` | done |
-| 11 | 10. Commercial Terms | `11-10-CommercialTerms.md` | done |
-| 12 | 11. Submission Instructions | `12-11-SubmissionInstructions.md` | done |
-| 13 | 12. Terms & Conditions | `13-12-TermsConditions.md` | done |
-| 14 | 13. Contact Information | `14-13-ContactInformation.md` | done |
-| 15 | Appendix A: Pricing / Commission Form | `15-AppendixA-PricingCommissionForm.md` | done |
-| 16 | Appendix B: Reference Form | `16-AppendixB-ReferenceForm.md` | done |
-
-All 16 units complete.
+| 1 | UNDERSTAND | Determine this document's grain — the atomic unit that gets one verdict each — and whether the two documents share a common structure or must be aligned by content. | SYNTH_VERS_DOCS_S3_REVISED.docx (16 sections, 93 clauses total) — grain fixed at one clause per verdict |
+| 2 | MAP | Build a mapping from each unit in the newer document to its counterpart (if any) in the older document, by content/label, not position, ID, or presentation format. | all 16 units mapped 1:1 by an identical 13-section-plus-two-appendix structure |
+| 3 | RETRIEVE | For each mapped (or unmapped) unit, retrieve the exact wording from each document it appears in. | each of the 16 sections' exact wording retrieved from both SYNTH_VERS_DOCS_S3_REVISED.docx and its supporting original — never from memory of a similar section seen elsewhere |
+| 4 | JUDGE | Apply Module 1's verdict rules to each unit using only what was retrieved — CHANGED/ADDED/REMOVED/UNCHANGED/NOT ADDRESSED, both sides quoted. | 93 clauses judged across all 16 units with 0 REMOVED — every source clause found a supporting-document counterpart |
+| 5 | VALIDATE | Run the Module 4 checklist before treating any output as final. | `manifest/version-compare/manifest.md`'s own checklist section for SYNTH_VERS_DOCS_S3_REVISED |
+| 6 | REPORT | Assemble the output per Module 5 — verdict-count summary and thematic rollup, citing findings only. | `reports/version-compare/SYNTH_VERS_DOCS_S3_REVISED/report.md`'s verdict-count summary: 41 CHANGED, 15 ADDED, 0 REMOVED, 37 UNCHANGED |

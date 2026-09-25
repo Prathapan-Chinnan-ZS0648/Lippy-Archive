@@ -12,4 +12,4 @@ Northfield University's revised reissue (RFP-NU-2026-0115-R1), retitled to add C
 
 Northfield University's original dining services RFP (RFP-NU-2026-0115) versus its revised reissue (RFP-NU-2026-0115-R1), which adds a campus catering operation and a new Winthrop Commons dining hall. Verdict counts: 41 CHANGED, 15 ADDED, 0 REMOVED, 37 UNCHANGED — 93 clauses examined. Full clause-by-clause account is in this document's own findings and report.
 
-Full report: `reports/version-compare/SYNTH_VERS_DOCS_S3_REVISED/report.md`
+Full report: `actuals/version-compare/SYNTH_VERS_DOCS_S3_REVISED/reports/report.md`

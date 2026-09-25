@@ -1,10 +1,12 @@
-# Detection — RESPONSE_DOC_S2_WATER_SCANNED (bidder: HydroTech Engineering Pvt. Ltd.)
+---
+skill: bid-evaluation
+confidence: HIGH
+why: the source document is a bidder's own tender submission (or the tender's evaluation-committee register naming this bidder), paired with a supporting document that carries the tender's own criteria or the committee's determination; the brief asks for a per-bidder verdict on score, eligibility, price, and deviations, each cited to that bidder's own record.
+verified-by: Prathapan C approved this skill's assignment via `fileIndex.md` (§2, already resolved before NORMALIZE); confirmed by manual review, recorded in `HITL/bid-evaluation/RESPONSE_DOC_S2_WATER_SCANNED/manualValidate.md`
+verified-on: 2026-09-21
+confidence-of-actual: CONFIRMED
+---
 
+# Detection
 
-| Quirk | Where observed | Handling |
-|---|---|---|
-| Source and supporting documents are scanned image PDFs with no embedded text layer | `documents/source/RESPONSE_DOC_S2_WATER_SCANNED.pdf`, `documents/supporting/BASE_DOC_WATER_SCANNED.pdf` | Extracted via tesseract OCR (200 DPI rasterization), whole-document read-through. |
-| No explicit bid-opening register was supplied | Same fan-out entry as S1/S3 | Register built programmatically per skill's `UNDERSTAND` step — this document is the register row's record for HydroTech Engineering Pvt. Ltd. |
-| No numeric technical score is recorded | Checked every section | Opens with the committee's own overall determination, quoted, per skill's rule. |
-| **RGF civil works (16 beds) line item carries an unusually large quantity for a lump-sum unit — corrected 2026-09-21 after manual verification against the original scanned document** | One BOQ line item: `RGF civil works (16 beds) | LS | 900 | ₹13,05,00,000 | ₹1,17,45,00,00,000`, identical in both the Stage 1 and Stage 2 tables (pages 42 and 44) | **Manual verification finding (2026-09-21):** the source PDF was re-rendered at 250 DPI and read directly, page by page (pages 42-46). The printed figures are legible and arithmetically self-consistent throughout: 900 × ₹13,05,00,000 = ₹1,17,45,00,00,000 exactly; this reconciles into Stage 1's and Stage 2's identical Total/Final D&B Base Price (₹1,18,98,98,82,000), GST (₹21,41,81,78,760), and Bid Value (₹1,40,40,80,60,760); and the Bid Value plus the Section 28 O&M NPV (₹66,72,29,230) reconciles exactly to the printed Combined Evaluated Cost (₹1,41,07,52,89,990). **The earlier JUDGE pass's "OCR legibility failure" diagnosis was incorrect** — it asserted the amount did not reconcile with quantity × rate without actually performing that multiplication; it does reconcile. This was a scan-diagnosis error, not a scan-quality defect. The genuine anomaly is in the bidder's own document: an LS (lump-sum) unit ordinarily implies a quantity of 1, so a quantity of 900 against this line item is a substantive pricing anomaly (most plausibly a bidder-side drafting error) that drives this bidder's price to roughly 48x AquaBuild's (S1) and Clearwater's (S3) otherwise-comparable Combined Evaluated Cost. Per skill's rule that price is read, never computed or corrected, this is reported as the record's own stated price, with the anomaly flagged for the committee's own scrutiny — not silently corrected, excluded, or reconstructed to a "more plausible" figure. |
-| The rest of Section 26/27's individual line items (all except the one flagged row) OCR consistently and plausibly, and the O&M Price Schedule (Section 28, Years 1-10 + NPV) is internally consistent and legible | Cross-checked year-over-year escalation against the 7% p.a. WPI cap | No issue — only the Section 26/27 Stage 1/Stage 2 grand totals and the Section 28 Combined Evaluated Cost line (which depends on the corrupted D&B Bid Value) are affected. |
+bid-evaluation. Alternatives considered and rejected: version-compare (there is one version of each bid document, not two revisions of the same document to diff); a fixed-control compliance-assessment (bidders are judged against this tender's own committee criteria, not a reusable external control register).

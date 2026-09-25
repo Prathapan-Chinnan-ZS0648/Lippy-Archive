@@ -12,4 +12,4 @@ Brightline Retail Group's revised reissue (RFP-BRG-2026-0231-R1, issued June 2, 
 
 Brightline Retail Group's original RFP (RFP-BRG-2026-0231) versus its revised reissue (RFP-BRG-2026-0231-R1), following BRG's acquisition of Meridian Grocers' logistics network. Verdict counts: 72 CHANGED, 33 ADDED, 1 REMOVED, 48 UNCHANGED — 154 clauses examined. Full clause-by-clause account is in this document's own findings and report.
 
-Full report: `reports/version-compare/SYNTH_VERS_DOCS_S1_REVISED/report.md`
+Full report: `actuals/version-compare/SYNTH_VERS_DOCS_S1_REVISED/reports/report.md`

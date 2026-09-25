@@ -14,4 +14,4 @@ Helios EPC Solutions Pvt. Ltd. — ranked 2nd of 6 on an awarded technical score
 
 This document is part of a multi-bidder batch; for the shared tender ranking synthesis for GSPCL/SOLAR/2026/EPC-014, see `reports/bid-evaluation/RankingSummary-Solar/report.md`.
 
-Full report: `reports/bid-evaluation/RankingSummary-Solar/report.md` (this document has no own report.md — bootstrap.md §12, amended v33)
+Full report: `reports/bid-evaluation/RankingSummary-Solar/report.md` (this document has no own report.md — bootstrap.md §12, amended v40)
