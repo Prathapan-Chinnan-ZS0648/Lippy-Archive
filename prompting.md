@@ -10,6 +10,65 @@ marked as reconstructed where the original record did not use this file's exact 
 
 # Prompt log
 
+## Entry 12
+
+```yaml
+timestamp: "2026-09-29 (exact time not recorded)"
+command/prompt: "I think, it's better if we do a rerun"
+generated_output: >
+  Performed an independent rerun of the drawing comparison, straight from both source
+  PDFs, per skills/drawing-comparison.md's Module 2 workflow: read
+  documents/source/AD-3010-C-330030-SHT-004-REV4.pdf and
+  documents/supporting/AD-3010-C-330030-SHT-004-REV3.pdf directly (both the PDF's own
+  text layer and its rendered page image); extracted both with `pdftotext -raw` and
+  diffed the two text streams against each other, independently of and before
+  re-reading the existing 22 findings. Cross-checked every value difference the diff
+  surfaced against the existing findings one at a time: TITLE-1's title wording (matched
+  exactly), REV-1's new Rev 4 row (matched), NOTE-1's new SYMBOLOGY note (matched),
+  MEMB-1's T171x178x26 -120->-175 (matched, confirmed by direct grep), MEMB-4/MEMB-5's
+  weld-count value changes (50N10V->58N2Vy and ->63N3Vy, both confirmed absent from REV3
+  and present exactly once each in REV4), MEMB-2/3/8/9/10/11/12's seven blank->SW(30N
+  10V) weld-count additions (confirmed by exact count: 7 genuine additions, matching the
+  7 findings that claim this pattern), MEMB-6/MEMB-7's two new T171x178x34 braces
+  (confirmed: 0 occurrences in REV3, 2 in REV4), and MEMB-13/14/15/16's four ladder-cage
+  dimension changes (confirmed: the 545/420 pair appears exactly 4 times in REV3 and 0
+  times in REV4, the 500/515 pair the exact reverse). One apparent 8th "SW(30N 10V)"
+  instance from a naive diff count was investigated by hand and found to be a diff-tool
+  hunk-grouping artifact -- pre-existing, unchanged text (a column callout REV3 already
+  had) incidentally swept into the same diff block as the two genuinely new brace lines
+  beside it, not a real 23rd finding. CTRL-1/CTRL-2/CTRL-3's UNCHANGED verdicts have no
+  text-diff signature by design (that is what UNCHANGED means) and were not
+  contradicted by anything the diff surfaced. Result: all 22 existing findings confirmed,
+  none missing, none extra, none contradicted. No finding file content was changed --
+  this was a confirmation, not a new judgment. Logged the decision in pivot.md Entry 1
+  and added a "Independent rerun, 2026-09-29" section to actuals/report/report.md,
+  narrowing (not clearing) the Open items list to reflect what the rerun could and could
+  not settle.
+reason: >
+  The user asked, after the structural rework, whether a rerun was needed for accuracy.
+  Told honestly that no verdict content had been touched by the restructuring and that a
+  rerun wasn't necessary for that reason -- but the user judged it was better to actually
+  do one anyway, rather than rely on the earlier assurance alone. A rerun done by
+  re-reading the existing findings against themselves would not have been independent
+  verification; going back to the source PDFs directly was the only way to make the
+  rerun mean something.
+explanation: >
+  Read both PDFs fresh with the Read tool (text layer plus rendered page image), then
+  separately extracted both with `pdftotext -raw` to a scratch location and diffed them
+  with the standard `diff` utility -- a method the project's own skill file (Module 6,
+  "revision-cloud-untagged" and "absence detected by a second, independently-run
+  attempt") already treats as sound for surfacing value differences, while being
+  explicit about its one real limitation: a text-stream diff can confirm *that* a value
+  changed but not always *where* on the sheet (grid row), which is exactly why
+  MEMB-10/MEMB-11/MEMB-12 remain open. Verified the count and content of every diff
+  hunk against the existing findings one at a time rather than accepting an aggregate
+  match, which is what caught and resolved the apparent 8th-instance discrepancy before
+  it could be reported as a false confirmation.
+model: "Claude (Sonnet 5)"
+skill/version_used: "skills/drawing-comparison.md v1 (Module 2 workflow followed; no rule changed)"
+other_metadata: "No new runs/<run-id>/ folder created for this pass -- it mirrors bootstrap.md's VALIDATE command (re-checking existing output against fresh evidence) rather than a JUDGE pass producing new findings, so it updates actuals/report/report.md directly, consistent with runs/2026-09-17-a/ remaining the untouched record of the original judgment."
+```
+
 ## Entry 11
 
 ```yaml

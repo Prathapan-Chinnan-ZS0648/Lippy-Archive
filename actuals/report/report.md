@@ -75,12 +75,30 @@ checked rather than individually filed.
   `CTRL-2` is a third, plain control case (byte-identical callout, no cloud on either
   revision).
 
+## Independent rerun, 2026-09-29
+
+At the user's request, this comparison was rerun independently and directly from both
+source PDFs — not by re-reading the existing findings. A fresh `pdftotext -raw` extraction
+of `documents/source/AD-3010-C-330030-SHT-004-REV4.pdf` and
+`documents/supporting/AD-3010-C-330030-SHT-004-REV3.pdf`, diffed against each other, found
+exactly the 22 content differences already recorded below — no unit missing, none extra,
+no verdict contradicted. See `prompting.md`'s 2026-09-29 entry and `pivot.md` Entry 1 for
+the full method and the specific values checked (title text, the new revision row, the new
+SYMBOLOGY note, all nine weld/bolt-count changes, both new braces, and all four ladder
+dimension changes). No finding content changed as a result — this rerun confirmed the
+existing set rather than replacing it.
+
 ## Open items before this pack can be signed off
 
-- `MEMB-10`, `MEMB-11`, `MEMB-12`: exact grid row not yet independently confirmed by a
-  second reader.
+- `MEMB-10`, `MEMB-11`, `MEMB-12`: exact grid row still not independently confirmed by a
+  second reader — a raw text diff can confirm *that* the weld/bolt count was added, as the
+  2026-09-29 rerun did, but not *which* grid row it sits on, since the PDF's text stream
+  carries no spatial/coordinate data; this needs a visual/spatial method the rerun did not
+  have, not another text-based pass.
 - `TITLE-1`: the `material: true` call is a judgment open to a second reader — an
   alternative reading is that the title shortening is a purely administrative
-  simplification.
+  simplification. Unaffected by the rerun, since it is a judgment call, not a fact the
+  documents can settle either way.
 - No named human reviewer has signed off on this pack yet — every finding's `verified-by`
-  reads "single-reader cross-check" (agent self-verification), not a named person.
+  reads "single-reader cross-check" (agent self-verification, now including one independent
+  rerun), not a named person.
