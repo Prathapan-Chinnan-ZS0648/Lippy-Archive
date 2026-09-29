@@ -31,4 +31,4 @@ Twin: `actuals/twin/derived/AD-3010-C-330030-SHT-004-REV3.md` (older), `actuals/
 The second dimension figure at the Grid E ladder cage, mirroring `MEMB-14`: 545 → 515. Same cloud and `(*)` marker as `MEMB-15`.
 
 ## Why it matters
-Paired with `MEMB-15`, completing the Grid E mirror of the Grid A pair (`MEMB-13`/`MEMB-14`). Missed in the first pass; corrected 2026-09-17, see `AD-3010-C-330030-SHT-004-REV4/prompting.md`'s 2026-09-17 correction entry.
+Paired with `MEMB-15`, completing the Grid E mirror of the Grid A pair (`MEMB-13`/`MEMB-14`). Missed in the first pass; corrected 2026-09-17, see `prompting.md`'s 2026-09-17 correction entry.

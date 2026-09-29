@@ -29,9 +29,10 @@ modules:
 
 # Drawing comparison
 
-Adapted from `skills/version-compare/skill.md` (see `context.md` §5) to a domain where the
-"document" is a single large-format CAD sheet rather than running prose: a clause becomes
-a callout, and a section becomes a view on the sheet. It is organized as independent
+Adapted from `version-compare` (a clause/paragraph-comparison skill, considered and
+rejected for this document shape — see `detection.md`) to a domain where the "document"
+is a single large-format CAD sheet rather than running prose: a clause becomes a callout,
+and a section becomes a view on the sheet. It is organized as independent
 modules so a user of this skill can extend one module (e.g. domain guidance for a new
 sheet type) without touching the others. Nothing in Modules 2–6 may contradict Module 1 —
 they specialize how Module 1 is applied, they do not replace it.
@@ -124,8 +125,8 @@ following unit ids, each built from a short area mnemonic and a running number:
 | `MEMB-n` | A member, connection, or dimension callout on a plan/elevation view, identified by view (e.g. "Plan EL. 111.500") and grid position | `MEMB-4` — Grid D col.1 weld/bolt count |
 | `CTRL-n` | A callout kept deliberately as an UNCHANGED (or reformat-only) control case, per Module 6 | `CTRL-1` — handrail/BW label reflow |
 
-A "page" for a drawing follows `context.md`'s PDF-page rule (one physical sheet is one
-page); a multi-sheet set would carry one page per sheet, but a single-sheet drawing — the
+A "page" for a drawing follows `bootstrap.md` §1's page-counting rule (one physical sheet
+is one page); a multi-sheet set would carry one page per sheet, but a single-sheet drawing — the
 common case for a shop/fabrication drawing — has exactly one page per revision. A future
 sample with a different sheet type (a multi-sheet set, a P&ID, a reinforcement drawing)
 adds a row here once validated on real input, per the promotion bar (`bootstrap.md` §8.2)

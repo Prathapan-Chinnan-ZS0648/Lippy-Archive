@@ -1,6 +1,6 @@
 # Section map
 
-Both documents are a single A1 sheet (1 page each, per `context.md`'s PDF-page rule).
+Both documents are a single A1 sheet (1 page each, per `bootstrap.md` §1's page-counting rule).
 "Section" here means an area of the sheet, since a shop drawing has no numbered-clause
 structure. Grid positions below are for orientation — the authoritative per-callout grid
 cites live in `actuals/findings/`.
