@@ -2,13 +2,13 @@
 run: AD-3010-C-330030-SHT-004
 use-case: drawing-comparison
 skill-version: v1
-unit: MEMB-10 — Plan EL. 111.500 (T.O.S.), midpoint column, exact grid row not yet confirmed
+unit: MEMB-10 — Plan EL. 111.500 (T.O.S.), Grid B–C panel 1 of 3
 kind: CHANGED
 material: true
 cites: AD-3010-C-330030-SHT-004-REV3.pdf, page 1; AD-3010-C-330030-SHT-004-REV4.pdf, page 1
-verified-by: single-reader cross-check
-verified-on: 2026-09-15
-confidence: UNSURE
+verified-by: single-reader cross-check, grid position confirmed by coordinate-bbox extraction (`pdftotext -bbox-layout`) cross-checked against a 300dpi render
+verified-on: 2026-09-29
+confidence: SURE
 ---
 
 # MEMB-10
@@ -17,20 +17,20 @@ Source: `documents/source/AD-3010-C-330030-SHT-004-REV4.pdf`
 Supporting: `documents/supporting/AD-3010-C-330030-SHT-004-REV3.pdf`
 Twin: `actuals/twin/derived/AD-3010-C-330030-SHT-004-REV3.md` (older), `actuals/twin/derived/AD-3010-C-330030-SHT-004-REV4.md` (newer)
 
-**Plan EL. 111.500 (T.O.S.), midpoint column, exact grid row not yet confirmed** — CHANGED (material)
+**Plan EL. 111.500 (T.O.S.), Grid B–C panel 1 of 3** — CHANGED (material)
 
 ## Old
 > SW
 > UC203x203x46 (-120)
-> — AD-3010-C-330030-SHT-004-REV3.pdf, page 1 (grid row not yet confirmed)
+> — AD-3010-C-330030-SHT-004-REV3.pdf, page 1, Grid B–C panel 1 of 3
 
 ## New
 > SW(30N 10V)
 > UC203x203x46 (-120)
-> — AD-3010-C-330030-SHT-004-REV4.pdf, page 1 (grid row not yet confirmed)
+> — AD-3010-C-330030-SHT-004-REV4.pdf, page 1, Grid B–C panel 1 of 3
 
 ## What changed
-The `pdftotext -raw` text-layer diff between REV3 and REV4 confirms a `SW` → `SW(30N 10V)` change on a `UC203x203x46 (-120)` column, at a text-stream position distinct from `MEMB-2`, `MEMB-3` and `MEMB-8` (which were independently pinned to Grid C–D and Grid D–E by cropping the pixel-diff bounding boxes at full resolution). This instance's exact grid row among the sheet's many visually identical midpoint-column panels was not independently confirmed before this session's verification effort budget was reached.
+A weld/bolt count, `(30N 10V)`, is added to the `SW` connection tag on this column panel — the first of the three 3000mm sub-panels making up the B–C bay (which, like A–B and D–E, spans 9000mm in three equal panels; C–D is the one exception at 6000mm/two panels). Member size and notch (-120) unchanged. Marked with a Rev 4 revision cloud, directly confirmed in a 300dpi render.
 
 ## Why it matters
-The underlying change (a weld/bolt count added where none was specified) is the same fabrication-relevant pattern as `MEMB-2`/`MEMB-3`/`MEMB-8`/`MEMB-9`. Recorded `confidence: UNSURE` rather than assigning a guessed grid row, per `skills/drawing-comparison.md`'s absence policy. A second reader should locate it via the same pixel-diff-and-crop method described in `prompting.md`, or, on re-inspection, confirm it is not a duplicate of `MEMB-2`, `MEMB-3`, `MEMB-8`, `MEMB-11` or `MEMB-12`.
+The same fabrication-relevant pattern as `MEMB-2`/`MEMB-3`/`MEMB-8`/`MEMB-9` — a connection design value that was previously unspecified is now specified. Grid row resolved on 2026-09-29 by extracting exact word coordinates from both PDFs (`pdftotext -bbox-layout`), comparing REV3 against REV4 position-by-position across every sub-panel of the same column, and visually confirming the result in a full-resolution render (the revision cloud is directly visible around this callout). See `prompting.md`'s 2026-09-29 entry for the full method, including a genuine coordinate-mapping limitation hit and disclosed while resolving `MEMB-12`.

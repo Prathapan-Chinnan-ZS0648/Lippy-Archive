@@ -10,6 +10,64 @@ marked as reconstructed where the original record did not use this file's exact 
 
 # Prompt log
 
+## Entry 13
+
+```yaml
+timestamp: "2026-09-29 (exact time not recorded)"
+command/prompt: "resolve the MEMB-10/11/12 grid row issue"
+generated_output: >
+  Resolved 2 of the 3 long-open grid-row UNSURE flags. Method: extracted exact word
+  coordinates from both PDFs with `pdftotext -bbox-layout` (not just raw text, which has
+  no spatial data); found the vertical dimension-label ("3000") positions marking every
+  sub-panel boundary within each A-F grid bay (14 sub-panels total: 3 each in A-B, B-C,
+  D-E, E-F, 2 in C-D matching its narrower 6000mm span); built a sub-panel boundary table
+  from those; verified it against MEMB-1's own known, already-published grid position
+  (Plan EL 111.500, Grid 1-2/A-B) before trusting it further -- MEMB-1's bbox coordinates
+  landed exactly where expected. Used the same boundary table plus a REV3-vs-REV4
+  position-by-position comparison (not just an aggregate count) to find every "SW" -> 
+  "SW(30N 10V)" transition on the UC203x203x46 column: 6 total, of which 3 already matched
+  existing SURE findings (MEMB-2/MEMB-3 in Grid C-D, MEMB-8 in Grid D-E), leaving exactly
+  3 unaccounted positions for the 3 UNSURE findings. Rendered both PDFs at 300dpi
+  (`pdftoppm -r 300`) and cropped tight regions around the computed pixel coordinates for
+  direct visual confirmation. Two of the three (Grid B-C panel 1 and panel 2 of 3)
+  confirmed cleanly -- each crop showed "SW(30N 10V)/UC203x203x46(-120)" with a clearly
+  visible revision cloud, exactly where predicted. The third did not confirm: repeated
+  crops at its computed position showed only dimension lines or, at wider zoom, content
+  belonging to Plan EL. 112.800 (LADDER-1/LADDER-2/HANDRAIL labels) rather than Plan EL.
+  111.500. Diagnosed this by testing the coordinate method against grid letter F's own
+  known bbox position (the furthest, most extreme test case) and getting Plan 112.800's
+  content back instead of an "F" grid circle -- confirming the coordinate-to-pixel mapping
+  that worked reliably for roughly the first two-thirds of the sheet (validated at MEMB-1,
+  and at the two now-resolved MEMB-10/MEMB-11 positions) does not extend reliably to the
+  sheet's lower portion, most likely because this CAD-exported PDF composites the two
+  plan views in a way that isn't captured by a single global rotation+scale transform.
+  Fell back to sequential visual tiling (fixed-size crops moved step by step across the
+  same working row-band) as a second method; this reached Plan EL. 112.800's content
+  before conclusively locating the third position. Updated MEMB-10.md and MEMB-11.md to
+  confidence: SURE with their resolved positions (Grid B-C panel 1 of 3, panel 2 of 3);
+  updated MEMB-12.md with a full, honest account of the attempt and why it didn't close,
+  rather than leaving it looking untried or guessing a position; updated report.md's
+  theme summary, confidence counts (19 SURE/3 UNSURE -> 21 SURE/1 UNSURE), and Open Items;
+  logged the decision in pivot.md Entry 2.
+reason: >
+  The user asked directly to resolve the grid-row issue that both the original pass and
+  the 2026-09-29 rerun (Entry 12) had left open, having been told a text-only diff
+  couldn't settle it and needed a spatial method instead.
+explanation: >
+  Moved from a text-only method (which cannot carry position) to a coordinate-based one
+  (pdftotext -bbox-layout), calibrated and cross-checked it against a fact already known
+  to be true (MEMB-1's position) before relying on it for the unknown cases, then
+  independently re-verified every resolved position with a direct visual render rather
+  than trusting the coordinate math alone -- catching, along the way, a case where the
+  math and a naive visual read would have disagreed if not checked carefully (an
+  apparent "B" grid circle appearing where "D-E" content was expected), which is what
+  surfaced the real limitation instead of silently producing a wrong answer for the third
+  position.
+model: "Claude (Sonnet 5)"
+skill/version_used: "skills/drawing-comparison.md v1 (Module 6's absence-of-guessing policy applied directly to the decision not to close MEMB-12 with an unconfirmed position)"
+other_metadata: "Not committed yet at the time this entry was written."
+```
+
 ## Entry 12
 
 ```yaml

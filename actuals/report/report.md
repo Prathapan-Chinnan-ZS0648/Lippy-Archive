@@ -38,8 +38,11 @@ checked rather than individually filed.
 
 | Confidence | Count |
 |---|---|
-| SURE | 19 |
-| UNSURE | 3 |
+| SURE | 21 |
+| UNSURE | 1 |
+
+(`MEMB-10` and `MEMB-11` moved from UNSURE to SURE on 2026-09-29 once their grid rows were
+confirmed — see "Grid-row resolution, 2026-09-29" below. `MEMB-12` remains UNSURE.)
 
 ## What changed, by theme
 
@@ -53,9 +56,11 @@ checked rather than individually filed.
 - **Two new braces at Grid D:** `MEMB-6`/`MEMB-7`, a new T171x178x34 brace pair, clouded
   and material.
 - **Connection weld/bolt counts added with no prior count specified:** `MEMB-2`, `MEMB-3`,
-  `MEMB-8`, `MEMB-9` (all clouded, SURE), and `MEMB-10`, `MEMB-11`, `MEMB-12` (same
-  pattern, `confidence: UNSURE` — grid row not yet independently pinned by a second
-  reader; see Module 6 of `skills/drawing-comparison.md`).
+  `MEMB-8`, `MEMB-9`, `MEMB-10` (Grid B–C panel 1 of 3), `MEMB-11` (Grid B–C panel 2 of 3)
+  — all six clouded, SURE, grid rows confirmed by coordinate-bbox extraction on
+  2026-09-29 — and `MEMB-12` (same pattern, `confidence: UNSURE` — grid row still not
+  confirmed after a genuine attempt; see Module 6 of `skills/drawing-comparison.md` and
+  `MEMB-12`'s own "2026-09-29 resolution attempt" section).
 - **Connection weld/bolt counts changed with no revision cloud at all:** `MEMB-4` (Grid D
   col.1, 50N 10V → 58N 2Vy) and `MEMB-5` (Grid D col.2, 50N 10V → 63N 3Vy) — the sheet's
   own cloud markers are not a complete change list; a reader relying on clouds alone would
@@ -88,13 +93,25 @@ SYMBOLOGY note, all nine weld/bolt-count changes, both new braces, and all four 
 dimension changes). No finding content changed as a result — this rerun confirmed the
 existing set rather than replacing it.
 
+## Grid-row resolution, 2026-09-29
+
+Following the rerun above, a coordinate-based method (`pdftotext -bbox-layout` word
+positions, cross-checked against a 300dpi render) was used to resolve the three
+`MEMB-10`/`MEMB-11`/`MEMB-12` grid rows the original pass had left `UNSURE`. Two resolved
+cleanly and are now `confidence: SURE`: `MEMB-10` and `MEMB-11` sit in Grid B–C's first
+and second sub-panels (of three), each independently confirmed by a revision cloud
+visible in a full-resolution render. The third, `MEMB-12`, did not resolve — the same
+method hit a real limitation past roughly the B–C bay (predicted coordinates started
+landing on Plan EL. 112.800's content instead of Plan EL. 111.500's), and a visual
+fallback search did not conclusively locate it either. See `MEMB-12`'s own file for the
+full account and `prompting.md`'s 2026-09-29 entry for the method in detail. This was a
+genuine attempt with a disclosed limitation, not a skipped one.
+
 ## Open items before this pack can be signed off
 
-- `MEMB-10`, `MEMB-11`, `MEMB-12`: exact grid row still not independently confirmed by a
-  second reader — a raw text diff can confirm *that* the weld/bolt count was added, as the
-  2026-09-29 rerun did, but not *which* grid row it sits on, since the PDF's text stream
-  carries no spatial/coordinate data; this needs a visual/spatial method the rerun did not
-  have, not another text-based pass.
+- `MEMB-12`: exact grid row still not confirmed, despite a genuine 2026-09-29 attempt
+  (see above) — a second reader should either extend the coordinate method with a
+  per-viewport calibration, or locate it directly by eye at high zoom.
 - `TITLE-1`: the `material: true` call is a judgment open to a second reader — an
   alternative reading is that the title shortening is a purely administrative
   simplification. Unaffected by the rerun, since it is a judgment call, not a fact the
