@@ -64,8 +64,8 @@ run_command() {
   prompt+=" \"Terminal commands\" section, in this project directory (${PROJECT_ROOT}),"
   prompt+=" resolving all configuration from fileIndex.md as it currently stands there."
   prompt+=" Do not ask for confirmation before taking the actions that command's"
-  prompt+=" definition itself already specifies; do proceed to log the result in"
-  prompt+=" promptLog.md per bootstrap.md's traceability requirement."
+  prompt+=" definition itself already specifies; do proceed to log the result per"
+  prompt+=" bootstrap.md's traceability requirement (section 10)."
   if [ -n "$extra_args" ]; then
     prompt+=" Command arguments: ${extra_args}"
   fi

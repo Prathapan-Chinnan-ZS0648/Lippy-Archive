@@ -159,7 +159,8 @@ skill-change: >
   independently-run attempt at the same document pair" (v1, initial content — the skill
   was still unversioned/pre-v1-snapshot at the time of the original correction on
   2026-09-17; folded into v1 when this skill was migrated into the bootstrap.md framework
-  on 2026-09-21). Corrected findings: findings/drawing-comparison/AD-3010-C-330030-SHT-004-
-  REV4/ctrl1.md (verdict unchanged, note added), plus 5 new findings
-  (MEMB-13, MEMB-14, MEMB-15, MEMB-16, CTRL-3).
+  on 2026-09-21; findings relocated into AD-3010-C-330030-SHT-004-REV4/ on
+  2026-09-29 with no content change, see that sample's manifest.md). Corrected findings:
+  AD-3010-C-330030-SHT-004-REV4/actuals/findings/ctrl1.md (verdict unchanged, note
+  added), plus 5 new findings (MEMB-13, MEMB-14, MEMB-15, MEMB-16, CTRL-3).
 ```
