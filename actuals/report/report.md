@@ -38,11 +38,12 @@ checked rather than individually filed.
 
 | Confidence | Count |
 |---|---|
-| SURE | 21 |
-| UNSURE | 1 |
+| SURE | 22 |
+| UNSURE | 0 |
 
 (`MEMB-10` and `MEMB-11` moved from UNSURE to SURE on 2026-09-29 once their grid rows were
-confirmed — see "Grid-row resolution, 2026-09-29" below. `MEMB-12` remains UNSURE.)
+confirmed — see "Grid-row resolution, 2026-09-29" below. `MEMB-12` moved from UNSURE to SURE
+later the same day — see "Grid-row resolution completed, 2026-09-29" below.)
 
 ## What changed, by theme
 
@@ -56,11 +57,11 @@ confirmed — see "Grid-row resolution, 2026-09-29" below. `MEMB-12` remains UNS
 - **Two new braces at Grid D:** `MEMB-6`/`MEMB-7`, a new T171x178x34 brace pair, clouded
   and material.
 - **Connection weld/bolt counts added with no prior count specified:** `MEMB-2`, `MEMB-3`,
-  `MEMB-8`, `MEMB-9`, `MEMB-10` (Grid B–C panel 1 of 3), `MEMB-11` (Grid B–C panel 2 of 3)
-  — all six clouded, SURE, grid rows confirmed by coordinate-bbox extraction on
-  2026-09-29 — and `MEMB-12` (same pattern, `confidence: UNSURE` — grid row still not
-  confirmed after a genuine attempt; see Module 6 of `skills/drawing-comparison.md` and
-  `MEMB-12`'s own "2026-09-29 resolution attempt" section).
+  `MEMB-8`, `MEMB-9`, `MEMB-10` (Grid B–C panel 1 of 3), `MEMB-11` (Grid B–C panel 2 of 3),
+  `MEMB-12` (Grid D–E, the sub-panel adjoining Grid E) — all seven clouded, all
+  `confidence: SURE`. All seven grid rows are now confirmed; see Module 6 of
+  `skills/drawing-comparison.md` and "Grid-row resolution completed, 2026-09-29" below for
+  how the last one closed.
 - **Connection weld/bolt counts changed with no revision cloud at all:** `MEMB-4` (Grid D
   col.1, 50N 10V → 58N 2Vy) and `MEMB-5` (Grid D col.2, 50N 10V → 63N 3Vy) — the sheet's
   own cloud markers are not a complete change list; a reader relying on clouds alone would
@@ -107,15 +108,25 @@ fallback search did not conclusively locate it either. See `MEMB-12`'s own file 
 full account and `prompting.md`'s 2026-09-29 entry for the method in detail. This was a
 genuine attempt with a disclosed limitation, not a skipped one.
 
+## Grid-row resolution completed, 2026-09-29
+
+`MEMB-12` closed the same day, once its actual cause was found: the source PDF carries an
+explicit `/Rotate 90` flag, and `pdftotext -bbox-layout` already reports word coordinates in
+that rotated display space — the earlier attempt's crops failed because it applied its own
+rotation transform on top of already-rotated coordinates. Once re-derived with `PyMuPDF`
+(which handles page rotation correctly), the coordinate the earlier attempt had already found
+rendered exactly where expected, with a clear revision cloud. This was independently
+cross-checked by a second, blind attempt run via `qwen3.8-flash` (Hermes Agent) — given the
+same task, not shown this project's existing findings, using its own tooling (vector line
+geometry via `PyMuPDF` rather than dimension-label inference) — which reached the identical
+coordinate and conclusion on its own. See `MEMB-12`'s own file, `runs/2026-09-29-a/`
+for that independent run's full record, and `pivot.md` Entry 3.
+
 ## Open items before this pack can be signed off
 
-- `MEMB-12`: exact grid row still not confirmed, despite a genuine 2026-09-29 attempt
-  (see above) — a second reader should either extend the coordinate method with a
-  per-viewport calibration, or locate it directly by eye at high zoom.
 - `TITLE-1`: the `material: true` call is a judgment open to a second reader — an
   alternative reading is that the title shortening is a purely administrative
-  simplification. Unaffected by the rerun, since it is a judgment call, not a fact the
-  documents can settle either way.
+  simplification. This is a judgment call, not a fact the documents can settle either way.
 - No named human reviewer has signed off on this pack yet — every finding's `verified-by`
   reads "single-reader cross-check" (agent self-verification, now including one independent
-  rerun), not a named person.
+  rerun and one independent second-model cross-check), not a named person.

@@ -10,6 +10,87 @@ marked as reconstructed where the original record did not use this file's exact 
 
 # Prompt log
 
+## Entry 14
+
+```yaml
+timestamp: "2026-09-29 (exact time not recorded)"
+command/prompt: >
+  "if we done this using hermes, will it work?" then "please try using hermes qwen 3.8
+  flash, let's see. don't push, just rerun" then, after Hermes Agent was confirmed already
+  installed, "full prompt should run, not only issue one for hermes, note that", followed
+  by the user running the full command themselves via the `!` prefix after a Claude Code
+  auto-mode safety classifier ("Create Unsafe Agents") blocked launching it directly with
+  `--yolo` in the background, then "completed from hermes, now check the results".
+generated_output: >
+  Diagnosed Entry 13's MEMB-12 failure as a page-rotation handling bug, not a real sheet-
+  geometry limitation: confirmed via PyMuPDF that the source PDF carries `/Rotate 90`
+  (`page.rotation == 90`), and that `pdftotext -bbox-layout` (used throughout Entry 13)
+  already reports word coordinates in that rotated display space -- Entry 13's own
+  rotation transform, applied on top of already-rotated coordinates, was a double
+  rotation that happened to look correct near its MEMB-1 calibration point and drifted
+  increasingly wrong further away, exactly matching Entry 13's symptoms. Re-rendered and
+  cropped directly with PyMuPDF (which handles rotation correctly on its own) at the
+  coordinate Entry 13 had already computed; the revision cloud around SW(30N 10V)/
+  UC203x203x46(-120) was immediately visible, confirming the position without needing a
+  new coordinate at all. Separately, at the user's request, located the already-installed
+  Hermes Agent CLI (`~/.local/bin/hermes`, config at `~/.hermes/`, backed by OpenRouter,
+  model `qwen/qwen3.8-flash`) and constructed a full, untruncated, non-interactive
+  `hermes chat` command (`--oneshot --yolo --checkpoints --max-turns N --run-budget
+  SECONDS`, `--in` scoped to this repo) that explicitly scoped the task to MEMB-10/11/12
+  only, forbade reading the project's own existing MEMB-10/11/12 findings, pivot.md, and
+  prompting.md (while permitting the already-settled MEMB-2/3/8/9 findings as reference),
+  and required all output to land only inside a new runs/2026-09-29-a/
+  folder. My own attempt to launch this in the background was blocked by Claude Code's own
+  auto-mode safety classifier before it ran (reason: "Create Unsafe Agents", triggered by
+  the --yolo auto-approval flag combined with an unsupervised background launch); per the
+  tool's own instruction not to route around a safety block via a different method, I
+  stopped and gave the user the complete command to run themselves via the `!` prefix
+  (their own directly authorized action, not an unsupervised agent I spawned). The user
+  hit an unrelated `Unknown tool 'process_manage'` self-correction inside Hermes's own
+  session, then two `HTTP 429` errors from OpenRouter; diagnosed via a single `curl` call
+  to OpenRouter's key-info endpoint (using the user's own pasted API key exactly once, not
+  persisted anywhere) that this was not a credits/quota exhaustion, most likely a
+  congested qwen/qwen3.8-flash backend specifically -- advised retry/model-switch/fallback
+  options. The user's key was pasted in plaintext in chat; flagged as exposed and
+  rotation recommended, per the same practice as Entry 4's prior API-key exposure. Once
+  the user reported Hermes had completed, verified scope first (`git status --short`
+  showed exactly one new, correctly-scoped folder and nothing else touched), then read
+  Hermes's full output rather than taking its claim at face value: its run.md confirms it
+  did not read the restricted files, used pdftotext -bbox-layout plus its own PyMuPDF-
+  based vector grid-line/panel-divider geometry (not dimension-label-text inference, a
+  genuinely different method from Entry 13's), and reached MEMB-10 = Grid B-C panel 1 of
+  3, MEMB-11 = Grid B-C panel 2 of 3, MEMB-12 = Grid D-E panel 3 of 3 at coordinates
+  x=594-616, y=1146-1199 pt -- identical to my own PyMuPDF re-derivation. Independently
+  re-verified this myself (reusing the PyMuPDF venv Hermes had left in /tmp) rather than
+  accepting Hermes's claim alone, per this project's standing "no verdict from one side"
+  discipline. Rewrote MEMB-12.md to confidence: SURE with a full two-independent-
+  confirmations account; updated report.md's confidence table (22 SURE/0 UNSURE), theme
+  bullet, added a "Grid-row resolution completed, 2026-09-29" section, and removed
+  MEMB-12 from Open items; logged the decision in pivot.md Entry 3.
+reason: >
+  The user asked a capability question (would Hermes even work for this), then asked to
+  actually try it as a live second-model cross-check on the one finding Entry 13 had
+  honestly left open rather than closed with a guess -- continuing this project's existing
+  practice (Entry 4/5) of using an independent second model as a check on the first
+  model's own work, this time specifically to either confirm or overturn a disclosed
+  limitation rather than to catch an unreviewed gap.
+explanation: >
+  Kept my own coordinate re-derivation and Hermes's fully independent one properly
+  separate before comparing them -- Hermes was deliberately blinded to the existing
+  findings and to my own reasoning about the rotation bug, so its agreement is a genuine
+  independent confirmation rather than an echo. Did not treat Hermes's self-reported
+  success as sufficient on its own: verified repo-scope via git status before reading its
+  output, then re-derived and visually confirmed the same coordinate myself via PyMuPDF
+  before updating any finding file, consistent with never accepting a second attempt's
+  claim without independent verification. Respected the Claude Code safety classifier's
+  block on an unsupervised --yolo background launch rather than retrying with a different
+  flag, tool, or quoting to route around it; the full task still ran, just under the
+  user's own direct authorization via `!` instead of mine.
+model: "Claude (Sonnet 5), cross-checked against qwen3.8-flash via Hermes Agent"
+skill/version_used: "skills/drawing-comparison.md v1 (no rule changed; Module 6's absence-of-guessing policy from Entry 13 is what made a genuine resolution meaningful rather than just closing an open item)"
+other_metadata: "runs/2026-09-29-a/ produced entirely by Hermes, not edited afterward, per the 'a run is never edited after the fact' rule. Not committed or pushed at the time this entry was written."
+```
+
 ## Entry 13
 
 ```yaml
