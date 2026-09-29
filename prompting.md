@@ -10,6 +10,47 @@ marked as reconstructed where the original record did not use this file's exact 
 
 # Prompt log
 
+## Entry 11
+
+```yaml
+timestamp: "2026-09-29 (exact time not recorded)"
+command/prompt: "where are runs, have you missed it"
+generated_output: >
+  Added runs/2026-09-17-a/ — the reference archive's own runs/<run-id>/ shape (approval.md,
+  brief.md, last-run.md, run.md, plus the same detection.md/plan.md/graph.md/twin/
+  findings/report/ shape as actuals/), copied from the current content of actuals/ (the
+  two trees are identical, since — same as the reference archive's own runs/actuals/ pair
+  — no human reviewer has corrected anything yet). approval.md/brief.md/last-run.md/run.md
+  were written with honest content describing this project's own process (an LLM agent
+  following bootstrap.md directly), not the reference's "Lumina" branding, which belongs
+  to their product, not this one. Updated bootstrap.md (§11, new §11.1, the NORMALIZE/
+  JUDGE/REPORT command rows, and the EXPORT directory-preservation list) to describe
+  runs/ properly, and fixed several stale §12 section-number references left over from
+  before this file's own §-numbering was finalized in Entry 10's rewrite.
+reason: >
+  Entry 10 explained the decision to skip runs/ (and META-INF/) rather than fabricate a
+  fake engine identity, but stopped short of offering the honest version of runs/ that
+  was actually available — the folder's structural shape doesn't require claiming a
+  specific engine, only content describing whatever process actually ran, which this
+  project can state truthfully. Re-examining the reference's own current state (0 of 123
+  pages, 0 of 124 findings reviewed) showed its runs/ and actuals/ are themselves
+  currently identical for the same reason ours would be, which meant nothing here needed
+  to be invented to add the folder correctly.
+explanation: >
+  Copied actuals/'s current files into a new runs/2026-09-17-a/ folder (the date of the
+  last real content change, not today's date, to be honest about when the underlying work
+  happened), wrote the four metadata files with plain, truthful descriptions of this
+  project's actual process, and updated bootstrap.md to document the runs/-then-copied-
+  into-actuals/ pattern and the "a run never edits actuals/; actuals/ corrections never
+  edit a run back" rule the reference itself states.
+model: "Claude (Sonnet 5)"
+skill/version_used: "skills/drawing-comparison.md (no change)"
+other_metadata: "META-INF/MANIFEST.MF remains intentionally omitted — it names a specific
+  product/engine (\"Lumina\") this project has no equivalent for, and a structural
+  placeholder there would have to either fabricate that identity or misrepresent one that
+  doesn't apply; runs/ did not have this problem once its content was written honestly."
+```
+
 ## Entry 10
 
 ```yaml

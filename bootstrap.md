@@ -2,8 +2,8 @@
 document: bootstrap.md
 role: shared, sample-agnostic execution framework for processing source and supporting
   documents — orchestration and execution layer only, never tied to any sample or use case
-state: living document — amended only through the change protocol in §11
-version: 1
+state: living document — amended only through the change protocol in §9
+version: 2
 last-amended: 2026-09-29
 export-directory: .   # VARIABLE — the project root this bootstrap governs; override per
                         # deployment, never hardcode a machine- or project-specific path
@@ -20,7 +20,7 @@ This archive currently holds one sample, one use case: `drawing-comparison`. Its
 `documents/` and `actuals/` sit directly at the project root — the same shape a
 single-sample archive naturally has, since there is only one sample to hold. If a second
 sample is ever onboarded, it takes its own top-level folder (named after itself) beside
-this one, per §12.
+this one, per §11.
 
 All use-case-specific behavior is **dynamically resolved from `file-index.md`** — the
 configured input for whatever sample is currently loaded — **and the skill it points at**
@@ -42,7 +42,7 @@ compared, transformed, or evaluated" concretely means; this file only defines th
 
 **Any file format is accepted** for a source or supporting document — PDF, DOCX, PPTX,
 XLSX, CSV, plain text, or any other format a document may arrive in. Format only
-determines *how* a document's content is extracted into its twin (§12) — a paginated
+determines *how* a document's content is extracted into its twin (§11) — a paginated
 document's unit of location is a page, a spreadsheet's is a sheet, a slide deck's is a
 slide, a tabular file's is a row, and so on — never *whether* the document can be
 processed at all.
@@ -132,11 +132,11 @@ initiative.
 |---|---|
 | **`START`** | Start execution of the full `bootstrap.md` workflow using the documents and configuration defined in `file-index.md`: read configuration → resolve documents → normalize → judge → report (§6's execution flow). Composes `RESOLVE` → `NORMALIZE` → `JUDGE` → `REPORT` in sequence. |
 | **`RESOLVE`** | Read `file-index.md`; confirm `use_case_name`, `source_document_path`(s), `supporting_document_path`(s), and `skill_file_path` are all set and every listed path resolves to an existing file — except `supporting_document_path: "n/a"` (§2), which resolves only if `skill_file_path` declares a single-document shape. Produces a confirmation, or `<UNRESOLVED: reason>`. First step of every run. |
-| **`NORMALIZE`** | Build the full actuals twin layer for the resolved source and supporting documents under `actuals/` (§12): per-unit twin extraction (a page for a paginated document, a sheet for a spreadsheet, a slide for a presentation, a row for a tabular file, or whatever unit fits the resolved document's actual format), the derived read-through, the section map, `detection.md`, and `plan.md`. |
-| **`PLAIN`** | Extract the twin from the source/supporting document without applying unnecessary transformation or interpretation — a raw extraction pass only (into `actuals/twin/`), stopping short of detection, planning, or judgment. |
-| **`JUDGE`** | Apply the resolved skill (`skill_file_path`) to every unit in `actuals/plan.md`, producing `actuals/findings/<unit>.md` and `actuals/graph.md`. |
+| **`NORMALIZE`** | Build the full twin layer for the resolved source and supporting documents: per-unit twin extraction (a page for a paginated document, a sheet for a spreadsheet, a slide for a presentation, a row for a tabular file, or whatever unit fits the resolved document's actual format), the derived read-through, the section map, `detection.md`, and `plan.md` — written to a new `runs/<run-id>/` folder first, then copied into `actuals/` (§11.1). |
+| **`PLAIN`** | Extract the twin from the source/supporting document without applying unnecessary transformation or interpretation — a raw extraction pass only, stopping short of detection, planning, or judgment. |
+| **`JUDGE`** | Apply the resolved skill (`skill_file_path`) to every unit in `plan.md`, producing `findings/<unit>.md` and `graph.md` — written to `runs/<run-id>/` first, then copied into `actuals/` (§11.1). |
 | **`OBSERVE`** | Note a pattern worth remembering about this document against `pivot.md`, without changing the skill itself. |
-| **`REPORT`** | Assemble a report from the findings only (`actuals/findings/` → `actuals/report/report.md`). |
+| **`REPORT`** | Assemble a report from the findings only (`findings/` → `report/report.md`) — written to `runs/<run-id>/` first, then copied into `actuals/` (§11.1). |
 | **`VALIDATE`** | Re-check `actuals/findings/` and `actuals/report/report.md` against `file-index.md` and `prompting.md`, confirming every finding still cites a real page and quote. |
 | **`EXPORT`** | Export the full directory configured in this file's `export-directory` front-matter field, including its complete directory structure and all applicable files. See the diagram and rules below. |
 | **`LOG`** | Prepend a full-detail entry recording what a prior command did to the top of `prompting.md` (per §10). Invoked after every command that creates or changes a file. |
@@ -162,8 +162,8 @@ The export operation:
 - resolves the export directory from the configurable `export-directory` value in this
   file's front matter — never a hardcoded directory or filename;
 - exports the **entire directory**, not only individual output files;
-- preserves the directory structure exactly (`documents/`, `actuals/`, `skills/`,
-  `templates/`, and the root-level config/decision files together, §12);
+- preserves the directory structure exactly (`documents/`, `actuals/`, `runs/`, `skills/`,
+  `templates/`, and the root-level config/decision files together, §11);
 - treats the configured directory as a variable, so the same command works across
   different projects, use cases, and samples without modification to this file.
 
@@ -211,7 +211,7 @@ expected output.
 | Use case | `file-index.md`'s `use_case_name` |
 | Skill path | `file-index.md`'s `skill_file_path` |
 | Requested command | the terminal invocation (`START`, `PLAIN`, `EXPORT`, …) |
-| Output location | the standard directory architecture (§12) |
+| Output location | the standard directory architecture (§11) |
 | Export directory | this file's front matter (`export-directory`) |
 
 ## 8. Changing a skill
@@ -249,7 +249,7 @@ output was generated, the model used, and the relevant skill used. Do not omit a
 item; write "not applicable" with a one-clause reason instead.
 
 A decision that settles a dispute, clarifies a rule, or corrects a citation is recorded in
-`pivot.md` instead (§12) — that file is the decision-specific counterpart to this one.
+`pivot.md` instead (§11) — that file is the decision-specific counterpart to this one.
 
 ## 11. Directory architecture
 
@@ -288,6 +288,20 @@ Lippy Archive/
 ├── Doc/                        placeholder for a rendered document deliverable, once one exists
 ├── Excel/                      placeholder for a rendered spreadsheet deliverable, once one exists
 │
+├── runs/
+│   └── <run-id>/                one folder per JUDGE+REPORT pass — the untouched copy of
+│       ├── approval.md          what actuals/ was built from at that point; a run never
+│       ├── brief.md             edits actuals/, and a person correcting actuals/ never
+│       ├── last-run.md          edits a run folder back — see §11.1
+│       ├── run.md
+│       ├── detection.md
+│       ├── plan.md
+│       ├── graph.md
+│       ├── twin/                (same shape as actuals/twin/, this run's own copy)
+│       ├── findings/            (same shape as actuals/findings/, this run's own copy)
+│       └── report/
+│           └── report.md
+│
 ├── skills/
 │   └── <usecase>.md            the live skill for that use case — no sample-specific facts
 │
@@ -307,7 +321,23 @@ at the root either way; `pivot.md` because a decision can bear on more than one 
 `prompting.md` because — with one sample — there is nothing yet to separate it from. This
 whole tree, rooted at `export-directory`, is what `EXPORT` (§5) copies.
 
-### 11.1 `templates/` — starting from a skeleton
+### 11.1 `runs/` — the untouched copy, kept beside the correctable one
+
+Every `JUDGE`+`REPORT` pass writes its output to a new `runs/<run-id>/` folder, timestamped,
+holding the same `detection.md`/`plan.md`/`graph.md`/`twin/`/`findings/`/`report/` shape as
+`actuals/`, plus `approval.md` (whether the plan was approved before running), `brief.md`
+(the task as given), `run.md` (what ran, and how), and `last-run.md` (a short summary of
+the same). The same content is then copied into `actuals/` for a person to review and, if
+needed, correct.
+
+**A run never edits `actuals/`; a person correcting `actuals/` never edits a run folder
+back.** This is what keeps the original output recoverable even after `actuals/` has been
+corrected — compare a `runs/<run-id>/findings/<unit-id>.md` against its
+`actuals/findings/<unit-id>.md` counterpart to see exactly what a review changed. Until a
+person has actually made a correction, the two are identical, and that is the expected,
+honest state for a sample nobody has reviewed yet — not a sign anything is missing.
+
+### 11.2 `templates/` — starting from a skeleton
 
 `templates/` holds one blank, fully-fielded skeleton per repeatable file type — every
 front-matter field named, no content filled in. Adding a new finding or twin page means
