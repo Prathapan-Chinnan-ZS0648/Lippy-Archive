@@ -1,27 +1,30 @@
 # Graph
 
-The relationships this run's findings depend on: which callout in the source document was
-checked against which callout in the supporting document, and which findings a report
-claim traces back to.
+The relationships this run's findings depend on: which sheet each tagged item was read
+from, and how findings trace to the report. Unlike `drawing-comparison`, there is no second
+document to check a unit against — this skill extracts from one drawing set only (see
+`skills/bom-extraction.md` § The rule and `bootstrap.md` §2's `document-pairing:
+single-document` declaration).
 
 ```text
-documents/source/AD-3010-C-330030-SHT-004-REV4.pdf   (22 units, per actuals/plan.md)
-        │  each unit compared 1:1 against, by grid position + member/field identity
+documents/source/260374 COMBINED PID SET 6-1-26.pdf   (13 pages, single document, no supporting revision)
+        │  each page read from its text layer (sparse) and a rendered raster (primary channel)
         ▼
-documents/supporting/AD-3010-C-330030-SHT-004-REV3.pdf   (same grid, same sheet layout)
+actuals/twin/260374 COMBINED PID SET 6-1-26.pdf/page-001.md … page-013.md   (one twin page per sheet)
         │
         ▼
-actuals/findings/<Title1|Rev1|Note1|Memb1..16|Ctrl1..3>.md   (one file per unit, verdict + grid cite + both-sided quote — unit tags e.g. MEMB-13 stay as-is in content, only filenames are CamelCase)
+actuals/twin/derived/260374 COMBINED PID SET 6-1-26.pdf.md   (full tag inventory by sheet — 35 extracted + all named-not-extracted tags)
+        │  every tag with its own full, legible spec is extracted once, at its "home" sheet
+        ▼
+actuals/findings/<tag>.md   (35 files — one per EQUIPMENT/SAFETY-RELIEF-VALVE/CONTROL-VALVE unit, per skills/bom-extraction.md's Finding shape; 3 UNSURE)
         │
         ▼
-actuals/report/report.md   (verdict-count summary + materiality rollup — cites findings only)
+actuals/report/report.md   (structured Bill of Materials — equipment/PSV/PCV tables, counts, coverage statement, flagged items — cites findings only)
 ```
 
-Unlike `version-compare`'s S1 sample, the source and supporting documents here do **not**
-share an identical clause structure to walk 1:1 — the great majority of the sheet's member
-callouts were left unclassified (§`plan.md`), so this graph covers only the 22 callouts
-actually judged, not every callout on the sheet. A callout with no counterpart at the same
-grid position in the supporting sheet would be judged ADDED (source-only) or REMOVED
-(supporting-only) per `skills/drawing-comparison.md`, not assumed absent from the
-graph; no such case occurred among the 22 units in this run — `MEMB-6` and `MEMB-7` are
-ADDED (new braces with no prior grid occupant), not "no counterpart found."
+A tag that recurs across sheets (e.g. `V-200`, named on its own home sheet and referenced
+as a bare flow-destination label on three others) is not a separate node in this graph —
+its finding's own "Also referenced on" field carries that cross-reference (`pivot.md` Entry
+4). The instrument bubble population and the well-pad flowline list are counted and located
+by sheet in `actuals/twin/derived/` but are not findings nodes in this graph — see
+`actuals/report/report.md`'s "Coverage" section and `pivot.md` Entry 3 for why.

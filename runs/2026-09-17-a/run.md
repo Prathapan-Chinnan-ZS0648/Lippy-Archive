@@ -1,10 +1,10 @@
 ---
 run: 2026-09-17-a
-skill: drawing-comparison
+skill: bom-extraction
 engine: none — an LLM agent (Claude), invoked directly against bootstrap.md's command
   definitions, not a separate software engine
 readers: Claude (single reader; no second, independent reader has run yet)
-items: 22
+items: 27
 took-ms: not tracked
 model-calls: not tracked
 model-tokens: not tracked
@@ -24,13 +24,14 @@ scorecard — matching the reference archive this project is modeled on, whose o
 
 ## The steps, as they ran
 
-1. RESOLVE — read `file-index.md`, confirm both documents and the skill resolve
-2. NORMALIZE — build the twin (2 pages, 1 per document) and derive both read-throughs
-3. JUDGE — apply `skills/drawing-comparison.md` to 22 planned units, producing 22 findings
-4. REPORT — assemble `report.md` from the 22 findings
+1. RESOLVE — read `file-index.md`, confirm the source document and skill resolve
+   (`supporting_document_path: "n/a"`, declared valid by `skills/bom-extraction.md`'s
+   `document-pairing: single-document` field, per `bootstrap.md` §2)
+2. NORMALIZE — build the twin (13 pages, 1 document) and derive the read-through
+3. JUDGE — apply `skills/bom-extraction.md` to the planned units, producing 27 findings
+4. REPORT — assemble `report.md` from the 27 findings
 
-22 units judged: 4 ADDED, 15 CHANGED, 3 UNCHANGED, 0 REMOVED (see `report.md`). Two of the
-22 findings and their neighbors were revisited on 2026-09-17 after an independent second
-attempt at the same document pair flagged a missed pattern — see `prompting.md`'s
-2026-09-17 entry at the project root for that correction; this run folder reflects the
-corrected state, not the original first pass.
+27 units extracted: 10 EQUIPMENT, 10 SAFETY-RELIEF-VALVE, 7 CONTROL-VALVE (see
+`report.md`). The instrument bubble population and the well-pad flowline list were counted
+and located by sheet but not individually extracted as findings this pass — see
+`report/report.md`'s "Coverage" section and `pivot.md` Entry 3.

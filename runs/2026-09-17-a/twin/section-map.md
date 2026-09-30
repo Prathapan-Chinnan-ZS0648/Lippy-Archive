@@ -1,19 +1,26 @@
+---
+verified-by: single-reader cross-check
+verified-on: 2026-09-17
+confidence: SURE
+---
 # Section map
 
-Both documents are a single A1 sheet (1 page each, per `bootstrap.md` §1's page-counting rule).
-"Section" here means an area of the sheet, since a shop drawing has no numbered-clause
-structure. Grid positions below are for orientation — the authoritative per-callout grid
-cites live in `actuals/findings/`.
+`260374 COMBINED PID SET 6-1-26.pdf`, 13 pages, single document (no supporting/superseded revision for this skill — see `bootstrap.md`). Page order in the file does **not** track drawing-number order; see `pivot.md` Entry 2.
 
-| area | supporting: AD-3010-C-330030-SHT-004-REV3.pdf | source: AD-3010-C-330030-SHT-004-REV4.pdf |
+| PDF page | drawing no. | content |
 |---|---|---|
-| Title block (fields, revision table) | p.1 | p.1 |
-| Notes | p.1 | p.1 (adds Symbology box) |
-| Reference drawings/documents | p.1 (empty table) | p.1 (empty table) |
-| Key plan | p.1 | p.1 |
-| Plan EL. 111.500 (T.O.S.), Grid 1–2 x A–F | p.1 | p.1 |
-| Plan EL. 112.800 (T.O.S.), Grid 1–2 x A–F | p.1 | p.1 |
+| 1 | D-260374-11-LEGEND1 | line types, P&ID symbols, designation codes, piping-class table — reference only |
+| 2 | D-260374-11-LEGEND2 | ISA instrument nomenclature — reference only |
+| 3 | D-260374-11-001 | well-pad gathering manifold (12 flowlines, chemical-injection metering) |
+| 4 | D-260374-11-002 | interconnect piping, Test-1/IP headers ↔ separators |
+| 5 | D-260374-11-003 | intentionally blank |
+| 6 | D-260374-11-005 | **V-200**, intermediate-pressure bulk separator |
+| 7 | D-260374-11-006 | intentionally blank |
+| 8 | D-260374-11-007 | **V-600A**, test separator #1 |
+| 9 | D-260374-11-008 | intentionally blank |
+| 10 | D-260374-11-009 | IP/test gas metering & pressure control |
+| 11 | D-260374-11-010 | **V-700**, vent stack |
+| 12 | D-260374-11-011 | **CA-800** instrument-air compressor package (CA-800, F-803, F-804A, DR-804, F-804B, V-805, DR-3001) |
+| 13 | D-260374-11-004 | intentionally blank (out of numeric sequence — see pivot.md Entry 2) |
 
-Full sheets: `documents/supporting/AD-3010-C-330030-SHT-004-REV3.pdf`
-(1 page, A1), `documents/source/AD-3010-C-330030-SHT-004-REV4.pdf`
-(1 page, A1).
+Full tag inventory: `actuals/twin/derived/260374 COMBINED PID SET 6-1-26.pdf.md`.

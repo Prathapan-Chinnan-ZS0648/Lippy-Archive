@@ -1,12 +1,57 @@
-# Detection — blind run 2026-09-29 (qwen3.8-flash via Hermes Agent)
+# Detection — 260374 COMBINED PID SET 6-1-26.pdf
 
-Quirks and edge cases found ahead of judgment, on this pair only (REV4 source vs REV3 supporting, single A1 sheet each).
+Quirks and edge cases found ahead of judgment (bootstrap.md §11). Run: 2026-09-29-a, blind independent pass.
+Source: `documents/source/260374 COMBINED PID SET 6-1-26.pdf`, sha256 `bdb3725ac983a2e591ba908ef8f3702d8f9bfd1659a6b56b0e7844c1a721bb2e`, 13 pages, 792x1224 pt, page rot 270 (rendered landscape).
 
-1. **Coordinate spaces.** Page is 1684x2384 pt with /Rotate 90. `pdftotext -bbox-layout` reports coordinates in the rotated display space (x 0..2384, y 0..1684); PyMuPDF `get_drawings()` reports unrotated user space. Mapping used: display X = 2384 − user y, display Y = user x. All positions below are display-space pt.
-2. **The text layer DOES preserve spatial position for the disputed runs.** `SW(30N`, `10V)`, `SW`, `UC203x203x46`, `(-120)` all carry per-word bboxes in `pdftotext -bbox-layout`. The prior run's "grid row uncertain from text-layer diff alone" condition did not reproduce here — every addition is anchored by coordinates.
-3. **Two views, two grid-bubble columns.** Circled A–F bubbles at x≈305 pt (left plan view, the "Plan EL. 111.500 (T.O.S.)" carrying the disputed UC203 column line) and x≈1072 pt (a second, right-hand view whose grid lines sit 28 pt higher). The disputed column line (x≈594–616) belongs to the LEFT view; its grid lines are at y = 269/524/779/949/1204/1459 (A–F), verified against vector line segments at those exact y values.
-4. **Panel structure.** Vector extraction shows horizontal divider lines at 85 pt spacing; grid bays = 255 pt (3 panels) except C–D = 170 pt (2 panels). Each UC203 stack sits ~53 pt below a line, i.e. at a panel centre. Nodes along the midpoint column line (y-centre): 314, 404, 483 (A–B); 577, 662, 747 (B–C); 832, 917 (C–D); 1003, 1088, 1173 (D–E); 1258, 1343, 1428 (E–F).
-5. **Addition census (complete).** REV3 has `SW(30N 10V)` already at nodes 404, 483, 747, 1003, 1258, 1343; bare `SW` at 314, 577, 662, 832, 917, 1088, 1173, 1428. REV4 adds `(30N 10V)` to exactly six: 577, 662, 832, 917, 1088, 1173. Node 314 and node 1428 remain bare in REV4 (checked, no change). Six additions = MEMB-2/3 (C–D 1/2, confirmed) + MEMB-8 (one D–E addition, confirmed) + MEMB-10/11/12 (the remaining three).
-6. **MEMB-8 overlap note (observation only, not reopening a settled finding).** Under strict geometric numbering the D–E bay's panels are 1003 (p1), 1088 (p2), 1173 (p3); node 1003 already carried the count in REV3. The settled `MEMB-8` ("Grid D–E panel 1, first panel below Grid D") therefore corresponds to the upper *changed* D–E node, 1088. This blind run assigns the leftover D–E addition, node 1173, to the disputed set as Grid D–E panel 3 of 3.
-7. **Out of scope here but present:** beam-tag changes `SW(50N 10V)` → `SW(58N ...)`/`SW(63N ...)` at x≈482/742, y≈859–888 (the no-cloud pattern noted in the skill), and a T171x178x34 diagonal inside a cloud near y≈900 — all belong to other MEMB units.
-8. **Clouds.** Rendered REV4 crops confirm revision clouds on the added tags at 917, 1088, 1173 (and the T171 change), and no cloud on the unchanged node-1003 tag — clouds corroborate the coordinate diff.
+## 1. Text layer is near-useless for content; extraction is perception-led
+`pdftotext -layout` yields only the "ISSUED MAY 29, 2026 FOR APPROVAL" stamp, 3S Services boilerplate, and a few large titles (V-200, V-600A, V-700, CA-800/F-803/F-804A/DR-804/F-804B/V-805 header row, "DESICCANT AIR DRYER (f)", "V-805 (f)", "VENT MUFFLERS (OUTSIDE BUILDING) DR-3001 (f)"). Every value in this pack was read from renders (200 dpi overviews + 400 dpi region crops, visual reading). The text layer was used as the confirming second channel wherever it surfaced a string.
+
+## 2. Non-sequential sheet order (pack-profile: non-sequential-sheet-order)
+PDF page order does NOT match drawing numbers:
+p1=LEGEND1, p2=LEGEND2, p3=-001, p4=-002, p5=-003, p6=-005, p7=-006, p8=-007, p9=-008, p10=-009, p11=-010, p12=-011, p13=-004.
+Sheet -004 is the LAST page; no sheet -012 exists. "Page N" is never cited as a proxy for drawing number N.
+
+## 3. Four blank sheets
+-003 (p5), -006 (p7), -008 (p9) and -004 (p13) each read "INTENTIONALLY BLANK" (large centered text, confirmed visually).
+
+## 4. Off-page connectors reference equipment on blank sheets
+-002 (p4) carries arrows: "TO WASTE ACID TANK D-260374-11-003", "TO CAUSTIC WASTE TANK D-260374-11-003", "TO NEUTRALIZATION REACTOR D-260374-11-003" — but sheet -003 is INTENTIONALLY BLANK. No tag numbers are printed for these tanks/reactor anywhere in the set, so per the absence-policy they are NOT extracted as BOM units; they are recorded here as named-but-never-tagged destinations.
+
+## 5. Internally inconsistent sheet cross-references (quoted as printed)
+- -001 (p3) arrow "TO TEST 1 HEADER D-260374-11-002" and -007 (p8) "FROM TEST 1 HEADER D-260374-11-002" — yet the TEST 1 HEADER is drawn on -001 itself and "TEST 1 HEADER" appears on -001 as the large line label of header line 10"-AC004-3100 / 300# B2R-C46.
+- -009 (p10) arrow "TO FLR. VENT STACK D-260374-11-009" references its own sheet number, but the vent stack (V-700) is on -010.
+Readers must not rely on connector sheet numbers; flow identity was confirmed by line numbers (e.g. 10"-PG-132-A4 appears on both -009 and -010).
+
+## 6. Untagged repeated equipment (pack-profile: repeated-tag-no-datasheet / absence-policy)
+-001 draws twelve well/test separators as generic vessel symbols numbered 1–12 with 4"X3" reducers and 3"/1" valves each. None carries a letter-number tag; they are not BOM units. Recorded here so a later revision that tags them is detectable.
+
+## 7. Legend-dependent prefixes (pack-profile: legend-dependent-tag)
+- `CA-800` and `DR-804`/`DR-3001` use two-letter prefixes NOT present in LEGEND1's "TYPICAL EQUIPMENT NUMBER" table (which has C = COMPRESSOR, FAN, BLOWER, ETC. and D = DRIVER). They are classified EQUIPMENT from their own datasheet headers / descriptions on -011, not from generic convention.
+- `KV-800` / `KV-805` prefixes are not in LEGEND2's "TYPICAL IDENTIFIERS FOR P&ID'S" list either; extracted as CONTROL-VALVE with `confidence: UNSURE` (stated size + fail position, but nomenclature unconfirmed).
+- Bubbles print tags stacked without a hyphen ("PSV" over "200"). The hyphenated form (PSV-200) is the standard single-line reading and is used for filenames per the skill's own example; the stacked print form is noted in each finding.
+
+## 8. Numbering gaps that are real, not misreads
+- PCV-603A does not appear on -007 (sequence runs 601A, 602A, 604A).
+- All -007 item suffixes carry "A" (V-600A, PSV-600A…), implying a reserved B-series (Test Separator #2) that is NOT drawn anywhere in the set (-008, the referenced sheet, is blank). Not extracted.
+
+## 9. HOLD clouds pervade the valve population (pack-profile: hold-for-sizing)
+Every PSV in the set, every LCV/PCV except the small IA pilot valves (PCV-601A/602A/604A), and the V-200 datasheet itself sit under revision clouds reading "HOLD FOR SIZING" (V-200 datasheet: "HOLD FOR INFO"). Sizes and set points are the designer's provisional values; flagged in every affected finding's Notes. Do not treat neighbouring line sizes as item ratings.
+
+## 10. Package sub-items (pack-profile: package-sub-item)
+-011 draws an "(f) AFTERCOOLER" inside the CA-800 package boundary with no tag of its own, and a horizontal receiver tank inside CA-800 that carries PSV-800. The aftercooler is not a BOM line; the receiver tank is covered by the CA-800 datasheet line "RECIEVER TANK: 240 GAL - 250 MAWP" (quoted spelling "RECIEVER" as printed).
+
+## 11. "(f)" marker
+Package items are labelled "(f)" (e.g. "V-805 (f)", "DR-3001 (f)", "(f) AFTERCOOLER"). The set's legend does not define "(f)"; quoted as printed, meaning not interpreted.
+
+## 12. Note-vs-bubble mismatch on -011
+NOTE 2 on -011 reads "LOCATE PIT-300B & PIT-300C AT FURTHEST END OF HEADERS" while the drawn bubbles are PIT 800B and PIT 800C. Quoted as printed; likely stale note text.
+
+## 13. Title block has no SHEET TITLE field
+Every sheet's title block carries only DWG. NO / REV. / SCALE / PLOT SCALE / AFE / LOCATION (last two blank). The large "titles" seen on -005/-007/-010/-011 are equipment datasheet header rows or line labels, not title-block fields. No large title was legible on -001, -002, or -009 in any crop; an early full-page read suggested "MOLT N-200-1218-1401" for -009 — NOT confirmed by any targeted crop, so it is recorded as UNSURE and used nowhere.
+
+## 14. Revision state
+All sheets REV. B; revision table: A 05/29/26 ISSUED FOR APPROVAL; B 06/01/26 ISSUED FOR APPROVAL. Stamp: "ISSUED MAY 29, 2026 FOR APPROVAL". Engineer: R. DRAKE; CHECKED: J. ALEMAN (as read on -005/-010 title blocks).
+
+## 15. Out-of-scope populations counted, not extracted
+- Instrument bubbles (PI/PIT/LG/TI/TW/TE/LC/LSH/LAL/FI/FQI/FT/FE/PY/PSHH/LSL/HS/XS/XY/AT/SV/PLC and the -001 injection-skid loop FQI 504 etc.): approximately 90 across the content sheets; counted for coverage, not individually detailed (skill's declared first-pass scoping).
+- Specialty items (e.g. "39SM-6" sample connections; LEGEND1 "TYPICAL SPECIALTY ITEM NUMBER" SP-001 form) and line materials (B7RL-C46, D2S-C6, BS2S, 3/4" CSO): not equipment/PSV/control items; not extracted.

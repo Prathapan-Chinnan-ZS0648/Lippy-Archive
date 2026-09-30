@@ -1,36 +1,29 @@
 ---
-run: <the drawing set's own name>
-use-case: drawing-comparison
-skill-version: <vN, the skill version this finding was judged under>
-unit: <unit id — short description>
-kind: ADDED | REMOVED | CHANGED | UNCHANGED
-material: true | false
-cites: <document>.pdf, page <N>; <document>.pdf, page <M>
+item: <the tag exactly as printed, e.g. V-200>
+for-document: sha256:<digest of the source document>
+label: EQUIPMENT | SAFETY-RELIEF-VALVE | CONTROL-VALVE | INSTRUMENT
+home-sheet: <document>.pdf, page <N> (<drawing number>)
 verified-by: <reviewer, or "single-reader cross-check">
 verified-on: <YYYY-MM-DD>
 confidence: SURE | UNSURE
 ---
 
-# <unit id>
+# <item>
 
-Source: `documents/source/<document>.pdf`
-Supporting: `documents/supporting/<document>.pdf`
-Twin: `actuals/twin/derived/<document>.md`
+**<the drawing's own description/service text>** — <label>
 
-**<unit description>** — <kind> (<material>)
+## Specification
+- <every field the drawing states for this tag: size, design/operating/MAWP pressure,
+  set pressure, capacity, material, mfg/model — each as printed>
 
-## Old
-> <the old side's exact quote, or "—" if ADDED>
-> — <document>.pdf, page <N>
+## Source
+`<document>.pdf`, page <N>, drawing `<drawing number>`.
 
-## New
-> <the new side's exact quote, or "—" if REMOVED>
-> — <document>.pdf, page <N>
+## Also referenced on
+<other sheets/pages this tag appears on as a flow-path callout with no datasheet block
+of its own, or "Not referenced by tag on any other sheet in this set.">
 
-## What changed
+## Notes
 
-<what changed, in plain terms>
-
-## Why it matters
-
-<fabrication relevance, or why it doesn't>
+<anything a procurement or construction reader needs flagged, e.g. "HOLD FOR SIZING",
+or "—" if nothing applies>

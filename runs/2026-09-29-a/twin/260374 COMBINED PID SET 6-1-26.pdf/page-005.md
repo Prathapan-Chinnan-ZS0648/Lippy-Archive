@@ -1,0 +1,20 @@
+---
+document: 260374 COMBINED PID SET 6-1-26.pdf
+for-document: sha256:bdb3725ac983a2e591ba908ef8f3702d8f9bfd1659a6b56b0e7844c1a721bb2e
+page: 5
+tier: PERCEPTION
+read-by: pdftotext -layout (stamp only); pdftoppm 200dpi full-page view
+laid-out-as-a-table: false
+verified-by: single-reader cross-check
+verified-on: 2026-09-29
+verification: read-through
+confidence: SURE
+---
+
+## D-260374-11-003 — PIPING & INSTRUMENTATION, REV. B, 5 of 13 (title block read)
+
+Sheet body reads "INTENTIONALLY BLANK" (large centered text).
+
+## Notes
+Referenced as the home of WASTE ACID TANK / CAUSTIC WASTE TANK / NEUTRALIZATION REACTOR by
+arrows on -002 — those items are therefore named-but-never-drawn (detection §4).

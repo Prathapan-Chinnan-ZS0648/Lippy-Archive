@@ -16,7 +16,7 @@ supporting documents. It is not tied to any specific sample or use case. Any exa
 appears below (a use case name, a file path, a command invocation) is a **variable/example
 only** — it illustrates shape, not content.
 
-This archive currently holds one sample, one use case: `drawing-comparison`. Its
+This archive currently holds one sample, one use case: `bom-extraction`. Its
 `documents/` and `actuals/` sit directly at the project root — the same shape a
 single-sample archive naturally has, since there is only one sample to hold. If a second
 sample is ever onboarded, it takes its own top-level folder (named after itself) beside
@@ -400,5 +400,5 @@ structure that hold regardless of use case or sample.
 11. Filenames follow the reference archive's own convention this project is modeled on:
     hyphenated lowercase for structural files (`file-index.md`, `section-map.md`,
     `page-001.md`), and a unit's or document's own identifier kept verbatim where a
-    filename names a specific one (`MEMB-1.md`, `AD-3010-C-330030-SHT-004-REV4.md`) —
+    filename names a specific one (`V-200.md`, `260374 COMBINED PID SET 6-1-26.pdf`) —
     never a generic project-structure name invented separately from the thing it names.

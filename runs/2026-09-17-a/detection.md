@@ -1,23 +1,12 @@
+---
+skill: bom-extraction
+confidence: HIGH
+candidates: bom-extraction (HIGH); drawing-comparison (LOW); question-answer (LOW)
+verified-by: single-reader cross-check
+verified-on: 2026-09-17
+---
 # Detection
 
-Document quirks and edge cases detected while building the twin and reading these
-documents, ahead of judgment. Recorded here per-run.
+The input is a single 13-page "Piping & Instrumentation" drawing set (title block: "PIPING & INSTRUMENTATION", drawing numbers `D-260374-11-LEGEND1/LEGEND2/001/002/003/005/006/007/008/009/010/011/004`), issued once ("ISSUED FOR APPROVAL", Rev B, 06/01/2026) with no second revision supplied. There is nothing to compare it against — `drawing-comparison` was considered and rejected because that skill's entire shape exists to diff two revisions of the same drawing, and only one revision exists here. The task, per the user's explicit brief, is to read this one drawing set and produce a structured Bill of Materials from it: a single-document extraction task.
 
-| Quirk | Where observed | Handling |
-|---|---|---|
-| Both source files arrived as raw HTTP `multipart/form-data` bodies (a DocuSign export artifact), not valid PDFs — no `%PDF-` header at byte 0, trailing MIME boundary after `%%EOF`. | Both `AD-3010-C-330030-SHT-004-REV3.pdf` and `-REV4.pdf` as originally supplied. | Repaired by extracting the byte span from the first `%PDF-` marker to the final `%%EOF` line before any extraction was attempted. The repaired files are what `documents/` holds; the corruption and repair are logged in `prompting.md`, not silently fixed. |
-| Self-annotation via revision cloud | The source (Rev 4) marks its own changed/added callouts with a hand-drawn revision cloud, and Rev 4's Notes box adds a "SYMBOLOGY" legend explaining a new asterisk marker used alongside some clouds. | Used only as a cross-check, never as the sole basis for a verdict — every clouded and un-clouded callout was independently compared against the supporting (Rev 3) drawing's text per `skills/drawing-comparison.md`. An untagged/uncoded change (no cloud, no asterisk) is exactly what the skill's `revision-cloud-untagged` and `already-communicated marker` pack-profile entries exist to catch. |
-| Grid-position identity, not text-stream order | Member callouts are figure-embedded labels positioned on a structural grid, not clauses in a document flow — the same member-size string (e.g. `UB457x191x74`) recurs many times across the sheet at different grid nodes. | Every unit was aligned to its counterpart by grid position and connection/field identity, never by text-content match alone, to avoid pairing two visually-identical but physically-different callouts. |
-| Absence without a marker | A real dimension change existed at two grid nodes sharing the same ladder-cage pattern; the source's first extraction pass (`pdftotext -raw`) surfaced only one of the two occurrences of the changed values because of PDF content-stream ordering. | Caught only after an independent second pack flagged the gap; re-extracting with `pdftotext -layout` surfaced both occurrences, and a full independent text-occurrence count (`grep -c`) across both extraction modes confirmed there were exactly two, not one. Neither pack's claim was taken at face value — see `prompting.md`. |
-| No printed page numbers | The sheet carries no printed page number (it is a single A1 CAD sheet, not a paginated document). | Both documents treated as 1 page each, following this project's page-counting rule: pages are counted from the first page of the file, starting at 1 (`bootstrap.md` §1). |
-
-`version-compare` (the only other skill configured in `file-index.md` at the time this
-document was first judged) was considered and rejected as the skill for this use case: its
-unit rule ("one clause of the source document... id = section mnemonic + running number")
-and its writing rules assume headings/paragraphs/tables, not a sheet whose "clauses" are
-figure-embedded labels identified by grid position. `skills/drawing-comparison.md`
-was written instead — it keeps `version-compare`'s ADDED/REMOVED/CHANGED/UNCHANGED scale,
-its source-is-later/supporting-is-earlier convention, and its finding shape, but redefines
-the unit rule around grid position and adds pack-profile entries specific to CAD revision
-clouds. This skill-selection reasoning is recorded here because it precedes and motivates
-`plan.md`'s unit list below; the skill's own content lives only in `skill.md`, never here.
+`question-answer` was considered (its shape — one question, one answer, in-documents yes/no — was the closest existing skill in `context.md`'s skill table, at the time this decision was made, to a single-document read; `context.md` was later removed from this branch during the 2026-09-29 reference-mirroring restructure, see `prompting.md` Entry 5 — this reference is kept as the honest historical record of what informed the decision, not a live pointer) and also rejected: the task isn't answering a supplied list of questions against the drawing, it's enumerating every tagged item the drawing itself names, which was closer to `context.md`'s `parts-costing` skill shape ("one part or line; id = the part number or line number; Value · Unit · Evidence · Conflicts") than to `question-answer`. Neither existing skill fit cleanly, so a new skill, `bom-extraction`, was written — see `skills/bom-extraction.md` and `pivot.md` Entry 1.

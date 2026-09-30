@@ -1,32 +1,34 @@
 ---
 kind: brief
-written-at: 2026-09-15
+written-at: 2026-09-17
 written-by: operator
 ---
 
-# Drawing comparison — AD-3010-C-330030-SHT-004, Rev 3 → Rev 4
+# BOM extraction — 260374 Combined P&ID Set, Rev B
 
 ## What this is for
 
-A single-sheet A1 structural steel shop drawing was reissued from Rev 3 (issued for
-construction 20.04.2026) to Rev 4 (issued for construction 27.07.2026). For every callout
-on the sheet — title block, revision table, Notes box, and both plan views — say whether
-it is ADDED, REMOVED, CHANGED, or UNCHANGED against Rev 3, and whether a CHANGED or ADDED
-callout is fabrication-material.
+A 13-page combined Piping & Instrumentation Diagram (P&ID) set, prepared by 3S Services,
+LLC for project 260374 ("Issued for Approval", Rev B, 06/01/2026), needs a structured Bill
+of Materials extracted from it: every tagged piece of physical equipment, every
+pressure-safety/relief valve, and every control/shutdown valve with a stated set-point.
 
-## The documents
+## The document
 
-- **Source — the later issue:** `AD-3010-C-330030-SHT-004-REV4.pdf`
-- **Supporting — the earlier issue, for comparison only:** `AD-3010-C-330030-SHT-004-REV3.pdf`
+- **Source — the only input:** `260374 COMBINED PID SET 6-1-26.pdf`
+- **Supporting:** none — this is a single-document extraction task, not a comparison; see
+  `skills/bom-extraction.md`.
 
-## How to judge
+## How to extract
 
-Per `skills/drawing-comparison.md`: grain is one callout, identified by grid position, not
-by text match alone (the sheet repeats identical member-size text at different grid
-nodes). A revision cloud is a hint, never proof — an unclouded callout can still have
-changed. Judge every unit that was planned; do not assume UNCHANGED from silence.
+Per `skills/bom-extraction.md`: grain is one procurable/installable tagged item, identified
+by the tag exactly as printed. A tag is extracted once, at its fullest-detail "home" sheet;
+other sheets' bare-tag callouts are recorded as cross-references, not duplicate units. A
+"HOLD FOR SIZING"/"HOLD FOR INFO" callout is reported as stated, never filled in from a
+neighbouring line.
 
 ## What to produce
 
-One finding per unit (verdict, materiality, the old and new quoted values, why it
-matters), then a report rolling those up by verdict count and by theme.
+One finding per unit (tag, description, specification, source, cross-references, notes),
+then a report rolling those up into equipment/PSV/PCV tables, counts, and an explicit
+coverage statement for what this pass does and does not individually detail.
