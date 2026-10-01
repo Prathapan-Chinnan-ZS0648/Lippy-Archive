@@ -7,7 +7,7 @@ confidence: SURE
 ---
 # 260374 COMBINED PID SET 6-1-26.pdf
 
-Full tag inventory by sheet, cut under the bom-extraction unit rule in `skills/bom-extraction.md`. The 35 tags marked **[F]** (or **[?]** for UNSURE) below are extracted in full as findings in `actuals/findings/` — that is the authoritative, one-file-per-unit set to count BOM line items against. 32 are SURE; 3 are UNSURE (**[?]** — `PCV-603A`, `KV-800`, `KV-805`); the remainder are named here but not individually detailed. Every other tag is named here so this pack's coverage is checkable, but is not individually detailed — see `bootstrap.md`'s "What this pack does and does not cover".
+Full tag inventory by sheet, cut under the bom-extraction unit rule in `skills/bom-extraction.md`. The 35 tags marked **[F]** (or **[?]** for UNSURE) below are extracted in full as findings in `actuals/findings/` — that is the authoritative, one-file-per-unit set to count BOM line items against. 33 are SURE; 2 are UNSURE (**[?]** — `KV-800`, `KV-805`); the remainder are named here but not individually detailed. Every other tag is named here so this pack's coverage is checkable, but is not individually detailed — see `bootstrap.md`'s "What this pack does and does not cover".
 
 ## By sheet
 
@@ -36,7 +36,7 @@ Reference/decoder sheets. No tags to extract.
 ### Page 8 · D-260374-11-007 — V-600A
 - **`EQUIP-V-600A` [F]**
 - **`PSV-600A` [F]**, **`PSV-601A` [F]**, **`PSV-602A` [F]**
-- **`PCV-600A` [F]**, **`PCV-601A` [F]**, **`PCV-602A` [F]** (added 2026-09-30 cross-check), **`PCV-603A` [?]** (UNSURE — tag disputed; see pivot.md Entry 9), **`PCV-604A` [F]**
+- **`PCV-600A` [F]**, **`PCV-601A` [F]**, **`PCV-602A` [F]** (added 2026-09-30 cross-check), **`PCV-603A` [F]** (confirmed SURE — see pivot.md Entry 10), **`PCV-604A` [F]**
 - **`LCV-601A` [F]** — 2" V-BALL FO, HOLD FOR SIZING (added 2026-09-30 cross-check)
 - **`LCV-602A` [F]** — 2" V-BALL FO, HOLD FOR SIZING (added 2026-09-30 cross-check)
 - **`LCV-603A` [F]** — 2" V-BALL FO, HOLD FOR SIZING (added 2026-09-30 cross-check)
@@ -63,5 +63,5 @@ Reference/decoder sheets. No tags to extract.
 
 ## Totals
 
-- Findings extracted this pass: **35** (10 EQUIPMENT, 10 SAFETY-RELIEF-VALVE, 15 CONTROL-VALVE — of which 3 are UNSURE: `PCV-603A`, `KV-800`, `KV-805`)
+- Findings extracted this pass: **35** (10 EQUIPMENT, 10 SAFETY-RELIEF-VALVE, 15 CONTROL-VALVE — of which 2 are UNSURE: `KV-800`, `KV-805`)
 - Additional tags named above but not individually extracted this pass: 12 well-flowline numbers + roughly 100 INSTRUMENT tags + 4 CONTROL-VALVE/SHUTDOWN-VALVE tags with no extractable spec (`FCV-504`, `SDV-504`, `SV-601A`, `SV-602A`)

@@ -1,10 +1,15 @@
 # Pages to correct first
 
-All 13 pages of `260374 COMBINED PID SET 6-1-26.pdf` were rendered and reviewed in full
-before any skill or archive file was written (`prompting.md` Entry 4), so there is no
-unreviewed backlog to rank. If a correction pass is ever needed, the natural priority order
-is by BOM density, not page order: page 12 (`D-260374-11-011`) carries the richest content
-(six EQUIPMENT tags with a full manufacturer/model/capacity table, plus `DR-3001`,
-`PSV-800/801A/802A`, `PSV-805`, `PCV-800`), followed by pages 6 and 8 (`D-260374-11-005` /
-`-007`, the two bulk/test separators and their PSVs); pages 5, 7, 9 and 13 are intentionally
-blank sheets and need no review at all — see `actuals/twin/section-map.md`.
+Every page needs two readers. These first: cited by the key, or laid out as a table. The rest follow in page order.
+
+| document | page | why first |
+|---|---|---|
+| 260374 COMBINED PID SET 6-1-26.pdf | 12 | cited by 12 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 8 | cited by 8 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 6 | cited by 4 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 10 | cited by 2 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 11 | cited by 1 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 1 | table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 2 | table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 3 | table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 4 | table layout |

@@ -24,4 +24,4 @@ confidence: SURE
 Not referenced by tag on any other sheet in this set.
 
 ## Notes
-Missed in original 2026-09-17 pass; confirmed independently on 400dpi render of page 8 (SET @ 35 PSIG, I.A., 1/4" — clearly legible) and by Hermes/qwen3.8-flash. The adjacent instrument cluster carries "SV-602A" (solenoid) with A/B/C junction positions and "PI-602A". See also `PCV-603A` (same sheet, disputed — confidence UNSURE) and `PCV-604A` (same sheet, 15 PSIG VENT PLUG, confirmed). See pivot.md Entry 9.
+Missed in original 2026-09-17 pass; confirmed independently on 400dpi render of page 8 (SET @ 35 PSIG, I.A., 1/4" — clearly legible) and by Hermes/qwen3.8-flash. The adjacent instrument cluster carries "SV-602A" (solenoid) with A/B/C junction positions and "PI-602A". See also `PCV-603A` (same sheet, confirmed SURE — see pivot.md Entry 10) and `PCV-604A` (same sheet, 15 PSIG VENT PLUG, confirmed). See pivot.md Entry 9.

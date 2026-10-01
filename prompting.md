@@ -9,6 +9,36 @@ marked as reconstructed where the original record did not use this file's exact 
 
 # Prompt log
 
+## Entry 9
+
+```yaml
+timestamp: "2026-09-30"
+command/prompt: >
+  "have you confirm everything by looking at the original document uploaded and the
+  results?" — requesting source-document verification of all extracted findings against
+  the original PDF, following the full archive manual review.
+generated_output: >
+  Direct 400dpi render of page 8 (D-260374-11-007) focusing on the SV-601A cluster
+  (distinct from the SV-602A cluster checked in Entry 8). PCV-603A is unambiguously
+  legible: tag "PCV 603A", "SET @ 15 PSIG", "VENT PLUG", "1/4"" — all clear. The
+  Entry 8 UNSURE was a render-session coverage gap (checked SV-602A, not SV-601A),
+  not a genuine dispute. PCV-603A upgraded from UNSURE to SURE. Cascade of corrections:
+  actuals/findings/PCV-603A.md (confidence SURE, notes updated); actuals/report/report.md
+  (PCV-603A row description corrected, counts table SURE 32→33 / UNSURE 3→2, cross-check
+  section item 3 narrative corrected); actuals/plan.md (step 4 counts updated);
+  actuals/findings/V-600A.md and PCV-602A.md (stale UNSURE references removed);
+  actuals/twin/derived/…pdf.md and page-008.md (PCV-603A marker [?]→[F], totals updated);
+  pivot.md Entry 10 added. Pages 11 and 12 could not be independently re-rendered (API
+  image context limit reached in this session) — those findings remain verified from the
+  2026-09-17 original pass only.
+reason: >
+  A second-reader pass directly from the source drawing is the minimum verification
+  standard for disputed findings. PCV-603A's UNSURE was based on a render session that
+  missed the SV-601A cluster; the correct cluster resolves it immediately.
+model: Claude Sonnet 4.6
+skill_version: bom-extraction v1
+```
+
 ## Entry 8
 
 ```yaml

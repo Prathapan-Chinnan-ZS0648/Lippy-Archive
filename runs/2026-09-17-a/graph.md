@@ -1,3 +1,6 @@
+---
+---
+
 # Graph
 
 The relationships this run's findings depend on: which sheet each tagged item was read
@@ -10,16 +13,16 @@ single-document` declaration).
 documents/source/260374 COMBINED PID SET 6-1-26.pdf   (13 pages, single document, no supporting revision)
         │  each page read from its text layer (sparse) and a rendered raster (primary channel)
         ▼
-actuals/twin/260374 COMBINED PID SET 6-1-26.pdf/page-001.md … page-013.md   (one twin page per sheet)
+runs/2026-09-17-a/twin/260374 COMBINED PID SET 6-1-26.pdf/page-001.md … page-013.md   (one twin page per sheet)
         │
         ▼
-actuals/twin/derived/260374 COMBINED PID SET 6-1-26.pdf.md   (full tag inventory by sheet — 27 extracted + all named-not-extracted tags)
+runs/2026-09-17-a/twin/derived/260374 COMBINED PID SET 6-1-26.pdf.md   (full tag inventory by sheet — 27 extracted + all named-not-extracted tags)
         │  every tag with its own full, legible spec is extracted once, at its "home" sheet
         ▼
-actuals/findings/<tag>.md   (27 files — one per EQUIPMENT/SAFETY-RELIEF-VALVE/CONTROL-VALVE unit, per skills/bom-extraction.md's Finding shape)
+runs/2026-09-17-a/findings/<tag>.md   (27 files — one per EQUIPMENT/SAFETY-RELIEF-VALVE/CONTROL-VALVE unit, per skills/bom-extraction.md's Finding shape)
         │
         ▼
-actuals/report/report.md   (structured Bill of Materials — equipment/PSV/PCV tables, counts, coverage statement, flagged items — cites findings only)
+runs/2026-09-17-a/report/report.md   (structured Bill of Materials — equipment/PSV/PCV tables, counts, coverage statement, flagged items — cites findings only)
 ```
 
 A tag that recurs across sheets (e.g. `V-200`, named on its own home sheet and referenced

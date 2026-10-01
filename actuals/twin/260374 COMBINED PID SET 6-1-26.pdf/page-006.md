@@ -3,6 +3,7 @@ document: 260374 COMBINED PID SET 6-1-26.pdf
 for-document: sha256:bdb3725ac983a2e591ba908ef8f3702d8f9bfd1659a6b56b0e7844c1a721bb2e
 page: 6
 tier: TEXT_LAYER
+drafted-from: runs/2026-09-17-a/twin/260374 COMBINED PID SET 6-1-26.pdf/page-006.md
 read-by: pdftotext -layout (sparse — a handful of tags only); pdftoppm -r 150 raster read (primary channel)
 laid-out-as-a-table: true
 verified-by: single-reader cross-check

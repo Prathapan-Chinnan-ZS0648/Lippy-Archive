@@ -1,18 +1,15 @@
-# Priority — which pages to correct/re-read first
+# Pages to correct first
 
-Ranked for a reviewer checking this run's values against the source:
+Every page needs two readers. These first: cited by the key, or laid out as a table. The rest follow in page order.
 
-1. **p12 (-011)** — densest datasheet population (6 equipment specs, 4 PSVs, 3 valves);
-   model numbers (IR 2-2545A10, FA110IG/IH/ID, D110IM) are digit-sensitive.
-2. **p8 (-007)** — 14 units; set points 720/738/756/225/35/35/15 PSIG; PCV-603A absence;
-   LCV FO/FC letters.
-3. **p6 (-005)** — V-200 datasheet under HOLD FOR INFO cloud (345/250/345); PSV set points
-   345/362/380; LCV-200 FO vs LCV-201 FC.
-4. **p10 (-009)** — PCV-201 "310PSI" printed without space; PCV-202 225 PSI; sheet title
-   unconfirmed (UNSURE).
-5. **p11 (-010)** — V-700 "SIZE: 0'-6" ID" (unusual form; verify apostrophes).
-6. **p1/p2 (LEGEND1/2)** — equipment letter table + identifier list; governs CA/DR/KV
-   classification decisions.
-7. **p3/p4 (-001/-002)** — verify the negative result (no tagged equipment/PSV/PCV) and the
-   untagged separators 1–12.
-8. **p5/p7/p9/p13 (blanks)** — verify "INTENTIONALLY BLANK" only.
+| document | page | why first |
+|---|---|---|
+| 260374 COMBINED PID SET 6-1-26.pdf | 12 | cited by 14 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 8 | cited by 12 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 6 | cited by 6 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 10 | cited by 2 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 11 | cited by 1 unit(s); table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 1 | table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 2 | table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 3 | table layout |
+| 260374 COMBINED PID SET 6-1-26.pdf | 4 | table layout |

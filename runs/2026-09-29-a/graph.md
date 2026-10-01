@@ -1,3 +1,6 @@
+---
+---
+
 # Graph — run 2026-09-29-a
 
 Which unit was checked against what, and how findings trace to the report.

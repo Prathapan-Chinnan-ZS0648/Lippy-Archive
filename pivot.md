@@ -12,11 +12,12 @@ against a rendered raster image of its home sheet at readable resolution; the PD
 layer was checked too but is very sparse (187 lines of `pdftotext -layout` output across 13
 pages), since almost all content on this drawing is vector graphics and small hand-placed
 text, not real text objects. No second human reader or resolver has touched this pack — all
-13 twin pages, the derived inventory/section-map, and all 27 findings were resolved by
-single-reader cross-check; none is left `UNSURE`, since every unit this pack does extract
-was extracted with confidence. The pack's honesty about incompleteness is expressed instead
-through `actuals/report/report.md`'s "Coverage" section (Entry 3 below), not through UNSURE
-findings.
+13 twin pages, the derived inventory/section-map, and the original 27 findings were resolved
+by single-reader cross-check. The 2026-09-30 cross-check with Hermes/qwen3.8-flash added 8
+more findings (Entries 8 and 9 below); 2 of the 35 total remain UNSURE (`KV-800`, `KV-805`) — `PCV-603A` was confirmed SURE by
+direct 400dpi render (Entry 10 below). The pack's honesty about incompleteness is expressed
+through `actuals/report/report.md`'s "Coverage" section (Entry 3 below) and through `UNSURE`
+confidence on the two unresolved findings.
 
 ## Entry log
 
@@ -32,6 +33,8 @@ findings.
 
 | 8 | The original 2026-09-17 pass excluded `LCV-200`, `LCV-201`, `LCV-601A`, `LCV-602A`, `LCV-603A` from findings as "no stated set-point/size". Hermes/qwen3.8-flash (2026-09-29 independent run) extracted all five with pipe-size and fail-position spec. Were the five LCVs correctly excluded, or is pipe size a valid BOM spec for level control valves? | **Pipe size and fail position are the correct BOM spec for level control valves — all five promoted to SURE findings.** A pressure set-point is not the right spec to expect for an LCV; the original Entry 3 scoping ("every tag with its own legible, complete specification") was applied too narrowly by requiring a pressure set-point for all valve types. Size + V-BALL FO/FC + HOLD FOR SIZING is the appropriate extractable spec for procurement. LCV-200/201 (page 6) and LCV-602A/603A (page 8) confirmed from 400dpi renders in 2026-09-30 session; LCV-601A accepted on Hermes's read, consistent with the confirmed pattern. Entry 3's "7 CONTROL-VALVEs with a stated set-point" now reads as an original-pass characterisation, not a permanent scope cap. | Claude (Sonnet 4.6) + Hermes/qwen3.8-flash cross-check | 2026-09-30 |
 | 9 | `PCV-602A` (SET @ 35 PSIG, I.A., 1/4") found by Hermes and confirmed on 2026-09-30 render — absent from original pass. `PCV-603A` (15 PSIG VENT PLUG) is in the original pass and twin-page record but NOT found by Hermes. Do both exist, or is one a misread? | **PCV-602A confirmed and added (SURE). PCV-603A downgraded to UNSURE. PCV-601A service description corrected.** The 2026-09-30 render of page 8 shows `PCV-602A` (35 PSIG, I.A.) and `PCV-604A` (15 PSIG, VENT PLUG) clearly in the SV-602A cluster; no `PCV-603A` was visible there. The twin-page record (`actuals/twin/.../page-008.md`) does list both PCV-603A and PCV-604A as vent-plug valves, so PCV-603A may exist on a different part of the sheet — retained, not deleted, but confidence set to UNSURE pending named-reviewer confirmation. `PCV-601A` corrected from "V-600A water side" to "I.A. supply regulation" (the level-side outlet is controlled by `LCV-601A`, added in Entry 8). | Claude (Sonnet 4.6) + Hermes/qwen3.8-flash cross-check | 2026-09-30 |
+
+| 10 | After Entry 9 downgraded PCV-603A to UNSURE, a 400dpi direct render of page 8 was performed specifically examining the SV-601A cluster (not the SV-602A cluster checked in Entry 9). PCV-603A is clearly legible there — tag "PCV 603A", "SET @ 15 PSIG", "VENT PLUG", "1/4"". Was the Entry 9 UNSURE verdict correct, or was it a render-session coverage gap? | **PCV-603A confirmed SURE. Entry 9's UNSURE was a render-coverage gap, not a real dispute.** The SV-602A cluster (checked in Entry 9) carries PCV-602A (35 PSIG I.A.) and PCV-604A (15 PSIG VENT PLUG). The SV-601A cluster — checked in this pass — carries PCV-601A (35 PSIG I.A.) and PCV-603A (15 PSIG VENT PLUG). The drawing has a symmetric pair of instrument-air circuits, one per SV, and both vent-plug sub-valves are present. PCV-603A confidence upgraded from UNSURE to SURE. See `actuals/findings/PCV-603A.md`. | Claude (Sonnet 4.6) | 2026-09-30 |
 
 ## How to use this file
 

@@ -2,7 +2,7 @@
 sample: 260374 COMBINED PID SET 6-1-26
 use-case: bom-extraction
 skill-version: v1
-based-on: actuals/findings/ (27 unit files, per actuals/plan.md)
+based-on: actuals/findings/ (35 unit files, per actuals/plan.md)
 source: documents/source/260374 COMBINED PID SET 6-1-26.pdf
 supporting: n/a — single-document extraction, see skills/bom-extraction.md
 state: draft — pending a second, named human reviewer; not yet signed off
@@ -56,7 +56,7 @@ the drawing — see "Coverage" below.
 | PCV-600A | V-600A meter skid | 225 PSI | p.8, D-260374-11-007 |
 | PCV-601A | V-600A I.A. supply regulation | 35 PSIG, 1/4" | p.8, D-260374-11-007 |
 | PCV-602A | V-600A I.A. supply regulation | 35 PSIG, 1/4" | p.8, D-260374-11-007 |
-| PCV-603A ⚠ | V-600A vent plug (tag disputed — see Notes) | 15 PSIG | p.8, D-260374-11-007 |
+| PCV-603A | V-600A I.A. vent plug | 15 PSIG, 1/4" | p.8, D-260374-11-007 |
 | PCV-604A | V-600A vent plug | 15 PSIG, 1/4" | p.8, D-260374-11-007 |
 | PCV-800 | V-805 outlet | 100 PSIG | p.12, D-260374-11-011 |
 
@@ -83,8 +83,8 @@ the drawing — see "Coverage" below.
 |---|---|---|---|
 | EQUIPMENT | 10 | 10 | 0 |
 | SAFETY-RELIEF-VALVE | 10 | 10 | 0 |
-| CONTROL-VALVE | 15 | 12 | 3 (PCV-603A, KV-800, KV-805) |
-| **total BOM lines, this pack** | **35** | **32** | **3** |
+| CONTROL-VALVE | 15 | 13 | 2 (KV-800, KV-805) |
+| **total BOM lines, this pack** | **35** | **33** | **2** |
 
 ## Coverage
 
@@ -109,10 +109,9 @@ See `pivot.md` Entry 3 for the scoping decision.
 
 1. **`DR-3001`** carries no independent specification on this drawing set — flagged "(f)",
    furnished with associated equipment or by others (`pivot.md` Entry 5).
-2. **9 items flagged "HOLD FOR SIZING" on the drawing itself** (`PSV-200/201/202/600A/601A/602A`,
-   `PCV-600A`'s bypass, `LCV-200/201` and the V-Ball valves on V-200's outlets — see
-   individual findings) — the designer has not fixed a final size; set pressures given are
-   final, sizes are not.
+2. **12 items flagged "HOLD FOR SIZING" on the drawing itself** (`PSV-200/201/202/600A/601A/602A`,
+   `PCV-600A`'s bypass, `LCV-200/201`, `LCV-601A/602A/603A` — see individual findings) —
+   the designer has not fixed a final size; set pressures given are final, sizes are not.
 3. **`D-260374-11-004`** sits out of numeric sequence in the combined PDF (last page, not
    between `-003` and `-005`) — worth flagging to whoever combined this PDF, though it
    carries no content (`pivot.md` Entry 2).
@@ -173,27 +172,28 @@ Claude (`runs/2026-09-30-a/`, 27 findings) vs Hermes/qwen3.8-flash (`runs/2026-0
    the "KV" prefix appears in neither the LEGEND1 equipment-letter table nor the LEGEND2
    typical-identifiers table. Not independently confirmed in the 2026-09-30 render session.
 
-3. **PCV-602A added; PCV-601A description corrected; PCV-603A downgraded to UNSURE**:
+3. **PCV-602A added; PCV-601A description corrected; PCV-603A confirmed SURE**:
    `PCV-602A` (SET @ 35 PSIG, I.A., 1/4") was confirmed on the 2026-09-30 render and
    by Hermes — missed entirely in the original pass. `PCV-601A` description updated from
    "V-600A water side" to "V-600A I.A. supply regulation" (the water-side outlet is
-   controlled by `LCV-601A`). `PCV-603A` (15 PSIG VENT PLUG) was in the original pass
-   and its twin-page record, but Hermes did not find it; the 2026-09-30 render confirmed
-   `PCV-602A` and `PCV-604A` in that cluster but did not independently confirm or refute
-   a separate `PCV-603A` — downgraded to UNSURE, pending named-reviewer confirmation.
+   controlled by `LCV-601A`). `PCV-603A` (SET @ 15 PSIG, VENT PLUG, 1/4") was temporarily
+   downgraded to UNSURE when the 2026-09-30 cross-check rendered the SV-602A cluster
+   (confirming PCV-602A/604A) without reaching the SV-601A cluster where PCV-603A sits.
+   On subsequent 400dpi direct render, PCV-603A is unambiguously legible — tag, set pressure,
+   and VENT PLUG label all clear — upgraded to SURE.
 
 ## Open items before this pack can be signed off
 
-- **`PCV-603A` tag must be confirmed by a named reviewer**: the 2026-09-30 cross-check
-  found `PCV-602A` (confirmed) but did not settle whether a separate `PCV-603A` also
-  exists on page 8; the original twin-page record says yes, Hermes says no.
+- **`PCV-603A` confirmed SURE** on 2026-09-30 direct render: clearly legible at SET @ 15 PSIG,
+  VENT PLUG, 1/4", in the SV-601A cluster on page 8 — distinct from `PCV-604A` (same spec,
+  in the SV-602A cluster). The prior UNSURE was a render-session coverage gap, not a real
+  dispute. Upgraded to SURE; no named-reviewer action needed on this tag.
 - **`KV-800` and `KV-805` prefix must be confirmed**: the "KV" tag prefix is not defined
   in this drawing's own legend; a designer query is needed before procuring.
 - The INSTRUMENT bubble population and the well-pad flowline list (see "Coverage" above)
   are real, valuable work for a second pass, not yet individually detailed.
-- The HOLD FOR SIZING count has grown: the 5 newly-added LCV findings are all HOLD FOR
-  SIZING, plus the original PSV/PCV HOLD items — a named reviewer should re-tally the
-  complete count.
+- The HOLD FOR SIZING count is now 12 (6 PSVs + PCV-600A bypass + 5 LCVs) — corrected
+  in this pass from the stale "9" that predated the LCV additions.
 - No named human reviewer has signed off on this pack yet — findings carry "single-reader
   cross-check" or "two-reader cross-check" (agent-side), not a named person.
 

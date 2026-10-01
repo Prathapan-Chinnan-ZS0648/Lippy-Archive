@@ -1,3 +1,12 @@
+---
+skill: bom-extraction
+version: 1
+steps: 5
+confidence: HIGH
+verified-by: Hermes/qwen3.8-flash independent pass
+verified-on: 2026-09-29
+---
+
 # Plan — run 2026-09-29-a
 
 Grain (skill bom-extraction): one unit per tagged procurable/installable item, classified
