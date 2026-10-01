@@ -6,6 +6,7 @@ unit: MEMB-15 — Plan EL. 112.800 (T.O.S.), Grid E ladder cage (CL LADDER-3/LAD
 kind: CHANGED
 material: true
 cites: AD-3010-C-330030-SHT-004-REV3.pdf, page 1; AD-3010-C-330030-SHT-004-REV4.pdf, page 1
+drafted-from: runs/2026-09-17-a/findings/MEMB-15.md
 verified-by: single-reader cross-check
 verified-on: 2026-09-17
 confidence: SURE

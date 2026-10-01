@@ -6,6 +6,7 @@ unit: MEMB-12 — Plan EL. 111.500 (T.O.S.), Grid D–E, the sub-panel adjoining
 kind: CHANGED
 material: true
 cites: AD-3010-C-330030-SHT-004-REV3.pdf, page 1; AD-3010-C-330030-SHT-004-REV4.pdf, page 1
+drafted-from: runs/2026-09-17-a/findings/MEMB-12.md
 verified-by: single-reader cross-check; grid position independently confirmed twice on 2026-09-29 — once via a fresh coordinate re-derivation using PyMuPDF (correcting a page-rotation handling error in the first attempt), and once via a separate, blind independent attempt (qwen3.8-flash via Hermes Agent) that reached the same coordinate by its own vector-geometry method
 verified-on: 2026-09-29
 confidence: SURE

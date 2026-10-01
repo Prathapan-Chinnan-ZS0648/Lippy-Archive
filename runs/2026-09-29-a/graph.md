@@ -1,3 +1,6 @@
+---
+---
+
 # Graph — evidence trace, blind run 2026-09-29
 
 Sheet geometry anchors (display-space pt, rotated page):

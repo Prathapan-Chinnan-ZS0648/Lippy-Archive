@@ -3,6 +3,7 @@ document: AD-3010-C-330030-SHT-004-REV4.pdf
 for-document: sha256:e2c1629b3536b5f2c773200403c11edb73f1f0678931f2f3db1becad130034d1
 page: 1
 tier: TEXT_LAYER
+drafted-from: runs/2026-09-17-a/twin/AD-3010-C-330030-SHT-004-REV4/page-001.md
 read-by: pdftotext -raw; pdftoppm -r 300 (300dpi raster, cross-checked by pixel diff against REV3)
 laid-out-as-a-table: true
 verified-by: single-reader cross-check
@@ -71,9 +72,9 @@ Per `skills/drawing-comparison.md`'s `reading-needs: figures` declaration, the t
 | MEMB-7 | Plan EL. 111.500 | midpoint column at Grid D, bracing toward column 1 | BW | T171x178x34 (-120) | Rev 4 cloud | new brace, not present on REV3; companion to MEMB-6 |
 | MEMB-8 | Plan EL. 111.500 | midpoint column, Grid D–E panel 1 | SW(30N 10V) | UC203x203x46 (-120) | Rev 4 cloud | weld/bolt count added; REV3 printed no count |
 | MEMB-9 | Plan EL. 111.500 | midpoint column area, near Grid E–F | SW(30N 10V) | UB305x165x46 | Rev 4 cloud | weld/bolt count added; REV3 printed no count |
-| MEMB-10 | Plan EL. 111.500 | midpoint column, exact grid row not yet confirmed | SW(30N 10V) | UC203x203x46 (-120) | Rev 4 cloud (per text diff) | weld/bolt count added; REV3 printed no count |
-| MEMB-11 | Plan EL. 111.500 | midpoint column, exact grid row not yet confirmed | SW(30N 10V) | UC203x203x46 (-120) | Rev 4 cloud (per text diff) | weld/bolt count added; REV3 printed no count |
-| MEMB-12 | Plan EL. 111.500 | midpoint column, exact grid row not yet confirmed | SW(30N 10V) | UC203x203x46 (-120) | Rev 4 cloud (per text diff) | weld/bolt count added; REV3 printed no count |
+| MEMB-10 | Plan EL. 111.500 | midpoint column, Grid B–C panel 1 of 3 | SW(30N 10V) | UC203x203x46 (-120) | Rev 4 cloud | weld/bolt count added; REV3 printed no count; grid row confirmed 2026-09-29 |
+| MEMB-11 | Plan EL. 111.500 | midpoint column, Grid B–C panel 2 of 3 | SW(30N 10V) | UC203x203x46 (-120) | Rev 4 cloud | weld/bolt count added; REV3 printed no count; grid row confirmed 2026-09-29 |
+| MEMB-12 | Plan EL. 111.500 | midpoint column, Grid D–E, sub-panel adjoining Grid E | SW(30N 10V) | UC203x203x46 (-120) | Rev 4 cloud | weld/bolt count added; REV3 printed no count; grid row confirmed 2026-09-29 |
 | CTRL-1 | Plan EL. 112.800 | Grid A ladder cage, column-2 node | MW / BW | UB356x171x51 / L80x80x8 (-50), "HANDRAIL (TYP.)" | none (Rev 3 clouds cleared) | UNCHANGED control case; label order reflowed only, see `skills/drawing-comparison.md` Module 6, "reformat control case". This node also carries MEMB-13/MEMB-14 — a real, adjacent change missed on first pass, see `prompting.md`'s 2026-09-17 correction entry |
 | CTRL-2 | Plan EL. 111.500 | Grid A, column line 1 | SW | UC203x203x46 (-120) | none | UNCHANGED control case; byte-identical on both revisions |
 | MEMB-13 | Plan EL. 112.800 | Grid A ladder cage (LADDER-1/2), upper dimension | — | 500 | Rev 4 cloud, marked (*) | REV3 read 420; added 2026-09-17, see `prompting.md`'s 2026-09-17 correction entry |

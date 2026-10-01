@@ -1,3 +1,9 @@
+---
+skill: drawing-comparison
+confidence: HIGH
+why: blind rerun of MEMB-10/11/12 grid-row resolution only; skill and documents are the same as runs/2026-09-17-a
+---
+
 # Detection — blind run 2026-09-29 (qwen3.8-flash via Hermes Agent)
 
 Quirks and edge cases found ahead of judgment, on this pair only (REV4 source vs REV3 supporting, single A1 sheet each).

@@ -1,3 +1,9 @@
+---
+skill: drawing-comparison
+confidence: HIGH
+why: the plan for this run was approved under this skill and the run was made with it; version-compare was considered and rejected at the detection step
+---
+
 # Detection
 
 Document quirks and edge cases detected while building the twin and reading these

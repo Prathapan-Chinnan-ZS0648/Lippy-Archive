@@ -1,3 +1,12 @@
+---
+skill: drawing-comparison
+confidence: HIGH
+why: source is a Rev 4 CAD plan-view sheet annotated with revision clouds; supporting is the prior Rev 3 version of the same sheet; task is to identify every callout that changed, was added, or was removed between revisions. version-compare was considered and rejected — its unit rule assumes headings/paragraphs/tables, not figure-embedded labels identified by grid position; drawing-comparison was written to cover this case.
+verified-by: skill applied 2026-09-15; confirmed by independent second-model cross-check (qwen3.8-flash via Hermes Agent) 2026-09-29; all 22 units verified SURE
+verified-on: 2026-09-29
+confidence-of-actual: HIGH
+---
+
 # Detection
 
 Document quirks and edge cases detected while building the twin and reading these

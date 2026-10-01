@@ -3,7 +3,7 @@
 Both documents are a single A1 sheet (1 page each, per `bootstrap.md` §1's page-counting rule).
 "Section" here means an area of the sheet, since a shop drawing has no numbered-clause
 structure. Grid positions below are for orientation — the authoritative per-callout grid
-cites live in `actuals/findings/`.
+cites live in `runs/2026-09-17-a/findings/`.
 
 | area | supporting: AD-3010-C-330030-SHT-004-REV3.pdf | source: AD-3010-C-330030-SHT-004-REV4.pdf |
 |---|---|---|

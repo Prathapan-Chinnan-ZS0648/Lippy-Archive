@@ -1,3 +1,12 @@
+---
+skill: drawing-comparison
+version: 1
+steps: 4
+confidence: HIGH
+verified-by: single-reader cross-check (Claude), independent rerun (2026-09-29, Claude), independent second-model cross-check (qwen3.8-flash via Hermes Agent, 2026-09-29)
+verified-on: 2026-09-29
+---
+
 # Plan
 
 The units of the source document to be judged, per `skills/drawing-comparison.md`'s
@@ -18,9 +27,9 @@ grain (one callout, identified by grid position). Each row becomes one file unde
 | 10 | MEMB-7 — new brace, Grid D | `MEMB-7.md` | done |
 | 11 | MEMB-8 | `MEMB-8.md` | done |
 | 12 | MEMB-9 | `MEMB-9.md` | done |
-| 13 | MEMB-10 | `MEMB-10.md` | done (confidence: UNSURE — grid row not independently pinned) |
-| 14 | MEMB-11 | `MEMB-11.md` | done (confidence: UNSURE — grid row not independently pinned) |
-| 15 | MEMB-12 | `MEMB-12.md` | done (confidence: UNSURE — grid row not independently pinned) |
+| 13 | MEMB-10 | `MEMB-10.md` | done (confidence: SURE — Grid B–C panel 1 of 3, confirmed 2026-09-29) |
+| 14 | MEMB-11 | `MEMB-11.md` | done (confidence: SURE — Grid B–C panel 2 of 3, confirmed 2026-09-29) |
+| 15 | MEMB-12 | `MEMB-12.md` | done (confidence: SURE — Grid D–E, sub-panel adjoining Grid E, confirmed 2026-09-29) |
 | 16 | MEMB-13 — ladder-cage node, dimension change | `MEMB-13.md` | done |
 | 17 | MEMB-14 — ladder-cage node (2nd, mirrored) | `MEMB-14.md` | done |
 | 18 | MEMB-15 | `MEMB-15.md` | done |

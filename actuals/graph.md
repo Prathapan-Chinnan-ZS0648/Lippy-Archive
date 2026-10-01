@@ -1,3 +1,7 @@
+---
+verification: verified
+---
+
 # Graph
 
 The relationships this run's findings depend on: which callout in the source document was

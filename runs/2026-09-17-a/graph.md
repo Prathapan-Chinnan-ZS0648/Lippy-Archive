@@ -1,3 +1,6 @@
+---
+---
+
 # Graph
 
 The relationships this run's findings depend on: which callout in the source document was
@@ -11,10 +14,10 @@ documents/source/AD-3010-C-330030-SHT-004-REV4.pdf   (22 units, per actuals/plan
 documents/supporting/AD-3010-C-330030-SHT-004-REV3.pdf   (same grid, same sheet layout)
         │
         ▼
-actuals/findings/<Title1|Rev1|Note1|Memb1..16|Ctrl1..3>.md   (one file per unit, verdict + grid cite + both-sided quote — unit tags e.g. MEMB-13 stay as-is in content, only filenames are CamelCase)
+runs/2026-09-17-a/findings/<Title1|Rev1|Note1|Memb1..16|Ctrl1..3>.md   (one file per unit, verdict + grid cite + both-sided quote — unit tags e.g. MEMB-13 stay as-is in content, only filenames are CamelCase)
         │
         ▼
-actuals/report/report.md   (verdict-count summary + materiality rollup — cites findings only)
+runs/2026-09-17-a/report/report.md   (verdict-count summary + materiality rollup — cites findings only)
 ```
 
 Unlike `version-compare`'s S1 sample, the source and supporting documents here do **not**

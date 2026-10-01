@@ -6,6 +6,7 @@ unit: MEMB-11 — Plan EL. 111.500 (T.O.S.), Grid B–C panel 2 of 3
 kind: CHANGED
 material: true
 cites: AD-3010-C-330030-SHT-004-REV3.pdf, page 1; AD-3010-C-330030-SHT-004-REV4.pdf, page 1
+drafted-from: runs/2026-09-17-a/findings/MEMB-11.md
 verified-by: single-reader cross-check, grid position confirmed by coordinate-bbox extraction (`pdftotext -bbox-layout`) cross-checked against a 300dpi render
 verified-on: 2026-09-29
 confidence: SURE

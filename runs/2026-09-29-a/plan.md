@@ -1,3 +1,12 @@
+---
+skill: drawing-comparison
+version: 1
+steps: 3
+confidence: HIGH
+verified-by: qwen3.8-flash via Hermes Agent (blind run)
+verified-on: 2026-09-29
+---
+
 # Plan — blind run 2026-09-29
 
 Scope: resolve the exact grid position of the three file-unconfirmed weld/bolt-count additions on the UC203x203x46 midpoint column line, filed as MEMB-10, MEMB-11, MEMB-12.

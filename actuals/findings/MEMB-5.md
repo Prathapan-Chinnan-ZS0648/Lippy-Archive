@@ -6,6 +6,7 @@ unit: MEMB-5 — Plan EL. 111.500 (T.O.S.), Grid D node, column line 2
 kind: CHANGED
 material: true
 cites: AD-3010-C-330030-SHT-004-REV3.pdf, page 1; AD-3010-C-330030-SHT-004-REV4.pdf, page 1
+drafted-from: runs/2026-09-17-a/findings/MEMB-5.md
 verified-by: single-reader cross-check
 verified-on: 2026-09-15
 confidence: SURE

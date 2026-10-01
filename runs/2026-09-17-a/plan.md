@@ -1,3 +1,9 @@
+---
+skill: drawing-comparison
+version: 1
+steps: 4
+---
+
 # Plan
 
 The units of the source document to be judged, per `skills/drawing-comparison.md`'s

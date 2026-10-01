@@ -28,7 +28,7 @@ Not present in AD-3010-C-330030-SHT-004-REV3.pdf; the Notes area below item 1 is
 > — AD-3010-C-330030-SHT-004-REV4.pdf, page 1
 
 ## What changed
-A new legend defines what an asterisk on a Rev 4 revision cloud means. `MEMB-1` is the only Rev 4 cloud on this sheet marked with `(*)`.
+A new legend defines what an asterisk on a Rev 4 revision cloud means. Three Rev 4 clouds on this sheet are marked with `(*)`: `MEMB-1` (Grid A–B diagonal brace), `MEMB-13`/`MEMB-14` (Grid A ladder cage, sharing one cloud), and `MEMB-15`/`MEMB-16` (Grid E ladder cage, sharing one cloud) — consistent with the three `(*)` entries in the SYMBOLOGY box on the PDF.
 
 ## Why it matters
 Not itself a fabrication fact, but it changes how a reader should treat the sheet's own revision clouds: a `(*)`-marked cloud is not "new news" to the fabricator, while an un-marked (or entirely uncloud) change still is. Recorded in `skills/drawing-comparison.md` as the `already-communicated marker` pack-profile entry.

@@ -6,6 +6,7 @@ unit: REV-1 — title block, revision table
 kind: ADDED
 material: false
 cites: AD-3010-C-330030-SHT-004-REV4.pdf, page 1
+drafted-from: runs/2026-09-17-a/findings/REV-1.md
 verified-by: single-reader cross-check
 verified-on: 2026-09-15
 confidence: SURE
